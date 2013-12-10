@@ -2,7 +2,7 @@
 
 ### 样例图
 
-![Loading Image](/cmli/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/example.loading.png)
+![Loading Image](../cmli/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/example.loading.png)
 
 ### UML图
 
