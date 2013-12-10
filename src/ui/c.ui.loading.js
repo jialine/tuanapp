@@ -1,4 +1,7 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿// @author l_wang
+// @email l_wang@ctrip.com
+
+define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
 
   var options = {};
 
@@ -12,8 +15,9 @@
 
   _attributes.onCreate = function () { };
 
+  var dom = '<div class="cui-breaking-load"><div class="cui-w-loading"></div><i class="cui-white-logo"></i></div>';
   _attributes.onShow = function () {
-    this.contentDom.html('<div class="cui-breaking-load"><div class="cui-w-loading"></div><i class="cui-white-logo"></i></div>');
+    this.contentDom.html(dom);
     this.reposition();
   };
 
