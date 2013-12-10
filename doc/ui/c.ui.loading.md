@@ -1,5 +1,9 @@
 # c.ui.loading
 
+### 样例图
+
+![Loading Image](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/47d45dfc5a8565bfa35fd5026f9659c4c9c24eb7/doc/img/example.loading.png)
+
 ### UML图
 
 ![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/47d45dfc5a8565bfa35fd5026f9659c4c9c24eb7/doc/img/c.ui.loading.png)
