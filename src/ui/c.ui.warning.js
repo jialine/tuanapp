@@ -1,4 +1,8 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿// @deprecated
+// @author Michael.Lee
+// @email cmli@Ctrip.com
+
+define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
 
 	var options = {};
 

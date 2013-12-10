@@ -1,4 +1,7 @@
-﻿define(['libs', 'c'], function (libs, c) {
+﻿// @deprecated
+// 预备干掉！
+
+define(['libs', 'c'], function (libs, c) {
     var cBase = c.base,
         cui = c.ui,
         cType = c.base.Type;
