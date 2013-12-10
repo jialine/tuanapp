@@ -6,7 +6,7 @@
 
 ### UML图
 
-![Toast UML](../raw/doc/img/c.ui.loading.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.loading.png)
 
 ### 使用方法
 
