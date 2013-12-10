@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>c.widget.member unit testing</title>
+    <link rel="stylesheet" type="text/css" href="./res/style/qunit-1.12.0.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
+    <script type="text/javascript" src="../../res/libs/require.min.js"></script>
+    <script type="text/javascript" src="../../libs_r.js"></script>
+    <script type="text/javascript" src="./res/script/qunit.js"></script>
+    <script type="text/javascript">
+      require.config({
+        baseUrl: '../../',
+        paths: {
+          'cBase'                     : 'app/common/c.base',
+          'cStorage'                  : 'app/common/c.storage',
+          'cUtility'                  : 'app/common/c.utility',
+          'cHybridFacade'             : 'app/hybrid/c.hybrid.facade',
+          'cWidgetFactory'            : 'app/widget/c.widget.factory',
+          'cWidgetMember'             : 'app/widget/c.widget.member',
+          'cCaseWidgetMember'         : 'app/test/case/case.c.widget.member'
+        }
+      });
+
+      QUnit.config.autostart = false;
+      require(['cCaseWidgetMember'], function(CaseWidgetMember){
+        QUnit.start();
+      });
+    </script>
+  </body>
+</html>
