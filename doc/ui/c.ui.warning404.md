@@ -22,13 +22,13 @@
 
 STEP 1: 在RequireJS中引入c.ui.warning404
 
-    define(['app/ui/c.ui.scroll.warning404'], function(Warning404){
+    define(['app/ui/c.ui.warning404'], function(Warning404){
 
     });
 
 STEP 2: 初始化
 
-    define(['app/ui/c.ui.scroll.warning404'], function(Warning404){
+    define(['app/ui/c.ui.warning404'], function(Warning404){
       var warning404 = new cUI.Warning404();
       warning404.retryClick(callback);
       warning404.show();//打开

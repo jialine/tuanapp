@@ -2,7 +2,7 @@
 
 ### UML图
 
-该类过于简单，于是未提供UML图
+![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.input.clear.png)
 
 ### Parammeters
 
