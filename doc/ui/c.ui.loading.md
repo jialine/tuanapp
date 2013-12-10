@@ -20,7 +20,16 @@ STEP 2: 初始化
 
     define(['app/ui/c.ui.loading'], function(Loading){
       var loading = new Loading();
+
+      // ---------------------------
+      // @description 显示Loading框
       loading.show();
+
+      // ---------------------------
+      // 业务逻辑 -- 加载数据
+
+      // ---------------------------
+      // @description 收起Loading框
       loading.hide();
     });
 
