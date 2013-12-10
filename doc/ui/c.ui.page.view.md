@@ -2,7 +2,7 @@
 
 ### UML图
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.mask.png)
+![Toast UML](http://git.dev.sh.ctripcorp.com/cmli/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/c.ui.page.view.png)
 
 ### 简单描述
 该类用于提供一个显示层，放置各种控件，本身不推荐单独使用（多用作于继承）

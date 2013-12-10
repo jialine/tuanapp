@@ -2,7 +2,7 @@
 
 ### UML图
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.mask.png)
+![Toast UML](http://git.dev.sh.ctripcorp.com/cmli/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/c.ui.alert.png)
 
 ### 简单描述
 该类用于提供类似于alert的弹出层
