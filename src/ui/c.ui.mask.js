@@ -6,8 +6,7 @@
     prefix: 'cui-'
   };
 
-  options.__propertys__ = function () {
-  };
+  options.__propertys__ = function () {};
 
   options.initialize = function ($super, opts) {
     this.bindEvent();
@@ -16,24 +15,51 @@
   };
 
   options.bindEvent = function () {
-    this.addEvent('onCreate', function () {
-      this.setRootStyle();
-      this.onResize = $.proxy(function () {
-        this.resize();
-      }, this);
+    var patterns = {
+      'onCreate': function () {
+        this.setRootStyle();
+        this.onResize = $.proxy(function () {
+          this.resize();
+        }, this);
 
-      this.onResize();
+        this.onResize();
+      },
+
+      'onShow': function () {
+        this.setzIndexTop(-1);
+        $(window).bind('resize', this.onResize);
+        this.onResize();
+      },
+
+      'onHide': function(){
+        $(window).unbind('resize', this.onResize);
+      }
+    }
+
+    var scope = this;
+    $.each(patterns, function(key, value){
+      scope.addEvent(key, value);
     });
 
-    this.addEvent('onShow', function () {
-      this.setzIndexTop(-1);
-      $(window).bind('resize', this.onResize);
-      this.onResize();
-    });
 
-    this.addEvent('onHide', function () {
-      $(window).unbind('resize', this.onResize);
-    });
+    // this.addEvent('onCreate', function () {
+    //   this.setRootStyle();
+    //   this.onResize = $.proxy(function () {
+    //     this.resize();
+    //   }, this);
+
+    //   this.onResize();
+    // });
+
+    // this.addEvent('onShow', function () {
+    //   this.setzIndexTop(-1);
+    //   $(window).bind('resize', this.onResize);
+    //   this.onResize();
+    // });
+
+    // this.addEvent('onHide', function () {
+    //   $(window).unbind('resize', this.onResize);
+    // });
 
   };
   options.setRootStyle = function () {
