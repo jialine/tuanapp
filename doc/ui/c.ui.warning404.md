@@ -32,7 +32,10 @@ STEP 2: 初始化
     define(['app/ui/c.ui.warning404'], function(Warning404){
       // --------------------
       // 初始化warning404控件
-      var warning404 = new cUI.Warning404();
+      var warning404 = new cUI.Warning404({
+        retryDom: '',             //重写重试按钮的dom结构
+        callback: function(){}    //设置重试按钮的回调
+      });
 
       // --------------------
       // 设置"重试"按钮回调
