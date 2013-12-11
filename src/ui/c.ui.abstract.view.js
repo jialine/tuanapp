@@ -223,6 +223,12 @@
       callback && callback.call(this);
     }, this));
   };
+  options.reposition = function () {
+    this.root.css({
+      'margin-left': -($(width) / 2) + 'px',
+      'margin-top': -($(height) / 2) + 'px'
+    });
+  };
 
   return new cBase.Class(options);
 

@@ -67,7 +67,6 @@
 
   options.initialize = function ($super, opts) {
 
-    //l_wang 这段代码意义不大
     this.setOption(function (k, v) {
       switch (k) {
         case 'title':
