@@ -1,8 +1,10 @@
 # c.ui.input.clear
 
-### UML图
+### 样例图
+![Loading Image](../raw/H5V2.2S6/doc/img/example.input.clear.png)
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.input.clear.png)
+### UML图
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.input.clear.png)
 
 ### Parammeters
 
