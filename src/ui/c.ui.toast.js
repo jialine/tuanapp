@@ -1,5 +1,4 @@
 ﻿// @author Michael.Lee
-// @email cmli@Ctrip.com
 
 define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
 

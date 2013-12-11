@@ -145,13 +145,6 @@
   options.unautoposition = function () {
     $(window).unbind('resize', this.autoPositionHander);
   };
-  options.reposition = function () {
-    var size = getElementRealSize(this.root);
-    this.root.css({
-      'margin-left': -(size.width / 2) + 'px',
-      'margin-top': -(size.height / 2) + 'px'
-    });
-  };
 
   return new cBase.Class(cUICore.AbstractView, options);
 

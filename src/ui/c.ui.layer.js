@@ -88,11 +88,5 @@
     return this.tpl(this.viewdata);
   };
 
-  options.reposition = function () {
-    this.root.css({
-      'margin-left': -($(window).width() / 2) + 'px',
-      'margin-top': -($(window).height() / 2) + 'px'
-    });
-  };
   return new cBase.Class(cUICore.Layer, options);
 });
