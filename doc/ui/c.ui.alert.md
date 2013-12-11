@@ -1,11 +1,9 @@
 # c.ui.alert
 
 ### 样例图
-
 ![Loading Image](../raw/H5V2.2S6/doc/img/example.alert.png)
 
 ### UML图
-
 ![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.alert.png)
 
 ### 简单描述

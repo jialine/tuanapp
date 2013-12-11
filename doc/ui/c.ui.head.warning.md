@@ -1,7 +1,10 @@
 # c.ui.head.warning
 
+### 样例图
+![Loading Image](../raw/H5V2.2S6/doc/img/example.head.warning.png)
+
 ### UML图
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.head.warning.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.head.warning.png)
 
 ### Attribute
 
@@ -34,7 +37,7 @@ STEP 1: 在RequireJS中引入c.ui.warning404
 STEP 2: 初始化
 
     define(['app/ui/c.ui.head.warning'], function(HeadWarning){
-      var headwarning = new HeadWarning({
+      var headwarning = new HeadWarning(
         title, content, callback
       });
 
