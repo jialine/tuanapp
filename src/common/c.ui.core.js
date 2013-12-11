@@ -2267,7 +2267,7 @@ define(['libs', 'cBase', 'cUtility', 'cUIScrollList', 'cWidgetFactory', 'cWidget
         config: config,
         EventListener: EventListener,
         HashObserve: HashObserve,
-//        AbstractView: AbstractView,
+//        AbstractView: AbstractView, 
 //        Mask: Mask,
 //        Layer: Layer,
 //        Alert: Alert,
