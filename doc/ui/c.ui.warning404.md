@@ -1,7 +1,10 @@
 # c.ui.warning404
 
+### 样例图
+![Loading Image](../raw/H5V2.2S6/doc/img/example.warning404.png)
+
 ### UML图
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.warning404.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.warning404.png)
 
 ### Attribute
 
