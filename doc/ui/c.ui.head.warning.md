@@ -35,8 +35,9 @@ STEP 2: 初始化
 
     define(['app/ui/c.ui.head.warning'], function(HeadWarning){
       var headwarning = new HeadWarning({
-                      title, content, callback
-                  });
+        title, content, callback
+      });
+
       headwarning.show();
     });
 

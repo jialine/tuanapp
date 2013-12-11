@@ -36,13 +36,20 @@ STEP 2: 初始化Toast
 STEP 3: 显示Toast
 
     define(['app/ui/c.ui.toast'], function(Toast){
+
+      // --------------------
+      // 初始化Toast控件
       var toast = new Toast();
+
+      // --------------------
+      // 显示Toast
+      var toastContent = '抱歉，当前的网络状况不给力，请刷新重试!';
       toast.show(
-        '抱歉，当前的网络状况不给力，请刷新重试!',     //Toast会显示的信息
-        2,                                             //Toast会停留的时间
-        function () { ...},                            //Toast消失之后的回调
-        true                                           //点击Toast是否会消失，默认为true
+        toastContent,         //Toast会显示的信息
+        2,                    //Toast会停留的时间
+        function () { ...},   //Toast消失之后的回调
+        true                  //点击Toast是否会消失，默认为true
       );
     });
 
-    2s之后Toast会自动关闭，或者点击Toast会关闭
+    以上设置效果：2s之后Toast会自动关闭，或者点击Toast会关闭

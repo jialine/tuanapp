@@ -18,12 +18,10 @@ STEP 1: 在RequireJS中引入c.ui.input.mask
 STEP 2: 初始化
 
     define(['app/ui/c.ui.layer'], function(Layer){
-        var Loading = new cBase.Class(Layer, {
-            __propertys__: function () {
-            },
-            initialize: function ($super) {
-            }
-          });
+      var Loading = new cBase.Class(Layer, {
+        __propertys__: function () {  },
+        initialize: function ($super) {  }
+      });
     });
 
 该方法主要继承至c.ui.abstract，其中的show方法与hide方法皆来源与此类

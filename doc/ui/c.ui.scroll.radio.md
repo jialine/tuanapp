@@ -1,7 +1,10 @@
 # c.ui.scroll.radio
 
+### 样例图
+![Loading Image](../raw/H5V2.2S6/doc/img/example.scroll.radio.png)
+
 ### UML图
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/dadf42aabf09b3ae81c91d6bbafadb0d60c726f0/doc/img/c.ui.scroll.radio.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.scroll.radio.png)
 
 ### Attribute
 
