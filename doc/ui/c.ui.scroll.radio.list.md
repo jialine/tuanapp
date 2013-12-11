@@ -1,7 +1,10 @@
 # c.ui.scroll.radio.list
 
+### 样例图
+![Loading Image](../raw/H5V2.2S6/doc/img/example.scroll.radio.list.png)
+
 ### UML图
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/6cb164ee702ec5f7ad28006c433e415c14f67a9b/doc/img/c.ui.scroll.radio.list.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.scroll.radio.list.png)
 
 ### Attribute
 
@@ -34,4 +37,4 @@ STEP 2: 初始化ScrollRadioList
       var scroll = new ScrollRadioList({......});
     });
 
-    于是便可初始化组件，点击蒙版，或者选择项目组件会自动关闭
+    初始化组件，点击蒙版，或者选择项目组件会自动关闭
