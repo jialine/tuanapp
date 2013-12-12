@@ -2,7 +2,7 @@
 
 ### UML图
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.layer.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.layer.png)
 
 ### 简单描述
 该类一般不单独使用，而是提供其它类作物父类，尤其适合作为弹出层类的父类
