@@ -196,7 +196,7 @@ adOptions.saveExpire = function () {
  * @description: 重写create方法
  */
 adOptions.create = function () {
-    
+
     if (!this.isCreate && !this.isExpire() && this.status !== this.STATE_ONCREATE) {
         this.root = $(this.createHtml());
         this.rootBox.append(this.root);
@@ -230,8 +230,8 @@ adOptions._set = function (key, value, timeout) {
 }
 
 if (window.location.pathname.indexOf('webapp')>-1 || window.localStorage.getItem('isInApp') ) {
-    define(['cBase', 'cUICore', 'libs', 'cStore'], function (cBase, cUICore, libs, cStore) {
-        var AdView = new cBase.Class(cUICore.AbstractView, adOptions);
+    define(['cBase', 'cUIAbstract', 'libs', 'cStore'], function (cBase, AbstractView, libs, cStore) {
+        var AdView = new cBase.Class(AbstractView, adOptions);
         AdView.getInstance = function () {
             if (this.instance) {
                 return this.instance;

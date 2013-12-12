@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'Layer', 'Mask'], function (libs, cBase, Layer, Mask) {
+﻿define(['libs', 'cBase', 'cUILayer', 'cUIMask'], function (libs, cBase, Layer, Mask) {
 
   var options = {};
 

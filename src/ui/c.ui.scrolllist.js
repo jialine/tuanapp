@@ -5,7 +5,7 @@
 * Author: shbzhang@ctrip.com
 * Date: 2013年6月23日
 */
-define(['cBase', 'cUICore', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, cUICore, WidgetFactory) {
+define(['cBase', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, WidgetFactory) {
 
 
   var Publisher = WidgetFactory.create('Publisher');

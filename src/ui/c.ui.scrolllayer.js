@@ -4,7 +4,7 @@
 * 提供一个可拖动的div层，以后可以自己扩展滚动条等效果，暂时不支持任何事件，做最简单实现
 * Date: 2013年11月14日
 */
-define(['cBase', 'cUICore', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, cUICore, WidgetFactory) {
+define(['cBase', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, WidgetFactory) {
 
     var ScrollLayer = function (opts) {
         opts = opts || {};

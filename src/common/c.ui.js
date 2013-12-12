@@ -2,7 +2,6 @@
   'cUIAbstractView',
   'cUIAlert',
   'cUIAnimation',
-  'cUICitylist',
   'cUIHeadWarning',
   'cUIInputClear',
   'cUILayer',
@@ -18,7 +17,7 @@
   'cUIWarning',
   'cUIWarning404',
   'cHistory'],
-  function (cuiAbstractView, cuiAlert, cuiAnimation, cuiCitylist, cuiHeadWarning, cuiInputClear, cuiLayer, cuiLoading, cuiLoadingLayer, cuiMask, cuiPageview, cuiScrollradio, cuiscrollradiolist, cuiScrolllist, cuiScrolllayer, cuiToast, cuiWarning, cuiWarning404, cuiHistory) {
+  function (cuiAbstractView, cuiAlert, cuiAnimation, cuiHeadWarning, cuiInputClear, cuiLayer, cuiLoading, cuiLoadingLayer, cuiMask, cuiPageview, cuiScrollradio, cuiscrollradiolist, cuiScrolllist, cuiScrolllayer, cuiToast, cuiWarning, cuiWarning404, cuiHistory) {
     var cui = {
       Tools: cuiToast,
       AbstractView: cuiAbstractView,
