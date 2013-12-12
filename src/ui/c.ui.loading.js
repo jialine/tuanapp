@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUILayer', 'cUIMask'], function (libs, cBase, Layer, Mask) {
+﻿define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer) {
 
   var options = {};
 
@@ -16,16 +16,10 @@
     this.contentDom.html('<div class="cui-breaking-load"><div class="cui-w-loading"></div><i class="cui-white-logo"></i></div>');
     this.reposition();
   };
-  _attributes.onHide = function () {
-    this.mask.root.remove();
-  };
 
   options.__propertys__ = function () {
     this.contentDom;
     this.loadHtml = '';
-    this.mask = new Mask({
-      classNames: [_config.prefix + 'opacitymask']
-    });
   };
 
   options.initialize = function ($super) {
@@ -33,8 +27,8 @@
     $super(_attributes);
   };
 
-  options.setHtml = function (loadHtml) {
-    this.loadHtml = loadHtml;
+  options.setHtml = function (html) {
+    this.loadHtml = html;
   };
 
   return new cBase.Class(Layer, options);

@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
+﻿define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer) {
   var _config = {
     prefix: 'cui-'
   };
@@ -21,8 +21,6 @@
   };
 
   var options = {};
-
-
 
   options.__propertys__ = function () {
     this.contentDom;

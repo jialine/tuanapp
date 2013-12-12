@@ -1,11 +1,11 @@
 ﻿
 /**
-*
+* 
 * by l_wang
 */
 
-define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, Layer, ScrollList) {
-
+define(['libs', 'cBase', 'Layer', 'cUIScrollList'], function (libs, cBase, Layer, ScrollList) {
+  
   var options = {};
 
   var _config = {

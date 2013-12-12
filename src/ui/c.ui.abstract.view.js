@@ -4,9 +4,6 @@
         _push = Array.prototype.push,
         _toString = Object.prototype.toString;
 
-
-
-
   var STATE_NOTCREATE = 'notCreate';
   var STATE_ONCREATE = 'onCreate';
   var STATE_ONSHOW = 'onShow';

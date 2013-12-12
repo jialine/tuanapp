@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUIAbstractView'], function (libs, cBase, AbstractView) {
+﻿define(['libs', 'cBase', 'AbstractView'], function (libs, cBase, AbstractView) {
 
   var options = {};
 
