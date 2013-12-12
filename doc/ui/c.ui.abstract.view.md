@@ -2,7 +2,7 @@
 
 ### UML图
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/shbzhang/ctrip-h5-front-library-refactory/raw/H5V2.2S6/doc/img/c.ui.abstract.view.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.abstract.view.png)
 
 ### 简单描述
 该类为所以view的抽象类，除了业务view外，所以的view90%继承至他，所以该类非常重要，提供了很多基础的方法
