@@ -1,0 +1,52 @@
+﻿/**
+ * 所有变量 
+ */
+
+/* -------------
+   Color
+   --------------*/
+$bg-color:                #fff !default;
+
+
+/* -------------
+   Font
+   --------------*/
+$font-family-sans-serif:  Arial , Roboto , 'Droid Sans' , 'Hiragino Sans GB' , STXihei , 'SimSun' , 'sans-serif'  !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          12px !default;
+$font-size13:             floor($font-size-base * 1.1) !default; // ~13px
+$font-size14:             ceil($font-size-base * 1.16) !default; // ~14px
+$font-size15:             $font-size-base * 1.25 !default; // ~15px
+$font-size16:             ceil($font-size-base * 1.33) !default; // ~16px
+
+
+$font-color1:             #262626 !default;
+$font-color2:             #686868 !default;
+$font-color3:             #949494 !default;
+$font-color4:             #c4c4c4 !default;
+$font-color-blue:         #1491c5 !default;
+$font-color-yellow:       #ff9913 !default;
+$font-color-black:        #000    !default;
+
+
+/* -------------
+   Text-align
+   --------------*/
+$text-align:              left , center , right !default;
+
+
+/* -------------
+   Position
+   --------------*/
+$position:                static , relative , absolute , fixed , sticky !default;
+$z-index:                 9999 , 2000 , 1000 !default;
+
+
+/* -------------
+   Box Model
+   --------------*/
+$padding-base-v:          10px;
+
