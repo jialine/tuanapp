@@ -34,4 +34,20 @@ Ctrip.H5.Lizard实现了WebApp的基础功能：
 
   + 通过监控Hash的变化，实现View的无缝切换
 
-***
+**公共组件库**
+
+Ctrip.H5.Lizard的公共组件库涵盖了两个模块组: UI组件库和Widget组件库
+
+  + UI组件库；以特定的样式表为基础，定制Ctrip Mobile的UI组件，实现了各种交互 – 电话、时间选取等
+
+  + Widget组件库：提供了功能性组件库和UI业务组件库
+
+**业务组件库**
+
+Ctrip.H5.Lizard的业务组件库提供了注册、登陆、支付等与业务性相关的功能性组件
+
+### Ctrip.H5.Lizard的Hybrid模式
+
+-------------------------
+
+Ctrip.H5.Lizard可以自动侦测当前运行的环境是Hybrid App还是Web站点，根据当前的环境自动加载Hybrid面板。Hybrid面板封装了Ctrip App提供的API
