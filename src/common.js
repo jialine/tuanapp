@@ -15,7 +15,7 @@
   },
 
   paths: {
-    'text'                      : 'src/res/libs/require.text',
+    'text'                      : 'res/libs/require.text',
     'App'                       : 'src/app',
     'c'                         : 'src/common/c',
     'cUI'                       : 'src/common/c.ui',
@@ -50,16 +50,16 @@
     // widget控件库
     'cWidgetFactory'            : 'src/widget/c.widget.factory',
     'cWidgetHeaderView'         : 'src/widget/c.widget.headerview',
-    'cWidgetListView'           : 'src/widget/c.widget.listview',
-    'cWidgetTipslayer'          : 'src/widget/c.widget.tipslayer',
-    'cWidgetInputValidator'     : 'src/widget/c.widget.inputValidator',
+    // 'cWidgetListView'           : 'src/widget/c.widget.listview',
+    // 'cWidgetTipslayer'          : 'src/widget/c.widget.tipslayer',
+    // 'cWidgetInputValidator'     : 'src/widget/c.widget.inputValidator',
     'cWidgetPublisher'          : 'src/widget/c.widget.publisher',
-    'cWidgetGeolocation'        : 'src/widget/c.widget.geolocation',
-    'cWidgetAbstractCalendar'   : 'src/widget/c.widget.abstract.calendar',
-    'cWidgetCalendar'           : 'src/widget/c.widget.calendar',
-    'cWidgetCalendarPrice'      : 'src/widget/c.widget.calendar.price',
-    'cWidgetSlide'              : 'src/widget/c.widget.slide',
-    'cWidgetMember'             : 'src/widget/c.widget.member',
+    // 'cWidgetGeolocation'        : 'src/widget/c.widget.geolocation',
+    // 'cWidgetAbstractCalendar'   : 'src/widget/c.widget.abstract.calendar',
+    // 'cWidgetCalendar'           : 'src/widget/c.widget.calendar',
+    // 'cWidgetCalendarPrice'      : 'src/widget/c.widget.calendar.price',
+    // 'cWidgetSlide'              : 'src/widget/c.widget.slide',
+    // 'cWidgetMember'             : 'src/widget/c.widget.member',
     'cWidgetGuider'             : 'src/widget/c.widget.guider',
 
     //--------------------------------------------------------------

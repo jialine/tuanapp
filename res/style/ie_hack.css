@@ -1,0 +1,109 @@
+﻿@charset "utf-8";
+.tab_by:after {
+    content: '.';
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    line-height: 0;
+}
+
+.tab_by li {
+    float: left;
+    box-sizing: border-box;
+    width: 33%;
+}
+
+.tab_by li:last-child {
+    width: 34%;
+}
+
+.vacationlist .tab_by li {
+    width: 25%;
+}
+
+.tab_search {
+    overflow: hidden;
+    bottom: -1px;
+}
+
+.tab_search li {
+    float: left;
+    box-sizing: border-box;
+}
+
+.tab_search li:first-child, .tab_search li:last-child {
+    margin: 0;
+    top: -1px;
+}
+
+.tab_search li:last-child:after {
+    right: 0;
+    border-bottom: 13px solid #30AAE8;
+    border-right: 13px solid #ededed;
+    border-left: none;
+    -ms-transform: rotate(0);
+}
+
+.tab_search li:first-child:after {
+    left: 0;
+    border-bottom: 13px solid #30AAE8;
+    border-left: 13px solid #ededed;
+    border-right: none;
+    -ms-transform: rotate(0);
+}
+
+.tab_search li.tabcrt:after {
+    border: none;
+}
+
+.tab_search.nth3 li {
+    width: 33.3333%;
+}
+
+#free_dl img {
+    max-width: 640px;
+}
+
+/*tuan hack by p*/
+
+/*flight IE hack byzuo star*/
+input::-ms-clear {
+    display: none;
+}
+
+.city_tab .cityTabCrt:before {
+    right: 4px;
+}
+
+.ie .tab_time li {
+    float: left;
+    width: 33.3333%;
+    border-right: none;
+}
+
+.ie header {
+    position: fixed !important;
+}
+
+.placeholder-title {
+    top: 6px;
+    line-height: 28px;
+    left: 35px;
+    position: absolute;
+}
+
+.ie .intrip .grayli li {
+    overflow: hidden;
+}
+
+.ie .intrip .grayli li em.frow {
+    float: right;
+}
+
+.ie .flight .b_people .info_list .click_e {
+    right: 20px;
+    top: 0px;
+}
+
+/*flight IE hack byzuo end*/
