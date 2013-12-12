@@ -1,9 +1,11 @@
 ﻿define(['libs', 'cBase'], function (libs, cBase) {
 
-
   var _slice = Array.prototype.slice,
-      _push = Array.prototype.push,
-      _toString = Object.prototype.toString;
+        _push = Array.prototype.push,
+        _toString = Object.prototype.toString;
+
+
+
 
   var STATE_NOTCREATE = 'notCreate';
   var STATE_ONCREATE = 'onCreate';

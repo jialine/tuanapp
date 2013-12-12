@@ -6,10 +6,6 @@
     prefix: 'cui-'
   };
 
-  var _mask = new Mask({
-    classNames: [_config.prefix + 'warning-mask']
-  });
-
   var _calback = function () { };
 
   var _attributes = {};
@@ -35,26 +31,15 @@
               '</div>',
           '</div>'
                     ].join(''));
-    this.root.css({
-      position: 'absolute',
-      left: '0px',
-      top: '0px'
-    });
     this.addClass('head-warning-top');
     this.retryDom = this.root.find('.cui-btns-retry');
 
-    _mask.create();
-    _mask.root.css({
-      background: 'url(data:image/gif;base64,R0lGODlhAQABAIAAAPX19QAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==) repeat'
-    });
     this.retryDom.bind('click', $.proxy(function () {
       this.callback && this.callback();
     }, this));
   };
 
   _attributes.onShow = function () {
-    _mask.show();
-    _mask.root.css('z-index', '500');
     this.setzIndexTop();
     window.scrollTo(0, 0);
     this.root.find('#telBtn').click(function () {
@@ -67,9 +52,6 @@
         }
       });
     });
-  };
-  _attributes.onHide = function () {
-    _mask.hide();
   };
 
   options.__propertys__ = function () {
