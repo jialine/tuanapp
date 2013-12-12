@@ -1,6 +1,6 @@
 ﻿// @author Michael.Lee
 
-define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
+define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer) {
 
   var options = {};
 

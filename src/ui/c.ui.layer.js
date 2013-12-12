@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUIAbstractView', 'cUIMask'], function (libs, cBase, AbstractView, Mask) {
+﻿define(['libs', 'cBase', 'AbstractView', 'Mask'], function (libs, cBase, AbstractView, Mask) {
 
   var options = {};
 
@@ -7,7 +7,7 @@
   };
 
   var getMask = function (cls) {
-
+    
   };
 
   options.__propertys__ = function () {

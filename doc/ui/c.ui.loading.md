@@ -8,6 +8,14 @@
 
 ![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.loading.png)
 
+### Method
+
+**public setHtml**
+
+    // 为loading框提供文字
+    // @param html {String}
+    setHtml: function (html) { ... }
+
 ### 使用方法
 
 STEP 1: 在RequireJS中引入c.ui.input.clear
