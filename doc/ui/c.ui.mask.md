@@ -2,7 +2,7 @@
 
 ### UML图
 
-![Toast UML](http://git.dev.sh.ctripcorp.com/ctrip-mobile-web-union/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/c.ui.mask.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.ui.mask.png)
 
 ### 简单描述
 该类用于提供一个蒙版，蒙版的样式根据css而有所不同
