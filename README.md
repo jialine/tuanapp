@@ -24,4 +24,12 @@ Ctrip.H5.Lizard底层依赖的第三方库有4个：zepto, underscore, backbone,
 
 **核心框架**
 
-Ctrip.H5.Lizard
+Ctrip.H5.Lizard实现了WebApp的基础功能：
+
+  + 在Javascript中实现了面向对象编程(OOP)的基础
+
+  + 封装了ajax请求，处理了本地环境下的跨域访问，并对请求做了缓存处理
+
+  + 参考了redis模型，在本地实现了简单的文档型数据库模型。设置了数据的过期时间、缓冲区。
+
+  + 通过监控Hash的变化，实现View的无缝切换
