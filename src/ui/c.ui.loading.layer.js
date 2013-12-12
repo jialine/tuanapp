@@ -1,5 +1,7 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
-
+﻿define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer) {
+  var _config = {
+    prefix: 'cui-'
+  };
   var _attributes = {};
   _attributes['class'] = _config.prefix + 'loading';
   _attributes.onShow = function () {
@@ -20,9 +22,7 @@
 
   var options = {};
 
-  var _config = {
-    prefix: 'cui-'
-  };
+  
 
   options.__propertys__ = function () {
     this.contentDom;
@@ -30,16 +30,12 @@
     this.text = '发送中...';
   };
 
-  options.initialize = function ($super, opts) {
+  options.initialize = function ($super, callback, text) {
     this.callback = callback || function () { };
     this.text = text || '发送中...';
     $super(_attributes);
   };
 
-  options.createHtml = function () {
-    return '';
-  };
-
-  return new cBase.Class(cUICore.Layer, options);
+  return new cBase.Class(Layer, options);
 
 });

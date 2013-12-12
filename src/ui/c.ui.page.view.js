@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'AbstractView'], function (libs, cBase, AbstractView) {
 
   var options = {};
 
@@ -13,7 +13,7 @@
     var allowOptions = {};
     this.setOption(function (k, v) {
     });
-    this.addClass(config.prefix + 'pageview');
+    this.addClass(_config.prefix + 'pageview');
     $super(opts);
   };
 
@@ -21,6 +21,6 @@
     return '';
   };
 
-  return new cBase.Class(cUICore.AbstractView, options);
+  return new cBase.Class(AbstractView, options);
 
 });

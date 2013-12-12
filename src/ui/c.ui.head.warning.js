@@ -1,4 +1,5 @@
-﻿define(['libs', 'cBase', 'cUIMask', 'cUIPageview'], function (libs, cBase, Mask, PageView) {
+
+﻿define(['libs', 'cBase', 'cUICore', 'PageView', 'Mask'], function (libs, cBase, cUICore, PageView, Mask) {
 
   var options = {};
 
@@ -66,21 +67,6 @@
   };
 
   options.initialize = function ($super, opts) {
-
-    this.setOption(function (k, v) {
-      switch (k) {
-        case 'title':
-          this.warningtitle = v;
-          break;
-        case 'content':
-          this.warningcontent = v;
-          break;
-        case 'callback':
-          this.callback = v;
-          break;
-      }
-    });
-
     $super($.extend(_attributes, opts));
   };
 

@@ -4,32 +4,12 @@
 * by l_wang
 */
 
-define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUICore, ScrollList) {
-
+define(['libs', 'cBase', 'Layer', 'cUIScrollList'], function (libs, cBase, Layer, ScrollList) {
+  
   var options = {};
 
   var _config = {
     prefix: 'cui-'
-  };
-
-  /**
-  * 获得元素占位的高宽
-  */
-  var _getElementRealSize = function (el) {
-    return {
-      width: el.width(),
-      height: el.height()
-    };
-  };
-
-  var _reposition = function (el) {
-    var size = _getElementRealSize(el);
-    el.css({
-      'margin-left': -(size.width / 2) + 'px',
-      'margin-top': (-(size.height / 2) + $(window).scrollTop()) + 'px',
-      left: '50%',
-      top: '50%'
-    });
   };
 
   var _attributes = {};
@@ -37,12 +17,12 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
 
   _attributes.onCreate = function () {
     this.root.html([
-                        '<div class="cui-pop-box" lazyTap="true">',
-                             '<div class="cui-hd"><div class="cui-text-center">' + this.title + '</div></div>',
-                             '<div class="cui-bd">',
-                             '</div>',
-                        '</div>'
-                    ].join(''));
+        '<div class="cui-pop-box" lazyTap="true">',
+              '<div class="cui-hd"><div class="cui-text-center">' + this.title + '</div></div>',
+              '<div class="cui-bd">',
+              '</div>',
+        '</div>'
+    ].join(''));
     this.root.css({
       position: 'absolute'
     });
@@ -51,11 +31,6 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
   };
   _attributes.onShow = function () {
     var scope = this;
-    this.mask.show();
-    scope.mask.root.on('click', function () {
-      scope.hide();
-      scope.mask.root.off('click');
-    });
     this.scroll = new ScrollList({
       wrapper: this.content,
       data: this.data,
@@ -70,11 +45,8 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
 
     this.scroll.setKey(this.key);
     this.setzIndexTop();
-    _reposition(this.root);
   };
   _attributes.onHide = function () {
-    this.mask.hide();
-    this.mask.root.remove();
     this.scroll.removeEvent();
     this.root.remove();
   };
@@ -83,7 +55,6 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
     this.title;
     this.content;
     this.itemClick = function () { };
-    this.mask = new cUICore.Mask({ classNames: [_config.prefix + 'opacitymask'] });
     this.scroll = null;
     this.data = []; //用于组装list的数据
     this.index = -1; //当前索引值
@@ -98,7 +69,7 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
     $super($.extend(_attributes, opts));
   };
 
-  var ScrollRadioList = new cBase.Class(cUICore.PageView, options);
+  var ScrollRadioList = new cBase.Class(Layer, options);
   return ScrollRadioList;
 
 });

@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'AbstractView'], function (libs, cBase, AbstractView) {
 
   var options = {};
 
@@ -49,14 +49,17 @@
   };
 
   options.resize = function () {
+    var w = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+    var h = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+
     this.root.css({
       width: 'auto',
       height: 'auto',
-      width: $(window).width() + 'px',
-      height: $(window).height() + 'px'
+      width: w + 'px',
+      height: h + 'px'
     });
   };
 
-  return new cBase.Class(cUICore.AbstractView, options);
+  return new cBase.Class(AbstractView, options);
 
 });

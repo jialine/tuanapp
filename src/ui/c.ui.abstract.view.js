@@ -1,5 +1,10 @@
 ﻿define(['libs', 'cBase'], function (libs, cBase) {
 
+
+  var _slice = Array.prototype.slice,
+      _push = Array.prototype.push,
+      _toString = Object.prototype.toString;
+
   var STATE_NOTCREATE = 'notCreate';
   var STATE_ONCREATE = 'onCreate';
   var STATE_ONSHOW = 'onShow';
@@ -70,6 +75,7 @@
   };
 
   options.readOption = function (opts) {
+    opts = opts || {};
     var scope = this;
     $.each(opts, function (k, v) {
       $.each(scope.setOptionHander, function (fk, fun) {
@@ -91,6 +97,8 @@
   };
 
   options.addClass = function (cls) {
+    this.classNames.push(cls);
+    if (!this.root) return;
     if (typeof cls == 'array') {
       for (var k in cls) {
         this.root.addClass(cls[k]);
@@ -197,36 +205,36 @@
   };
 
   options.isShow = function () {
-    return this.status === AbstractView.STATE_ONSHOW;
+    return this.status === STATE_ONSHOW;
   };
 
   options.isHide = function () {
-    return this.status === AbstractView.STATE_ONHIDE;
+    return this.status === STATE_ONHIDE;
   };
 
   options.show = function (callback) {
-    if (this.status === AbstractView.STATE_ONSHOW)
+    if (this.status === STATE_ONSHOW)
       return;
     this.create();
     this.showAction($.proxy(function () {
       this.trigger('onShow');
-      this.status = AbstractView.STATE_ONSHOW;
+      this.status = STATE_ONSHOW;
       callback && callback.call(this);
     }, this));
   };
 
   options.hide = function (callback) {
-    if (!this.root || this.status === AbstractView.STATE_ONHIDE) return;
+    if (!this.root || this.status === STATE_ONHIDE) return;
     this.hideAction($.proxy(function () {
       this.trigger('onHide');
-      this.status = AbstractView.STATE_ONHIDE;
+      this.status = STATE_ONHIDE;
       callback && callback.call(this);
     }, this));
   };
   options.reposition = function () {
     this.root.css({
-      'margin-left': -($(width) / 2) + 'px',
-      'margin-top': -($(height) / 2) + 'px'
+      'margin-left': -($(this.root).width() / 2) + 'px',
+      'margin-top': -($(this.root).height() / 2) + 'px'
     });
   };
 

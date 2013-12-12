@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'PageView', 'Mask'], function (libs, cBase, PageView, Mask) {
 
   var options = {};
 
@@ -6,7 +6,7 @@
     prefix: 'cui-'
   };
 
-  var _mask = new cUICore.Mask({
+  var _mask = new Mask({
     classNames: [_config.prefix + 'warning-mask']
   });
 
@@ -85,6 +85,6 @@
       this.callback = callback;
     }
   }
-  return new cBase.Class(cUICore.PageView, options);
+  return new cBase.Class(PageView, options);
 
 });

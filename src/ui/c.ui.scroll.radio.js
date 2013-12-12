@@ -1,28 +1,10 @@
 ﻿// @author l_wang
 
-define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUICore, ScrollList) {
-
+define(['libs', 'cBase', 'Layer', 'cUIScrollList'], function (libs, cBase, Layer,  ScrollList) {
+  
   var options = {};
 
   var _config = { prefix: 'cui-' };
-
-  // @description:   获得元素占位的高宽
-  var _getElementRealSize = function (el) {
-    return {
-      width: el.width(),
-      height: el.height()
-    };
-  };
-
-  var _reposition = function (el) {
-    var size = _getElementRealSize(el);
-    el.css({
-      'margin-left': -(size.width / 2) + 'px',
-      'margin-top': (-(size.height / 2) + $(window).scrollTop()) + 'px',
-      left: '50%',
-      top: '50%'
-    });
-  };
 
   var _attributes = {};
   _attributes.class = _config.prefix + 'warning';
@@ -49,32 +31,18 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
       '</div>'
     ].join(''));
 
-    this.root.css({
-      position: 'absolute'
-    });
-
     this.title = this.root.find('.cui-text-center');
     this.tips = this.root.find('.cui-roller-tips');
     this.btCancel = this.root.find('.cui-btns-cancel');
     this.btOk = this.root.find('.cui-btns-sure');
     this.line = $('<div class="cui-mask-gray"></div><div class="cui-lines">&nbsp;</div>');
     this.wrapper = this.root.find('.scrollWrapper');
-
-    this.setTips = function (str) {
-      this.tips.html(str);
-    };
   };
-
 
   _attributes.onShow = function () {
     var scope = this;
     //没有data的话便不进行渲染了
     if (!this.data || this.data.length == 0) return false;
-    this.mask.show();
-    scope.mask.root.on('click', function () {
-      scope.hide();
-      scope.mask.root.off('click');
-    });
 
     for (var i = 0, len = this.data.length; i < len; i++) {
       var param = {
@@ -123,13 +91,9 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
       scope.hide();
     });
     this.setzIndexTop();
-    _reposition(this.root);
   };
 
-
   _attributes.onHide = function () {
-    this.mask.hide();
-    this.mask.root.remove();
     for (var i = 0, len = this.scroll.length; i < len; i++) {
       this.scroll[i].removeEvent();
     }
@@ -140,7 +104,6 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
 
   options.__propertys__ = function () {
     var scope = this;
-    this.mask = new cUICore.Mask({ classNames: [_config.prefix + 'opacitymask'] });
     this.changed = [];
     this.scroll = [];
     this.data = [];
@@ -164,8 +127,11 @@ define(['libs', 'cBase', 'cUICore', 'cUIScrollList'], function (libs, cBase, cUI
     $super($.extend(_attributes, opts));
   };
 
+  options.setTips = function (str) {
+    this.tips.html(str);
+  };
 
-  var ScrollRadio = new cBase.Class(cUICore.PageView, options);
+  var ScrollRadio = new cBase.Class(Layer, options);
   return ScrollRadio;
 
 });
