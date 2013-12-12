@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'PageView'], function (libs, cBase, PageView) {
+﻿define(['libs', 'cBase', 'cUIPageview'], function (libs, cBase, PageView) {
 
   var options = {};
 

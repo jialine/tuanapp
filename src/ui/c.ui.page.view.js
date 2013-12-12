@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'AbstractView', 'Mask'], function (libs, cBase, AbstractView, Mask) {
+﻿define(['libs', 'cBase', 'cUIAbstractView', 'cUIMask'], function (libs, cBase, AbstractView, Mask) {
 
   var options = {};
 
@@ -38,7 +38,8 @@
       this.mask.hide();
     });
 
-    $super($.extend(_attributes, opts));
+    // $super($.extend(_attributes, opts));
+    $super(opts);
   };
 
   options.createHtml = function () {

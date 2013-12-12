@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'cUI'], function (libs, cBase, cUI) {
 
     var CityList = new cBase.Class({
         __propertys__: function () {
