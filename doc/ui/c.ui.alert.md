@@ -15,7 +15,7 @@
     // @param title {String}                标题
     // @param message {String}              内容体
     // @param buttons {array}               需要生成的按钮
-    // @param viewdata {object}             保存模板数据
+    // @param viewdata {object}             模板视图文本
 
 ### Method
 
@@ -48,6 +48,7 @@
 
     // 返回模板组装后的html
     createHtml: function () { ... }
+
 
 ### 使用方法
 
