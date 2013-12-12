@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>tutorial - case.ui.loading</title>
+    <link rel="stylesheet" type="text/css" href="/res/style/main2.css">
+    <link rel="stylesheet" type="text/css" href="/res/style/car.css">
   </head>
   <body>
+    <div id="main"></div>
+    <div id="footer"></div>
     <script type="text/javascript" src="/res/libs/require.min.js"></script>
     <script type="text/javascript" src="/res/libs/libs.js"></script>
     <script type="text/javascript" src="/src/common.js"></script>
@@ -12,14 +16,14 @@
       require.config({
         baseUrl: '/',
         paths: {
-          'loadingui': 'tutorial/case.ui.loading/case.ui.loading'
+          'loadingui': 'tutorial/case.ui.loading/caseUiLoading'
         }
       });
 
       require(['libs', 'App'], function (libs, App) {
         var app = new App({
-          'defaultView':  '/tutorial/case.ui.loading/case.ui.loading',
-          'viewRootPath': '/tutorial/case.ui.loading/'
+          'defaultView':  'caseUiLoading',
+          'viewRootPath': 'tutorial/case.ui.loading/'
         });
       });
     </script>

@@ -1,0 +1,229 @@
+﻿/*h5 全局说明页*/
+.h5_explain dd{padding-bottom:10px;}
+.cexplain{color:#1491c5;}
+
+
+.fx_t_m em{font-size:16px;color:#ff7800;}
+.fx_line{border-bottom:#cfcfcf 1px dashed;margin:10px 0;}
+.fx_step_num{background:#1491c5;padding:3px 5px;color:#fff;font-weight:700;}
+
+/*新增常用地址 + 常旅 star*/
+.intrip .cfbox {
+	background-color:#fff;
+}
+
+.intrip .cfbox li {
+padding: 11px;
+border-bottom: 2px solid #f5f5f5;
+color: #333;
+}
+
+.intrip .cfbox li strong {
+	font-weight:600;
+}
+.intrip .cfbox li .sfr {
+	float:right;
+	margin-top:-2px;
+}
+#js_blk_cname .sfr {
+	margin-right:13px;
+}
+.intrip .add_ico,.flight .b_people h3 .add_ico,.fdelete {
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	background:#29a2f7;
+	position:relative;
+}
+.intrip .add_ico:before,.intrip .add_ico:after,.flight .b_people h3 .add_ico:before,.flight .b_people h3 .add_ico:after,.fdelete:before {
+	background:#fff;
+	position:absolute;
+	content:"";
+}
+.intrip .add_ico:before,.flight .b_people h3 .add_ico:before,.fdelete:before {
+	width:12px;
+	height:4px;
+	top:8px;
+	left:4px;
+}
+.intrip .add_ico:after,.flight .b_people h3 .add_ico:after {
+	width:4px;
+	height:12px;
+	top:4px;
+	left:8px;
+}
+.intrip .editBox {
+	width:38px;
+	height:100%;
+	position:absolute;
+	right:0;
+	top:0;
+}
+.intrip .paddNone li {
+	padding:0;
+	position:relative;
+}
+.intrip .paddNone li.paddNum {
+	padding:11px;
+}
+.intrip .paddNone li.paddNum .addico_box {
+	width:40px;
+	height:100%;
+	position:absolute;
+	right:0;
+	top:0;
+	padding:13px 11px 0 11px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.intrip .paddNone li .boa_info {
+	width:90%;
+	padding:11px;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+}
+.intrip .edit_ico,.info_list .edit_ico {
+	width:16px;
+	height:16px;
+	background-position:-190px 0;
+	display:block;
+	position:absolute;
+	right:11px;
+	top:50%;
+	margin-top:-8px;
+}
+.intrip .doubt_ico {
+	width:28px;
+	height:28px;
+	background-position:right -1px;
+	position:absolute;
+	right:24px;
+}
+.intrip .sel_ico {
+	position:absolute;
+	top:50%;
+	left:11px;
+	margin-top:-10px;
+}
+.intrip .boa_info p {
+	padding:0 20px 0 30px;
+	word-break:break-all;
+}
+.intrip .boa_info em {
+	color:#797979;
+}
+
+.intrip .grayli {
+	padding:10px;
+	margin-bottom:10px;
+}
+
+.intrip .grayli li {
+	background:#f2f2f2;
+	border:none;
+	margin-bottom:10px;
+}
+
+.intrip .needs:before {
+	margin-left:0;
+}
+
+.intrip .grayli li .twoh {
+	width:63%;
+	width:-webkit-calc(100% - 95px);
+	width:-moz-calc(100% - 95px);
+	width:calc(100% - 95px);
+	display:inline-block;
+	vertical-align:top;
+	margin-top:-3px;
+}
+.intrip .grayli li .twoh .input_n {
+	width:100%;
+}
+.intrip .grayli li:last-child {
+	margin-bottom:0;
+}
+
+.intrip .grayli li em {
+	float:right;
+	text-align:right;
+	padding-right:15px;
+	font-size:1em;
+	color:#29a2f7;
+	display:block;
+	width:58%;
+}
+
+.fix_bug {
+	display:-webkit-box;
+	display:-moz-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	box-sizing:border-box;
+	-moz-box-orient:horizontal;
+	-webkit-box-orient:horizontal;
+	box-orient:horizontal;
+	-moz-box-pack:justify;
+	-webkit-box-pack:justify;
+	box-pack:justify;
+}
+.fix_bug span {
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	-webkit-flex:1;
+	-ms-flex:1;
+	flex:1;
+}
+.fix_bug em {
+	-webkit-box-flex:2;
+	-moz-box-flex:2;
+	-webkit-flex:2;
+	-ms-flex:2;
+	flex:2;
+}
+.intrip .grayli li em.frow {
+	float:none;
+	vertical-align:top;
+}
+
+.intrip .input_n 
+{
+    width:78%;
+	width:-webkit-calc(100% - 80px);
+	width:-moz-calc(100% - 80px);
+	width:calc(100% - 80px);
+	height:22px;
+	line-height:22px;
+	vertical-align:0;
+	display:inline-block;
+	font-size:1em;
+	padding:0 0 0 5px;
+	
+}
+
+.intrip .input_n.js_ename,.intrip .input_n.js_newName 
+{
+   
+    width:68%;
+	width:-webkit-calc(100% - 115px);
+	width:-moz-calc(100% - 115px);
+	width:calc(100% - 115px);
+	
+}
+
+
+.fltboarinfo dd.s5_line_h {
+	padding-bottom:0;
+}
+
+.intrip .s5_boa_info p {
+	padding-left:0;
+}
+.intrip .s5_grayli {
+	margin-bottom:0;
+	padding-bottom:0;
+}
+/*新增常用地址 + 常旅 end*/

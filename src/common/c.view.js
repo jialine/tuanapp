@@ -67,9 +67,9 @@ define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility',
             });
 
             //初始化headwarning
-            this.NoHeadWarning = new cUI.NoHeadWarning({
-                content: ''
-            });
+            // this.NoHeadWarning = new cUI.NoHeadWarning({
+            //     content: ''
+            // });
 
             //初始化404提示
             this.warning404 = new cUI.Warning404();

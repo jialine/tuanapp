@@ -1,0 +1,105 @@
+.htlintl_bg {
+    position: relative;
+}
+
+.htlintl_bg_bef:before, .htlintl_bg_aft:after {
+    position: absolute;
+    content: "";
+    top: 50%;
+}
+
+.htlintl_bg, .htlintl_bg_bef:before, .htlintl_bg_aft:after {
+    background: url(../img/hotelintl_bg.png) no-repeat;
+    background-size: 163px 120px;
+}
+
+.white_box label {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 85px;
+    padding-left: 25px;
+    font: normal 13px/44px "";
+    color: #999;
+}
+
+.hotel_srchlist .ellips {
+    display: inline-block;
+    width: 50%;
+}
+
+.htlintl_site {
+    float: right;
+    position: relative;
+    width: 55px;
+    padding-top: 26px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #7f7f7f;
+    border-left: 1px solid #ddd;
+}
+
+.htlintl_site:before {
+    position: absolute;
+    content: "";
+    top: 4px;
+    left: 15px;
+    width: 24px;
+    height: 24px;
+    background-position: 0 -22px;
+}
+
+.hotelintl_room .room_num {
+    display: inline-block;
+    position: relative;
+    right: auto;
+    top: auto;
+}
+
+.htlintl_icobed:before {
+    left: 5px;
+    margin-top: -6px;
+    width: 15px;
+    height: 13px;
+    background-position: -55px 0;
+}
+
+.htlintl_icodate:before {
+    left: 5px;
+    margin-top: -7px;
+    width: 15px;
+    height: 14px;
+    background-position: -55px -17.5px;
+}
+
+.htlintl_icoday:before {
+    left: 5px;
+    margin-top: -7px;
+    width: 17px;
+    height: 14px;
+    background-position: -55px -42px;
+}
+
+.htlintl_icoroom:before {
+    left: 5px;
+    margin-top: -7px;
+    width: 15px;
+    height: 14px;
+    background-position: -55px -65px;
+}
+
+.htlintl_icoprice:before {
+    left: 5px;
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    background-position: -55px -85.5px;
+}
+
+.htlintl_iconame:before {
+    left: 7px;
+    margin-top: -8px;
+    width: 12px;
+    height: 16px;
+    background-position: -55px -106.5px;
+}

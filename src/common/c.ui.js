@@ -26,7 +26,7 @@
       Alert: cuiAlert,
       PageView: cuiPageview,
       Loading: cuiLoading,
-      LoadingLayer: cUILoadinglayer,
+      LoadingLayer: cuiLoadingLayer,
       Warning: cuiWarning,
       ScrollRadioList: cuiScrolllist,
       ScrollRadio: cuiScrollradio,

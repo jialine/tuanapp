@@ -2,7 +2,7 @@
  * @author:       cmli@Ctrip.com
  * @description:  组件HeaderView
  */
-define(['cBase', 'cUICore', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade'], function (cBase, cUICore, WidgetFactory, cUtlity, cSales, Facade) {
+define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade'], function (cBase, cUI, WidgetFactory, cUtlity, cSales, Facade) {
     "use strict";
 
     var WIDGET_NAME = 'HeaderView';
@@ -218,7 +218,7 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFaca
 
     //重写create方法，支持新的html结构
     options.create = function () {
-        if (!this.isCreate && this.status !== cUICore.AbstractView.STATE_ONCREATE) {
+        if (!this.isCreate && this.status !== cUI.AbstractView.STATE_ONCREATE) {
             this.rootBox = this.rootBox || $('body');
             this.rootBox.empty();
             this.root = $(this.createHtml());
@@ -228,7 +228,7 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFaca
             }, this), 200);
             this.rootBox.css('height', this.root.css('height'));
             this.trigger('onCreate');
-            this.status = cUICore.AbstractView.STATE_ONCREATE;
+            this.status = cUI.AbstractView.STATE_ONCREATE;
             this.isCreate = true;
         }
         //如果配置打开了advertisment
@@ -294,14 +294,14 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFaca
 
     };
 
-    //var HeaderView = new cBase.Class(cUICore.AbstractView, options);
+    //var HeaderView = new cBase.Class(cUI.AbstractView, options);
     //单例模式
     function HeaderView(propertys) {
         if (HeaderView.instance) {
             HeaderView.instance.reset(propertys);
             return HeaderView.instance;
         } else {
-            var Header = new cBase.Class(cUICore.AbstractView, options);
+            var Header = new cBase.Class(cUI.AbstractView, options);
             return HeaderView.instance = new Header(propertys);
         }
     }
