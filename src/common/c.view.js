@@ -196,7 +196,6 @@ define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility',
             this.state = this.ENUM_STATE_HIDE;
             this.onHide && this.onHide(id);
             this.hideHeadWarning();
-            this.hideNoHeadWarning();
             this.hideWarning();
             this.hideLoading();
             this.hideWarning404();
