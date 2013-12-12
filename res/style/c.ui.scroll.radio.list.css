@@ -1,5 +1,5 @@
 /*
-Syntax error: Invalid GBK character "\xE6"
+Syntax error: Invalid GBK character "\xE5"
         on line 2 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss
 
 1: d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss
@@ -58,4 +58,4 @@ C:/Ruby200/bin/compass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid GBK character \"\xE6\"\A         on line 2 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss\A \A 1: d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss"; }
+  content: "Syntax error: Invalid GBK character \"\xE5\"\A         on line 2 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss\A \A 1: d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.scroll.radio.list.scss"; }
