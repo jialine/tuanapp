@@ -1,0 +1,24 @@
+﻿/**
+ * Doxygen    alert控件
+ * @file：    c.ui.alert.scss
+ * @author:   byzuo
+ * @update:   2013-12-12
+ * 
+ */
+
+@import "c.ui.variables";
+
+.cui-pop-box{
+	background: nth($bg-color , 1);
+	position: nth($position , 2);
+	margin: auto;
+	width: 280px;
+	z-index: nth($z-index , 1);
+}
+
+.cui-error-tips {
+	color: #000;
+	padding: 20px;
+	text-align:nth($text-align , 2);
+}
+
