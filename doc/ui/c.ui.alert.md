@@ -15,8 +15,7 @@
     // @param title {String}                标题
     // @param message {String}              内容体
     // @param buttons {array}               需要生成的按钮
-    // @param hashObervers {array}          监视hash变化（比如有弹出框点击后退时会关闭弹出框）
-    // @param autoPositionHander {function} 重置root高宽，让他占满屏幕
+    // @param viewdata {object}             模板视图文本
 
 ### Method
 
@@ -50,20 +49,6 @@
     // 返回模板组装后的html
     createHtml: function () { ... }
 
-**public autoposition**
-
-    // 视图位置还原（resize事件绑定）
-    autoposition: function () { ... }
-
-**public unautoposition**
-
-    // 视图位置还原（resize事件注销）
-    unautoposition: function () { ... }
-
-**public reposition**
-
-    // 视图位置还原方法（需要上移到abstractview）
-    reposition: function () { ... }
 
 ### 使用方法
 

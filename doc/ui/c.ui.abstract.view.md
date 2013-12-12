@@ -165,6 +165,11 @@
     // @param callback {function}
     show: function (callback) { ... }
 
+**public reposition**
+
+    // 多用于弹出层类view居中
+    reposition: function () { ... }
+
 ### 使用方法
 
 STEP 1: 在RequireJS中引入c.ui.input.mask
