@@ -18,7 +18,7 @@
 
 .cui-error-tips {
 	color: $font-color-black;
-	padding: 20px;
+	padding: $padding-base-v * 2;
 	text-align:nth($text-align , 2);
 }
 
