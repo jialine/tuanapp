@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>tutorial - case.ui.loading</title>
+    <link rel="stylesheet" type="text/css" href="/res/style/main2.css">
+    <link rel="stylesheet" type="text/css" href="/res/style/car.css">
+  </head>
+  <body>
+    <div id="main"></div>
+    <div id="footer"></div>
+    <script type="text/javascript" src="/res/libs/require.min.js"></script>
+    <script type="text/javascript" src="/res/libs/libs.js"></script>
+    <script type="text/javascript" src="/src/common.js"></script>
+    <script type="text/javascript">
+        function getViewsPath(htmlpath) {
+            return 'text!tutorial/views/' + htmlpath + '.html';
+        }
+        var view = location.href.substr(location.href.indexOf('#') + 1, location.href.length);
+        var upView = view.charAt(0).toUpperCase() + view.substr(1);
+
+        require.config({
+            baseUrl: '/',
+            paths: {
+              'loadingui':'tutorial/views/' + view
+            }
+          });
+
+          require(['libs', 'App'], function (libs, App) {
+            var app = new App({
+              'defaultView':  view,
+              'viewRootPath': 'tutorial/views/'
+            });
+          });
+    </script>
+  </body>
+</html>

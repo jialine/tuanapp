@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', 'text!tutorial/case.ui.loading/caseUiLoading.html'], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
