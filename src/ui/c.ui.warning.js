@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer, Mask) {
 
 	var options = {};
 
@@ -6,7 +6,7 @@
 		prefix: 'cui-'
 	};
 
-	var _mask = new cUICore.Mask({
+	var _mask = new Mask({
 		classNames: [_config.prefix + 'warning-mask']
 	});
 
@@ -24,20 +24,14 @@
 		);
 
 		this.warningDom = this.contentDom.find('.blanktxt');
-		//this.mask = new cUICore.Mask({
-		//	classNames: [_config.prefix + 'warning-mask']
-		//});
+	
 
 		this.root.bind('click', $.proxy(function () {
 			this.callback && this.callback();
 		}, this));
 
-		//this.mask.create();
 		_mask.create();
 
-		//this.mask.root.bind('click', $.proxy(function () {
-		//	this.callback && this.callback();
-		//}, this));
 		_mask.root.bind('click', $.proxy(function () {
 			this.callback && this.callback();
 		}, this));
@@ -89,6 +83,6 @@
 		$super($.extend(_attributes, opts));
 	};
 
-	return new cBase.Class(cUICore.Layer, options);
+	return new cBase.Class(Layer, options);
 
 });

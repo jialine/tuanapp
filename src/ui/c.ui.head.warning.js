@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'cUICore', 'PageView', 'Mask'], function (libs, cBase, cUICore, PageView, Mask) {
 
   var options = {};
 
@@ -6,7 +6,7 @@
     prefix: 'cui-'
   };
 
-  _mask = new cUICore.Mask({
+  var _mask = new Mask({
     classNames: [_config.prefix + 'warning-mask']
   });
 
@@ -66,21 +66,6 @@
   };
 
   options.initialize = function ($super, opts) {
-
-    this.setOption(function (k, v) {
-      switch (k) {
-        case 'title':
-          this.warningtitle = v;
-          break;
-        case 'content':
-          this.warningcontent = v;
-          break;
-        case 'callback':
-          this.callback = v;
-          break;
-      }
-    });
-
     $super($.extend(_attributes, opts));
   };
 
@@ -95,6 +80,6 @@
     }
   };
 
-  return new cBase.Class(cUICore.PageView, options);
+  return new cBase.Class(PageView, options);
 
 });

@@ -1,9 +1,13 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'AbstractView', 'Mask'], function (libs, cBase, AbstractView, Mask) {
 
   var options = {};
 
   var _config = {
     prefix: 'cui-'
+  };
+
+  var getMask = function (cls) {
+    
   };
 
   options.__propertys__ = function () {
@@ -14,9 +18,9 @@
             ].join(''));
     this.content = '';
     this.contentDom;
-    this.mask = new cUICore.Mask({
-		  classNames: [_config.prefix + 'warning-mask']
-	  });
+    this.mask = new Mask({
+      classNames: [_config.prefix + 'opacitymask']
+    });
     this.addClass(_config.prefix + 'layer');
     this.viewdata = {};
     this.windowResizeHander;
@@ -40,7 +44,7 @@
     });
 
     this.bindEvent();
-    $super(options);
+    $super(opts);
     this.loadViewData();
   };
 
@@ -56,7 +60,7 @@
   options.bindEvent = function () {
     this.addEvent('onCreate', function () {
       this.windowResizeHander = $.proxy(this.reposition, this);
-      this.contentDom = this.root.find('.' + config.prefix + 'layer-content');
+      this.contentDom = this.root.find('.' + _config.prefix + 'layer-content');
     });
     this.addEvent('onShow', function () {
       this.mask.show();
@@ -88,5 +92,5 @@
     return this.tpl(this.viewdata);
   };
 
-  return new cBase.Class(cUICore.Layer, options);
+  return new cBase.Class(AbstractView, options);
 });

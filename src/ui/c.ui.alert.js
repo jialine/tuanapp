@@ -1,16 +1,19 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'cUICore', 'Layer'], function (libs, cBase, cUICore, Layer) {
 
+  var _toString = Object.prototype.toString;
   var STYLE_CONFIRM = 'confirm';
   var STYLE_CANCEL = 'cancel';
+
+  var _attributes = {};
+  _attributes.onCreate = function () {
+    this.loadButtons();
+  };
 
   var options = {};
 
   var _config = {
     prefix: 'cui-'
   };
-
-  var opacityMask = new cUICore.Mask({ classNames: [_config.prefix + 'opacitymask'] });
-
 
   options.__propertys__ = function () {
     this.tpl = this.template([
@@ -31,20 +34,10 @@
         this.hide();
       }
     }];
-    this.hashObserve = new cUICore.HashObserve({
-      hash: this.id,
-      scope: this,
-      callback: function () {
-        this.hide();
-      }
-    });
     this.viewdata = {
       title: '',
       message: ''
     };
-    this.autoPositionHander = $.proxy(function () {
-      this.reposition();
-    }, this);
   };
 
   options.initialize = function ($super, opts) {
@@ -61,31 +54,10 @@
       }
     });
     this.addClass(_config.prefix + 'alert');
-    this.buildEvent();
-    $super(opts);
+    $super($.extend(_attributes, opts));
     this.buildViewData();
   };
-
-  options.buildEvent = function () {
-    this.addEvent('onCreate', function () {
-      this.loadButtons();
-    });
-    this.addEvent('onShow', function () {
-      this.reposition();
-      opacityMask.show(); //111
-      this.setzIndexTop();
-      this.hashObserve.start();
-      this.autoposition();
-    });
-    this.addEvent('onHide', function () {
-      opacityMask.hide(); //111
-      setTimeout(bindthis(function () {
-        this.hashObserve.end();
-      }, this), 10);
-      this.unautoposition();
-    });
-  };
-
+  
   options.buildViewData = function () {
     this.viewdata.title = this.title;
     this.viewdata.message = this.message;
@@ -109,6 +81,7 @@
   };
   options.createButtons = function () {
     var btns = [], isarr = _toString.call(this.buttons) === '[object Array]', i = 0;
+    var scope = this;
     $.each(this.buttons, function (k, v) {
       var text = '', cls = [], click = function () { };
       if (isarr) {
@@ -128,10 +101,9 @@
         text = k;
         typeof v === 'function' && (click = v);
       }
-      // btus[i] = $('<input type="button" value="' + text + '">');
       btns[i] = $('<div class="cui-flexbd ' + cls.join(' ') + '">' + text + '</div>');
       btns[i].addClass(cls.join(' '));
-      btns[i].bind('click', bindthis(click, this));
+      btns[i].bind('click', $.proxy(click, scope));
       i++;
     });
     return btns;
@@ -139,13 +111,7 @@
   options.createHtml = function () {
     return this.tpl(this.viewdata);
   };
-  options.autoposition = function () {
-    $(window).bind('resize', this.autoPositionHander);
-  };
-  options.unautoposition = function () {
-    $(window).unbind('resize', this.autoPositionHander);
-  };
 
-  return new cBase.Class(cUICore.AbstractView, options);
+  return new cBase.Class(Layer, options);
 
 });

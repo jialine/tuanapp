@@ -1,6 +1,6 @@
 ﻿// @author Michael.Lee
 
-define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer) {
 
   var options = {};
 
@@ -88,6 +88,6 @@ define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
     this.contentDom.html(content);
   };
 
-  var Toast = new cBase.Class(cUICore.Layer, options);
+  var Toast = new cBase.Class(Layer, options);
   return Toast;
 });
