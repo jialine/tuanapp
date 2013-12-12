@@ -68,7 +68,7 @@
     'cAdView'                   : 'src/ui/c.ui.ad',
     'cUIAlert'                  : 'src/ui/c.ui.alert',
     'cUIAnimation'              : 'src/ui/c.ui.animation',
-    'cUICitylist'               : 'src/ui/c.ui.citylist',
+    // 'cUICitylist'               : 'src/ui/c.ui.citylist',
     'cUIHeadWarning'            : 'src/ui/c.ui.head.warning',
     'cUIInputClear'             : 'src/ui/c.ui.input.clear',
     'cUILayer'                  : 'src/ui/c.ui.layer',

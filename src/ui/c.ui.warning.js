@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'Layer'], function (libs, cBase, Layer, Mask) {
+﻿define(['libs', 'cBase', 'cUILayer', 'cUIMask'], function (libs, cBase, Layer, Mask) {
 
 	var options = {};
 
@@ -24,7 +24,7 @@
 		);
 
 		this.warningDom = this.contentDom.find('.blanktxt');
-	
+
 
 		this.root.bind('click', $.proxy(function () {
 			this.callback && this.callback();

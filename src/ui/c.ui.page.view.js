@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'AbstractView', 'Mask'], function (libs, cBase, AbstractView, Mask) {
+﻿define(['libs', 'cBase', 'cUIAbstractView'], function (libs, cBase, AbstractView) {
 
   var options = {};
 
