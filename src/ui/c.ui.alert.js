@@ -1,4 +1,5 @@
-﻿define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
+﻿define(['libs', 'cBase', 'cUICore', 'Layer'], function (libs, cBase, cUICore, Layer) {
+
   var _toString = Object.prototype.toString;
   var STYLE_CONFIRM = 'confirm';
   var STYLE_CANCEL = 'cancel';
@@ -33,7 +34,6 @@
         this.hide();
       }
     }];
-
     this.viewdata = {
       title: '',
       message: ''
@@ -57,7 +57,7 @@
     $super($.extend(_attributes, opts));
     this.buildViewData();
   };
-
+  
   options.buildViewData = function () {
     this.viewdata.title = this.title;
     this.viewdata.message = this.message;
