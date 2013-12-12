@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase', 'cUIMask'], function (libs, cBase, Mask) {
 
   var STYLE_CONFIRM = 'confirm';
   var STYLE_CANCEL = 'cancel';
@@ -9,7 +9,7 @@
     prefix: 'cui-'
   };
 
-  var opacityMask = new cUICore.Mask({ classNames: [_config.prefix + 'opacitymask'] });
+  var opacityMask = new Mask({ classNames: [_config.prefix + 'opacitymask'] });
 
 
   options.__propertys__ = function () {
@@ -31,13 +31,13 @@
         this.hide();
       }
     }];
-    this.hashObserve = new cUICore.HashObserve({
-      hash: this.id,
-      scope: this,
-      callback: function () {
-        this.hide();
-      }
-    });
+    // this.hashObserve = new cUICore.HashObserve({
+    //   hash: this.id,
+    //   scope: this,
+    //   callback: function () {
+    //     this.hide();
+    //   }
+    // });
     this.viewdata = {
       title: '',
       message: ''

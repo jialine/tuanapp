@@ -5,6 +5,23 @@
     <title>tutorial - case.ui.loading</title>
   </head>
   <body>
+    <script type="text/javascript" src="/res/libs/require.min.js"></script>
+    <script type="text/javascript" src="/res/libs/libs.js"></script>
+    <script type="text/javascript" src="/src/common.js"></script>
+    <script type="text/javascript">
+      require.config({
+        baseUrl: '/',
+        paths: {
+          'loadingui': 'tutorial/case.ui.loading/case.ui.loading'
+        }
+      });
 
+      require(['libs', 'App'], function (libs, App) {
+        var app = new App({
+          'defaultView':  '/tutorial/case.ui.loading/case.ui.loading',
+          'viewRootPath': '/tutorial/case.ui.loading/'
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,20 +1,42 @@
-﻿ // define(['cUICore',
- //     'cUISlide',
- //     'cChineseCal',
- //     'cCalendar',
- //     'cHistory'],
- // function (cui_core, cui_slide, chineseCalendar, cui_calendar, cui_history, cui_cityList) {
- //     var cui = cui_core;
- //     cui.Slide = cui_slide;
- //     cui.chineseCalendar = chineseCalendar;
- //     cui.Calendar = cui_calendar;
- //     cui.History = cui_history;
- //     return cui;
- // });
-
-
-define(['cUICore', 'cHistory'], function (cui_core, cui_history) {
-  var cui = cui_core;
-  cui.History = cui_history;
-  return cui;
+﻿define([
+  'cUIAbstractView',
+  'cUIAlert',
+  'cUIAnimation',
+  'cUICitylist',
+  'cUIHeadWarning',
+  'cUIInputClear',
+  'cUILayer',
+  'cUILoading',
+  'cUILoadinglayer',
+  'cUIMask',
+  'cUIPageview',
+  'cUIScrollradio',
+  'cUIScrollradiolist',
+  'cUIScrollList',
+  'cUIScrollLayer',
+  'cUIToast',
+  'cUIWarning',
+  'cUIWarning404',
+  'cHistory'],
+  function (cuiAbstractView, cuiAlert, cuiAnimation, cuiCitylist, cuiHeadWarning, cuiInputClear, cuiLayer, cuiLoading, cuiLoadingLayer, cuiMask, cuiPageview, cuiScrollradio, cuiscrollradiolist, cuiScrolllist, cuiScrolllayer, cuiToast, cuiWarning, cuiWarning404, cuiHistory) {
+    var cui = {
+      Tools: cuiToast,
+      AbstractView: cuiAbstractView,
+      Mask: cuiMask,
+      Layer: cuiLayer,
+      Alert: cuiAlert,
+      PageView: cuiPageview,
+      Loading: cuiLoading,
+      LoadingLayer: cUILoadinglayer,
+      Warning: cuiWarning,
+      ScrollRadioList: cuiScrolllist,
+      ScrollRadio: cuiScrollradio,
+      HeadWarning: cuiHeadWarning,
+      Toast: cuiToast,
+      Warning404: cuiWarning404,
+      InputClear: cuiInputClear
+    }
+    return cui;
 });
+
+

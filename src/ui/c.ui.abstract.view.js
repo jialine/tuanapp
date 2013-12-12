@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUICore'], function (libs, cBase, cUICore) {
+﻿define(['libs', 'cBase'], function (libs, cBase) {
 
   var STATE_NOTCREATE = 'notCreate';
   var STATE_ONCREATE = 'onCreate';
