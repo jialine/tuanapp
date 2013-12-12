@@ -434,7 +434,7 @@
 	height:30px;
 	line-height:30px;
 	color:#fff;
-	padding:0 8px;
+	padding:0 10px;
 	margin:0 5px 0 5px;
 	position:relative;
 	top:-5px;
@@ -586,7 +586,6 @@
 	float:right;
 	font-weight:700;
 	color:#fff;
-	text-indent: 0;
 }
 /*.fltdetail {
 	margin:60px auto 0;

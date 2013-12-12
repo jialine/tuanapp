@@ -1,38 +1,233 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>tutorial - case.ui.loading</title>
-    <style type="text/css">
-        #menu { position: absolute; width: 300px;  }
-        #demo { margin-left: 310px; height: 100%; }
-
-    </style>
-
-  </head>
-  <body>
-    <div id="menu">
-       <ul id="list">
-       </ul>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>携程旅行网-全局</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="telephone=no" name="format-detection" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link href="../res/style/main2.css" rel="stylesheet" />
+</head>
+<body id="ctripPage">
+<!--阻断加载修改-->
+<div class="cui-breaking-load">
+     <div class="cui-w-loading"></div>
+     <i class="cui-white-logo"></i>
+</div>
+<br /><br />
+<!--费用明细-->
+<div class="cui-pop-box">
+     <div class="cui-hd">费用说明<label class="label"><span class="cui-top-close">×</span></label></div>
+     <div class="cui-bd">
+          <ul class="cui-money-tips">
+              <li class="border_bot"><i>基本费用</i><em><dfn>&yen;</dfn>120</em></li>
+              <li>
+                  <i>附加费</i>
+                  <p><span>超时租费(2小时*40元/时)</span><em><dfn>&yen;</dfn>120</em></p>
+                  <p><span>超公里费(20公里*4元/公里)</span><em><dfn>&yen;</dfn>80</em></p>
+                  <p><span>高速费</span><em><dfn>&yen;</dfn>20</em></p>
+                  <p><span>停车费</span><em><dfn>&yen;</dfn>20</em></p>
+              </li>
+              <li class="border_bot"></li>
+              <li class="t_r"><i>订单金额<b><dfn>&yen;</dfn>320</b></i></li>
+          </ul>
+     </div>
+</div>
+<br />
+<!--表单报错-->
+<div class="cui-error-tips">请输入联系人</div>
+<br />
+<!--弹出选择控件-->
+<div class="cui-pop-box">
+     <div class="cui-hd"><div class="cui-text-center">标题</div></div>
+     <div class="cui-bd">
+          <ul class="cui-select-view">
+              <li class="current">选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1选项1</li>
+              <li>选项1</li>
+              <li>选项1</li>
+              <li>选项1</li>
+          </ul>
+     </div>
+</div>
+<br />
+<!--滚轮-->
+<div class="cui-pop-box">
+     <div class="cui-hd"><div class="cui-text-center">滚轮滚轮滚轮</div></div>
+     <div class="cui-bd">
+        <div class="cui-roller">
+            <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>选项1</li>
+                     <li>选项2</li>
+                     <li class="current">选项3</li>
+                     <li>选项1</li>
+                     <li>选项2</li>
+                 </ul>
+            </div>
+            <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>选项1</li>
+                     <li>选项2</li>
+                     <li class="current">选项3</li>
+                     <li>选项1</li>
+                     <li>选项2</li>
+                </ul>
+            </div>
+            <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>选项1</li>
+                     <li>选项2</li>
+                     <li class="current">选项3</li>
+                     <li>选项1</li>
+                     <li>选项2</li>
+                </ul>
+            </div>
+            <div class="cui-mask-gray"></div>
+            <div class="cui-lines"></div>
+        </div> 
+        <p class="cui-roller-tips">提示文案提示文案提示文案提示文案提示文案提示文案提示文案提示文案提示文案</p>
+        <div class="cui-roller-btns">
+            <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
+        </div>
+     </div>
+</div>
+<br />
+<!--用车时间-->
+<div class="cui-pop-box">
+     <div class="cui-hd"><div class="cui-text-center">用车时间</div></div>
+     <div class="cui-bd">
+        <div class="cui-roller">
+             <div class="cui-roller-bd cui-flex2">
+                 <ul class="ul-list">
+                     <li>5月16日 周一</li>
+                     <li>5月16日 周二</li>
+                     <li class="current">5月16日 周三</li>
+                     <li>5月16日 周四</li>
+                     <li>5月16日 周五</li>
+                 </ul>
+            </div>
+            <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>1<span class="cui-h-font">时</span></li>
+                     <li>2<span class="cui-h-font">时</span></li>
+                     <li class="current">3<span class="cui-h-font">时</span></li>
+                     <li>4<span class="cui-h-font">时</span></li>
+                     <li>5<span class="cui-h-font">时</span></li>
+                 </ul>
+            </div> 
+            <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>10<span class="cui-m-font">分</span></li>
+                     <li>20<span class="cui-m-font">分</span></li>
+                     <li class="current">30<span class="cui-m-font">分</span></li>
+                     <li>40<span class="cui-m-font">分</span></li>
+                     <li>50<span class="cui-m-font">分</span></li>
+                 </ul>
+            </div>
+            <div class="cui-mask-gray"></div>
+            <div class="cui-lines"></div>
+        </div> 
+        <p class="cui-roller-tips">最早预订时间:5月17日 3：30</p>
+        <div class="cui-roller-btns">
+            <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
+        </div>
+     </div>
+</div>
+<br />
+<!--有效期-->
+<div class="cui-pop-box">
+     <div class="cui-hd"><div class="cui-text-center">有效期</div></div>
+     <div class="cui-bd">
+         <div class="cui-roller">
+             <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>2012</li>
+                     <li>2013</li>
+                     <li class="current">2014</li>
+                     <li>2015</li>
+                     <li>2016</li>
+                 </ul>
+             </div>
+             <div class="cui-roller-bd">
+                 <ul class="ul-list">
+                     <li>08月</li>
+                     <li>09月</li>
+                     <li class="current">10月</li>
+                     <li>11月</li>
+                     <li>12月</li>
+                 </ul>
+             </div>
+             <div class="cui-mask-gray"></div>
+             <div class="cui-lines"></div>
+         </div> 
+         <p class="cui-roller-tips">最早预订时间:5月17日 3：30</p>
+         <div class="cui-roller-btns">
+             <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
+         </div>
+     </div>
+</div>
+<br />
+<!--弹出框出错2-->
+<div class="cui-pop-box">
+     <div class="cui-bd"> 
+         <p class="cui-error-tips">产品经理说：单双行都可，只要是居中对齐就行了,哈哈~~~~</p>
+         <div class="cui-roller-btns">
+              <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
+         </div>
+     </div>
+</div>
+<br />
+<!--弹出框出错3-->
+<div class="cui-pop-box">
+     <div class="cui-bd"> 
+         <p class="cui-error-tips">该信用卡需要您更新信息，请切换于“新增信用卡”中重新填写！</p>
+         <div class="cui-roller-btns">
+              <div class="cui-flexbd cui-btns-sure">知道了</div>
+         </div>
+     </div>
+</div>
+<br />
+<!--加载失败-->
+<div class="cui-load-fail cui-text-center">
+    <div class="cui-load-error">
+         <div class="i cui-wifi i_bef cui-fail-icon">
+         </div>
     </div>
-    <div id="demo">
-        <iframe id="index" name="index" width="100%" height="100%"></iframe>
-    </div>
-  <script type="text/javascript">
-    var listArr = [
-        'loading',
-        'ad'
-    ];
-    var list = document.getElementById('list')
-    for(var i = 0, len = listArr.length; i < len; i++) {
-        var item = document.createElement('li');
-        item.innerHTML = '<a href="index.html#' + listArr[i] + '" target="index">c.ui.' + listArr[i] + '</a>';
-        list.appendChild(item);
-    }
+    <p class="cui-grayc">网络不给力，请稍后再试试吧</p>
+    <span class="cui-btns-retry">重试</span>
+    <div class="cui-glines"></div>
+    <p class="cui-grayc">或者拨打携程客服电话</p>
+    <a href="tel:4000086666"<span class="cui-btns-tel"><i class="icon_phone i_bef"></i>联系客服</span></a>
+</div>
+<br /><br />
+
+<!--阻断加载new-->
+<div class="cui-breaking-load">
+      <i class="cui-white-logo"></i>
+     <div class="cui-w-loading"></div>
+</div>
+<br /><br />
 
 
-
-
-  </script>
-    </body>
+<!--增量加载-->
+<div class="cui-zl-load">
+     <div class="cui-b-loading i"></div>
+     <i class="i_bef cui-blue-logo"></i>
+     <p>加载中</p>
+</div>
+<br /><br />
+<!--无内容-->
+<div class="cui-load-error">
+     <div class="i cui-wifi cui-exclam">
+     </div>
+     您还没有记录哦
+</div>
+<!--无图内容-->
+<div class="cui-img-default">加载中</div>
+<br />
+<div class="cui-img-default">暂无图片</div>
+<br />
+<div class="cui-img-default">加载失败</div>
+<div class="cui-full-views" style="display:none;"></div>
+</body>
 </html>

@@ -556,12 +556,6 @@
 h2, .res_detail .price {
     font: 600 1.14em/2 "Tahoma"
 }
-
-/*.probox {
-    margin: 10px 0 20px;
-    padding: 10px
-}*/
-
 .infotxt {
     margin-bottom: 60px;
     color: #515d68
@@ -907,11 +901,6 @@ e1 {
     border-style: solid;
     border-color: #31a9e9 transparent transparent #31a9e9
 }
-
-.probox:last-child {
-    margin-bottom: 0
-}
-
 .price_w {
     font: 600 1.43em/2 "Arial";
     color: #fff
@@ -996,49 +985,23 @@ e1 {
     height: calc(100% - 92px);
 }
 
-/*add by w_jing 1118 copy from myctrip.css*/
-.order_dl{font:normal 14px/1.8 "";}
-.order_dl dt{display:inline-block; width:70px; color:#797979;}
-.order_dl dd{display:inline-block; color:#424242;}
-.myhoteldtl_btn{position:absolute; padding:5px 10px; right:15px; top:15px; background:#0073C3; color:#fff; }
-.myhotelbox{position:relative; margin-top:20px;  background:#fff;}
-.blue_tit{position:relative; top:-5px;  left:5px; width:auto; max-width:93%; padding:7px 30px 7px 10px;  margin-bottom:-10px; line-height:20px; font-size:16px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAABCCAMAAAC/znzKAAAA4VBMVEXu7u7u7u7v7+/////6+vr////x8fH////////09PT////////////////////////////////y8vL////////////4+Pj////////////////////////////7+/v39/f////////29vb////z8/P////////////////w8PD////////9/f3////////////////////////////z8/Pw8PD5+fn8/Pz////w8PD////////////////////09PT////v7+8AAAD19fX8/Pzw8PD5+fn39/f7+/v+/v7///80l0YWAAAAQ3RSTlP8/vN2sY3moDPOVQRqPiAMEEXcmX5NvBVsJTtyXAquwSeCxSvTGGBQkOxjSaUGWIU2lhKA1+64qm/pCCM5lAHRAv4Acli6BQAAAKVJREFUeNpdx0V2AgEURUEOEjxocHcIkuBOn0BD+u9/QYzvq1n5/kj+KY/JQ/IoH7/zEeMT8rD8g097fMb4vHwr9/En4+fykfzGz178j/El+VR+4Jce/238Sl7gry5fNr4mv8h7/PHJn43fy3fyMV80/kveljd5x+Vbxg/kv/I1X//nK8ZX5Q35hu8bP5Qv5B3ecfmu8RN5Tp7lUw8+aXxAHpT78TcLZwQiJ0OdqAAAAABJRU5ErkJggg==") no-repeat right top #2997e2; color:#fff;}
-.blue_tit:not(.ellips_line2){display:inline-block; max-width:60%; }
-.yellow_tit{position:absolute; top:-5px;  right:5px; display:inline-block;width:auto;padding:0 10px ;  height:34px; margin-bottom:-10px; line-height:34px; font-size:16px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; color:#424242; background:#ffe100;}
-.yellow_tit:before{position:absolute; content:""; left:-10px; border-top:34px solid  transparent; border-right:10px solid #ffe100;}
-.yellow_tit dfn{font-size:10px;}
-.lrlist{padding:10px 15px; }.lrlist li{overflow:hidden;}.lrlist em{float:left; width:70px; color:#797979;}.lrlist span{display:inline-block;}
-.orderdtl_greybtn,.orderdtl_biggreybtn{display:block; min-width:49%;  max-width:80%; padding:5px 10px; box-sizing:border-box; margin:10px auto; font-size:16px; color:#424242; border:1px solid #a9a9a9; background:#f0f4f5;}
-.orderdtl_biggreybtn{width:100%; padding:10px; max-width:100%;  text-align:center;}
-.lmr_infobox dt{color:#797979;}
-.lmr_infobox dt,.lmr_infobox dd{display:inline-block;  width:20%; box-sizing:border-box;}
-.lmr_infobox .dl_l{width:75%;padding-right:10px;}
-.lmr_infobox .dl_m{width:60%; padding:0 10px;  }
-.ticketbox{ background:#fff; position:relative; margin-top:10px;}
-.probox{ padding:10px; border-bottom:1px solid #e4e4e4; position:relative;}
-.probox:last-child{ border-bottom:none;}
-.proname{ font-size:16px; font-weight:600; color:#424242; line-height:20px; margin-bottom:10px;}
-.dd_long{ width:75% !important; padding-left:10px;}
+/*add by w 1205 门票详情 */
+.btnsqfx{ position:absolute; right:10px; top:8px; height:23px; line-height:23px; padding: 0 10px; background-color:#FF9913; color:#fff;}
+.done{ background-color:#EBEBEB; color:#C4C4C4;}
+.proname{ font-size:15px; line-height:20px; margin:10px 10px 0;}
 .qrcode{ position:absolute; right:10px; width:40px; height:40px; background:#000;}
-.rbreak{ width:70%; word-break:break-all;}
-.kefu{ width:100%; line-height:40px; background:#31A9E9; color:#fff; text-align:center; margin-top:6px;}
-.kefu a:link,.kefu a:visited,.kefu a:hover,.kefu a:active{ color:#fff;}
-.lmr_infobox dt{ vertical-align:top;}
+.kefu{ width:100%; padding:20px 0 10px; color:#1491C5; text-align:center;}
+.kefu a:link,.kefu a:visited,.kefu a:hover,.kefu a:active{ color:#1491C5; border:1px solid #1491C5; padding:5px;}
 .explainbox {width: 221px;height: auto;background-color: #fff;padding: 10px;position: relative; text-align:center;}
 .explainbox h2 {text-align: center;color: #000;}
 .explainbox em {width:42px;height:42px;background-color: #fff;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;position: absolute;right:-17px;top:-14px;}
 .explainbox i {width: 23px;height: 23px;line-height: 20px;background-color: #1491c5;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;color: #fff;font-weight: bold;text-align: center;position: absolute;right: 8px;top:8px;}
-
 #vacation_ticket_prdu .blue_tit{max-width:95%;padding:5px 30px 9px 10px;min-height:36px;}
 /*二维码弹出框 */
-.cui-grayc {
-	color: #878787;
-}
+.cui-grayc {color: #878787;}
+.cui-btns-retry {display: inline-block;margin: 10px auto;background: #ff9913;padding: 10px 55px;color: #fff;}
 
-.cui-btns-retry {
-	display: inline-block;
-	margin: 10px auto;
-	background: #ff9913;
-	padding: 10px 55px;
-	color: #fff;
-}
+.btnsqfx i,.kefu i{position:relative;display:inline-block;background:url(../img/hyb_detail.png) no-repeat; background-size:112px 61px;  }
+.kefu i{ width:15px; height:15px; top:2px; background-position:-69px -44px;}
+.btnsqfx i{ width:23px; height:23px; bottom:2px; vertical-align:middle; background-position:-88px 0;}
+.done i{background-position:-88px -24px;}

@@ -298,4 +298,80 @@
 .oc_r {
     margin-right: -20px;
 }
+/*add by pp 保险*/
+.link_r
+{
+    position:relative;
+    display:block;
+    line-height:30px;
+    vertical-align:middle;
+    padding-right:25px;
+    text-align:right; 
+}
+.link_m
+{
+    margin:15px;
+    text-align:center; 
+}
+.link_m a{
+    position:relative; 
+    display:inline-block;
+    width:auto; 
+    margin:auto;
+    padding-right:20px;
+ }
+ 
+.list_st_border{
+    margin-bottom:10px;
+}
+.list_st_border li
+{
+    overflow:hidden;
+    padding:10px; 
+    line-height:22px;
+}
+.llong_list .fl{
+    width:68%;
+ }
+ .llong_list .fr{
+    width:32%;
+    text-align:right;
+    margin:0;
+    padding-left:10px;
+    box-sizing:border-box;
+ }
+.llong_list li:first-child {
+    line-height: 1.4em;
+    background:#f8f8f8;
+}
+.p_cont{padding:0 15px; color:#949494}
+ 
+ /*add by w 1205 自由行订单详情*/
+.zzline{ position:relative; top:12px;display:inline-block; width:20%; border-top:1px dashed #C8C8C8;height: 1px;overflow:hidden; margin:10px 0 15px;}
+.zztxt{ color:#949494; padding:0 7px;}
+.zzair2{ text-indent:40px; padding-bottom:10px; color:#686868;}
+.subblist li {position: relative;padding: 10px;line-height: 20px;overflow: hidden;background: #fff;color: #343434;}
+.icon_txt {position: absolute;top: 50%;right: 22px;height: 20px;margin-top: -10px;padding: 0 5px;background: #FFCB87;color: #fff;}
+.subblist span{display:inline-block; width:60%; padding-left:50px;}
+.roomlist span{padding-left:30px; width:75%;}
+.roomlist li{color:#686868; font-size:15px; padding:0 10px;}
+.roomlist i{position: absolute;top: 50%;right: 10px;height: 20px;margin-top: -10px;color:#262626;}
+.roomlist time{ margin-left:15px; color:#262626;}
+.bxuse{ border-top:1px solid #cfcfcf;}
+.bxusetime{ color:#949494; margin-top:5px;}
+.bxusetime span{ color:#686868; margin-right:10px;}
+.bxusetime i{ position:absolute; right:25px;}
+.poplist_tit{background:#f2f2f2;}
+.shortline{ border-bottom:1px solid #cfcfcf; margin-left:40px;}
+.size16{ font-size:16px;}
+.pb5{ padding-bottom:5px !important;}
+dt i,.subb_address:before,.subb_phone:before{position:relative;top:3px;width:16px; height:15px;display:inline-block;background:url(../img/hyb_detail.png) no-repeat; background-size:112px 61px;  }
+.icon_foward{ background-position:0px -23px;}
+.icon_back{background-position:0 -40px;}
+.icon_hotel{background-position:-44px 0px;}
+.icon_safe{background-position:-22px -2px;}
+.subb_address,.subb_phone{ position:absolute; left:40px;}
+.subb_address:before,.subb_phone:before{ content:""; background-position:-24px -44px;}
+.subb_phone:before{ background-position:-43px -44px;}
+
 
