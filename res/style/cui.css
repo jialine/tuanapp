@@ -416,16 +416,28 @@ opacity:0;
 
 .cui-money-tips{padding:15px 10px;position:relative;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:auto;}
 .cui-money-tips li{color:black;}
-.cui-money-tips span{width:80%;display:inline-block;}
-.cui-money-tips em{width:auto;position:absolute;right:10px;}
+.cui-money-tips i{color:#686868;font-size:16px;}
+.cui-money-tips em{width:auto;float:right;}
+.cui-money-tips dfn{font-size:12px;margin:0 2px 0 4px;}
 .cui-money-tips p{color:#a7a9ac;}
-.cui-money-tips p span{width:75%;padding-left:5%;}
-.cui-money-tips .border_bot{border-bottom:#dfdfdf 1px solid;padding-bottom:5px;margin-bottom:5px;color:#58595b;}
-.cui-money-tips .t_r{text-align:right;}
-.cui-money-tips .t_r dfn{font-size:1.4em;}
+.cui-money-tips p span{width:75%;display:inline-block;}
+.cui-money-tips .border_bot{border-bottom:#dfdfdf 1px solid;padding-bottom:5px;margin-bottom:5px;color:#686868;}
+.cui-money-tips .t_r{text-align:right;padding-top:5px;}
+.cui-money-tips .t_r b{font-size:16px;color:#ff9913;}
 
 .cui-item-img{background:#7a7a7a;text-align:center;position:relative;}
 .cui-item-img .cui-item-imgbg{width:60px;height:12px;position:absolute;left:50%;top:50%;margin:-6px 0 0 -30px;}
 
 .nomore{ height:40px; line-height:40px; text-align:center; color:#999;}
+
+/*发送验证码 海豚+发送中...*/
+.cui-grayload-text{ position:absolute;  left:50%; top:50%; margin:-50px 0 0 -75px; width:150px;font-size:16px;  text-align:center; background:rgba(0,0,0,.7); color:#fff;border-radius:5px;z-index:99;}
+.cui-grayload-close{width:42px;height:42px;float:right;}
+.cui-grayload-close:before,.cui-grayload-close:after{position:absolute; content:"" ; width:15px; height:2px;  top:15px;right:10px;background:#fff; -webkit-transform: rotate(45deg);-moz-transform: rotate(45deg); -ms-transform: rotate(45deg);transform: rotate(45deg);}
+.cui-grayload-close:after{ -webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg);transform: rotate(-45deg);}
+.cui-grayload-text .cui-w-loading{top:10px;margin-top:0;}
+.cui-grayload-text .cui-white-logo{top:20px;margin-top:0;}
+.cui-grayload-bfont{margin:70px 0 6px;}
+/*发送验证码 海豚+发送中...*/
+
 /*byzuo end*/

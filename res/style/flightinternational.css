@@ -415,7 +415,7 @@
 	height:30px;
 	line-height:30px;
 	color:#fff;
-	padding:0 8px;
+	padding:0 10px;
 	margin:0 5px 0 5px;
 	position:relative;
 	top:-5px;
@@ -569,7 +569,6 @@
 	float:right;
 	font-weight:700;
 	color:#fff;
-	text-indent: 0;
 }
 /*.fltdetail {
 	margin:60px auto 0;
@@ -1146,7 +1145,7 @@ p.stop i {
 .flight .ftx h2.f_return{background: #91CC3D;margin: 10px 5px 0 0;color: #424242;float: right;}
 .flight .ftx h2.f_return:after{content: "";position: absolute;top: 0;border-width: 30px 10px 0 0;border-style: solid;left: -10px;right: auto;border-color: transparent #91CC3D #91CC3D transparent;}
 .fltdetail .ofont .cmoney{color: #ff8c00;font-size: 1.5em;}
-dfn{color: #F0831E;font-style: normal;font-size: 13px;}
+dfn{color: #FF9913;font-style: normal;font-size: 13px;}
 .flight .infobox h4{color: #005380;font-weight: 700;padding:10px;clear: both;}
 .fin_name{width:85%;display: inline-block;vertical-align: top;padding-left: 5px;word-break: break-all;}
 .fin_span{color: #c7c7c7;display: block;}
@@ -1179,5 +1178,24 @@ dfn{color: #F0831E;font-style: normal;font-size: 13px;}
 .ftx h3.yellow_tit:before{border-top:30px solid transparent;}
 .flight h3.yellow_tit{position:absolute; top:-5px;  right:5px; display:inline-block;width:auto;padding:0 10px ;  height:30px; line-height:30px;  margin-bottom:-10px;font-size:16px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; color:#424242; background:#ffe100;}
 .yellow_tit:before{position:absolute; content:""; left:-10px; border-top:30px solid  transparent; border-right:10px solid #ffe100;}
-
 .flight .fltboarinfo{padding: 20px;overflow: hidden;}
+
+
+/*Hybrid 国际机票订单详情页 byzuo star*/
+.icon_foward,.icon_back{position:relative; top:3px;display:inline-block;width:16px; height:15px;background:url(../img/hyb_detail.png) no-repeat; background-size:112px 61px;}
+.icon_foward{ background-position:0px -23px;}
+.icon_back{background-position:0 -40px;}
+.hyb_money_c{color:#FF9913; padding:0 10px 0 4px;}
+.hyb_spans{color:#686868;font-size:15px;}
+.size15{font-size:15px;}
+.mt5{margin-top:5px;}
+.hyb_lineinfo{padding:5px 0;}
+.hyb_btn_mtb{margin:20px 0;}
+.hyb_fltintl_txt{width:100%;height:40px;border:none;}
+.hyb_fltintl_txt::-webkit-resizer{background:transparent;}
+.hyb_back_ticket li{border:#cfcfcf 1px solid;background-color:#fff;padding:10px;margin-bottom:10px;}
+.hyb_fin_transfers {position: relative;width: 100%;text-align: center;margin:0 -10px;}
+.hyb_fin_transfers em {width: inherit;display: block;position: absolute;top: 50%;border-bottom: 1px dashed #c8c8c8;}
+.hyb_fin_transfers b {background: #FFF;position: relative;padding: 0 10px;color:#686868;font-weight:400;}
+.hyb_multi_way{color:white;width:16px;height:16px;line-height:16px;text-align:center;display:inline-block;background:#999;}
+/*Hybrid 国际机票订单详情页 byzuo end*/

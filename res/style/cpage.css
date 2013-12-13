@@ -97,9 +97,8 @@ color: #333;
 .intrip .doubt_ico {
 	width:28px;
 	height:28px;
-	background-position:right -1px;
-	position:absolute;
-	right:24px;
+	background-position:right 0;
+	margin-right:17px;
 }
 .intrip .sel_ico {
 	position:absolute;
@@ -131,10 +130,7 @@ color: #333;
 }
 
 .intrip .grayli li .twoh {
-	width:63%;
-	width:-webkit-calc(100% - 95px);
-	width:-moz-calc(100% - 95px);
-	width:calc(100% - 95px);
+	width:55%;
 	display:inline-block;
 	vertical-align:top;
 	margin-top:-3px;
@@ -189,31 +185,15 @@ color: #333;
 	vertical-align:top;
 }
 
-.intrip .input_n 
-{
-    width:78%;
-	width:-webkit-calc(100% - 80px);
-	width:-moz-calc(100% - 80px);
-	width:calc(100% - 80px);
+.intrip .input_n {
+	width:55%;
 	height:22px;
 	line-height:22px;
 	vertical-align:0;
 	display:inline-block;
 	font-size:1em;
 	padding:0 0 0 5px;
-	
 }
-
-.intrip .input_n.js_ename,.intrip .input_n.js_newName 
-{
-   
-    width:68%;
-	width:-webkit-calc(100% - 115px);
-	width:-moz-calc(100% - 115px);
-	width:calc(100% - 115px);
-	
-}
-
 
 .fltboarinfo dd.s5_line_h {
 	padding-bottom:0;

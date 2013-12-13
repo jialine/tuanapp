@@ -41,7 +41,7 @@
 .list_nav li{line-height: 32px;}
 .list_nav i{ color:#ff8c00; margin-left:6px;}
 .list_nav em{ float:right;}
-.linktips {display: block;width:100%;line-height: 45px;text-align: right;}
+.linktips {display: block;width:100%;line-height: 45px;text-align: right;color:#1491c5;}
 .linktips i{ display:inline-block; width:25px;}
 .giftcard{ background:#fff; padding:0 5px;}
 .giftcard li{line-height: 42px;border:none;}
@@ -263,3 +263,47 @@
 #personalInfobox{ width:100%; overflow:hidden;}
 .greyli{color:#58595b;}
 
+
+
+/*===============================现金帐户提现CSS 2013-11-29 Star===================*/
+/*add by w 现金账户-兑换礼品卡 11-29*/
+.bominfo{ margin:9px 0 10px; line-height:18px;}
+.bominfo a{ color:#099FDE;}
+.cardchange em{ position:absolute; right:0; left:125px; width:auto; z-index:10;}
+.cardchange em.dhmoney{ right:30px;}
+.smalltab span{float: left;width: 50%;height:38px; line-height:38px; font-size:16px; text-align: center; background:#f7f7f7; color: #808285;border-bottom:4px solid transparent}
+.smalltab span.current{ color:#329ECB; border-bottom:4px solid #1491C5;}
+.cardchange .yuan{ position:absolute; right:22px; }
+.change2,.change2 li{padding:0 5px;}
+.change2 .grayli{height:40px; background:#F5F5F5; margin-bottom:5px;}
+.change2 .yuan{ right:17px;}
+.grayli em{ right:80px;}
+.grayli em:before{ content:"="; position:absolute; left:-10px;}
+
+/*add by pp 现金账户-验证手机号 11-29*/
+.rbox_r{ padding: 10px 0 ; box-sizing: border-box; text-align:right; line-height:1.2; color:#000;}
+.li_pos_r{padding:0 18px; position:absolute; right:0; height:44px; border-left:1px solid #cfcfcf;}
+.pos_r{margin-right:-10px; padding:0 24px;position:absolute; right:0; top:50%; margin-top:-20px; }
+.myc_txt_rlink{position:relative;float:right; padding-right:20px;}
+.myc_ptb{line-height:40px; margin-top:-10px;}
+.list_st_border input{ margin:0; padding:0;color:#000;}
+.myc_rbox{position:relative; min-height:40px; line-height:40px;}
+.myc_bluebox{padding:5px 10px; background:#f8fdff; border:1px solid #cfcfcf;}
+.cardtxt{font-weight:bold; font-size:16px; }
+
+/*byzuo star*/
+.withdraw_favable{padding:6px;margin-left:15px;color:white;background:#099FDE;}
+.withdraw_input_txt3,.withdraw_input_txt4,.withdraw_input_txt5,.withdraw_input_txt6,.withdraw_input_txt7,.withdraw_input_txt8,.withdraw_input_txt9{display:inline-block; padding-left:20px; -webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box; vertical-align:middle; }
+.withdraw_input_txt3{ width:-webkit-calc(100% - 60px);width:calc(100% - 60px);}/*3个字*/
+.withdraw_input_txt4{width:-webkit-calc(100% - 70px);width:calc(100% - 70px);}/*4个字*/
+.withdraw_input_txt5 {width:-webkit-calc(100% - 88px);width:calc(100% - 88px); }/*5个字*/
+.withdraw_input_txt6{width:-webkit-calc(100% - 90px);width:calc(100% - 90px);}/*6个字*/
+.withdraw_input_txt7 {width: -webkit-calc(100% - 110px);width:calc(100% - 112px); }/*7个字*/
+.withdraw_input_txt9{ width:-webkit-calc(100% - 144px);width:calc(100% - 144px);}/*9个字*/
+
+.withdraw_input_txt_r{display:inline-block; padding-left:10px;  box-sizing:border-box; width:-webkit-calc(100% - 190px);width:calc(100% - 190px);}/*3个字,右边有免费获取验证码*/
+
+/*byzuo end*/
+
+
+/*===============================现金帐户提现CSS 2013-11-29 End===================*/

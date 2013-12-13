@@ -1106,15 +1106,7 @@ figcaption#js_title {
 .myc_btnbox .orderdtl_greybtn{width:49%;}
 
 /*add by pp 11-12*/
-/*发送验证码，如果共用率很多，可直接拷到cui.css  star*/
-.cui-grayload-text{ position:absolute;  left:50%; top:50%; margin:-50px 0 0 -75px; width:150px;font-size:16px;  text-align:center; background:rgba(0,0,0,.7); color:#fff;border-radius:5px;z-index:99;}
-.cui-grayload-close{width:42px;height:42px;float:right;}
-.cui-grayload-close:before,.cui-grayload-close:after{position:absolute; content:"" ; width:15px; height:2px;  top:15px;right:10px;background:#fff; -webkit-transform: rotate(45deg);-moz-transform: rotate(45deg); -ms-transform: rotate(45deg);transform: rotate(45deg);}
-.cui-grayload-close:after{ -webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg);transform: rotate(-45deg);}
-.cui-grayload-text .cui-w-loading{top:10px;margin-top:0;}
-.cui-grayload-text .cui-white-logo{top:20px;margin-top:0;}
-.cui-grayload-bfont{margin:70px 0 6px;}
-/*发送验证码，如果共用率很多，可直接拷到cui.css  end*/
+
 .myc_dprtxt{ position:absolute; left:80px; right:30px; text-align:right; color:#06a2d0;}
 
 /*add by pp 11-29*/
