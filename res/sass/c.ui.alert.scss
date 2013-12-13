@@ -6,7 +6,7 @@
  * 
  */
 
-@import "c.ui.variables";
+@import "c.ui.variables","c.ui.extend","c.ui.mixins";
 
 .cui-pop-box{
 	background: nth($bg-color , 1);
@@ -22,3 +22,34 @@
 	text-align:nth($text-align , 2);
 }
 
+.cui-roller,
+.cui-roller-btns{
+	@extend %display-flex;
+}
+.cui-roller-bd,
+.cui-roller-btns .cui-flexbd{
+	@include flexbox-num(1);
+}
+
+.cui-roller-btns{
+	background:#f6f5f5;
+	padding: $padding-base-v $padding-base-v + 5;
+	line-height:18px;
+	text-align:nth($text-align , 2);
+}
+.cui-roller-btns .cui-flexbd{
+	padding: $padding-base-v 0;
+	color: $bg-color;
+}
+.cui-roller-btns .cui-flexbd:active{
+	opacity:.75;
+}
+.cui-roller-btns .cui-flexbd:nth-of-type(2){
+	margin-left: $padding-base-v * 2;
+}
+.cui-roller-btns .cui-btns-cancel{
+	background: $btn-color-cancel;
+}
+.cui-roller-btns .cui-btns-sure{
+	background: $btn-color-sure;
+}

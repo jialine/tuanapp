@@ -3,18 +3,33 @@
 <head>
 <meta charset="utf-8" />
 <title>携程旅行网-全局</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=320.1, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta content="telephone=no" name="format-detection" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<link href="../res/style/main2.css" rel="stylesheet" />
+<link href="../res/style/c.ui.alert.css" rel="stylesheet" />
+<link href="../res/style/common.css" rel="stylesheet" />
 </head>
-<body id="ctripPage">
-<!--阻断加载修改-->
-<div class="cui-breaking-load">
-     <div class="cui-w-loading"></div>
-     <i class="cui-white-logo"></i>
+<body>
+<!--弹出框出错2-->
+<div class="cui-pop-box">
+     <div class="cui-bd"> 
+         <p class="cui-error-tips">产品经理说：单双行都可，只要是居中对齐就行了,哈哈~~~~</p>
+         <div class="cui-roller-btns">
+              <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
+         </div>
+     </div>
 </div>
-<br /><br />
+<br />
+<!--弹出框出错3-->
+<div class="cui-pop-box">
+     <div class="cui-bd"> 
+         <p class="cui-error-tips">该信用卡需要您更新信息，请切换于“新增信用卡”中重新填写！</p>
+         <div class="cui-roller-btns">
+              <div class="cui-flexbd cui-btns-sure">知道了</div>
+         </div>
+     </div>
+</div>
+<br />
 <!--费用明细-->
 <div class="cui-pop-box">
      <div class="cui-hd">费用说明<label class="label"><span class="cui-top-close">×</span></label></div>
@@ -167,26 +182,6 @@
      </div>
 </div>
 <br />
-<!--弹出框出错2-->
-<div class="cui-pop-box">
-     <div class="cui-bd"> 
-         <p class="cui-error-tips">产品经理说：单双行都可，只要是居中对齐就行了,哈哈~~~~</p>
-         <div class="cui-roller-btns">
-              <div class="cui-flexbd cui-btns-cancel">取消</div><div class="cui-flexbd cui-btns-sure">确定</div>
-         </div>
-     </div>
-</div>
-<br />
-<!--弹出框出错3-->
-<div class="cui-pop-box">
-     <div class="cui-bd"> 
-         <p class="cui-error-tips">该信用卡需要您更新信息，请切换于“新增信用卡”中重新填写！</p>
-         <div class="cui-roller-btns">
-              <div class="cui-flexbd cui-btns-sure">知道了</div>
-         </div>
-     </div>
-</div>
-<br />
 <!--加载失败-->
 <div class="cui-load-fail cui-text-center">
     <div class="cui-load-error">
@@ -222,12 +217,7 @@
      </div>
      您还没有记录哦
 </div>
-<!--无图内容-->
-<div class="cui-img-default">加载中</div>
-<br />
-<div class="cui-img-default">暂无图片</div>
-<br />
-<div class="cui-img-default">加载失败</div>
+
 <div class="cui-full-views" style="display:none;"></div>
 </body>
 </html>
