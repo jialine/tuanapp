@@ -63,7 +63,7 @@
             var values = [];
             //如果设置了默认城市,置当前城市为选中状态
             if (this.autoLocCity && this.autoLocCity.listType == this.listType && this.autoLocCity.name) {
-                values.push('<li id="' + cUICore.config.prefix + 'curCity" data-ruler="item"');
+                values.push('<li id="' + uiBase.config.prefix + 'curCity" data-ruler="item"');
                 if (!this.selectedCity || this.autoLocCity.name == this.selectedCity.name) {
                     values.push(' class="' + this.selectedCityClass + '" ');
                 } else {
@@ -175,14 +175,14 @@
         setSelectedCity: function (city) {
             var self = this;
             if (city && this.listType == city.listType && city.name) {
-                var curCity = this.element.find('#' + cUICore.config.prefix + 'curCity');
+                var curCity = this.element.find('#' + uiBase.config.prefix + 'curCity');
                 if (curCity.length > 0) {
                     curCity.removeClass(this.selectedCityClass);
                     curCity.addClass('noCrt');
                 } else if (self.autoLocCity && self.autoLocCity.listType == this.listType && self.autoLocCity.name) {
                     //如果开启了自动定位,则增加当前城市项
                     var values = [];
-                    values.push('<li id="' + cUICore.config.prefix + 'curCity"');
+                    values.push('<li id="' + uiBase.config.prefix + 'curCity"');
                     values.push('data-value="' + city.name + '" data-ruler="item">当前城市</li>');
                     this.element.prepend(values.join());
                 }

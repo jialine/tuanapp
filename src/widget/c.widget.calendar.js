@@ -1,4 +1,4 @@
-define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, uiBase, cUtility, WidgetFactory) {
+define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, uiBase, HashObserve, cUtility, WidgetFactory) {
     "user strict";
 
     var WIDGET_NAME = 'Calendar';
@@ -42,7 +42,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
 
             this.callback = function () {
             };
-            this.hashObserve = new cUICore.HashObserve({
+            this.hashObserve = new HashObserve({
                 hash: this.id,
                 callback: function () {
                     this.hide();
