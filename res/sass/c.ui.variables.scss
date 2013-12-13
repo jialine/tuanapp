@@ -1,0 +1,78 @@
+/**
+ * Variables list
+ * 1. Color 
+ * 2. Font
+ * 3. Text-align
+ * 4. Position
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
+ */
+
+/* -------------------------
+   1. Color
+   -------------------------- */
+$bg-color:                #fff !default;
+
+
+/* -------------------------
+   2. Font
+   ------------------------- */
+$font-family-sans-serif:  Arial , Roboto , 'Droid Sans' , 'Hiragino Sans GB' , STXihei , 'SimSun' , 'sans-serif'  !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          12px !default;
+$font-size13:             floor($font-size-base * 1.1) !default; // ~13px
+$font-size14:             ceil($font-size-base * 1.16) !default; // ~14px
+$font-size15:             $font-size-base * 1.25 !default; // ~15px
+$font-size16:             ceil($font-size-base * 1.33) !default; // ~16px
+
+
+$font-color1:             #262626 !default;
+$font-color2:             #686868 !default;
+$font-color3:             #949494 !default;
+$font-color4:             #c4c4c4 !default;
+$font-color-blue:         #1491c5 !default;
+$font-color-yellow:       #ff9913 !default;
+$font-color-black:        #000    !default;
+
+
+/* -------------------------
+   3. Text-align
+   ------------------------- */
+$text-align-left:         left !default;
+$text-align-center:       center !default;
+$text-align-right:        right !default;
+
+/* -------------------------
+   4. Position
+   ------------------------- */
+$position-static:         static !default;
+$position-relative:       relative !default;
+$position-absolute:       absolute !default;
+$position-fixed:          fixed !default;
+$position-sticky:         sticky !default;
+
+
+/* -------------------------
+   5. Z-index
+   ------------------------- */
+
+$z-index9999:             9999 !default;
+$z-index2000:             2000 !default;
+$z-index1000:             1000 !default;
+
+/* -------------------------
+   6. Box Model
+   ------------------------- */
+$padding-base-v:          10px !default;
+$border-base-v:           1px !default;
+
+
+/* -------------------------
+   7. Button Color
+   ------------------------- */
+$btn-color-cancel:        #a9a9a9 !default;
+$btn-color-sure:          #ff9913 !default;
