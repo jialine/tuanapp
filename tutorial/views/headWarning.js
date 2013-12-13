@@ -1,12 +1,15 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headWarning')], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headWarning')], function (libs, c, pageview, cUI, html) {
   "use strict";
 
+  var s = null;
   var View = pageview.extend({
-    render: function(){
+    render: function () {
       this.$el.html(html);
     },
 
-    onCreate: function(){
+    onCreate: function () {
+      this.injectHeaderView();
+
       this.render();
     },
 
@@ -14,23 +17,37 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headWarning')], funct
       'click #test': 'testAction'
     },
 
-      testAction: function(){
-          var a = new cUI.HeadWarning()
-          a.setTitle('测试', '内容', function () {
-              alert('尼玛');
-          });
-          a.show();
+    testAction: function () {
+      s = new cUI.HeadWarning()
+      s.setTitle('测试', '内容', function () {
+        alert('尼玛');
+      });
+      s.show();
     },
 
-    onLoad: function(){
+    onLoad: function () {
+      this.headerview.set({
+        title: 'headWarning组件',
+        back: true,
+        view: this,
+        tel: null,
+        events: {
+          returnHandler: function () {
+            this.back('index');
+            s.hide();
+          }
+        }
+      });
+      this.headerview.show();
+
       this.turning();
     },
 
-    onShow: function(){
+    onShow: function () {
 
     },
 
-    onHide: function(){
+    onHide: function () {
 
     }
 

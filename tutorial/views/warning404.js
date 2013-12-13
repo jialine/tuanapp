@@ -1,12 +1,14 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('warning404')], function(libs, c, pageview, cUI, html){
+﻿define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('warning404')], function(libs, c, pageview, cUI, html){
   "use strict";
 
+  var s = null;
   var View = pageview.extend({
     render: function(){
       this.$el.html(html);
     },
 
     onCreate: function(){
+      this.injectHeaderView();
       this.render();
     },
 
@@ -15,14 +17,28 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('warning404')], functi
     },
 
       testAction: function(){
-          var warning404 = new c.ui.Warning404();
-          warning404.retryClick(function () {
+          s = new c.ui.Warning404();
+          s.retryClick(function () {
               this.hide();
           });
-          warning404.show();
+          s.show();
     },
 
-    onLoad: function(){
+        onLoad: function () {
+          this.headerview.set({
+            title: 'warning404组件',
+            back: true,
+            view: this,
+            tel: null,
+            events: {
+              returnHandler: function () {
+                this.back('index');
+                s.hide();
+              }
+            }
+          });
+          this.headerview.show();
+
       this.turning();
     },
 

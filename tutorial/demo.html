@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -7,11 +7,20 @@
         #menu { position: absolute; width: 300px;  }
         #demo { margin-left: 310px; height: 100%; }
 
+ * { padding: 0; margin: 0; }
+    body { font: normal 14px/1.5 "Arial" , "Lucida Grande" ,Verdana, "Microsoft YaHei" , "hei"; }
+    ul, li { list-style: none; }
+    a:link, a:visited, a:hover, a:active { color: #000; text-decoration: none; }
+    h1 { font: 600 1.286em/2 "Tahoma"; text-indent: 10px; }
+    li { position: relative; line-height: 40px; padding: 0 15px; border-bottom: 1px solid #CEE1EE; background: #EBF2FA; }
+    li:active { background: #3CB4F5; }
+    
     </style>
 
   </head>
   <body>
     <div id="menu">
+    <h1>Demo列表</h1>
        <ul id="list">
        </ul>
     </div>

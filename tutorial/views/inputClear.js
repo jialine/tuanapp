@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], function(libs, c, pageview, cUI, html){
+﻿define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -6,7 +6,9 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], functi
       this.$el.html(html);
     },
 
-    onCreate: function(){
+    onCreate: function () {
+      this.injectHeaderView();
+
       this.render();
     },
 
@@ -18,7 +20,20 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], functi
           c.ui.InputClear(this.$el.find('#input'));
     },
 
-    onLoad: function(){
+        onLoad: function () {
+          this.headerview.set({
+            title: 'inputClear组件',
+            back: true,
+            view: this,
+            tel: null,
+            events: {
+              returnHandler: function () {
+                this.back('index');
+              }
+            }
+          });
+          this.headerview.show();
+
       this.turning();
     },
 

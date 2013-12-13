@@ -1,12 +1,13 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('mask')], function(libs, c, pageview, cUI, html){
+﻿define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('mask')], function (libs, c, pageview, cUI, html) {
   "use strict";
-
+  var s = null;
   var View = pageview.extend({
-    render: function(){
+    render: function () {
       this.$el.html(html);
     },
 
-    onCreate: function(){
+    onCreate: function () {
+      this.injectHeaderView();
       this.render();
     },
 
@@ -14,22 +15,36 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('mask')], function(lib
       'click #test': 'testAction'
     },
 
-      testAction: function(){
-      var s = new c.ui.Mask({
-          classNames: [  'cui-opacitymask']
+    testAction: function () {
+      s = new c.ui.Mask({
+        classNames: ['cui-opacitymask']
       });
-        s.show();
+      s.show();
     },
 
-    onLoad: function(){
+    onLoad: function () {
+      this.headerview.set({
+        title: 'mask组件',
+        back: true,
+        view: this,
+        tel: null,
+        events: {
+          returnHandler: function () {
+            this.back('index');
+            s.hide();
+          }
+        }
+      });
+      this.headerview.show();
+
       this.turning();
     },
 
-    onShow: function(){
+    onShow: function () {
 
     },
 
-    onHide: function(){
+    onHide: function () {
 
     }
 

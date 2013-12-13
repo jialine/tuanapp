@@ -1,8 +1,10 @@
 define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('scrollRadioList')], function(libs, c, pageview, cUI, html){
   "use strict";
 
+  var s = null;
   var View = pageview.extend({
     render: function(){
+      this.injectHeaderView();
       this.$el.html(html);
     },
 
@@ -21,7 +23,7 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('scrollRadioList')], f
               data.push({ key: '列表选项' + (i + 1) });
           }
 
-          var r = new c.ui.ScrollRadioList({
+          s = new c.ui.ScrollRadioList({
               title: '列表选项',
               index: port_place.attr('index'),
               data: data,
@@ -30,10 +32,24 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('scrollRadioList')], f
                   port_place.val(item.key);
               }
           });
-          r.show();
+          s.show();
     },
 
-    onLoad: function(){
+        onLoad: function () {
+          this.headerview.set({
+            title: 'scrollRadioList组件',
+            back: true,
+            view: this,
+            tel: null,
+            events: {
+              returnHandler: function () {
+                this.back('index');
+                s.hide();
+              }
+            }
+          });
+          this.headerview.show();
+
       this.turning();
     },
 
