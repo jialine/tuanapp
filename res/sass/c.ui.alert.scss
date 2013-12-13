@@ -10,16 +10,16 @@
 
 .cui-pop-box{
 	background: nth($bg-color , 1);
-	position: nth($position , 2);
+	position: $position-relative;
 	margin: auto;
 	width: 280px;
-	z-index: nth($z-index , 1);
+	z-index: $z-index9999;
 }
 
 .cui-error-tips {
 	color: $font-color-black;
 	padding: $padding-base-v * 2;
-	text-align:nth($text-align , 2);
+	text-align: $text-align-center;
 }
 
 .cui-roller,
@@ -35,7 +35,7 @@
 	background:#f6f5f5;
 	padding: $padding-base-v $padding-base-v + 5;
 	line-height:18px;
-	text-align:nth($text-align , 2);
+	text-align: $text-align-center;
 }
 .cui-roller-btns .cui-flexbd{
 	padding: $padding-base-v 0;

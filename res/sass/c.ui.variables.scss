@@ -4,8 +4,9 @@
  * 2. Font
  * 3. Text-align
  * 4. Position
- * 5. Box Model
- * 6. Button Color
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
  */
 
 /* -------------------------
@@ -41,26 +42,37 @@ $font-color-black:        #000    !default;
 /* -------------------------
    3. Text-align
    ------------------------- */
-$text-align-left:              left , center , right !default;
-$text-align-left:
-$text-align-left:
+$text-align-left:         left !default;
+$text-align-center:       center !default;
+$text-align-right:        right !default;
 
 /* -------------------------
    4. Position
    ------------------------- */
-$position:                static , relative , absolute , fixed , sticky !default;
-$z-index:                 9999 , 2000 , 1000 !default;
+$position-static:         static !default;
+$position-relative:       relative !default;
+$position-absolute:       absolute !default;
+$position-fixed:          fixed !default;
+$position-sticky:         sticky !default;
 
 
 /* -------------------------
-   5. Box Model
+   5. Z-index
+   ------------------------- */
+
+$z-index9999:             9999 !default;
+$z-index2000:             2000 !default;
+$z-index1000:             1000 !default;
+
+/* -------------------------
+   6. Box Model
    ------------------------- */
 $padding-base-v:          10px !default;
 $border-base-v:           1px !default;
 
 
 /* -------------------------
-   6. Button Color
+   7. Button Color
    ------------------------- */
 $btn-color-cancel:        #a9a9a9 !default;
 $btn-color-sure:          #ff9913 !default;
