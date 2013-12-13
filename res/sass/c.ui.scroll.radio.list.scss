@@ -1,8 +1,52 @@
-/**
- * Doxygen    µ¯¿òlist¿Ø¼þ 
- * @file£º    c.ui.scroll.radio.list.scss
+ï»¿/**
+ * Doxygen    scroll.radio.list 
+ * @file:     c.ui.scroll.radio.list.scss
  * @author:   byzuo
  * @update:   2013-12-12
  * 
  */
+
+@import "c.ui.common","c.ui.variables","c.ui.extend","c.ui.mixins";
+
+
+.cui-select-view li {
+		border-bottom:#dfdfdf 1px solid;
+		padding:1em 2em 1em 1em;
+		position: $position-relative;
+		@extend %ellips;
+
+		&:active {
+			background:rgba(0,0,0,.05);
+		}
+
+		&.current {
+			color:#1084bc;
+
+			&:before,&:after {
+				position: $position-absolute;
+				content:"";
+				background:#1084bc;
+				height:3px;
+				top:50%;
+				border-radius:3px;
+			}
+			&:before {
+				width:18px;
+				right:10px;
+				margin-top:-2px;
+				@include rotate(-50deg);
+			}
+			&:after {
+				width:9px;
+				right:22px;
+				margin-top:2px;
+				@include rotate(45deg);
+			}
+		}
+	
+}
+
+
+
+
 

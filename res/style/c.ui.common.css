@@ -1,12 +1,5 @@
 @charset "UTF-8";
 /**
- * Doxygen    alert
- * @file£º    c.ui.alert.scss
- * @author:   byzuo 
- * @update:   2013-12-12
- * 
- */
-/**
  * Doxygen    common
  * @file£:    c.ui.common.scss
  * @author:   byzuo 
@@ -139,75 +132,4 @@
 /* line 66, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-btns-sure {
   background: #ff9913;
-}
-
-/**
- * Variables list
- * 1. Color 
- * 2. Font
- * 3. Text-align
- * 4. Position
- * 5. Z-index
- * 6. Box Model
- * 7. Button Color
- */
-/* -------------------------
-   1. Color
-   -------------------------- */
-/* -------------------------
-   2. Font
-   ------------------------- */
-/* -------------------------
-   3. Text-align
-   ------------------------- */
-/* -------------------------
-   4. Position
-   ------------------------- */
-/* -------------------------
-   5. Z-index
-   ------------------------- */
-/* -------------------------
-   6. Box Model
-   ------------------------- */
-/* -------------------------
-   7. Button Color
-   ------------------------- */
-/* -------------------------
-   8. Proportion
-   ------------------------- */
-/**
- * Extend list
- * 1. box-flex
- */
-/* --------------------------
-   1. flexbox-display
-   -------------------------- */
-/* line 9, ../sass/c.ui.extend.scss */
-.cui-roller,
-.cui-roller-btns {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-
-/* --------------------------
-   1. text-overflow:ellipsis
-   -------------------------- */
-/**
- * Mixins list
- * 1. box-flex
- */
-/* -------------------------
-   1. box-flex
-   -------------------------- */
-/* -------------------------
-   2. Transformations
-   -------------------------- */
-/* line 12, ../sass/c.ui.alert.scss */
-.cui-error-tips {
-  color: black;
-  padding: 20px;
-  text-align: center;
 }

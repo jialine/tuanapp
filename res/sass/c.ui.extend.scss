@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Extend list
  * 1. box-flex
  */
@@ -14,3 +14,20 @@
    display: flex;
 }
 
+/* --------------------------
+   1. text-overflow:ellipsis
+   -------------------------- */
+%ellips {
+   white-space:nowrap; 
+   overflow:hidden; 
+   text-overflow:ellipsis;
+}
+
+
+
+%before-after {
+    position:absolute;
+    content:"";
+    top:50%;
+    left:50%;
+}

@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUIAbstractView', 'cUIMask'], function (libs, cBase, AbstractView, Mask) {
+﻿define(['libs', 'cBase', 'cUIAbstractView', 'cUIMask', 'cUIHashObserve'], function (libs, cBase, AbstractView, Mask, HashObserve) {
 
   var options = {};
 
@@ -10,6 +10,14 @@
     this.mask = new Mask({
       classNames: [_config.prefix + 'warning-mask']
     });
+    this.hashObserve = new HashObserve({
+      hash: this.id,
+      scope: this,
+      callback: function () {
+        this.hide();
+      }
+    });
+
   };
 
   options.initialize = function ($super, opts) {
@@ -32,10 +40,16 @@
       this.mask.root.css({
         'z-index': '500'
       });
+
+      this.hashObserve.start();
+
     });
 
     this.addEvent('onHide', function () {
       this.mask.hide();
+      setTimeout($.proxy(function () {
+        this.hashObserve.end();
+      }, this), 10);
     });
 
     // $super($.extend(_attributes, opts));
