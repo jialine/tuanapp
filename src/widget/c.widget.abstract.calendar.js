@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cWidgetFactory'], function(cBase, cUICore, WidgetFactory){
+define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function(cBase, AbstractView, WidgetFactory){
   "user strict";
 
   var WIDGET_NAME = 'Abstract.Calendar';
@@ -8,7 +8,7 @@ define(['cBase', 'cUICore', 'cWidgetFactory'], function(cBase, cUICore, WidgetFa
     return;
   }
 
-  var AbstractCalendar = new cBase.Class(cUICore.AbstractView, {
+  var AbstractCalendar = new cBase.Class(AbstractView, {
     __propertys__: function () {
       this.CONSTANT = {
         CALENDAR_CHINESE_LUNAR_INFO: [

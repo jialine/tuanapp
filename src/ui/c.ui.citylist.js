@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUI'], function (libs, cBase, cUI) {
+﻿define(['libs', 'cBase', 'cUIBase'], function (libs, cBase, uiBase) {
 
     var CityList = new cBase.Class({
         __propertys__: function () {
@@ -121,7 +121,7 @@
                 }
             }
 
-            var pos = cUICore.Tools.getElementPos(group[0]);
+            var pos = uiBase.getElementPos(group[0]);
             if (pos && group.attr("id") != 'hotCity') {
                 //减去item的高
                 $(window).scrollTop(pos.top - 60);

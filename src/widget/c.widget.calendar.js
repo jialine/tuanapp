@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, cUICore, cUtility, WidgetFactory) {
+define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, uiBase, cUtility, WidgetFactory) {
     "user strict";
 
     var WIDGET_NAME = 'Calendar';
@@ -18,7 +18,7 @@ define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
             this.SDAYTITLE = this.CONSTANT.CALENDAR_WEEKDAY_SHORTNAME2;     //周短名称
             this.DAYTITLE2 = this.CONSTANT.CALENDAR_WEEKDAY_NAME;
 
-            this.addClass(cUICore.config.prefix + this.CONSTANT.CALENDAR);
+            this.addClass(uiBase.config.prefix + this.CONSTANT.CALENDAR);
             this.startMonth = cUtility.getServerDate();       //开始月份
             this.startMonth.setDate(this.CONSTANT.CALENDAR_INIT_DATE);
             this.Months = this.CONSTANT.CALENDAR_MONTH;       //显示几个月
@@ -123,7 +123,7 @@ define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
                 left: '0px',
                 top: '0px'
             });
-            var size = cUICore.Tools.getPageSize();
+            var size = uiBase.getPageSize();
             this.root.css({
                 width: size.width,
                 height: size.height

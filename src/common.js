@@ -64,6 +64,7 @@
 
     //--------------------------------------------------------------
     // ui控件库
+    'cUIBase'                   : 'src/ui/c.ui.base',
     'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',
     'cAdView'                   : 'src/ui/c.ui.ad',
     'cUIAlert'                  : 'src/ui/c.ui.alert',

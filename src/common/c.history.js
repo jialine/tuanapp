@@ -1,113 +1,6 @@
 ﻿/* File Created: 六月 23, 2013 */
 
-define(['cBase', 'libs'], function (cBase, libs) {
-
-
-    var _config = {
-      prefix: 'cui-'
-    }
-
-    /**
-    * 便捷创建元素方法
-    * @method CUI.Tools.createElement
-    * @singleton
-    * @param tag {String} 标签名称
-    * @param attr {Object} 可选 属性
-    * @param styles {Object} 可选 样式
-    * @param html {String} 可选 内容
-    */
-    var _createElement = function (tag, options) {
-        var el = document.createElement(tag), i, t
-        if (options) for (i in options) {
-            switch (i) {
-                case 'attr':
-                    if (typeof options[i] === 'object') for (t in options[i]) {
-                        if (options[i][t] != null) el.setAttribute(t, options[i][t]);
-                    }
-                    break;
-                case 'styles':
-                    if (typeof options[i] === 'object') for (t in options[i]) {
-                        if (options[i][t] != null) el.style[t] = options[i][t];
-                    }
-                    break;
-                case 'id':
-                    el.id = options[i];
-                    break;
-                case 'class':
-                    el.className = options[i];
-                    break;
-                case 'html':
-                    el.innerHTML = options[i];
-                    break;
-            }
-        }
-
-
-        return el;
-    }
-
-    /**
-    * 获得屏幕的显示高宽
-    * @return {Object} 返回包含高宽的对象
-    */
-    var _getPageSize = function () {
-      var width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
-      height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-      return {
-          width: width,
-          height: height
-      };
-    };
-
-    /**
-    * 获得元素的在页面中的绝对位置
-    * @param el {Element} 元素对象
-    * @return {Object} 返回元素el在页面中的位置信息
-    * {
-    *   top: 10, //距顶部的像素值
-    *   left: 20 //距左侧的像素值
-    * }
-    */
-    var _getElementPos = function (el) {
-      var top = 0,
-      left = 0;
-      do {
-          top += el.offsetTop;
-          left += el.offsetLeft;
-      } while (el = el.offsetParent);
-      return {
-          top: top,
-          left: left
-      };
-    };
-
-
-    /**
-    * 获得更大的zIndex值，每次调用该函数，都会产生一个更大值的z-index
-    * @param void
-    * @return {Number}
-    */
-    var _getBiggerzIndex = (function () {
-        var diviso = parseInt(Math.random() * 10000 + 1000);
-        return function () {
-            return ++diviso;
-        };
-    })();
-
-    /**
-    * 获得唯一的id
-    * @param void
-    * @return {String} 唯一的字符串
-    */
-    var _getCreateId = (function () {
-        var diviso = new Date().getTime();
-        return function () {
-            return config.prefix + (++diviso);
-        };
-    })();
-
-
-    //---------------------------------------------------------------
+define(['cBase', 'libs', 'cUIBase'], function (cBase, libs, uiBase) {
 
     /* 历史记录*/
     var History = function (options) {
@@ -135,7 +28,7 @@ define(['cBase', 'libs'], function (cBase, libs) {
 
         //private variable
         // this._id = cUICore.Tools.getCreateId();
-        this._id = _getCreateId();
+        this._id = uiBase.getCreateId();
         //最外层的层
         this._boxDom;
         //边线层
@@ -228,7 +121,7 @@ define(['cBase', 'libs'], function (cBase, libs) {
         },
         _CreateDom: function () {
             // var C = cUICore.Tools.createElement;
-            var C = _createElement;
+            var C = uiBase.createElement;
             this._bodyDom = this.rootBox || $('body');
             this.element = $(this.element);
             this._boxDom = $(C('div', { 'id': this._id, 'class': this.clazz.join(' ') }));
@@ -266,9 +159,9 @@ define(['cBase', 'libs'], function (cBase, libs) {
         _Location: function () {
             this._boxDom.css({ height: 'auto', width: 'auto' });
             // var size = cUICore.Tools.getPageSize();
-            var size = _getPageSize();
+            var size = uiBase.getPageSize();
             // var pos = cUICore.Tools.getElementPos(this.element[0]),
-            var pos = _getElementPos(this.element[0]),
+            var pos = uiBase.getElementPos(this.element[0]),
                 left = this.style.left ? this.style.left : (this.size && this.size.left ? this.size.left + pos.left : pos.left) + 'px',
                 top = this.style.top ? this.style.top : (this.size && this.size.top ? this.size.top + (pos.top + this.element.height()) : (pos.top + this.element.height())) + 'px',
                 width = this.style.width ? this.style.width : this.element.width() + 'px',
@@ -329,7 +222,7 @@ define(['cBase', 'libs'], function (cBase, libs) {
         },
         Open: function () {
             // this._boxDom.css('z-index', cUICore.Tools.getBiggerzIndex());
-            this._boxDom.css('z-index', _getBiggerzIndex());
+            this._boxDom.css('z-index', uiBase.getBiggerzIndex());
             this._boxDom.show();
             this._AutoLocation();
         },

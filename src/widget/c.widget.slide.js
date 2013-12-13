@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cWidgetFactory', 'libs'], function(cBase, cUICore, WidgetFactory){
+define(['cBase', 'cUIBase', 'cWidgetFactory', 'libs'], function(cBase, uiBase, WidgetFactory){
   "use strict";
 
   var WIDGET_NAME = 'Slide';
@@ -236,7 +236,7 @@ var Slide = new cBase.Class({
             return;
         }
         this.isTouchStart = true;
-        var pos = cUICore.Tools.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
+        var pos = uiBase.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
         this.stop();
         this.startX = pos.x;
         this.startY = pos.y;
@@ -247,7 +247,7 @@ var Slide = new cBase.Class({
         if (this.isMove || !this.isTouchStart) {
             return;
         }
-        var pos = cUICore.Tools.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
+        var pos = uiBase.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
         var diffX = pos.x - this.startX,
                 diffY = pos.y - this.startY;
         this.imageinter.css('left', (this.imageinterLeft + diffX) + 'px');
@@ -257,7 +257,7 @@ var Slide = new cBase.Class({
         if (this.isMove || !this.isTouchStart) {
             return;
         }
-        var pos = cUICore.Tools.getMousePosOfElement(e.changedTouches[0], e.currentTarget);
+        var pos = uiBase.getMousePosOfElement(e.changedTouches[0], e.currentTarget);
         var diffX = pos.x - this.startX,
                 diffY = pos.y - this.startY,
                 callback = $.proxy(function () {

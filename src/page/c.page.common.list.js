@@ -1,4 +1,4 @@
-define(['libs', 'cUI', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 'cWidgetListView'], function (libs, cUI, BasePageView, WidgetFactory, CommonPageFactory) {
+define(['libs', 'cUIBase', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 'cWidgetListView'], function (libs, uiBase, BasePageView, WidgetFactory, CommonPageFactory) {
     "use strict";
 
     var PAGE_NAME = 'CommonListPage';
@@ -48,7 +48,7 @@ define(['libs', 'cUI', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 
     options.onWidnowScroll = function () {
 
         //l_wang app.js会默认window.scrollTo(0, 1)，导致触发，所以当scroll为0时候不触发，张爸爸需要确认
-        var pos = cUI.Tools.getPageScrollPos();
+        var pos = uiBase.getPageScrollPos();
         if (pos.top == 0) return;
         var h = pos.pageHeight - (pos.top + pos.height);
         if (h <= 50 && !this.__isComplete__ && !this.__isLoading__) {
