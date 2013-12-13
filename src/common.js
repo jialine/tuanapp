@@ -83,6 +83,9 @@
     'cUIScrollLayer'            : 'src/ui/c.ui.scrollLayer',
     'cUIToast'                  : 'src/ui/c.ui.toast',
     'cUIWarning'                : 'src/ui/c.ui.warning',
-    'cUIWarning404'             : 'src/ui/c.ui.warning404'
+    'cUIWarning404'             : 'src/ui/c.ui.warning404',
+    'cUIHashObserve': 'src/ui/c.ui.hash.observe'
+
+
   }
 });
