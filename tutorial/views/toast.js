@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('toast')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -15,8 +15,10 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs,
     },
 
       testAction: function(){
-      var s = c.ui.cAdView.getInstance();
-        s.show();
+          var loading = new c.ui.Toast();
+          loading.show('测试', 2, function () {
+              alert('尼玛');
+          }, true);
     },
 
     onLoad: function(){

@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('warning404')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -15,8 +15,11 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs,
     },
 
       testAction: function(){
-      var s = c.ui.cAdView.getInstance();
-        s.show();
+          var warning404 = new c.ui.Warning404();
+          warning404.retryClick(function () {
+              this.hide();
+          });
+          warning404.show();
     },
 
     onLoad: function(){

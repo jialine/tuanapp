@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('mask')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -15,7 +15,9 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs,
     },
 
       testAction: function(){
-      var s = c.ui.cAdView.getInstance();
+      var s = new c.ui.Mask({
+          classNames: [  'cui-opacitymask']
+      });
         s.show();
     },
 

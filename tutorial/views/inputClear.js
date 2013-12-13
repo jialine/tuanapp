@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs, c, pageview, cUI, html){
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -15,8 +15,7 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('ad')], function(libs,
     },
 
       testAction: function(){
-      var s = c.ui.cAdView.getInstance();
-        s.show();
+          c.ui.InputClear(this.$el.find('#input'));
     },
 
     onLoad: function(){
