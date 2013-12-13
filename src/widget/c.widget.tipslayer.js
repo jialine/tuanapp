@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], function (cBase, cUICore, WidgetFactory, ScrollLayer) {
+define(['cBase', 'cUILayer', 'cUIBase', 'cUIMask', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], function (cBase, Layer, uiBase,, Mask, WidgetFactory, ScrollLayer) {
   "use strict";
 
   var WIDGET_NAME = 'TipsLayer';
@@ -11,13 +11,13 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], functio
   /**
   * 显示控件，初始化时传入title与html即可
   */
-  var TipsLayer = new cBase.Class(cUICore.Layer, {
+  var TipsLayer = new cBase.Class(Layer, {
     __propertys__: function () {
       this.contentDom;
       this.title = '';
       this.body = '';
-      this.mask = new cUICore.Mask({
-        classNames: [cUICore.config.prefix + 'opacitymask']
+      this.mask = new Mask({
+        classNames: [uiBase.config.prefix + 'opacitymask']
       });
       var scope = this;
       this.mask.addEvent('onShow', function () {

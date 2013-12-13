@@ -230,7 +230,7 @@ adOptions._set = function (key, value, timeout) {
 }
 
 if (window.location.pathname.indexOf('webapp')>-1 || window.localStorage.getItem('isInApp') ) {
-    define(['cBase', 'cUIAbstract', 'libs', 'cStore'], function (cBase, AbstractView, libs, cStore) {
+    define(['cBase', 'cUIAbstractView', 'libs', 'cStore'], function (cBase, AbstractView, libs, cStore) {
         var AdView = new cBase.Class(AbstractView, adOptions);
         AdView.getInstance = function () {
             if (this.instance) {
