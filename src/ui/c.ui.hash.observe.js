@@ -9,7 +9,7 @@
   options.__propertys__ = function () {
     this.hash;
     this.callback;
-    this._hashchange = bindthis(function () {
+    this._hashchange = $.proxy(function () {
       this.hashchange();
     }, this);
     this.isend = true;
