@@ -50,6 +50,14 @@
 /* --------------------------
    1. text-overflow:ellipsis
    -------------------------- */
+/* line 28, ../sass/c.ui.extend.scss */
+.cui-wifi:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+}
+
 /**
  * Mixins list
  * 1. box-flex
@@ -60,23 +68,30 @@
 /* -------------------------
    2. Transformations
    -------------------------- */
-/* line 11, ../sass/c.ui.warning404.scss */
+/* line 12, ../sass/c.ui.warning404.scss */
+.cui-cbg,
+.cui-cbg:before {
+  background: url(../img/c.ui.img.png) no-repeat;
+  background-size: 150px 125px;
+}
+
+/* line 16, ../sass/c.ui.warning404.scss */
 .cui-grayc {
   color: #878787;
 }
 
-/* line 14, ../sass/c.ui.warning404.scss */
+/* line 19, ../sass/c.ui.warning404.scss */
 .cui-text-center {
   text-align: center;
 }
 
-/* line 17, ../sass/c.ui.warning404.scss */
+/* line 22, ../sass/c.ui.warning404.scss */
 .cui-load-fail {
   width: 60%;
   margin: 78px auto;
 }
 
-/* line 21, ../sass/c.ui.warning404.scss */
+/* line 26, ../sass/c.ui.warning404.scss */
 .cui-btns-retry {
   display: inline-block;
   margin: 10px auto;
@@ -85,7 +100,7 @@
   color: #fff;
 }
 
-/* line 28, ../sass/c.ui.warning404.scss */
+/* line 33, ../sass/c.ui.warning404.scss */
 .cui-load-error {
   width: 60%;
   margin: 60px auto 0 auto;
@@ -93,23 +108,57 @@
   text-align: center;
 }
 
-/* line 34, ../sass/c.ui.warning404.scss */
+/* line 39, ../sass/c.ui.warning404.scss */
 .cui-wifi {
   width: 68px;
   height: 69px;
   position: relative;
   margin: 0 auto 5px auto;
-  background-position: 0 -63.5px;
+  background-position: -82px -56px;
+}
+/* line 45, ../sass/c.ui.warning404.scss */
+.cui-wifi:before {
+  width: 50px;
+  height: 42px;
+  margin: -19px 0 0 -25px;
+  background-position: 0 -63px;
 }
 
-/* line 42, ../sass/c.ui.warning404.scss */
+/* line 53, ../sass/c.ui.warning404.scss */
+.cui-glines {
+  border-bottom: #dfdfdf 1px solid;
+  margin: 40px auto 26px auto;
+}
+
+/* line 57, ../sass/c.ui.warning404.scss */
+.cui-btns-tel {
+  min-width: 100px;
+  display: inline-block;
+  margin: 10px auto;
+  background: #a9a9a9;
+  padding: 10px 0 10px 15px;
+  color: white;
+  position: relative;
+}
+/* line 65, ../sass/c.ui.warning404.scss */
+.cui-btns-tel .cui-phone:before {
+  width: 11px;
+  height: 20px;
+  top: 11px;
+  left: 22px;
+  right: auto;
+  position: absolute;
+  content: "";
+}
+
+/* line 76, ../sass/c.ui.warning404.scss */
 .cui-exclam:before,
 .cui-exclam:after {
   position: absolute;
   content: "";
 }
 
-/* line 46, ../sass/c.ui.warning404.scss */
+/* line 80, ../sass/c.ui.warning404.scss */
 .cui-exclam:before {
   width: 10px;
   height: 31px;
@@ -122,7 +171,7 @@
   border-radius: 5px;
 }
 
-/* line 55, ../sass/c.ui.warning404.scss */
+/* line 89, ../sass/c.ui.warning404.scss */
 .cui-exclam:after {
   width: 10px;
   height: 10px;
@@ -133,10 +182,4 @@
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-}
-
-/* line 64, ../sass/c.ui.warning404.scss */
-.cui-cbg {
-  background-image: url(../img/c.ui.img);
-  background-size: 150px 125px;
 }

@@ -8,6 +8,11 @@
 
 @import "c.ui.variables","c.ui.extend","c.ui.mixins";
 
+.cui-cbg,
+.cui-cbg:before {
+    background:url(../img/c.ui.img.png) no-repeat;
+    background-size:150px 125px;
+}
 .cui-grayc {
    color:#878787;
 }
@@ -36,8 +41,37 @@
    height:69px;
    position: $position-relative;
    margin:0 auto 5px auto;
-   background-position:0 -63.5px;
+   background-position:-82px -56px;
+   &:before {
+      width:50px;
+      height:42px;
+      margin:-19px 0 0 -25px;
+      background-position:0 -63px;
+      @extend %before-after;
+   }
 }
+.cui-glines {
+   border-bottom:#dfdfdf 1px solid;
+   margin:40px auto 26px auto;
+}
+.cui-btns-tel {
+    min-width:$padding-base-v * 10;
+    display:inline-block;
+    margin:10px auto;
+    background:#a9a9a9;
+    padding:10px 0 10px 15px;
+    color:$bg-color;
+    position: relative;
+    .cui-phone:before {
+      width: 11px;
+      height: 20px;
+      top:11px;
+      left:22px;
+      right:auto;
+      position: absolute;
+      content: "";
+   }
+ }
 .cui-exclam:before,
 .cui-exclam:after {
    position: $position-absolute;
@@ -60,8 +94,4 @@
    margin-left:-5px;
    background:#626262;
    @include border-radius(50%);
-}
-.cui-cbg {
-    background-image:url(../img/c.ui.img);
-    background-size:150px 125px;
 }
