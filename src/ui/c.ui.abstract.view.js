@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase'], function (libs, cBase) {
+﻿define(['libs', 'cBase', 'cUIBase'], function (libs, cBase, uiBase) {
 
   var _slice = Array.prototype.slice,
         _push = Array.prototype.push,
@@ -10,24 +10,6 @@
   var STATE_ONHIDE = 'onHide';
 
   var options = {};
-
-  var _config = {
-    prefix: 'cui-'
-  };
-
-  var getCreateId = (function () {
-    var diviso = new Date().getTime();
-    return function () {
-      return _config.prefix + (++diviso);
-    };
-  })();
-
-  var getBiggerzIndex = (function () {
-    var diviso = parseInt(Math.random() * 10000 + 1000);
-    return function () {
-      return ++diviso;
-    };
-  })();
 
   options.__propertys__ = function () {
     //允许设置的事件
@@ -50,8 +32,8 @@
     this.status = STATE_NOTCREATE;
     this.setOptionHander = [];
     this.rootBox;
-    this.id = getCreateId();
-    this.classNames = [_config.prefix + 'view'];
+    this.id = uiBase.getCreateId();
+    this.classNames = [uiBase.config.prefix + 'view'];
     this.root;
     this.isCreate = false;
   };
@@ -196,7 +178,7 @@
 
   options.setzIndexTop = function (offset) {
     offset = typeof offset !== 'number' ? 0 : offset;
-    this.root.css('z-index', getBiggerzIndex() + offset);
+    this.root.css('z-index', uiBase.getBiggerzIndex() + offset);
   };
 
   options.isNotCreate = function () {

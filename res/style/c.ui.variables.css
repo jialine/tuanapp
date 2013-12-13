@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Syntax error: Invalid CSS after "$text-align-left": expected selector or at-rule, was ":"
         on line 46 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.variables.scss
@@ -52,3 +53,36 @@ body:before {
   white-space: pre;
   font-family: monospace;
   content: "Syntax error: Invalid CSS after \"$text-align-left\": expected selector or at-rule, was \":\"\A         on line 46 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.variables.scss"; }
+=======
+/**
+ * Variables list
+ * 1. Color 
+ * 2. Font
+ * 3. Text-align
+ * 4. Position
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
+ */
+/* -------------------------
+   1. Color
+   -------------------------- */
+/* -------------------------
+   2. Font
+   ------------------------- */
+/* -------------------------
+   3. Text-align
+   ------------------------- */
+/* -------------------------
+   4. Position
+   ------------------------- */
+/* -------------------------
+   5. Z-index
+   ------------------------- */
+/* -------------------------
+   6. Box Model
+   ------------------------- */
+/* -------------------------
+   7. Button Color
+   ------------------------- */
+>>>>>>> 4c44cef002753fdae3423337960d33fac4a35f14

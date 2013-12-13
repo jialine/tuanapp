@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cWidgetFactory', 'cValidate', 'libs'], function (cBase, cUICore, WidgetFactory, validate) {
+define(['cBase', 'cUILayer', 'cWidgetFactory', 'cValidate', 'libs'], function (cBase, Layer, WidgetFactory, validate) {
     "use strict";
 
     var WIDGET_NAME = 'InputValidator';
@@ -11,7 +11,7 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cValidate', 'libs'], function (cB
     /**
     * 显示控件，初始化时传入title与html即可
     */
-    var InputValidator = new cBase.Class(cUICore.Layer, {
+    var InputValidator = new cBase.Class(Layer, {
         __propertys__: function () {
             this.TypeMsg = {
                 idCard: '身份证格式错误',
@@ -277,7 +277,7 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cValidate', 'libs'], function (cB
         removeValidator: function (id) {
             if (id && this.validatorArr[id]) {
                 var sa = this.validatorArr[id];
-                this.validatorArr[id]['check'] = false; //将其验证状态置为false 
+                this.validatorArr[id]['check'] = false; //将其验证状态置为false
                 var s = '';
             }
         },
