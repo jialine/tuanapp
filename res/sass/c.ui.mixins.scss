@@ -1,0 +1,15 @@
+/**
+ * Mixins list
+ * 1. box-flex
+ */
+
+/* -------------------------
+   1. box-flex
+   -------------------------- */
+@mixin flexbox-num($flex-num){
+   -webkit-box-flex: $flex-num;
+   -moz-box-flex: $flex-num;
+   -webkit-flex: $flex-num;
+   -ms-flex: $flex-num;
+   flex: $flex-num;
+}

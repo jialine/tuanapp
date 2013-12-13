@@ -1,1 +1,122 @@
-.cui-pop-box{background:#fff;position:relative;margin:auto;width:280px;z-index:9999}.cui-error-tips{color:#000;padding:20px;text-align:center}
+@charset "UTF-8";
+/**
+ * Doxygen    alert控件
+ * @file：    c.ui.alert.scss
+ * @author:   byzuo 
+ * @update:   2013-12-12
+ * 
+ */
+/**
+ * Variables list
+ * 1. Color 
+ * 2. Font
+ * 3. Text-align
+ * 4. Position
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
+ */
+/* -------------------------
+   1. Color
+   -------------------------- */
+/* -------------------------
+   2. Font
+   ------------------------- */
+/* -------------------------
+   3. Text-align
+   ------------------------- */
+/* -------------------------
+   4. Position
+   ------------------------- */
+/* -------------------------
+   5. Z-index
+   ------------------------- */
+/* -------------------------
+   6. Box Model
+   ------------------------- */
+/* -------------------------
+   7. Button Color
+   ------------------------- */
+/**
+ * Extend list
+ * 1. box-flex
+ */
+/* --------------------------
+   1. flexbox-display
+   -------------------------- */
+/* line 9, ../sass/c.ui.extend.scss */
+.cui-roller,
+.cui-roller-btns {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/**
+ * Mixins list
+ * 1. box-flex
+ */
+/* -------------------------
+   1. box-flex
+   -------------------------- */
+/* line 11, ../sass/c.ui.alert.scss */
+.cui-pop-box {
+  background: white;
+  position: relative;
+  margin: auto;
+  width: 280px;
+  z-index: 9999;
+}
+
+/* line 19, ../sass/c.ui.alert.scss */
+.cui-error-tips {
+  color: black;
+  padding: 20px;
+  text-align: center;
+}
+
+/* line 30, ../sass/c.ui.alert.scss */
+.cui-roller-bd,
+.cui-roller-btns .cui-flexbd {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+/* line 34, ../sass/c.ui.alert.scss */
+.cui-roller-btns {
+  background: #f6f5f5;
+  padding: 10px 15px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* line 40, ../sass/c.ui.alert.scss */
+.cui-roller-btns .cui-flexbd {
+  padding: 10px 0;
+  color: white;
+}
+
+/* line 44, ../sass/c.ui.alert.scss */
+.cui-roller-btns .cui-flexbd:active {
+  opacity: .75;
+}
+
+/* line 47, ../sass/c.ui.alert.scss */
+.cui-roller-btns .cui-flexbd:nth-of-type(2) {
+  margin-left: 20px;
+}
+
+/* line 50, ../sass/c.ui.alert.scss */
+.cui-roller-btns .cui-btns-cancel {
+  background: darkgrey;
+}
+
+/* line 53, ../sass/c.ui.alert.scss */
+.cui-roller-btns .cui-btns-sure {
+  background: #ff9913;
+}
