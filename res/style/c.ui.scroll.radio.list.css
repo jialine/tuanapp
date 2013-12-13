@@ -1,0 +1,262 @@
+@charset "UTF-8";
+/**
+ * Doxygen    scroll.radio.list 
+ * @file:     c.ui.scroll.radio.list.scss
+ * @author:   byzuo
+ * @update:   2013-12-12
+ * 
+ */
+/**
+ * Doxygen    common
+ * @file£:    c.ui.common.scss
+ * @author:   byzuo 
+ * @update:   2013-12-12
+ * 
+ */
+/**
+ * Variables list
+ * 1. Color 
+ * 2. Font
+ * 3. Text-align
+ * 4. Position
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
+ */
+/* -------------------------
+   1. Color
+   -------------------------- */
+/* -------------------------
+   2. Font
+   ------------------------- */
+/* -------------------------
+   3. Text-align
+   ------------------------- */
+/* -------------------------
+   4. Position
+   ------------------------- */
+/* -------------------------
+   5. Z-index
+   ------------------------- */
+/* -------------------------
+   6. Box Model
+   ------------------------- */
+/* -------------------------
+   7. Button Color
+   ------------------------- */
+/* -------------------------
+   8. Proportion
+   ------------------------- */
+/**
+ * Extend list
+ * 1. box-flex
+ */
+/* --------------------------
+   1. flexbox-display
+   -------------------------- */
+/* line 9, ../sass/c.ui.extend.scss */
+.cui-roller,
+.cui-roller-btns {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* --------------------------
+   1. text-overflow:ellipsis
+   -------------------------- */
+/* line 20, ../sass/c.ui.extend.scss */
+.cui-select-view li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Mixins list
+ * 1. box-flex
+ */
+/* -------------------------
+   1. box-flex
+   -------------------------- */
+/* -------------------------
+   2. Transformations
+   -------------------------- */
+/* line 12, ../sass/c.ui.common.scss */
+.cui-pop-box {
+  background: white;
+  position: relative;
+  margin: auto;
+  width: 280px;
+  z-index: 9999;
+}
+
+/* line 20, ../sass/c.ui.common.scss */
+.cui-pop-box .cui-hd {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16.8px;
+  color: white;
+  background: #1491c5;
+  padding: 0 10px;
+  position: relative;
+}
+
+/* line 36, ../sass/c.ui.common.scss */
+.cui-roller-bd,
+.cui-roller-btns .cui-flexbd {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+/* line 42, ../sass/c.ui.common.scss */
+.cui-roller-btns {
+  background: #f5f5f5;
+  padding: 10px 15px;
+  line-height: 18px;
+  text-align: center;
+}
+/* line 48, ../sass/c.ui.common.scss */
+.cui-roller-btns .cui-flexbd {
+  padding: 10px 0;
+  color: white;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+/* line 54, ../sass/c.ui.common.scss */
+.cui-roller-btns .cui-flexbd:active {
+  opacity: .75;
+}
+/* line 58, ../sass/c.ui.common.scss */
+.cui-roller-btns .cui-flexbd:nth-of-type(2) {
+  margin-left: 20px;
+}
+/* line 62, ../sass/c.ui.common.scss */
+.cui-roller-btns .cui-btns-cancel {
+  background: darkgrey;
+}
+/* line 66, ../sass/c.ui.common.scss */
+.cui-roller-btns .cui-btns-sure {
+  background: #ff9913;
+}
+
+/**
+ * Variables list
+ * 1. Color 
+ * 2. Font
+ * 3. Text-align
+ * 4. Position
+ * 5. Z-index
+ * 6. Box Model
+ * 7. Button Color
+ */
+/* -------------------------
+   1. Color
+   -------------------------- */
+/* -------------------------
+   2. Font
+   ------------------------- */
+/* -------------------------
+   3. Text-align
+   ------------------------- */
+/* -------------------------
+   4. Position
+   ------------------------- */
+/* -------------------------
+   5. Z-index
+   ------------------------- */
+/* -------------------------
+   6. Box Model
+   ------------------------- */
+/* -------------------------
+   7. Button Color
+   ------------------------- */
+/* -------------------------
+   8. Proportion
+   ------------------------- */
+/**
+ * Extend list
+ * 1. box-flex
+ */
+/* --------------------------
+   1. flexbox-display
+   -------------------------- */
+/* line 9, ../sass/c.ui.extend.scss */
+.cui-roller,
+.cui-roller-btns {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* --------------------------
+   1. text-overflow:ellipsis
+   -------------------------- */
+/* line 20, ../sass/c.ui.extend.scss */
+.cui-select-view li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Mixins list
+ * 1. box-flex
+ */
+/* -------------------------
+   1. box-flex
+   -------------------------- */
+/* -------------------------
+   2. Transformations
+   -------------------------- */
+/* line 12, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li {
+  border-bottom: #dfdfdf 1px solid;
+  padding: 1em 2em 1em 1em;
+  position: relative;
+}
+/* line 18, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+/* line 22, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li.current {
+  color: #1084bc;
+}
+/* line 25, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li.current:before, .cui-select-view li.current:after {
+  position: absolute;
+  content: "";
+  background: #1084bc;
+  height: 3px;
+  top: 50%;
+  border-radius: 3px;
+}
+/* line 33, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li.current:before {
+  width: 18px;
+  right: 10px;
+  margin-top: -2px;
+  -webkit-transform: rotate(-50deg);
+  -ms-transform: rotate(-50deg);
+  transform: rotate(-50deg);
+}
+/* line 39, ../sass/c.ui.scroll.radio.list.scss */
+.cui-select-view li.current:after {
+  width: 9px;
+  right: 22px;
+  margin-top: 2px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

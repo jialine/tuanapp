@@ -1,20 +1,13 @@
 ﻿/**
- * Doxygen    alert控件
- * @file：    c.ui.alert.scss
+ * Doxygen    alert
+ * @file£º    c.ui.alert.scss
  * @author:   byzuo 
  * @update:   2013-12-12
  * 
  */
 
-@import "c.ui.variables","c.ui.extend","c.ui.mixins";
+@import "c.ui.common","c.ui.variables","c.ui.extend","c.ui.mixins";
 
-.cui-pop-box{
-	background: nth($bg-color , 1);
-	position: $position-relative;
-	margin: auto;
-	width: 280px;
-	z-index: $z-index9999;
-}
 
 .cui-error-tips {
 	color: $font-color-black;
@@ -22,34 +15,3 @@
 	text-align: $text-align-center;
 }
 
-.cui-roller,
-.cui-roller-btns{
-	@extend %display-flex;
-}
-.cui-roller-bd,
-.cui-roller-btns .cui-flexbd{
-	@include flexbox-num(1);
-}
-
-.cui-roller-btns{
-	background:#f6f5f5;
-	padding: $padding-base-v $padding-base-v + 5;
-	line-height:18px;
-	text-align: $text-align-center;
-}
-.cui-roller-btns .cui-flexbd{
-	padding: $padding-base-v 0;
-	color: $bg-color;
-}
-.cui-roller-btns .cui-flexbd:active{
-	opacity:.75;
-}
-.cui-roller-btns .cui-flexbd:nth-of-type(2){
-	margin-left: $padding-base-v * 2;
-}
-.cui-roller-btns .cui-btns-cancel{
-	background: $btn-color-cancel;
-}
-.cui-roller-btns .cui-btns-sure{
-	background: $btn-color-sure;
-}

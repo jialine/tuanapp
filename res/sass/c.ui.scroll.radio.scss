@@ -1,8 +1,71 @@
-/**
- * Doxygen    µ¯¿òÊ±¼äÑ¡Ôñ¿Ø¼þ 
- * @file£º    c.ui.scroll.radio.scss
+ï»¿/**
+ * Doxygen    scroll.radio
+ * @file:     c.ui.scroll.radio.scss
  * @author:   byzuo
  * @update:   2013-12-12
  * 
  */
+
+@import "c.ui.common","c.ui.variables","c.ui.extend","c.ui.mixins";
+
+.cui-flex2 {
+	@include flexbox-num(2.5);
+}
+
+.cui-roller-tips {
+	color:#8d8d8d;
+	padding: $padding-base-v / 2;
+	text-align: $text-align-center;
+}
+
+.cui-text-center {
+	text-align: $text-align-center;
+}
+
+.cui-roller {
+	width: $proportion-base-v;
+	overflow: $overflow-hidden;
+	position: $position-relative;
+
+	.ul-list {
+		height: $proportion-base-v;
+		text-align: $text-align-center;
+		font-size:1.2em;
+		z-index:2;
+		li {
+			height:44px;
+			line-height:44px;
+			@extend %ellips;
+			&.current {
+				font-size:1.3255em;
+			}
+		}
+	}
+}
+
+.cui-mask-gray {
+	position:absolute;
+	z-index:3;
+	top: 0;
+	left: 0;
+	width: $proportion-base-v;
+	height: $proportion-base-v;
+	pointer-events: none;
+    background: linear-gradient(#fff 0,rgba(245,245,245,0) 52%,rgba(245,245,245,0) 48%,#fff 100%);
+    background: -webkit-gradient(linear,left bottom,left top,from(#fff),color-stop(0.52,rgba(245,245,245,0)),color-stop(0.48,rgba(245,245,245,0)),to(#fff));
+    background: -webkit-linear-gradient(#fff 0,rgba(245,245,245,0) 52%,rgba(245,245,245,0) 48%,#fff 100%);
+    background: -moz-linear-gradient(#fff 0,rgba(245,245,245,0) 52%,rgba(245,245,245,0) 48%,#fff 100%);
+}
+
+.cui-lines {
+	width: $proportion-base-v;
+	height:44px;
+	position: $position-absolute;
+	top: $proportion-base-v / 2;
+	left:0;
+	margin-top:-23px;
+	border-top:#dfdfdf 1px solid;
+	border-bottom:#dfdfdf 1px solid;
+}
+
 
