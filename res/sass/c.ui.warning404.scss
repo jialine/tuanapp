@@ -1,0 +1,67 @@
+﻿/**
+ * Doxygen    warning404
+ * @file£:    c.ui.warning404.scss
+ * @author:   byzuo 
+ * @update:   2013-12-12
+ * 
+ */
+
+@import "c.ui.variables","c.ui.extend","c.ui.mixins";
+
+.cui-grayc {
+   color:#878787;
+}
+.cui-text-center {
+   text-align: $text-align-center;
+}
+.cui-load-fail {
+   width:60%;
+   margin:78px auto;
+}
+.cui-btns-retry{
+   display:inline-block;
+   margin:10px auto;
+   background: $font-color-yellow;
+   padding:10px 55px;
+   color:#fff;
+}
+.cui-load-error {
+   width:60%;
+   margin:60px auto 0 auto;
+   word-break:break-all;
+   text-align: $text-align-center;
+}
+.cui-wifi {
+   width:68px;
+   height:69px;
+   position: $position-relative;
+   margin:0 auto 5px auto;
+   background-position:0 -63.5px;
+}
+.cui-exclam:before,
+.cui-exclam:after {
+   position: $position-absolute;
+   content:"";
+}
+.cui-exclam:before {
+   width:10px;
+   height:31px;
+   top:12px;
+   left:50%;
+   margin-left:-5px;
+   background:#626262;
+   @include border-radius(5px);
+}
+.cui-exclam:after {
+   width:10px;
+   height:10px;
+   bottom:11px;
+   left:50%;
+   margin-left:-5px;
+   background:#626262;
+   @include border-radius(50%);
+}
+.cui-cbg {
+    background-image:url(../img/c.ui.img);
+    background-size:150px 125px;
+}

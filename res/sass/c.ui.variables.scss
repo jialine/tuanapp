@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Variables list
  * 1. Color 
  * 2. Font
@@ -8,6 +8,8 @@
  * 6. Box Model
  * 7. Button Color
  */
+
+
 
 /* -------------------------
    1. Color
@@ -76,3 +78,16 @@ $border-base-v:           1px !default;
    ------------------------- */
 $btn-color-cancel:        #a9a9a9 !default;
 $btn-color-sure:          #ff9913 !default;
+
+
+/* -------------------------
+   8. Proportion
+   ------------------------- */
+$proportion-base-v:       100%;
+
+
+$overflow-hidden:         hidden !default;
+$overflow-visible:        visible !default;
+
+
+

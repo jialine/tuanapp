@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Mixins list
  * 1. box-flex
  */
@@ -8,8 +8,68 @@
    -------------------------- */
 @mixin flexbox-num($flex-num){
    -webkit-box-flex: $flex-num;
-   -moz-box-flex: $flex-num;
-   -webkit-flex: $flex-num;
-   -ms-flex: $flex-num;
-   flex: $flex-num;
+      -moz-box-flex: $flex-num;
+       -webkit-flex: $flex-num;
+           -ms-flex: $flex-num;
+               flex: $flex-num;
+}
+
+@mixin border-radius($border-num){
+   -webkit-border-radius: $border-num;
+      -moz-border-radius: $border-num;
+           border-radius: $border-num;
+}
+
+/* -------------------------
+   2. Transformations
+   -------------------------- */
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+      -ms-transform: rotate($degrees); // IE9+
+          transform: rotate($degrees);
+}
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+      -ms-transform: scale($ratio); // IE9+
+          transform: scale($ratio);
+}
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+      -ms-transform: translate($x, $y); // IE9+
+          transform: translate($x, $y);
+}
+@mixin skew($x, $y) {
+  -webkit-transform: skew($x, $y);
+      -ms-transform: skewX($x) skewY($y); // IE9+
+          transform: skew($x, $y);
+}
+@mixin translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+          transform: translate3d($x, $y, $z);
+}
+
+@mixin rotateX($degrees) {
+  -webkit-transform: rotateX($degrees);
+      -ms-transform: rotateX($degrees); // IE9+
+          transform: rotateX($degrees);
+}
+@mixin rotateY($degrees) {
+  -webkit-transform: rotateY($degrees);
+      -ms-transform: rotateY($degrees); // IE9+
+          transform: rotateY($degrees);
+}
+@mixin perspective($perspective) {
+  -webkit-perspective: $perspective;
+     -moz-perspective: $perspective;
+          perspective: $perspective;
+}
+@mixin perspective-origin($perspective) {
+  -webkit-perspective-origin: $perspective;
+     -moz-perspective-origin: $perspective;
+          perspective-origin: $perspective;
+}
+@mixin transform-origin($origin) {
+  -webkit-transform-origin: $origin;
+     -moz-transform-origin: $origin;
+          transform-origin: $origin;
 }
