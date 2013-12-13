@@ -5,10 +5,7 @@
 * Author: shbzhang@ctrip.com
 * Date: 2013年6月23日
 */
-define(['cBase', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, WidgetFactory) {
-
-
-  var Publisher = WidgetFactory.create('Publisher');
+define(['cBase'], function (cBase) {
 
   //l_wang至今点透仍无法可破......
   window.initTap = function () {
@@ -209,10 +206,6 @@ define(['cBase', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, WidgetF
     /* end _checkSelected ************/
 
     init: function () {
-      // @author Michael.Lee
-      // 在App环境里面，当出现弹出层的时候，需要锁住所有头部操作
-      Publisher.lock();
-
       this._addItem();
       this._initEventParam();
       this._addEvent();
@@ -287,10 +280,6 @@ define(['cBase', 'cWidgetFactory', 'cWidgetPublisher'], function (cBase, WidgetF
       this.dragEl[0].removeEventListener(this.start, this.startFn);
       this.dragEl[0].removeEventListener(this.move, this.moveFn);
       this.dragEl[0].removeEventListener(this.end, this.endFn);
-
-      // @author Michael.Lee
-      // 在App环境里面，当出现弹出层的时候，最后收起的时候，需要解锁所有头部操作
-      Publisher.unlock();
     },
     _initScrollBar: function () {
       if (this.type != 'list') return;

@@ -8,14 +8,14 @@ define([], function(){
 
   // @description 框架内所有生成的元素的id，class都会加上此前缀
   base.config = {
-      prefix: 'cui-'
+    prefix: 'cui-'
   };
 
   // @description   设置cui的默认参数
   // @param         name {String} 参数名
   // @param         value {Any Object} 值
   base.setConfig = function (name, value) {
-      config[name] = value;
+    base.config[name] = value;
   };
 
   // @description   获得元素的在页面中的绝对位置
@@ -44,7 +44,7 @@ define([], function(){
   base.getCreateId = (function () {
     var diviso = new Date().getTime();
     return function () {
-      return config.prefix + (++diviso);
+      return base.config.prefix + (++diviso);
     };
   })();
 
