@@ -7,12 +7,6 @@ define(['libs', 'c', 'cBasePageView', getViewsPath('index')], function(libs, c, 
 
     onCreate: function(){
       this.render();
-    },
-
-    events: {
-    },
-
-    onLoad: function(){
       var list = this.$el.find('#list');
       var listArr = [
           'alert',
@@ -29,6 +23,13 @@ define(['libs', 'c', 'cBasePageView', getViewsPath('index')], function(libs, c, 
       for(var i = 0, len = listArr.length; i < len; i++) {
         list.append($('<li><a href="index.html#' + listArr[i] + '">c.ui.' + listArr[i] + '</a></li>'))
       }
+    },
+
+    events: {
+    },
+
+    onLoad: function(){
+
 
       this.turning();
     },
