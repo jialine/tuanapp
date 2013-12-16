@@ -6,10 +6,12 @@
     prefix: 'cui-'
   };
 
+  var _mask = new Mask({
+    classNames: [_config.prefix + 'warning-mask']
+  });
+
   options.__propertys__ = function () {
-    this.mask = new Mask({
-      classNames: [_config.prefix + 'warning-mask']
-    });
+    this.mask = _mask;
     this.hashObserve = new HashObserve({
       hash: this.id,
       scope: this,
