@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /**
- * Doxygen    warning404
+ * Type       warning404
  * @file£:    c.ui.warning404.scss
  * @author:   byzuo 
  * @update:   2013-12-12
@@ -68,6 +68,9 @@
 /* -------------------------
    2. Transformations
    -------------------------- */
+/* -------------------------
+   animation
+   -------------------------- */
 /* line 12, ../sass/c.ui.warning404.scss */
 .cui-cbg,
 .cui-cbg:before {
@@ -132,52 +135,55 @@
 
 /* line 57, ../sass/c.ui.warning404.scss */
 .cui-btns-tel {
-  min-width: 100px;
+  min-width: 113px;
   display: inline-block;
   margin: 10px auto;
   background: #a9a9a9;
-  padding: 10px 0 10px 15px;
+  padding: 10px 0;
   color: white;
   position: relative;
 }
 /* line 65, ../sass/c.ui.warning404.scss */
+.cui-btns-tel .cui-phone {
+  margin-right: 10px;
+}
+/* line 68, ../sass/c.ui.warning404.scss */
 .cui-btns-tel .cui-phone:before {
   width: 11px;
   height: 20px;
   top: 11px;
-  left: 22px;
-  right: auto;
+  left: 15px;
   position: absolute;
   content: "";
 }
 
-/* line 76, ../sass/c.ui.warning404.scss */
+/* line 78, ../sass/c.ui.warning404.scss */
 .cui-exclam:before,
 .cui-exclam:after {
   position: absolute;
   content: "";
 }
 
-/* line 80, ../sass/c.ui.warning404.scss */
+/* line 82, ../sass/c.ui.warning404.scss */
 .cui-exclam:before {
   width: 10px;
   height: 31px;
   top: 12px;
   left: 50%;
-  margin-left: -5px;
+  margin: 0 0 0 -5px;
   background: #626262;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
 
-/* line 89, ../sass/c.ui.warning404.scss */
+/* line 91, ../sass/c.ui.warning404.scss */
 .cui-exclam:after {
   width: 10px;
   height: 10px;
   bottom: 11px;
   left: 50%;
-  margin-left: -5px;
+  margin: 0 0 0 -5px;
   background: #626262;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;

@@ -58,7 +58,7 @@ h3{font:600 1em/1.5 "Tahoma";}/*14px*/
 .newprice i{margin-left:2px; font-size:1.286em;}
 
 /*bg icon*/
-input[type=checkbox]:checked,.checked,.i,.i_bef:before,.i_aft:after,.arr_r:after,.arr_down:after,.arr_up:after,.tuan_tag li:before,.mulselect_yes,#city_list li.citylistcrt:after,.fselect.current i,.delivy.s_tickets .light.current:after,.delivy.s_tickets .light:active:after,#city_list .cur-selected:after,.returnico:before,.citylist .ok_crt:after,.cui-w-loading,.cui-white-logo,body .cui-select-fullscreen .cui-option-selected:after{background:url(../img/comm_bg.png?t=20131018) no-repeat; background-size:242px 260px;}
+input[type=checkbox]:checked,.checked,.i,.i_bef:before,.i_aft:after,.arr_r:after,.arr_down:after,.arr_up:after,.tuan_tag li:before,.mulselect_yes,#city_list li.citylistcrt:after,.fselect.current i,.delivy.s_tickets .light.current:after,.delivy.s_tickets .light:active:after,#city_list .cur-selected:after,.returnico:before,.citylist .ok_crt:after,body .cui-select-fullscreen .cui-option-selected:after{background:url(../img/comm_bg.png?t=20131018) no-repeat; background-size:242px 260px;}
   input[type=checkbox],.checkbox{ display:inline-block; width:22px; height:22px; margin-right:5px;vertical-align:middle;  border:1px solid #ddd; background-color:#fff;}.checkbox{width:20px; height:20px; }
   input[type=checkbox]:checked,.checked{ background-position: -190px -23.5px; }  /*pp add by 11/8*/
 .arr_r:after,.arr_up:after,.arr_down:after{top:50%; margin-top:-8px; right:10px; width:7.5px; height:14.5px; background-position:-190.5px -63.5px;}
