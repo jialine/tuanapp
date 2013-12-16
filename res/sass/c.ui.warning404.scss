@@ -1,5 +1,5 @@
 ﻿/**
- * Doxygen    warning404
+ * Type       warning404
  * @file£:    c.ui.warning404.scss
  * @author:   byzuo 
  * @update:   2013-12-12
@@ -10,7 +10,7 @@
 
 .cui-cbg,
 .cui-cbg:before {
-    background:url(../img/c.ui.img.png) no-repeat;
+    background:url(#{$pathfile-test}c.ui.img.png) no-repeat;
     background-size:150px 125px;
 }
 .cui-grayc {
@@ -55,19 +55,21 @@
    margin:40px auto 26px auto;
 }
 .cui-btns-tel {
-    min-width:$padding-base-v * 10;
+    min-width:113px;
     display:inline-block;
     margin:10px auto;
     background:#a9a9a9;
-    padding:10px 0 10px 15px;
+    padding:10px 0;
     color:$bg-color;
     position: relative;
+    .cui-phone{
+      margin-right:$padding-base-v;
+   }
     .cui-phone:before {
       width: 11px;
       height: 20px;
       top:11px;
-      left:22px;
-      right:auto;
+      left:15px;
       position: absolute;
       content: "";
    }
@@ -82,7 +84,7 @@
    height:31px;
    top:12px;
    left:50%;
-   margin-left:-5px;
+   margin:0 0 0 -5px;
    background:#626262;
    @include border-radius(5px);
 }
@@ -91,7 +93,7 @@
    height:10px;
    bottom:11px;
    left:50%;
-   margin-left:-5px;
+   margin:0 0 0 -5px;
    background:#626262;
    @include border-radius(50%);
 }
