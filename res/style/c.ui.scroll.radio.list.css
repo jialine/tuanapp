@@ -1,13 +1,13 @@
 @charset "UTF-8";
 /**
- * Doxygen    scroll.radio.list 
+ * Type       scroll.radio.list 
  * @file:     c.ui.scroll.radio.list.scss
  * @author:   byzuo
  * @update:   2013-12-12
  * 
  */
 /**
- * Doxygen    common
+ * Type       common
  * @file£:    c.ui.common.scss
  * @author:   byzuo 
  * @update:   2013-12-12
@@ -83,6 +83,9 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
+   -------------------------- */
+/* -------------------------
+   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.common.scss */
 .cui-pop-box {
@@ -218,6 +221,9 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
+   -------------------------- */
+/* -------------------------
+   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.scroll.radio.list.scss */
 .cui-select-view li {

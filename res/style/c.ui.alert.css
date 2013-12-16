@@ -1,13 +1,13 @@
 @charset "UTF-8";
 /**
- * Doxygen    alert
+ * Type       alert
  * @file£º    c.ui.alert.scss
  * @author:   byzuo 
  * @update:   2013-12-12
  * 
  */
 /**
- * Doxygen    common
+ * Type       common
  * @file£:    c.ui.common.scss
  * @author:   byzuo 
  * @update:   2013-12-12
@@ -76,6 +76,9 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
+   -------------------------- */
+/* -------------------------
+   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.common.scss */
 .cui-pop-box {
@@ -204,6 +207,9 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
+   -------------------------- */
+/* -------------------------
+   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.alert.scss */
 .cui-error-tips {
