@@ -28,7 +28,7 @@
    margin:10px auto;
    background: $font-color-yellow;
    padding:10px 55px;
-   color:#fff;
+   color: $bg-color;
 }
 .cui-load-error {
    width:60%;
@@ -47,7 +47,8 @@
       height:42px;
       margin:-19px 0 0 -25px;
       background-position:0 -63px;
-      @extend %before-after;
+      @extend %hor-ver-center;
+      content:"";
    }
 }
 .cui-glines {
@@ -61,18 +62,19 @@
     background:#a9a9a9;
     padding:10px 0;
     color:$bg-color;
-    position: relative;
+    position: $position-relative;
     .cui-phone{
       margin-right:$padding-base-v;
+        &:before {
+            width: 11px;
+            height: 20px;
+            top:11px;
+            left:15px;
+            position: $position-absolute;
+            content: "";
+         }
    }
-    .cui-phone:before {
-      width: 11px;
-      height: 20px;
-      top:11px;
-      left:15px;
-      position: absolute;
-      content: "";
-   }
+    
  }
 .cui-exclam:before,
 .cui-exclam:after {
@@ -83,7 +85,7 @@
    width:10px;
    height:31px;
    top:12px;
-   left:50%;
+   left: $proportion-base-v / 2;
    margin:0 0 0 -5px;
    background:#626262;
    @include border-radius(5px);
@@ -92,7 +94,7 @@
    width:10px;
    height:10px;
    bottom:11px;
-   left:50%;
+   left: $proportion-base-v / 2;
    margin:0 0 0 -5px;
    background:#626262;
    @include border-radius(50%);

@@ -12,52 +12,35 @@
     background:url(#{$pathfile-test}c.ui.img.png) no-repeat;
     background-size:150px 125px;
 }
-
+//列表页白色海豚+loading
 .cui-breaking-load {
      width:80px;
      height:70px;
-     border-radius: 5px;
-     background:rgba(0,0,0,.7);
+     @include border-radius(5px);
+     background:rgba(#000,.7);
      margin:auto;
      position: $position-relative;
      z-index:9999;
      .cui-w-loading {
-        position: $position-absolute;
         width:50px;
         height:50px;
-        left:50%;
-        top:50%;
         margin:-25px 0 0 -25px; 
         background-position:-101px 0;
+        @extend %hor-ver-center;
+        @include animation(cui-loading 1.58s linear infinite);
+        @include transform-origin(50% 49%);
+        opacity:0;
       }
       .cui-white-logo {
-        position: $position-absolute; 
         width:25px;
         height:28px;
-        left:50%;
-        top:50%; 
         z-index:9;
         margin:-15px 0 0 -15px;
+        @extend %hor-ver-center;
         background-position:-24px 0;
       }
  }
 
-.cui-w-loading {
-    -webkit-animation:cui-loading 1.58s linear infinite;
-    -moz-animation:cui-loading 1.58s linear infinite;
-    -ms-animation:cui-loading 1.58s linear infinite;
-    animation:cui-loading 1.58s linear infinite;
-    @include transform-origin(50% 49%);
-    opacity:0;
-}
-.cui-b-loading{
-    -webkit-animation:cui-loading 1.58s linear infinite;
-    -moz-animation:cui-loading 1.58s linear infinite;
-    -ms-animation:cui-loading 1.58s linear infinite;
-    animation:cui-loading 1.58s linear infinite;
-    @include transform-origin(46% 47%);
-    opacity:0;
-}
 @-webkit-keyframes cui-loading{
     0%{
         opacity:1;
@@ -71,33 +54,34 @@
 @-moz-keyframes cui-loading{
     0%{
         opacity:1;
-        -webkit-transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
     }
     100%{
         opacity:1;
-        -webkit-transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
     }
 }
 @-ms-keyframes cui-loading{
     0%{
         opacity:1;
-        -webkit-transform:rotate(0deg);
+        -ms-transform:rotate(0deg);
     }
     100%{
         opacity:1;
-        -webkit-transform:rotate(360deg);
+        -ms-transform:rotate(360deg);
     }
 }
 @keyframes cui-loading{
     0%{
         opacity:1;
-        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
     }
     100%{
         opacity:1;
-        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
     }
 }
+//列表页蓝色海豚+loading
 .cui-zl-load {
     width:110px;
     margin:5px auto;
@@ -111,6 +95,9 @@
         height:20px;
         position: $position-absolute;
         background-position:-73px 0;
+        @include animation(cui-loading 1.58s linear infinite);
+        @include transform-origin(45% 47%);
+        opacity:0;
     }
     .cui-blue-logo { 
         width:12px;

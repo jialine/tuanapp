@@ -6,6 +6,10 @@
     prefix: 'cui-'
   };
 
+  var _mask = new Mask({
+    classNames: [_config.prefix + 'opacitymask']
+  });
+
   var getMask = function (cls) {
 
   };
@@ -18,9 +22,7 @@
             ].join(''));
     this.content = '';
     this.contentDom;
-    this.mask = new Mask({
-      classNames: [_config.prefix + 'opacitymask']
-    });
+    this.mask = _mask;
     this.addClass(_config.prefix + 'layer');
     this.viewdata = {};
     this.windowResizeHander;
