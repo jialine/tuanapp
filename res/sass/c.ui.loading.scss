@@ -22,37 +22,28 @@
      position: $position-relative;
      z-index:9999;
      .cui-w-loading {
-        position: $position-absolute;
         width:50px;
         height:50px;
+        margin:-25px 0 0 -25px; 
         left: $proportion-base-v / 2;
         top: $proportion-base-v / 2;
-        margin:-25px 0 0 -25px; 
+        position: $position-absolute;
         background-position:-101px 0;
+        @include animation(cui-loading 1.58s linear infinite);
+        @include transform-origin(50% 49%);
+        opacity:0;
       }
       .cui-white-logo {
-        position: $position-absolute; 
         width:25px;
         height:28px;
-        left: $proportion-base-v / 2;
-        top: $proportion-base-v / 2;
         z-index:9;
         margin:-15px 0 0 -15px;
+        left: $proportion-base-v / 2;
+        top: $proportion-base-v / 2;
+        position: $position-absolute;
         background-position:-24px 0;
       }
  }
-
-.cui-w-loading {
-    @include animation(cui-loading 1.58s linear infinite);
-    @include transform-origin(50% 49%);
-    opacity:0;
-}
-.cui-b-loading{
-    @include animation(cui-loading 1.58s linear infinite);
-    @include transform-origin(45% 47%);
-    opacity:0;
-}
-
 
 @-webkit-keyframes cui-loading{
     0%{
@@ -108,6 +99,9 @@
         height:20px;
         position: $position-absolute;
         background-position:-73px 0;
+        @include animation(cui-loading 1.58s linear infinite);
+        @include transform-origin(45% 47%);
+        opacity:0;
     }
     .cui-blue-logo { 
         width:12px;
