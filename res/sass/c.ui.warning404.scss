@@ -47,7 +47,8 @@
       height:42px;
       margin:-19px 0 0 -25px;
       background-position:0 -63px;
-      @extend %before-after;
+      @extend %hor-ver-center;
+      content:"";
    }
 }
 .cui-glines {

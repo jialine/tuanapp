@@ -25,10 +25,8 @@
         width:50px;
         height:50px;
         margin:-25px 0 0 -25px; 
-        left: $proportion-base-v / 2;
-        top: $proportion-base-v / 2;
-        position: $position-absolute;
         background-position:-101px 0;
+        @extend %hor-ver-center;
         @include animation(cui-loading 1.58s linear infinite);
         @include transform-origin(50% 49%);
         opacity:0;
@@ -38,9 +36,7 @@
         height:28px;
         z-index:9;
         margin:-15px 0 0 -15px;
-        left: $proportion-base-v / 2;
-        top: $proportion-base-v / 2;
-        position: $position-absolute;
+        @extend %hor-ver-center;
         background-position:-24px 0;
       }
  }
