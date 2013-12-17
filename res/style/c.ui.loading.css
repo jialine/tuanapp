@@ -1,210 +1,70 @@
-@charset "UTF-8";
-/**
- * Type       warning404
- * @file£:    c.ui.warning404.scss
- * @author:   byzuo 
- * @update:   2013-12-12
- * 
- */
-/**
- * Variables list
- * 1. Color 
- * 2. Font
- * 3. Text-align
- * 4. Position
- * 5. Z-index
- * 6. Box Model
- * 7. Button Color
- */
-/* -------------------------
-   1. Color
-   -------------------------- */
-/* -------------------------
-   2. Font
-   ------------------------- */
-/* -------------------------
-   3. Text-align
-   ------------------------- */
-/* -------------------------
-   4. Position
-   ------------------------- */
-/* -------------------------
-   5. Z-index
-   ------------------------- */
-/* -------------------------
-   6. Box Model
-   ------------------------- */
-/* -------------------------
-   7. Button Color
-   ------------------------- */
-/* -------------------------
-   8. Proportion
-   ------------------------- */
-/**
- * Extend list
- * 1. box-flex
- */
-/* --------------------------
-   1. flexbox-display
-   -------------------------- */
-/* --------------------------
-   1. text-overflow:ellipsis
-   -------------------------- */
-/**
- * Mixins list
- * 1. box-flex
- */
-/* -------------------------
-   1. box-flex
-   -------------------------- */
-/* -------------------------
-   2. Transformations
-   -------------------------- */
-/* -------------------------
-   animation
-   -------------------------- */
-/* line 11, ../sass/c.ui.loading.scss */
-.cui-i {
-  background: url(../img/c.ui.img.png) no-repeat;
-  background-size: 150px 125px;
-}
+/*
+Syntax error: Invalid CSS after "...clude transform": expected "}", was ":rotate(0deg);"
+        on line 59 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.loading.scss
 
-/* line 16, ../sass/c.ui.loading.scss */
-.cui-breaking-load {
-  width: 80px;
-  height: 70px;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.7);
-  margin: auto;
-  position: relative;
-  z-index: 9999;
-}
-/* line 24, ../sass/c.ui.loading.scss */
-.cui-breaking-load .cui-w-loading {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  left: 50%;
-  top: 50%;
-  margin: -25px 0 0 -25px;
-  background-position: -101px 0;
-}
-/* line 33, ../sass/c.ui.loading.scss */
-.cui-breaking-load .cui-white-logo {
-  position: absolute;
-  width: 25px;
-  height: 28px;
-  left: 50%;
-  top: 50%;
-  z-index: 9;
-  margin: -15px 0 0 -15px;
-  background-position: -24px 0;
-}
-
-/* line 45, ../sass/c.ui.loading.scss */
-.cui-w-loading {
-  -webkit-animation: cui-loading 1.58s linear infinite;
-  -moz-animation: cui-loading 1.58s linear infinite;
-  -ms-animation: cui-loading 1.58s linear infinite;
-  animation: cui-loading 1.58s linear infinite;
-  -webkit-transform-origin: 50% 49%;
-  -moz-transform-origin: 50% 49%;
-  transform-origin: 50% 49%;
-  opacity: 0;
-}
-
-/* line 53, ../sass/c.ui.loading.scss */
-.cui-b-loading {
-  -webkit-animation: cui-loading 1.58s linear infinite;
-  -moz-animation: cui-loading 1.58s linear infinite;
-  -ms-animation: cui-loading 1.58s linear infinite;
-  animation: cui-loading 1.58s linear infinite;
-  -webkit-transform-origin: 46% 47%;
-  -moz-transform-origin: 46% 47%;
-  transform-origin: 46% 47%;
-  opacity: 0;
-}
-
-@-webkit-keyframes cui-loading {
-  /* line 62, ../sass/c.ui.loading.scss */
-  0% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-  }
-
-  /* line 66, ../sass/c.ui.loading.scss */
-  100% {
-    opacity: 1;
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes cui-loading {
-  /* line 72, ../sass/c.ui.loading.scss */
-  0% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-  }
-
-  /* line 76, ../sass/c.ui.loading.scss */
-  100% {
-    opacity: 1;
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@-ms-keyframes cui-loading {
-  /* line 82, ../sass/c.ui.loading.scss */
-  0% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-  }
-
-  /* line 86, ../sass/c.ui.loading.scss */
-  100% {
-    opacity: 1;
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes cui-loading {
-  /* line 92, ../sass/c.ui.loading.scss */
-  0% {
-    opacity: 1;
-    -webkit-transform: rotate(0deg);
-  }
-
-  /* line 96, ../sass/c.ui.loading.scss */
-  100% {
-    opacity: 1;
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-/* line 101, ../sass/c.ui.loading.scss */
-.cui-zl-load {
-  width: 110px;
-  margin: 5px auto;
-  position: relative;
-}
-/* line 105, ../sass/c.ui.loading.scss */
-.cui-zl-load p {
-  padding-left: 25px;
-  color: #878787;
-}
-/* line 109, ../sass/c.ui.loading.scss */
-.cui-zl-load .cui-b-loading {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  background-position: -73px 0;
-}
-/* line 115, ../sass/c.ui.loading.scss */
-.cui-zl-load .cui-blue-logo {
-  width: 12px;
-  height: 12px;
-  left: 4px;
-  top: 4px;
-  position: absolute;
-  background-position: -57px 0;
-}
+Backtrace:
+d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.loading.scss:59
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:1145:in `expected'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:1083:in `expected'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:1078:in `tok!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:535:in `block'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:528:in `ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:590:in `block in declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:1121:in `call'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:1121:in `rethrow'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:591:in `declaration_or_ruleset'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:553:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:542:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:534:in `block'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:196:in `include_directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:174:in `special_directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:146:in `directive'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:552:in `block_child'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:545:in `block_contents'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:82:in `stylesheet'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/scss/parser.rb:27:in `parse'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/engine.rb:342:in `_to_tree'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/engine.rb:315:in `_render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.2.10/lib/sass/engine.rb:262:in `render'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `block (2 levels) in compile'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `block in compile'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `block (2 levels) in run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `block in run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:73:in `call'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:73:in `run_callback'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:55:in `callback_action'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/path.rb:35:in `update'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:39:in `block in modified'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:37:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:37:in `modified'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/state/directory.rb:18:in `refresh'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `block (2 levels) in run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `each'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:17:in `block in run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:15:in `loop'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/backends/polling.rb:15:in `run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm/monitor.rb:26:in `run'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/fssm-0.2.10/lib/fssm.rb:70:in `monitor'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/bin/compass:30:in `block in <top (required)>'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/bin/compass:44:in `call'
+C:/Ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/bin/compass:44:in `<top (required)>'
+C:/Ruby200/bin/compass:23:in `load'
+C:/Ruby200/bin/compass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"...clude transform\": expected \"}\", was \":rotate(0deg);\"\A         on line 59 of d:/c.ui/ctrip-wireless-h5-lizard/res/sass/c.ui.loading.scss"; }

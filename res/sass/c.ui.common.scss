@@ -15,16 +15,18 @@
 	margin: auto;
 	width: 280px;
 	z-index: $z-index9999;
-}
-
-.cui-pop-box .cui-hd {
-	height:40px;
-	line-height:40px;
-	font-size: $font-size14 * 1.2;
-	color: $bg-color;
-	background: $font-color-blue;
-	padding:0 $padding-base-v;
-	position: $position-relative;
+	.cui-hd {
+		height:40px;
+		line-height:40px;
+		font-size: $font-size14 * 1.2;
+		color: $bg-color;
+		background: $font-color-blue;
+		padding:0 10px;
+		position: $position-relative;
+	}
+	.cui-bd {
+		color: $font-color-black;
+	}
 }
 
 .cui-roller,
@@ -36,33 +38,26 @@
 .cui-roller-btns .cui-flexbd {
 	@include flexbox-num(1);
 }
-
-
 //灰色+黄色按钮
 .cui-roller-btns {
 		background:#f5f5f5;
 		padding: $padding-base-v $padding-base-v + 5;
 		line-height:18px;
 		text-align: $text-align-center;
-
 		.cui-flexbd {
 			padding: $padding-base-v 0;
 			color: $bg-color;
 			@include flexbox-num(1);
 		}
-
 		.cui-flexbd:active {
 			opacity:.75;
 		}
-
 		.cui-flexbd:nth-of-type(2){
 			margin-left: $padding-base-v * 2;
 		}
-
 		.cui-btns-cancel {
 			background: $btn-color-cancel;
 		}
-
 		.cui-btns-sure{
 			background: $btn-color-sure;
 		}

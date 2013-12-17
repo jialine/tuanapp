@@ -16,19 +16,17 @@
 		@extend %ellips;
 
 		&:active {
-			background:rgba(0,0,0,.05);
+			background:rgba(#000,.05);
 		}
-
 		&.current {
 			color:#1084bc;
-
 			&:before,&:after {
 				position: $position-absolute;
 				content:"";
 				background:#1084bc;
 				height:3px;
 				top:50%;
-				border-radius:3px;
+				@include border-radius(3px);
 			}
 			&:before {
 				width:18px;

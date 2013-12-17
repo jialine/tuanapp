@@ -50,7 +50,7 @@
 /* --------------------------
    1. text-overflow:ellipsis
    -------------------------- */
-/* line 28, ../sass/c.ui.extend.scss */
+/* line 26, ../sass/c.ui.extend.scss */
 .cui-wifi:before {
   position: absolute;
   content: "";
@@ -67,9 +67,6 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
-   -------------------------- */
-/* -------------------------
-   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.warning404.scss */
 .cui-cbg,
@@ -100,7 +97,7 @@
   margin: 10px auto;
   background: #ff9913;
   padding: 10px 55px;
-  color: #fff;
+  color: white;
 }
 
 /* line 33, ../sass/c.ui.warning404.scss */

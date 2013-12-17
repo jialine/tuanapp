@@ -77,9 +77,6 @@
 /* -------------------------
    2. Transformations
    -------------------------- */
-/* -------------------------
-   animation
-   -------------------------- */
 /* line 12, ../sass/c.ui.common.scss */
 .cui-pop-box {
   background: white;
@@ -88,8 +85,7 @@
   width: 280px;
   z-index: 9999;
 }
-
-/* line 20, ../sass/c.ui.common.scss */
+/* line 18, ../sass/c.ui.common.scss */
 .cui-pop-box .cui-hd {
   height: 40px;
   line-height: 40px;
@@ -99,8 +95,12 @@
   padding: 0 10px;
   position: relative;
 }
+/* line 27, ../sass/c.ui.common.scss */
+.cui-pop-box .cui-bd {
+  color: black;
+}
 
-/* line 36, ../sass/c.ui.common.scss */
+/* line 38, ../sass/c.ui.common.scss */
 .cui-roller-bd,
 .cui-roller-btns .cui-flexbd {
   -webkit-box-flex: 1;
@@ -117,7 +117,7 @@
   line-height: 18px;
   text-align: center;
 }
-/* line 48, ../sass/c.ui.common.scss */
+/* line 47, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-flexbd {
   padding: 10px 0;
   color: white;
@@ -127,19 +127,19 @@
   -ms-flex: 1;
   flex: 1;
 }
-/* line 54, ../sass/c.ui.common.scss */
+/* line 52, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-flexbd:active {
   opacity: .75;
 }
-/* line 58, ../sass/c.ui.common.scss */
+/* line 55, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-flexbd:nth-of-type(2) {
   margin-left: 20px;
 }
-/* line 62, ../sass/c.ui.common.scss */
+/* line 58, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-btns-cancel {
   background: darkgrey;
 }
-/* line 66, ../sass/c.ui.common.scss */
+/* line 61, ../sass/c.ui.common.scss */
 .cui-roller-btns .cui-btns-sure {
   background: #ff9913;
 }
@@ -207,9 +207,6 @@
    -------------------------- */
 /* -------------------------
    2. Transformations
-   -------------------------- */
-/* -------------------------
-   animation
    -------------------------- */
 /* line 12, ../sass/c.ui.alert.scss */
 .cui-error-tips {
