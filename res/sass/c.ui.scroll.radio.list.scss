@@ -25,7 +25,7 @@
 				content:"";
 				background:#1084bc;
 				height:3px;
-				top:50%;
+        		top: $proportion-base-v / 2;
 				@include border-radius(3px);
 			}
 			&:before {

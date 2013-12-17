@@ -55,8 +55,7 @@
   position: absolute;
   content: "";
   top: 50%;
-  left: 50%;
-}
+  left: 50%; }
 
 /**
  * Mixins list
@@ -72,24 +71,20 @@
 .cui-cbg,
 .cui-cbg:before {
   background: url(../img/c.ui.img.png) no-repeat;
-  background-size: 150px 125px;
-}
+  background-size: 150px 125px; }
 
 /* line 16, ../sass/c.ui.warning404.scss */
 .cui-grayc {
-  color: #878787;
-}
+  color: #878787; }
 
 /* line 19, ../sass/c.ui.warning404.scss */
 .cui-text-center {
-  text-align: center;
-}
+  text-align: center; }
 
 /* line 22, ../sass/c.ui.warning404.scss */
 .cui-load-fail {
   width: 60%;
-  margin: 78px auto;
-}
+  margin: 78px auto; }
 
 /* line 26, ../sass/c.ui.warning404.scss */
 .cui-btns-retry {
@@ -97,16 +92,14 @@
   margin: 10px auto;
   background: #ff9913;
   padding: 10px 55px;
-  color: white;
-}
+  color: white; }
 
 /* line 33, ../sass/c.ui.warning404.scss */
 .cui-load-error {
   width: 60%;
   margin: 60px auto 0 auto;
   word-break: break-all;
-  text-align: center;
-}
+  text-align: center; }
 
 /* line 39, ../sass/c.ui.warning404.scss */
 .cui-wifi {
@@ -114,21 +107,18 @@
   height: 69px;
   position: relative;
   margin: 0 auto 5px auto;
-  background-position: -82px -56px;
-}
-/* line 45, ../sass/c.ui.warning404.scss */
-.cui-wifi:before {
-  width: 50px;
-  height: 42px;
-  margin: -19px 0 0 -25px;
-  background-position: 0 -63px;
-}
+  background-position: -82px -56px; }
+  /* line 45, ../sass/c.ui.warning404.scss */
+  .cui-wifi:before {
+    width: 50px;
+    height: 42px;
+    margin: -19px 0 0 -25px;
+    background-position: 0 -63px; }
 
 /* line 53, ../sass/c.ui.warning404.scss */
 .cui-glines {
   border-bottom: #dfdfdf 1px solid;
-  margin: 40px auto 26px auto;
-}
+  margin: 40px auto 26px auto; }
 
 /* line 57, ../sass/c.ui.warning404.scss */
 .cui-btns-tel {
@@ -138,30 +128,26 @@
   background: #a9a9a9;
   padding: 10px 0;
   color: white;
-  position: relative;
-}
-/* line 65, ../sass/c.ui.warning404.scss */
-.cui-btns-tel .cui-phone {
-  margin-right: 10px;
-}
-/* line 68, ../sass/c.ui.warning404.scss */
-.cui-btns-tel .cui-phone:before {
-  width: 11px;
-  height: 20px;
-  top: 11px;
-  left: 15px;
-  position: absolute;
-  content: "";
-}
+  position: relative; }
+  /* line 65, ../sass/c.ui.warning404.scss */
+  .cui-btns-tel .cui-phone {
+    margin-right: 10px; }
+    /* line 67, ../sass/c.ui.warning404.scss */
+    .cui-btns-tel .cui-phone:before {
+      width: 11px;
+      height: 20px;
+      top: 11px;
+      left: 15px;
+      position: absolute;
+      content: ""; }
 
-/* line 78, ../sass/c.ui.warning404.scss */
+/* line 79, ../sass/c.ui.warning404.scss */
 .cui-exclam:before,
 .cui-exclam:after {
   position: absolute;
-  content: "";
-}
+  content: ""; }
 
-/* line 82, ../sass/c.ui.warning404.scss */
+/* line 83, ../sass/c.ui.warning404.scss */
 .cui-exclam:before {
   width: 10px;
   height: 31px;
@@ -171,10 +157,9 @@
   background: #626262;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  border-radius: 5px;
-}
+  border-radius: 5px; }
 
-/* line 91, ../sass/c.ui.warning404.scss */
+/* line 92, ../sass/c.ui.warning404.scss */
 .cui-exclam:after {
   width: 10px;
   height: 10px;
@@ -184,5 +169,4 @@
   background: #626262;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
-  border-radius: 50%;
-}
+  border-radius: 50%; }

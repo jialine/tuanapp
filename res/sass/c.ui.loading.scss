@@ -12,7 +12,7 @@
     background:url(#{$pathfile-test}c.ui.img.png) no-repeat;
     background-size:150px 125px;
 }
-
+//列表页白色海豚+loading
 .cui-breaking-load {
      width:80px;
      height:70px;
@@ -25,8 +25,8 @@
         position: $position-absolute;
         width:50px;
         height:50px;
-        left:50%;
-        top:50%;
+        left: $proportion-base-v / 2;
+        top: $proportion-base-v / 2;
         margin:-25px 0 0 -25px; 
         background-position:-101px 0;
       }
@@ -34,8 +34,8 @@
         position: $position-absolute; 
         width:25px;
         height:28px;
-        left:50%;
-        top:50%; 
+        left: $proportion-base-v / 2;
+        top: $proportion-base-v / 2;
         z-index:9;
         margin:-15px 0 0 -15px;
         background-position:-24px 0;
@@ -49,20 +49,11 @@
 }
 .cui-b-loading{
     @include animation(cui-loading 1.58s linear infinite);
-    @include transform-origin(46% 47%);
+    @include transform-origin(45% 47%);
     opacity:0;
 }
 
-@include keyframes (cui-loading) {
-    0%{
-        opacity:1;
-        @include transform:rotate(0deg);
-    }
-    100%{
-        opacity:1;
-        @include transform:rotate(360deg);
-    }
-}
+
 @-webkit-keyframes cui-loading{
     0%{
         opacity:1;
@@ -103,6 +94,7 @@
         transform:rotate(360deg);
     }
 }
+//列表页蓝色海豚+loading
 .cui-zl-load {
     width:110px;
     margin:5px auto;
