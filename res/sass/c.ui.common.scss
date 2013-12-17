@@ -48,12 +48,13 @@
 			padding: $padding-base-v 0;
 			color: $bg-color;
 			@include flexbox-num(1);
-		}
-		.cui-flexbd:active {
-			opacity:.75;
-		}
-		.cui-flexbd:nth-of-type(2){
-			margin-left: $padding-base-v * 2;
+			
+			&:active {
+				opacity:.75;
+			}
+			&:nth-of-type(2){
+				margin-left: $padding-base-v * 2;
+			}
 		}
 		.cui-btns-cancel {
 			background: $btn-color-cancel;

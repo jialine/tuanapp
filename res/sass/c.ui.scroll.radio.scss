@@ -40,7 +40,7 @@
 		}
 	}
 }
-
+//灰色遮罩
 .cui-mask-gray {
 	position: $position-absolute;
 	z-index:3;
@@ -49,7 +49,7 @@
 	width: $proportion-base-v;
 	height: $proportion-base-v;
 	pointer-events: none;
-    @include linear-gradient(#fff 0,rgba(245,245,245,0) 52%,rgba(245,245,245,0) 48%,#fff 100%);
+    @include linear-gradient(#fff 0,rgba(#f5f5f5,0) 52%,rgba(#f5f5f5,0) 48%,#fff 100%);
 }
 
 .cui-lines {
