@@ -6,13 +6,9 @@
     prefix: 'cui-'
   };
 
-  var _mask = new Mask({
-    classNames: [_config.prefix + 'opacitymask']
-  });
-
-  var getMask = function (cls) {
-
-  };
+  //  var _mask = new Mask({
+  //    classNames: [_config.prefix + 'opacitymask']
+  //  });
 
   options.__propertys__ = function () {
     this.tpl = this.template([
@@ -22,7 +18,9 @@
             ].join(''));
     this.content = '';
     this.contentDom;
-    this.mask = _mask;
+    this.mask = new Mask({
+      classNames: [_config.prefix + 'opacitymask']
+    });
     this.addClass(_config.prefix + 'layer');
     this.viewdata = {};
     this.windowResizeHander;
@@ -87,12 +85,28 @@
       clearInterval(this.setIntervalResource);
       this.root.css('visibility', 'visible');
       this.mask.hide();
+      if (this.clickMaskFlag)
+        this.mask.remove();
     });
   };
 
   options.createHtml = function () {
     return this.tpl(this.viewdata);
   };
+
+  options.maskToHide = function (fn) {
+    this.clickMaskFlag = true;
+    this.mask.addEvent('onShow', function () {
+      this.root.bind('click', $.proxy(function () {
+        this.hide();
+        typeof fn == 'function' && fn();
+      }, this));
+    });
+    this.mask.addEvent('onHide', function () {
+      this.root.unbind('click');
+    });
+  };
+
 
   return new cBase.Class(AbstractView, options);
 });

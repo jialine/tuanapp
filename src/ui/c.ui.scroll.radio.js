@@ -1,6 +1,6 @@
 ﻿// @author l_wang
 
-define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, Layer,  ScrollList) {
+define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, Layer, ScrollList) {
 
   var options = {};
 
@@ -37,6 +37,12 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     this.btOk = this.root.find('.cui-btns-sure');
     this.line = $('<div class="cui-mask-gray"></div><div class="cui-lines">&nbsp;</div>');
     this.wrapper = this.root.find('.scrollWrapper');
+
+    var scope = this;
+    this.maskToHide(function () {
+      scope.hide();
+    });
+
   };
 
   _attributes.onShow = function () {
@@ -80,6 +86,7 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
       }
       scope.okClick.call(scope, item); //改变则触发事件
       scope.hide();
+
     });
 
     this.btCancel.on('click', function () {
@@ -91,6 +98,15 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
       scope.hide();
     });
     this.setzIndexTop();
+
+    //l_wang 测试
+    //    $(window).bind('scroll', function () {
+    //      window.scrollTo(0, 1);
+    //    });
+    this.root.bind('touchmove', function (e) {
+      e.preventDefault();
+    });
+
   };
 
   _attributes.onHide = function () {
@@ -99,7 +115,12 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     }
     this.btOk.off('click');
     this.btCancel.off('click');
+
+    //l_wang 测试
+    //    $(window).unbind('scroll');
+    this.root.unbind('touchmove');
     this.root.remove();
+
   };
 
   options.__propertys__ = function () {

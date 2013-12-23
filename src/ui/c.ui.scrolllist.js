@@ -7,6 +7,7 @@
 */
 define(['cBase'], function (cBase) {
 
+  
   //l_wang至今点透仍无法可破......
   window.initTap = function () {
     var forTap = $('#forTap');
@@ -50,7 +51,7 @@ define(['cBase'], function (cBase) {
       //兼容性方案处理，以及后期资源清理
       var isTouch = 'ontouchstart' in document.documentElement;
 
-//      isTouch = true; //设置为true时电脑浏览器只能使用touch事件
+      //      isTouch = true; //设置为true时电脑浏览器只能使用touch事件
 
       this.start = isTouch ? 'touchstart' : 'mousedown';
       this.move = isTouch ? 'touchmove' : 'mousemove';
@@ -350,6 +351,7 @@ define(['cBase'], function (cBase) {
       }
     },
     _touchMove: function (e) {
+
       e.preventDefault();
       if (!this.moveAble) { return false; }
       var pos = this.getMousePos((e.changedTouches && e.changedTouches[0]) || e);
