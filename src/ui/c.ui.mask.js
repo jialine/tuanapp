@@ -28,11 +28,17 @@
     this.addEvent('onShow', function () {
       this.setzIndexTop(-1);
       $(window).bind('resize', this.onResize);
+
+      this.root.bind('touchmove', function (e) {
+        e.preventDefault();
+      });
+
       this.onResize();
     });
 
     this.addEvent('onHide', function () {
       $(window).unbind('resize', this.onResize);
+      this.root.unbind('touchmove');
     });
 
   };
@@ -53,9 +59,7 @@
     var h = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
 
     this.root.css({
-      width: 'auto',
-      height: 'auto',
-      width: w + 'px',
+      width: '100%',
       height: h + 'px'
     });
   };

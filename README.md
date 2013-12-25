@@ -63,3 +63,23 @@ Ctrip.H5.Lizard可以自动侦测当前运行的环境是Hybrid App还是Web站�
   + 去除对现有业务逻辑的依赖 – 实现可配置模式
 
   + 以多态方式封装本地存储，支持多种本地存储方式
+
+## Tutorial部署运行
+
+-------------------------
+
+Tutorial运行的环境是建立在nodejs的环境之上，请先预装nodejs，关于如何安装nodejs请访问[这里](http://nodejs.org/)
+
+安装nodejs完成之后，获取H5V2.2S6分支的代码，然后进入根目录，用npm安装插件
+
+    npm install
+
+安装完成之后运行server
+
+    node app
+
+可以看到输出express server listening on port 3000字样
+
+访问http://127.0.0.1:3000/tutorial/index.html#index就可以看到内容了
+
+关于Tutorial代码可以访问tutorial目录，Tutorial展示了view的切换，通过模板加载view。

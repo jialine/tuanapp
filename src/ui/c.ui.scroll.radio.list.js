@@ -28,6 +28,11 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     });
     this.title = this.root.find('.cui-text-center');
     this.content = this.root.find('.cui-bd');
+
+    var scope = this;
+    this.maskToHide(function () {
+      scope.hide();
+    });
   };
   _attributes.onShow = function () {
     var scope = this;
@@ -45,10 +50,18 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
 
     this.scroll.setKey(this.key);
     this.setzIndexTop();
+
+    this.root.bind('touchmove', function (e) {
+      e.preventDefault();
+    });
+
   };
   _attributes.onHide = function () {
     this.scroll.removeEvent();
+
+    this.root.unbind('touchmove');
     this.root.remove();
+
   };
 
   options.__propertys__ = function () {

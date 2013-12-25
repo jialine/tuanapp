@@ -1,10 +1,12 @@
 ﻿/**
- * Extend list
- * 1. box-flex
+ * Extend List
+ * flexbox-display
+ * text-overflow:ellipsis
+ * horizontal and vertical center
  */
 
 /* --------------------------
-   1. flexbox-display
+   flexbox-display
    -------------------------- */
 %display-flex {
    display: -webkit-box;
@@ -15,7 +17,7 @@
 }
 
 /* --------------------------
-   1. text-overflow:ellipsis
+   text-overflow:ellipsis
    -------------------------- */
 %ellips {
    white-space:nowrap; 
@@ -23,9 +25,11 @@
    text-overflow:ellipsis;
 }
 
-%before-after {
+/* --------------------------
+   horizontal and vertical center
+   -------------------------- */
+%hor-ver-center {
     position:absolute;
-    content:"";
     top:50%;
     left:50%;
 }
