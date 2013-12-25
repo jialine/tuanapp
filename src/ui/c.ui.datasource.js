@@ -23,6 +23,8 @@
         },
         filter: function (filterfun, sortfun) {
             if (typeof filterfun !== 'function') throw 'Screening function did not fill in';
+            //      var group, key;
+            //      if (this.isUpdate) {
 
             //l_wang 修改点，将filter变为underscore的
             this.filters = _.filter(this.data, filterfun);
@@ -30,9 +32,7 @@
             return typeof sortfun === 'function' ? this.filters.sort(sortfun) : this.filters;
         },
         groupBy: function (field, filterfun) {
-            //      var group, key;
-            //      if (this.isUpdate) {
-            //        this.group = [];
+                   //        this.group = [];
             //        for (var i = 0, len = this.data.length; i < len; i++) {
             //          key = this.data[i][field];
             //          //if (key === undefined) throw 'The Field is not found!';
