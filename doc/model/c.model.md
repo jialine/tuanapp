@@ -10,7 +10,7 @@
 
     // @param useHead {Boolean}             是否使用head信息
     // @param head {Object}                 头部参数信息
-
+    // @param result {Object}               数据缓存
 
 ### Method
 
@@ -39,6 +39,40 @@
     // 获取数据
     execute: function (onComplete, onError, ajaxOnly, scope, onAbort, tag ) { ... }
 
+**public getParamStore**
+
+    // 设置请求参数store对象
+    getParamStore: function () { ... }
+
+**public setParamStore**
+
+    // 设置请求参数store对象
+    setParamStore: function (obj) { ... }
+
+**public getResultStore**
+
+    // 获得结果集
+    getResultStore: function () { ... }
+
+**public setResultStore**
+
+    // 设置结果集
+    setResultStore: function (result) { ... }
+
+**public clearResult**
+
+    // 清除结果集
+    clearResult: function () { ... }
+
+**public setParam**
+
+    // 重写父类设置请求参数
+    setParam: function (key, val) { ... }
+
+**public getParam**
+
+    // 重写父类获取请求参数
+    getParam: function () { ... }
 
 
 ### 使用方法

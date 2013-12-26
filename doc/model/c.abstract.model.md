@@ -10,17 +10,15 @@
 
     // @param url {String}                  请求地址
     // @param param {Object}                参数对象
-    // @param result {String}               store（localstorage）存储对象，客户端持久化
     // @param dataformat {function}         正确返回请求数据格式化
     // @param validates {Array}             数据验证函数集合，其中有一个验证失败则失败
     // @param debug {Boolean}               是否开启debug状态
     // @param protocol {String}             请求协议
-    // @param ajaxOnly {Boolean}            是否必须向服务器请求数据
     // @param contentType {String}          请求方式，json/jsonp/......
     // @param method {String}               请求方式 post/get
     // @param ajax {Ajax}                   请求数据时候用到的ajax对象
     // @param isAbort {boolean}             是否放弃ajax
-    // @param OptionHanders {Array}         参数数组
+    // @param onBeforeCompleteCallback {function}         ajax返回正确数据，执行success方法前调用的方法
 
 
 ### Method
@@ -30,45 +28,15 @@
     // 验证必须设置的字段是否设置
     assert: function () { ... }
 
-**public setOption**
-
-    // 为设置参数时候调用方法
-    setOption: function (handler) { ... }
-
 **public pushValidates**
 
     // 传入数据正确性验证函数集合
     pushValidates: function (handler) { ... }
 
-**public __setOption**
-
-    // 设置参数
-    __setOption: function (ops) { ... }
-
 **public setParam**
 
     // 设置请求参数
     setParam: function (key, val) { ... }
-
-**public setParamStore**
-
-    // 设置请求参数store对象
-    setParamStore: function (obj) { ... }
-
-**public getResultStore**
-
-    // 获得结果集
-    getResultStore: function () { ... }
-
-**public setResultStore**
-
-    // 设置结果集
-    setResultStore: function (result) { ... }
-
-**public clearResult**
-
-    // 清除结果集
-    clearResult: function () { ... }
 
 **public getParam**
 

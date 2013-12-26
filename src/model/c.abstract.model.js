@@ -19,10 +19,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
       * {Object|Store} 必选，用于存贮请求参数
       */
       this.param = null;
-      /**
-      * {Store} 可选，
-      */
-      this.result = null;
+      
       /**
       * {Function} 可选，数据返回时的自定义格式化函数
       */
@@ -59,7 +56,6 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
       this.isAbort = false;
 
       //参数设置函数
-      this.OptionHanders = [];
       this.onBeforeCompleteCallback = null;
     },
 

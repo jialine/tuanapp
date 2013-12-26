@@ -15,6 +15,10 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
       this.usehead = true;
       //head数据
       this.head = CommonStore.HeadStore.getInstance();
+      /**
+      * {Store} 可选，
+      */
+      this.result = null;
 
       // @param {Boolean} 可选，只通过ajax获取数据，不做localstorage数据缓存
       this.ajaxOnly = false;
