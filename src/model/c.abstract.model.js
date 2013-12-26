@@ -41,10 +41,9 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
       */
       this.protocol = 'http';
 
-      /**
-      * {Boolean} 可选，只通过ajax获取数据
-      */
-      this.ajaxOnly = false;
+      //      {Boolean} 可选，只通过ajax获取数据
+      //      this.ajaxOnly = false;
+
       /**
       * {String} 可选，提交数据格式
       */
@@ -61,19 +60,14 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
 
       //参数设置函数
       this.OptionHanders = [];
+      this.onBeforeCompleteCallback = null;
     },
+
     initialize: function (options) {
       this.assert();
-      this.setOption(function (key, value) {
-        switch (key) {
-          case 'ajaxOnly':
-          case 'contentType':
-          case 'debug':
-            this[key] = value;
-        }
-      });
-      this.__setOption(options);
-
+      for (var key in options) {
+        this[key] = options[key];
+      }
     },
     assert: function () {
       if (this.url === null) {
@@ -83,84 +77,33 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
         throw 'not override param property';
       }
     },
-    setOption: function (handler) {
-      if (typeof handler === 'function') {
-        this.OptionHanders.push(handler);
-      }
-    },
+ 
     pushValidates: function (handler) {
       if (typeof handler === 'function') {
         this.validates.push($.proxy(handler, this));
       }
     },
-    __setOption: function (ops) {
-      for (var i in ops) {
-        for (var t = 0, len = this.OptionHanders.length; t < len; t++) {
-          this.OptionHanders[t](i, ops[i]);
-        }
-      }
-    },
+
     /**
     *	设置提交参数
     *	@param {String} param 提交参数
     *	@return void
     */
     setParam: function (key, val) {
-      var param = {};
       if (typeof key === 'object' && !val) {
-        param = key;
+        this.param = key;
       } else {
-        param[key] = val;
-      }
-      for (var i in param) {
-        if (this.param instanceof AbstractStore) {
-          this.param.setAttr(i, param[i]);
-        } else {
-          cObject.set(this.param, i, param[i]);
-        }
+        this.param[key] = val;
       }
     },
-    /**
-    *  获得参数存储器
-    */
-    getParamStore: function () {
-      return this.param;
-    },
-    /**
-    * 设置参数存取器
-    */
-    setParamStore: function (param) {
-      if (typeof param !== 'object') throw 'Set param is not a store';
-      this.param = param;
-    },
-    /**
-    *  获得结果存储器
-    */
-    getResultStore: function () {
-      return this.result;
-    },
-    /**
-    * 设置结果存取器
-    */
-    setResultStore: function (result) {
-      if (typeof result !== 'object') throw 'Set result is not a store';
-      this.result = result;
-    },
-    /**
-    * 清空结果数据
-    */
-    clearResult: function () {
-      if (this.result && typeof this.result.remove === 'function') {
-        this.result.remove();
-      }
-    },
+    
     /**
     *	获得提交
     *	@param void
     *	@return {Object} 返回一个Object
     */
     getParam: function () {
-      return this.param instanceof AbstractStore ? this.param.get() : this.param;
+      return this.param;
     },
 
     //构建url请求方式，子类可复写，我们的model如果localstorage设置了值便直接读取，但是得是非正式环境
@@ -169,64 +112,9 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
       return this.protocol + '://' + baseurl.domain + '/' + baseurl.path + (typeof this.url === 'function' ? this.url() : this.url);
     },
     baseurl: function () {
-      var host = location.host,
-            domain = 'waptest.ctrip.com',
-            path = 'restapi2';
-
-
-      //l_wang 测试环境模式下可以使用自己需要的url请求数据，此处需要做线上区分，如果是线上的话禁止使用该功能
-      //由localstorage读取数据
-      //      if (!host.match(/^m\.ctrip\.com/i)) {
-      //        return {
-      //          'domain': domain,
-      //          'path': path
-      //        };
-      //      }
-
-      if (cUtility.isInApp()) {
-        if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
-          if (this.protocol == "https") {
-            domain = 'restful.m.ctrip.com';
-          } else {
-            domain = 'm.ctrip.com';
-          }
-        } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
-          if (this.protocol == "https") {
-            domain = 'restful.waptest.ctrip.com';
-          } else {
-            domain = 'waptest.ctrip.com';
-          }
-        } else {
-          if (this.protocol == "https") {
-            domain = 'restful.m.ctrip.com';
-          } else {
-            domain = 'm.ctrip.com';
-          }
-        }
-      } else if (host.match(/^m\.ctrip\.com/i)) {
-        domain = 'm.ctrip.com';
-      } else if (host.match(/^(localhost|172\.16|127\.0)/i) && (location.protocol == "https" || this.protocol == "https")) {
-        //domain =  '10.168.147.3';
-        domain = 'restful.waptest.ctrip.com';
-      } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
-        if (this.protocol == "https") {
-          domain = 'restful.waptest.ctrip.com';
-        } else {
-          domain = 'waptest.ctrip.com';
-        }
-      } else if (host.match(/^10\.8\.2\.111/i)) {
-        domain = '10.8.2.111';
-      } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || this.protocol == "https")) {
-        domain = 'restful.waptest.ctrip.com';
-      } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i)) {
-        domain = 'waptest.ctrip.com';
-      } else {
-        domain = 'm.ctrip.com';
-      }
-      return {
-        'domain': domain,
-        'path': path
-      }
+      // @description baseurl必须被复写，同时返回的对象应为
+      // { domain: '', path: ''}
+      throw "[ERROR]abstract method:baseurl, must be override";
     },
 
     /**
@@ -235,56 +123,82 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
     *	传入的第一个参数为model的数第二个数据为元数据，元数据为ajax下发时的ServerCode,Message等数
     *	@param {Function} onError 发生错误时的回调
     *	@param {Boolean} ajaxOnly 可选，默认为false当为true时只使用ajax调取数据
-    *   @param {Boolean} scope 可选，设定回调函数this指向的对象
-    *   @param {Function} onAbort 可选，但取消时会调用的函数
+    * @param {Boolean} scope 可选，设定回调函数this指向的对象
+    * @param {Function} onAbort 可选，但取消时会调用的函数
     */
-    execute: function (onComplete, onError, ajaxOnly, scope, onAbort, tag) {
-      var params = _.clone(this.getParam() || {});
-      var data = this.result && this.result.get(tag), __onCompete, __onError, url = this.buildurl();
+    execute: function (onComplete, onError, scope, onAbort) {
+
+      // @description 定义是否需要退出ajax请求
       this.isAbort = false;
+
+      // @description 请求数据的地址
+      var url = this.buildurl();
+
       var self = this;
-      //有下列情况，会直接请求ajax
-      if (!data || this.ajaxOnly || ajaxOnly) {
-        __onCompete = $.proxy(function (data) {
-          var fdata = data, validateSuc = true;
-          if (typeof this.dataformat === 'function') {
-            fdata = this.dataformat(data);
-          }
-          //此处做数据验证，如果数据验证不通过则执行错误方法，需要验证的可能不止一个
-          if (this.validates) {
-            for (var i = 0, len = this.validates.length; i < len; i++) {
-              if (!this.validates[i](data)) {
-                //如果一个验证不通过就返回false
-                validateSuc = false;
-                break;
+
+      var __onComplete = $.proxy(function (data) {
+
+        if (this.validates && this.validates.length > 0) {
+
+          // @description 开发者可以传入一组验证方法进行验证
+          for (var i = 0, len = this.validates.length; i < len; i++) {
+            if (!this.validates[i](data)) {
+
+              // @description 如果一个验证不通过就返回
+              if (typeof onError === 'function') {
+                return onError.call(scope || this, data);
+              } else {
+                return false;
               }
             }
           }
-          if (validateSuc) {
-            //如果定义localstorage则存入数据
-            this.result && this.result.set(fdata, tag);
-            onComplete && onComplete.call(scope || this, fdata, data);
-          } else {
-            onError && onError.call(scope || this, data);
-          }
-        }, this);
-        __onError = $.proxy(function (e) {
-          if (self.isAbort) {
-            self.isAbort = false;
-            onAbort && onAbort.call(scope || this, e);
-            return;
-          }
-          onError && onError.call(scope || this, e);
-        }, scope || this);
-        if (this.contentType === AbstractModel.CONTENT_TYPE_JSON) {
-          this.ajax = cAjax.cros(url, this.method, params, __onCompete, __onError);
-        } else if (this.contentType === AbstractModel.CONTENT_TYPE_JSONP) {
-          this.ajax = cAjax.jsonp(url, params, __onCompete, __onError);
-        } else {
-          this.ajax = cAjax.post(url, params, __onCompete, __onError);
         }
+
+        // @description 对获取的数据做字段映射
+        var datamodel = typeof this.dataformat === 'function' ? this.dataformat(data) : data;
+
+        if (typeof this.onBeforeCompleteCallback === 'function') {
+          this.onBeforeCompleteCallback(datamodel);
+        }
+
+        if (typeof onComplete === 'function') {
+          onComplete.call(scope || this, datamodel, data);
+        }
+
+      }, this);
+
+      var __onError = $.proxy(function (e) {
+        if (self.isAbort) {
+          self.isAbort = false;
+
+          if (typeof onAbort === 'function') {
+            return onAbort.call(scope || this, e);
+          } else {
+            return false;
+          }
+        }
+
+        if (typeof onError === 'function') {
+          onError.call(scope || this, e);
+        }
+
+      }, this);
+
+      // @description 从this.param中获得数据，做深copy
+      var params = _.clone(this.getParam() || {});
+
+      if (this.contentType === AbstractModel.CONTENT_TYPE_JSON) {
+
+        // @description 跨域请求
+        return this.ajax = cAjax.cros(url, this.method, params, __onComplete, __onError);
+      } else if (this.contentType === AbstractModel.CONTENT_TYPE_JSONP) {
+
+        // @description jsonp的跨域请求
+        return this.ajax = cAjax.jsonp(url, params, __onComplete, __onError);
       } else {
-        onComplete.call(scope || this, data);
+
+        // @description 默认post请求
+        return this.ajax = cAjax.post(url, params, __onComplete, __onError);
       }
     },
     abort: function () {
