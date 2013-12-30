@@ -1,6 +1,6 @@
 ﻿/* File Created: 六月 23, 2013 */
 
-define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility', 'cAdView'], function (libs, cUI, cSales, cStorage, cBase, CommonStore, cUtility, cAdView) {
+define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cUIToast', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility', 'cAdView'], function (libs, Alert, Warning, HeadWarning, Warning404, Toast, cSales, cStorage, cBase, CommonStore, cUtility, cAdView) {
     function debughander(e, on, line) {
         if (e && e.originalEvent) alert(e.originalEvent.message + ' ' + on + ' ' + line);
     };
@@ -46,7 +46,7 @@ define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility',
             this.state = this.ENUM_STATE_CREATE;
 
             //初始化alert
-            this.alert = new cUI.Alert({
+            this.alert = new Alert({
                 title: '提示信息',
                 message: '',
                 buttons: [{
@@ -58,11 +58,11 @@ define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility',
                 ]
             });
             //初始化warning
-            this.warning = new cUI.Warning({
+            this.warning = new Warning({
                 title: ''
             });
             //初始化headwarning
-            this.headwarning = new cUI.HeadWarning({
+            this.headwarning = new HeadWarning({
                 title: ''
             });
 
@@ -72,10 +72,10 @@ define(['libs', 'cUI', 'cSales', 'cStorage', 'cBase', 'CommonStore', 'cUtility',
             // });
 
             //初始化404提示
-            this.warning404 = new cUI.Warning404();
+            this.warning404 = new Warning404();
 
             //初始化toast
-            this.toast = new cUI.Toast();
+            this.toast = new Toast();
             //加入页面自定义的css
             if (_.isArray(this.css)) {
                 this.appliction.appendCss(this.css);

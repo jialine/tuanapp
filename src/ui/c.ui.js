@@ -1,4 +1,4 @@
 ﻿define(['cUICore'], function (cuiCore) {
- var cui = cuiCore;
- return cui;
+  var cui = cuiCore;
+  return cui;
 });
