@@ -80,7 +80,7 @@
     'cUIScrollradio'            : 'src/ui/c.ui.scroll.radio',
     'cUIScrollradiolist'        : 'src/ui/c.ui.scroll.radio.list',
     'cUIScrollList'             : 'src/ui/c.ui.scrolllist',
-    'cUIScrollLayer'            : 'src/ui/c.ui.scrollLayer',
+    'cUIScrollLayer'            : 'src/ui/c.ui.scrolllayer',
     'cUIToast'                  : 'src/ui/c.ui.toast',
     'cUIWarning'                : 'src/ui/c.ui.warning',
     'cUIWarning404'             : 'src/ui/c.ui.warning404',

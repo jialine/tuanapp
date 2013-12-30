@@ -41,7 +41,7 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('alert')], function (l
         events: {
           returnHandler: function () {
             this.back('index');
-            s.hide();
+            if (s) s.hide();
           }
         }
       });
