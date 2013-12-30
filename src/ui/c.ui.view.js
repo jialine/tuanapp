@@ -121,7 +121,8 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       }
     },
     _initializeFooter:  function () {
-      this.footer.hide();
+      if(this.footer) this.footer.hide();
+
       if (cUtility.isInApp()) {
         return;
       }
