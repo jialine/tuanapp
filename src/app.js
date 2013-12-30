@@ -52,6 +52,7 @@
       //hash的监听状态
       this.stopListening = false;
       this.onHashChange = _.bind(function () {
+        var href = window.history.length;
         this.history.push(window.location.href);
         if (!this.stopListening) {
           var url = decodeURIComponent(window.location.hash.replace(/^#+/i, '')).toLowerCase();
@@ -93,7 +94,7 @@
       this.isAnimat = true;
       this.isinapp = cBase.isInApp();
 
-      //            this.isinapp = true;
+      //this.isinapp = true;
       //UC浏览器判断
       if (navigator.userAgent.toLowerCase().indexOf('ucbrowser') > 0) {
         //$('body').css('border', '5px solid #f5f5f5');
@@ -401,7 +402,12 @@
       if (url && (!referrer || referrer.indexOf(url) !== 0)) {
         window.location.hash = url;
       } else {
-        history.back();
+        url = this.request.query['refer'];
+        if(url){
+          window.location.href = url;
+        }else{
+          history.back();
+        }
       }
     }
 

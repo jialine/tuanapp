@@ -109,7 +109,10 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
 
 
     buildurl: function () {
-      var temp_requrl = cStorage.localStorage.get("TEMP_REQURL");
+      var config = cStorage.localStorage.get("H5_CFG"),temp_requrl;
+      if(config && config.path){
+        temp_requrl = config.path;
+      }
 
       var baseurl = this.baseurl, tempArr = [];
 

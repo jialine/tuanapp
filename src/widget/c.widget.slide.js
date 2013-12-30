@@ -1,4 +1,4 @@
-define(['cBase', 'cUIBase', 'cWidgetFactory', 'libs'], function(cBase, uiBase, WidgetFactory){
+define(['cBase', 'cUICore', 'cWidgetFactory', 'libs'], function(cBase, cUICore, WidgetFactory){
   "use strict";
 
   var WIDGET_NAME = 'Slide';
@@ -145,26 +145,26 @@ var Slide = new cBase.Class({
     //创建一个布局结构
     createLayout: function () {
         this.root = $([
-                '<div class="' + uiBase.config.prefix + 'slide">',
-                    '<div class="' + uiBase.config.prefix + 'slide-imgsouter">',
-                        '<div class="' + uiBase.config.prefix + 'slide-imgsinter">',
+                '<div class="' + cUICore.config.prefix + 'slide">',
+                    '<div class="' + cUICore.config.prefix + 'slide-imgsouter">',
+                        '<div class="' + cUICore.config.prefix + 'slide-imgsinter">',
                         '</div>',
                     '</div>',
-                    '<div class="' + uiBase.config.prefix + 'slide-nav">',
-                        '<div class="' + uiBase.config.prefix + 'slide-nav-padding">',
+                    '<div class="' + cUICore.config.prefix + 'slide-nav">',
+                        '<div class="' + cUICore.config.prefix + 'slide-nav-padding">',
                         '</div>',
                     '</div>',
                 '</div>'
             ].join(''));
-        this.imageouter = this.root.find('.' + uiBase.config.prefix + 'slide-imgsouter');
-        this.imageinter = this.root.find('.' + uiBase.config.prefix + 'slide-imgsinter');
-        this.navbox = this.root.find('.' + uiBase.config.prefix + 'slide-nav');
-        this.navinter = this.root.find('.' + uiBase.config.prefix + 'slide-nav-padding');
+        this.imageouter = this.root.find('.' + cUICore.config.prefix + 'slide-imgsouter');
+        this.imageinter = this.root.find('.' + cUICore.config.prefix + 'slide-imgsinter');
+        this.navbox = this.root.find('.' + cUICore.config.prefix + 'slide-nav');
+        this.navinter = this.root.find('.' + cUICore.config.prefix + 'slide-nav-padding');
         this.container.empty().append(this.root);
     },
     //计算图片内容器的宽度
     calcinterWidth: function () {
-        var subs = this.imageinter.find('.' + uiBase.config.prefix + 'slide-img-item'),
+        var subs = this.imageinter.find('.' + cUICore.config.prefix + 'slide-img-item'),
                 width = 0;
 
         this.interWidth = width;
@@ -177,8 +177,8 @@ var Slide = new cBase.Class({
     },
     //创建一个图片项
     createImageItem: function (obj, current, Class) {
-        var cls = [uiBase.config.prefix + 'slide-img-item'];
-        if (current) cls.push(uiBase.config.prefix + 'slide-img-item-current');
+        var cls = [cUICore.config.prefix + 'slide-img-item'];
+        if (current) cls.push(cUICore.config.prefix + 'slide-img-item-current');
         if (Class) [].push.call(cls, Class);
         var item = $([
                 '<div class="' + cls.join(' ') + '">',
@@ -197,7 +197,7 @@ var Slide = new cBase.Class({
         return item;
     },
     addEmptyItem: function (obj) {
-        var cls = [uiBase.config.prefix + 'slide-img-item', uiBase.config.prefix + 'slide-img-item-empey'];
+        var cls = [cUICore.config.prefix + 'slide-img-item', cUICore.config.prefix + 'slide-img-item-empey'];
         this.notimagedom = $('<div class="' + cls.join(' ') + '"></div>');
         this.notimagedom.append(obj);
         this.imageinter.append(this.notimagedom);
@@ -209,15 +209,15 @@ var Slide = new cBase.Class({
         var firstItem, lastItem;
         if (this.images.length) {
             this.state = this.ENUM_STATE_NOTEMPTY;
-            firstItem = this.createImageItem(this.images[0], null, [uiBase.config.prefix + 'slide-img-pre']);
-            lastItem = this.createImageItem(this.images[Math.max(0, this.images.length - 1)], null, [uiBase.config.prefix + 'slide-img-last']);
+            firstItem = this.createImageItem(this.images[0], null, [cUICore.config.prefix + 'slide-img-pre']);
+            lastItem = this.createImageItem(this.images[Math.max(0, this.images.length - 1)], null, [cUICore.config.prefix + 'slide-img-last']);
             if (!this.loop) {
                 firstItem.css({ visibility: 'hidden' });
                 lastItem.css({ visibility: 'hidden' });
             }
             this.imageinter.append(firstItem);
             this.imageinter.prepend(lastItem);
-            this.navs = this.navinter.find('.' + uiBase.config.prefix + 'slide-nav-item');
+            this.navs = this.navinter.find('.' + cUICore.config.prefix + 'slide-nav-item');
         } else {
             this.state = this.ENUM_STATE_EMPTY;
             this.addEmptyItem(this.notimage);
@@ -236,7 +236,7 @@ var Slide = new cBase.Class({
             return;
         }
         this.isTouchStart = true;
-        var pos = uiBase.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
+        var pos = cUICore.Tools.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
         this.stop();
         this.startX = pos.x;
         this.startY = pos.y;
@@ -247,7 +247,7 @@ var Slide = new cBase.Class({
         if (this.isMove || !this.isTouchStart) {
             return;
         }
-        var pos = uiBase.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
+        var pos = cUICore.Tools.getMousePosOfElement(e.targetTouches[0], e.currentTarget);
         var diffX = pos.x - this.startX,
                 diffY = pos.y - this.startY;
         this.imageinter.css('left', (this.imageinterLeft + diffX) + 'px');
@@ -257,7 +257,7 @@ var Slide = new cBase.Class({
         if (this.isMove || !this.isTouchStart) {
             return;
         }
-        var pos = uiBase.getMousePosOfElement(e.changedTouches[0], e.currentTarget);
+        var pos = cUICore.Tools.getMousePosOfElement(e.changedTouches[0], e.currentTarget);
         var diffX = pos.x - this.startX,
                 diffY = pos.y - this.startY,
                 callback = $.proxy(function () {
@@ -277,7 +277,7 @@ var Slide = new cBase.Class({
     //创建一个导航
     createNavItem: function (current) {
         return $([
-                '<span class="' + uiBase.config.prefix + 'slide-nav-item' + (current ? uiBase.config.prefix + 'slide-nav-item-current' : '') + '"></span>'
+                '<span class="' + cUICore.config.prefix + 'slide-nav-item' + (current ? cUICore.config.prefix + 'slide-nav-item-current' : '') + '"></span>'
             ].join(''));
     },
     addItem: function (obj, current) {
@@ -329,8 +329,8 @@ var Slide = new cBase.Class({
         }, this));
     },
     setNavCurrent: function (pi) {
-        this.navs.removeClass(uiBase.config.prefix + 'slide-nav-item-current');
-        $(this.navs.get(pi)).addClass(uiBase.config.prefix + 'slide-nav-item-current');
+        this.navs.removeClass(cUICore.config.prefix + 'slide-nav-item-current');
+        $(this.navs.get(pi)).addClass(cUICore.config.prefix + 'slide-nav-item-current');
     },
     calcNextIndex: function () {
         return this.index > this.images.length ? 0 : (this.index - 1);

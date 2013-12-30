@@ -7,7 +7,7 @@
 */
 define(['cBase'], function (cBase) {
 
-  
+
   //l_wang至今点透仍无法可破......
   window.initTap = function () {
     var forTap = $('#forTap');
@@ -141,7 +141,17 @@ define(['cBase'], function (cBase) {
       //获取用户设置的值，但是必须是奇数
       this.disItemNum = opts.disItemNum || this.disItemNum;
       if (this.type == 'radio') this.disItemNum = this.disItemNum % 2 == 0 ? this.disItemNum + 1 : this.disItemNum;
-      if (this.data.length < this.disItemNum) this.disItemNum = this.data.length;
+      if (this.data.length < this.disItemNum) {
+        if (this.type == 'radio') {
+          for (var i = 0, len = this.disItemNum - this.data.length; i < len; i++) {
+            this.data.push({ key: '', val: '', disabled: false });
+          }
+          this.size = this.disItemNum;
+
+        } else {
+          this.disItemNum = this.data.length;
+        }
+      }
 
     },
 
@@ -247,13 +257,13 @@ define(['cBase'], function (cBase) {
       this.dragTop = offset.top;
       this.dragHeight = this.itemHeight * this.size;
 
-      var wrapperHeight = parseInt(this.wrapper.css('height'));
+      //      var wrapperHeight = parseInt(this.wrapper.css('height'));
 
-      var wrapperNum = wrapperHeight / this.itemHeight;
+      //      var wrapperNum = wrapperHeight / this.itemHeight;
 
-      var _top = parseInt((wrapperNum - this.disItemNum) / 2) * this.itemHeight;
+      //      var _top = parseInt((wrapperNum - this.disItemNum) / 2) * this.itemHeight;
 
-      if (wrapperNum != this.disItemNum) { this.body.css('margin-top', _top + 'px'); }
+      //      if (wrapperNum != this.disItemNum) { this.body.css('margin-top', _top + 'px'); }
 
       var s = '';
     },
@@ -310,7 +320,7 @@ define(['cBase'], function (cBase) {
           this.scrollBar.animate({
             top: _top,
             right: '1px'
-          }, duration, 'ease');
+          }, duration, 'linear');
 
         } else {
           this.scrollBar.css('top', parseInt(scrollTop * this.scrollProportion) + 'px');
@@ -456,7 +466,7 @@ define(['cBase'], function (cBase) {
       if (this.oTop != this.curTop && this.curTop != top) {
         this.dragEl.animate({
           top: top + 'px'
-        }, 100 + (speed * 20), 'ease-out', function () {
+        }, 100 + (speed * 20), 'linear', function () {
           scope.reset.call(scope, top);
         });
         scope._setScrollTop(top, 100 + (speed * 20));
@@ -530,7 +540,7 @@ define(['cBase'], function (cBase) {
       if (t) {
         scope.dragEl.animate({
           top: _top + 'px'
-        }, 50, 'ease-in-out', function () {
+        }, 50, 'linear', function () {
           scope._reset(_top);
         });
       } else {
@@ -576,7 +586,7 @@ define(['cBase'], function (cBase) {
         this.setIndex(this.selectedIndex);
       } else {
         var changed = this._changed;
-        if (changed && typeof changed == 'function') {
+        if (changed && typeof changed == 'function' && secItem.disabled != false) {
           changed.call(scope, secItem);
         }
         this.dragEl.find('li').removeClass('current');
@@ -635,7 +645,10 @@ define(['cBase'], function (cBase) {
       scope.cooling = false; //关闭冷却时间
       //            scope.dragEl.css('top', top + 'px');
 
-      scope.dragEl.animate({ 'top': top + 'px' }, 50, 'ease-in-out');
+      scope.dragEl.animate({ 'top': top + 'px' }, 50, 'linear');
+
+      //修复滚动条初始化BUG
+      this._setScrollTop(top, 50);
 
       if (scope.type == 'list') {
         var item = scope.dragEl.find('li');

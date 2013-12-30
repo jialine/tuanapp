@@ -1,9 +1,9 @@
 /**
- *	AbstractModel abstract class
- *	File:	c.Model.js
- *	Author:	ouxingzhi@vip.qq.com
- *	Date:	2013/6/23
- */
+*	AbstractModel abstract class
+*	File:	c.Model.js
+*	Author:	ouxingzhi@vip.qq.com
+*	Date:	2013/6/23
+*/
 define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function (libs, cBase, AbstractStore, cAjax, cUtility, CommonStore) {
     var cObject = cUtility.Object;
     var AbstractModel = new cBase.Class({
@@ -182,6 +182,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
         },
 
         buildurl: function () {
+            this.baseurl = AbstractModel.baseurl.call(this);
             return this.protocol + '://' + this.baseurl.domain + '/' + this.baseurl.path + (typeof this.url === 'function' ? this.url() : this.url);
         },
 
@@ -189,11 +190,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
             var params = _.clone(this.getParam() || {});
             if (this.isUserData && !params.cid) {
                 var user = this.head.userStore;
-                if (user.isLogin() || user.isNonUser()) {
-                    params.cid = this.head.getAttr('auth');
-                } else {
-                    params.cid = cUtility.getGuid();
-                }
+                params.cid = user.getUserId();
             }
             return JSON.stringify(params);
         },
@@ -211,7 +208,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
             var tag = this.getTag();
             var data = this.result && this.result.get(tag), params, __onCompete, __onError,
                 url = this.buildurl(), curhead = this.head.get();
-
+            this.isAbort = false;
             var self = this;
             //有下列情况，会直接请求ajax
             if (!data || this.ajaxOnly || ajaxOnly) {
@@ -224,13 +221,16 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
                     //更新head.auth
 
                     if (this.contentType !== AbstractModel.CONTENT_TYPE_JSONP && this.usehead && head.auth && head.auth !== curhead.auth) {
-                        this.head.setAttr('auth', head.auth);
+                        this.head.setAuth(head.auth);
                     }
                     if (head && head.errcode === 0) {
                         fdata = data;
                         if (typeof this.dataformat === 'function') {
                             fdata = this.dataformat(data);
                         }
+
+                        //l_wang 需要数据验证点此处写入前需要执行validate验证
+
                         this.result && this.result.set(fdata, tag);
                         onComplete && onComplete.call(scope || this, fdata, data);
                     } else {
@@ -264,16 +264,16 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
     AbstractModel.baseurl = function () {
         var host = location.host,
             domain = 'waptest.ctrip.com',
-            path = 'restapi';
+            path = 'restapi2';
 
         if (cUtility.isInApp()) {
-            if (cUtility.isPreProduction() === '1') {   // 定义堡垒环境
+            if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
                 if (this.protocol == "https") {
                     domain = 'restful.m.ctrip.com';
                 } else {
                     domain = 'm.ctrip.com';
                 }
-            } else if (cUtility.isPreProduction() === '0') {   // 定义测试环境
+            } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
                 if (this.protocol == "https") {
                     domain = 'restful.waptest.ctrip.com';
                 } else {
@@ -293,7 +293,11 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
             //domain =  '10.168.147.3';
             domain = 'restful.waptest.ctrip.com';
         } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
-            domain = 'waptest.ctrip.com';
+            if (this.protocol == "https") {
+                domain = 'restful.waptest.ctrip.com';
+            } else {
+                domain = 'waptest.ctrip.com';
+            }
         } else if (host.match(/^10\.8\.2\.111/i)) {
             domain = '10.8.2.111';
         } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || this.protocol == "https")) {
@@ -325,5 +329,3 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore'], function
     AbstractModel.CONTENT_TYPE_JSONP = 'jsonp';
     return AbstractModel;
 });
-
-

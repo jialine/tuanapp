@@ -76,7 +76,7 @@ define(['cBase'], function (cBase) {
                     this.scrollBar.animate({
                         top: _top,
                         right: '1px'
-                    }, duration, 'ease');
+                    }, duration, 'linear');
 
                 } else {
                     this.scrollBar.css('top', parseInt(scrollTop * this.scrollProportion) + 'px');
@@ -173,7 +173,7 @@ define(['cBase'], function (cBase) {
                 top += increment;
                 this.dragEl.animate({
                     top: top + 'px'
-                }, duration, 'ease-out', function () {
+                }, duration, 'linear', function () {
                     scope.reset.call(scope, top);
                 });
                 this._setScrollTop(top, duration);
@@ -212,7 +212,7 @@ define(['cBase'], function (cBase) {
             if (needReset) {
                 scope.dragEl.animate({
                     top: top + 'px'
-                }, 50, 'ease-in-out', function () {
+                }, 50, 'linear', function () {
                     scope._reset(top);
                 });
             } else {

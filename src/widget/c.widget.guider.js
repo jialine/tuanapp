@@ -5,235 +5,268 @@
  *
  */
 define(['cUtility', 'cWidgetFactory', 'cHybridFacade'], function (Util, WidgetFactory, Facade) {
-  "use strict";
+    "use strict";
 
-  var WIDGET_NAME = 'Guider';
+    var WIDGET_NAME = 'Guider';
 
-  var HybridGuider = {
-    jump: function (options) {
-      var model = {
-        refresh: function () {
-          Facade.request({ name: Facade.METHOD_OPEN_URL, targetMode: 0, title: options.title });
+    var HybridGuider = {
+        jump: function (options) {
+            var model = {
+                refresh: function () {
+                    Facade.request({ name: Facade.METHOD_OPEN_URL, targetMode: 0, title: options.title });
+                },
+                app: function () {
+                    if (options && options.module) {
+                        var openUrl = Facade.getOpenUrl(options);
+                        Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: openUrl, targetMode: 1, title: options.title });
+                    }
+                    ;
+                },
+                h5: function () {
+                    if (options && options.url) {
+                        Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: options.url, targetMode: 2, title: options.title });
+                    }
+                },
+                browser: function () {
+                    if (options && options.url) {
+                        Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: options.url, targetMode: 3, title: options.title });
+                    }
+                }
+            }
+
+            if (typeof model[options.targetModel] === 'function') {
+                model[options.targetModel]();
+            }
         },
-        app:     function () {
-          if (options && options.module) {
-            var openUrl = Facade.getOpenUrl(options);
-            Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: openUrl, targetMode: 1, title: options.title });
-          }
-          ;
+
+        apply: function (options) {
+            options.hybridCallback();
         },
-        h5:      function () {
-          if (options && options.url) {
-            Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: options.url, targetMode: 2, title: options.title });
-          }
+
+        call: function (options) {
+            return false;
         },
-        browser: function () {
-          if (options && options.url) {
-            Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: options.url, targetMode: 3, title: options.title });
-          }
-        }
-      }
 
-      if (typeof model[options.targetModel] === 'function') {
-        model[options.targetModel]();
-      }
-    },
+        init: function (options) {
+            if (options && window.parseFloat(options.version) < 5.2) {
+                Facade.request({ name: Facade.METHOD_ENTRY, callback: options.callback });
+            } else {
+                Facade.request({ name: Facade.METHOD_INIT, callback: options.callback });
+            }
+        },
 
-    apply: function (options) {
-      options.hybridCallback();
-    },
+        log: function (options) {
+            Facade.request({ name: Facade.METHOD_LOG_EVENT, event_name: options.name })
+        },
 
-    call: function (options) {
-      return false;
-    },
+        callService: function () {
+            Facade.request({ name: Facade.METHOD_CALL_SERVICE_CENTER });
+        },
 
-    init: function (options) {
-      if (options && window.parseFloat(options.version) < 5.2) {
-        Facade.request({ name: Facade.METHOD_ENTRY, callback: options.callback });
-      } else {
-        Facade.request({ name: Facade.METHOD_INIT, callback: options.callback });
-      }
-    },
+        backToLastPage: function (options) {
+            var param = options ? options.param : '';
+            Facade.request({ name: Facade.METHOD_BACK_TO_LAST_PAGE, param: param });
+        },
 
-    log: function (options) {
-      Facade.request({ name: Facade.METHOD_LOG_EVENT, event_name: options.name })
-    },
+        checkUpdate: function () {
+            Facade.request({ name: Facade.METHOD_CHECK_UPDATE });
+        },
 
-    callService: function () {
-      Facade.request({ name: Facade.METHOD_CALL_SERVICE_CENTER });
-    },
+        recommend: function () {
+            Facade.request({ name: Facade.METHOD_RECOMMEND_APP_TO_FRIEND });
+        },
 
-    backToLastPage: function () {
-      Facade.request({ name: Facade.METHOD_BACK_TO_LAST_PAGE });
-    },
+        addWeixinFriend: function () {
+            Facade.request({ name: Facade.METHOD_ADD_WEIXIN_FRIEND });
+        },
 
-    checkUpdate: function () {
-      Facade.request({ name: Facade.METHOD_CHECK_UPDATE });
-    },
+        showNewestIntroduction: function () {
+            Facade.request({ name: Facade.METHOD_SHOW_NEWEST_INTRODUCTION });
+        },
 
-    recommend: function () {
-      Facade.request({ name: Facade.METHOD_RECOMMEND_APP_TO_FRIEND });
-    },
+        register: function (options) {
+            if (options && options.tagname && options.callback) {
+                Facade.register({ tagname: options.tagname, callback: options.callback });
+            }
+        },
 
-    addWeixinFriend: function () {
-      Facade.request({ name: Facade.METHOD_ADD_WEIXIN_FRIEND });
-    },
+        create: function () {
+            Facade.init();
+        },
 
-    showNewestIntroduction: function () {
-      Facade.request({ name: Facade.METHOD_SHOW_NEWEST_INTRODUCTION });
-    },
+        home: function () {
+            Facade.request({ name: Facade.METHOD_BACK_TO_HOME });
+        },
 
-    register: function (options) {
-      if (options && options.tagname && options.callback) {
-        Facade.register({ tagname: options.tagname, callback: options.callback });
-      }
-    },
+        jumpHotel: function (options) {
+            Facade.request({ name: Facade.METHOD_GO_TO_HOTEL_DETAIL, hotelId: options.hotelId, hotelName: options.name, cityId: options.cityId, isOverSea: options.isOverSea })
+        },
 
-    create: function () {
-      Facade.init();
-    },
-
-    home: function () {
-      Facade.request({name: Facade.METHOD_BACK_TO_HOME});
-    },
-
-    jumpHotel: function (options) {
-      Facade.request({ name: Facade.METHOD_GO_TO_HOTEL_DETAIL, hotelId: options.hotelId, hotelName: options.name, cityId: options.cityId, isOverSea: options.isOverSea })
-    },
-
-    injectUbt: function () {
-      var content = '!function () { var a, b, c, d, e, f, g, i; if (true) { for (a = document.getElementsByTagName("script") || [],' +
+        injectUbt: function () {
+            var content = '!function () { var a, b, c, d, e, f, g, i; if (true) { for (a = document.getElementsByTagName("script") || [],' +
         ' b = /_bfa\.min\.js/i, c = 0; c < a.length; c++) if (b.test(a[c].src)) return; if (!(window.$_bf || window.$LAB || window.CtripJsLoader))' +
         ' { d = new Date, e = "?v=" + d.getFullYear() + d.getMonth() + "_" + d.getDate() + ".js", f = document.createElement("script"),' +
         ' f.type = "text/javascript", f.charset = "utf-8", f.async = !0; try { g = "https:" == document.location.protocol } catch (h) ' +
         '{ g = "https:" == document.URL.match(/[^:]+/) + ":" } f.src = g ? "https://s.c-ctrip.com/_bfa.min.js" + e : "http://webresource.c-ctrip.com' +
         '/code/ubt/_bfa.min.js" + e, i = document.getElementsByTagName("script")[0], i.parentNode.insertBefore(f, i) } } } ();';
 
-      var s = $('<script>' + content + '//<' + '\/scrtip>');
-      $('body').append(s);
-    },
+            var s = $('<script>' + content + '//<' + '\/scrtip>');
+            $('body').append(s);
+        },
 
-    checkAppInstall: function (options) {
-      Facade.request({ name: Facade.METHOD_CHECK_APP_INSTALL, url: options.url, package: options.package, callback: options.callback });
-    },
+        checkAppInstall: function (options) {
+            Facade.request({ name: Facade.METHOD_CHECK_APP_INSTALL, url: options.url, package: options.package, callback: options.callback });
+        },
 
-    callPhone: function (options) {
-      Facade.request({ name: Facade.METHOD_CALL_PHONE, tel: options.tel });
-    },
+        callPhone: function (options) {
+            Facade.request({ name: Facade.METHOD_CALL_PHONE, tel: options.tel });
+        },
 
-    cross: function (options) {
-      Facade.request({ name: Facade.METHOD_CROSS_JUMP, param: options.param, path: options.path });
-    },
+        cross: function (options) {
+            Facade.request({ name: Facade.METHOD_CROSS_JUMP, param: options.param, path: options.path });
+        },
 
-    refreshNative: function (options) {
-      Facade.request({ name: Facade.METHOD_REFRESH_NATIVE, package: options.package, json: options.json });
-    }
-  };
+        refreshNative: function (options) {
+            Facade.request({ name: Facade.METHOD_REFRESH_NATIVE, package: options.package, json: options.json });
+        },
 
-  var Guider = {
-    jump: function (options) {
-      if (options && options.url && typeof options.url === 'string') {
-        window.location.href = options.url;
-      }
-    },
+        copyToClipboard: function (options) {
+            Facade.request({ name: Facade.METHOD_COPY_TO_CLIPBOARD, content: options.content });
+        },
 
-    apply: function (options) {
-      if (options && options.callback && typeof options.callback === 'function') {
-        options.callback();
-      }
-    },
+        readFromClipboard: function (options) {
+            Facade.request({ name: Facade.METHOD_READ_FROM_CLIPBOARD, callback: options.callback });
+        },
 
-    call: function (options) {
-      var $caller = document.getElementById('h5-hybrid-caller');
+        shareToVendor: function (options) {
+            Facade.request({ name: Facade.METHOD_SHARE_TO_VENDOR, imgUrl: options.imgUrl, text: options.text });
+        },
 
-      if (!options || !options.url || !typeof options.url === 'string') {
-        return false;
-      } else if ($caller && $caller.src == options.url) {
-        $caller.contentDocument.location.reload();
-      } else if ($caller && $caller.src != options.url) {
-        $caller.src = options.url;
-      } else {
-        $caller = document.createElement('iframe');
-        $caller.id = 'h5-hybrid-caller';
-        $caller.src = options.url;
-        $caller.style.display = 'none';
-        document.body.appendChild($caller);
-      }
-    },
+        downloadData: function (options) {
+            Facade.request({ name: Facade.METHOD_DOWNLOAD_DATA, url: options.url, callback: options.callback });
+        }
+    };
 
-    init: function () {
-      return false;
-    },
+    var Guider = {
+        jump: function (options) {
+            if (options && options.url && typeof options.url === 'string') {
+                window.location.href = options.url;
+            }
+        },
 
-    log: function (options) {
-      if (window.console) {
-        window.console.log(options.name);
-      }
-    },
+        apply: function (options) {
+            if (options && options.callback && typeof options.callback === 'function') {
+                options.callback();
+            }
+        },
 
-    callService: function () {
-      window.location.href = 'tel:4000086666';
-    },
+        call: function (options) {
+            var $caller = document.getElementById('h5-hybrid-caller');
 
-    backToLastPage: function () {
-      window.location.href = document.referrer;
-    },
+            if (!options || !options.url || !typeof options.url === 'string') {
+                return false;
+            } else if ($caller && $caller.src == options.url) {
+                $caller.contentDocument.location.reload();
+            } else if ($caller && $caller.src != options.url) {
+                $caller.src = options.url;
+            } else {
+                $caller = document.createElement('iframe');
+                $caller.id = 'h5-hybrid-caller';
+                $caller.src = options.url;
+                $caller.style.display = 'none';
+                document.body.appendChild($caller);
+            }
+        },
 
-    checkUpdate: function () {
-      return false;
-    },
+        init: function () {
+            return false;
+        },
 
-    recommend: function () {
-      return false;
-    },
+        log: function (options) {
+            if (window.console) {
+                window.console.log(options.name);
+            }
+        },
 
-    addWeixinFriend: function () {
-      return false;
-    },
+        callService: function () {
+            window.location.href = 'tel:4000086666';
+        },
 
-    showNewestIntroduction: function () {
-      return false;
-    },
+        backToLastPage: function () {
+            window.location.href = document.referrer;
+        },
 
-    register: function () {
-      return false;
-    },
+        checkUpdate: function () {
+            return false;
+        },
 
-    create: function () {
-      return false;
-    },
+        recommend: function () {
+            return false;
+        },
 
-    home: function () {
-      window.location.href = '/';
-    },
+        addWeixinFriend: function () {
+            return false;
+        },
 
-    jumpHotel: function () {
-      return false;
-    },
+        showNewestIntroduction: function () {
+            return false;
+        },
 
-    injectUbt: function () {
-      return false;
-    },
+        register: function () {
+            return false;
+        },
 
-    checkAppInstall: function () {
-      return false;
-    },
+        create: function () {
+            return false;
+        },
 
-    callPhone: function () {
-      return false;
-    },
+        home: function () {
+            window.location.href = '/';
+        },
 
-    cross: function () {
-      return false;
-    },
+        jumpHotel: function () {
+            return false;
+        },
 
-    refreshNative: function () {
+        injectUbt: function () {
+            return false;
+        },
 
-    }
-  };
+        checkAppInstall: function () {
+            return false;
+        },
 
-  WidgetFactory.register({
-    name: WIDGET_NAME,
-    fn:   Util.isInApp() ? HybridGuider : Guider
-  });
+        callPhone: function () {
+            return false;
+        },
+
+        cross: function () {
+            return false;
+        },
+
+        refreshNative: function () {
+            return false;
+        },
+
+        copyToClipboard: function (options) {
+            return false;
+        },
+
+        readFromClipboard: function (options) {
+            return false;
+        },
+
+        shareToVendor: function (options) {
+            return false;
+        },
+
+        downloadData: function (options) {
+            return false;
+        }
+    };
+
+    WidgetFactory.register({
+        name: WIDGET_NAME,
+        fn: Util.isInApp() ? HybridGuider : Guider
+    });
 });

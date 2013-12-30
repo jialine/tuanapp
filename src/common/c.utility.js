@@ -684,18 +684,24 @@ define(['libs', 'cBase', 'cStorage'], function (libs, cBase, cStorage) {
     */
     U.isInApp = function () {
         // var data = nStorage.get('isInApp');
+        
+        // 首先检查UserAgent是不是含有了ctripwireless
+        var useragent = window.navigator.userAgent;
+        if (useragent.indexOf('CtripWireless') > -1) {
+          return true;
+        };
 
         // 旧版本
         var oldData = nStorage.oldGet('isInApp');
         if (oldData) {
-            return oldData == '1' ? true : false;
-        }
+          return oldData == '1' ? true : false;
+        };
 
         // 新版本
         var data = nStorage.oldGet('ISINAPP');
         if (data) {
-            return data == '1' ? true : false;
-        }
+          return data == '1' ? true : false;
+        };
 
     };
 

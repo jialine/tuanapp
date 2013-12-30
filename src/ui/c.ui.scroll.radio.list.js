@@ -29,13 +29,14 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     this.title = this.root.find('.cui-text-center');
     this.content = this.root.find('.cui-bd');
 
+   
+  };
+  _attributes.onShow = function () {
     var scope = this;
     this.maskToHide(function () {
       scope.hide();
     });
-  };
-  _attributes.onShow = function () {
-    var scope = this;
+
     this.scroll = new ScrollList({
       wrapper: this.content,
       data: this.data,
