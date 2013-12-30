@@ -28,10 +28,10 @@
     'cGeoService'               : 'src/common/c.geo.service',
 
     //-------------------------------------------------------------
-    'cStore'                    : 'src/common/c.store',             //提供存取具体数据的Store基础类
-    'cStorage'                  : 'src/common/c.storage',           //提供存取localStorage/sessionStorage的静态方法
+    'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
+    'cStorage'                  : 'src/store/c.storage',           //提供存取localStorage/sessionStorage的静态方法
     'memStore'                  : 'src/store/c.memorystore',
-    'CommonStore'               : 'src/common/c.common.store',      //公用的store
+    'CommonStore'               : 'src/store/c.common.store',      //公用的store
 
 
     //--------------------------------------------------------------
@@ -40,7 +40,7 @@
     'cAbstractModel'            : 'src/model/c.abstract.model',
     'cModel'                    : 'src/model/c.model',
     'cUserModel'                : 'src/model/c.user.model',
-    'cMultipleDate'             : 'src/common/c.multiple.data',     //多重数据对象
+    'cMultipleDate'             : 'src/model/c.multiple.data',     //多重数据对象
 
     //--------------------------------------------------------------
     // ui控件库
