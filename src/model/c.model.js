@@ -1,11 +1,11 @@
 /**
-*	AbstractModel abstract class
-*	File:	c.Model.js
-*	Author:	ouxingzhi@vip.qq.com
-*	Date:	2013/6/23
+*  AbstractModel abstract class
+*  File:  c.Model.js
+*  Author:  ouxingzhi@vip.qq.com
+*  Date:  2013/6/23
 *  update: l_wang(20131225)
 */
-define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtractModel', 'cStorage'], function (libs, cBase, AbstractStore, cAjax, cUtility, CommonStore, baseModel, cStorage) {
+define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstractModel', 'cStorage'], function (libs, cBase, AbstractStore, cAjax, cUtility, CommonStore, baseModel, cStorage) {
   var cObject = cUtility.Object;
   var AbstractModel = new cBase.Class(baseModel, {
     __propertys__: function () {
@@ -20,11 +20,16 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
       */
       this.result = null;
 
+
       // @param {Boolean} 可选，只通过ajax获取数据，不做localstorage数据缓存
       this.ajaxOnly = false;
     },
     initialize: function ($super, options) {
       $super(options);
+
+      //不这样this.protocol写不进去
+      this.baseurl = AbstractModel.baseurl.call(this, this.protocol);
+
     },
 
     setHead: function (head) {
@@ -77,9 +82,9 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
 
     /**
     * 重写父类
-    *	设置提交参数
-    *	@param {String} param 提交参数
-    *	@return void
+    *  设置提交参数
+    *  @param {String} param 提交参数
+    *  @return void
     */
     setParam: function (key, val) {
       var param = {};
@@ -102,70 +107,24 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
       return this.param instanceof AbstractStore ? this.param.get() : this.param;
     },
 
-    baseurl: function () {
-      var host = location.host;
-      var domain = 'waptest.ctrip.com';
-      var path = 'restapi2';
-
-      if (cUtility.isInApp()) {
-        if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
-          if (this.protocol == "https") {
-            domain = 'restful.m.ctrip.com';
-          } else {
-            domain = 'm.ctrip.com';
-          }
-        } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
-          if (this.protocol == "https") {
-            domain = 'restful.waptest.ctrip.com';
-          } else {
-            domain = 'waptest.ctrip.com';
-          }
-        } else {
-          if (this.protocol == "https") {
-            domain = 'restful.m.ctrip.com';
-          } else {
-            domain = 'm.ctrip.com';
-          }
-        }
-      } else if (host.match(/^m\.ctrip\.com/i)) {
-        domain = 'm.ctrip.com';
-      } else if (host.match(/^(localhost|172\.16|127\.0)/i) && (location.protocol == "https" || this.protocol == "https")) {
-        //domain =  '10.168.147.3';
-        domain = 'restful.waptest.ctrip.com';
-      } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
-        if (this.protocol == "https") {
-          domain = 'restful.waptest.ctrip.com';
-        } else {
-          domain = 'waptest.ctrip.com';
-        }
-      } else if (host.match(/^10\.8\.2\.111/i)) {
-        domain = '10.8.2.111';
-      } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || this.protocol == "https")) {
-        domain = 'restful.waptest.ctrip.com';
-      } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i)) {
-        domain = 'waptest.ctrip.com';
-      } else {
-        domain = 'm.ctrip.com';
-      }
-      return {
-        'domain': domain,
-        'path': path
-      }
-    },
 
     buildurl: function () {
       var temp_requrl = cStorage.localStorage.get("TEMP_REQURL");
-      var baseurl = this.baseurl();
+
+      var baseurl = this.baseurl, tempArr = [];
+
       if (temp_requrl && !location.host.match(/^m\.ctrip\.com/i)) {
 
-        var tempArr = temp_requrl.split("/");
-
-        return this.protocol + '://' + tempArr[0] + '/' + (tempArr[1] || baseurl.path) + (typeof this.url === 'function' ? this.url() : this.url);
+        if (this.protocol === "http") {
+          tempArr = temp_requrl.http && temp_requrl.http.split("/")
+        } else {
+          tempArr = temp_requrl.https && temp_requrl.https.split("/")
+        }
 
       }
+      var tempUrl = this.protocol + '://' + (tempArr[0] || baseurl.domain) + '/' + (tempArr[1] || baseurl.path) + (typeof this.url === 'function' ? this.url() : this.url);
 
-
-      return this.protocol + '://' + baseurl.domain + '/' + baseurl.path + (typeof this.url === 'function' ? this.url() : this.url);
+      return tempUrl;
     },
 
     getTag: function () {
@@ -177,11 +136,11 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
       return JSON.stringify(params);
     },
     /**
-    *	取model数据
-    *	@param {Function} onComplete 取完的回调函
-    *	传入的第一个参数为model的数第二个数据为元数据，元数据为ajax下发时的ServerCode,Message等数
-    *	@param {Function} onError 发生错误时的回调
-    *	@param {Boolean} ajaxOnly 可选，默认为false当为true时只使用ajax调取数据
+    *  取model数据
+    *  @param {Function} onComplete 取完的回调函
+    *  传入的第一个参数为model的数第二个数据为元数据，元数据为ajax下发时的ServerCode,Message等数
+    *  @param {Function} onError 发生错误时的回调
+    *  @param {Boolean} ajaxOnly 可选，默认为false当为true时只使用ajax调取数据
     *   @param {Boolean} scope 可选，设定回调函数this指向的对象
     *   @param {Function} onAbort 可选，但取消时会调用的函数
     */
@@ -227,6 +186,57 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbtract
 
     }
   });
+
+  AbstractModel.baseurl = function (protocol) {
+    var host = location.host;
+    var domain = 'waptest.ctrip.com';
+    var path = 'restapi2';
+
+    if (cUtility.isInApp()) {
+      if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
+        if (protocol == "https") {
+          domain = 'restful.m.ctrip.com';
+        } else {
+          domain = 'm.ctrip.com';
+        }
+      } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
+        if (protocol == "https") {
+          domain = 'restful.waptest.ctrip.com';
+        } else {
+          domain = 'waptest.ctrip.com';
+        }
+      } else {
+        if (protocol == "https") {
+          domain = 'restful.m.ctrip.com';
+        } else {
+          domain = 'm.ctrip.com';
+        }
+      }
+    } else if (host.match(/^m\.ctrip\.com/i)) {
+      domain = 'm.ctrip.com';
+    } else if (host.match(/^(localhost|172\.16|127\.0)/i) && (location.protocol == "https" || protocol == "https")) {
+      //domain =  '10.168.147.3';
+      domain = 'restful.waptest.ctrip.com';
+    } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
+      if (protocol == "https") {
+        domain = 'restful.waptest.ctrip.com';
+      } else {
+        domain = 'waptest.ctrip.com';
+      }
+    } else if (host.match(/^10\.8\.2\.111/i)) {
+      domain = '10.8.2.111';
+    } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || protocol == "https")) {
+      domain = 'restful.waptest.ctrip.com';
+    } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i)) {
+      domain = 'waptest.ctrip.com';
+    } else {
+      domain = 'm.ctrip.com';
+    }
+    return {
+      'domain': domain,
+      'path': path
+    }
+  };
 
   return AbstractModel;
 });

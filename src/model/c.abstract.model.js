@@ -6,7 +6,7 @@
 * update: l_wang
 * Date: 2013/12/25(OD快快好来，祝圣诞快乐)
 */
-define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, AbstractStore, cAjax, cUtility) {
+define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUtility) {
   var cObject = cUtility.Object;
   var AbstractModel = new cBase.Class({
     __propertys__: function () {
@@ -104,14 +104,14 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
 
     //构建url请求方式，子类可复写，我们的model如果localstorage设置了值便直接读取，但是得是非正式环境
     buildurl: function () {
-      var baseurl = this.baseurl();
+      var baseurl = AbstractModel.baseurl(this.protocol);
       return this.protocol + '://' + baseurl.domain + '/' + baseurl.path + (typeof this.url === 'function' ? this.url() : this.url);
     },
-    baseurl: function () {
-      // @description baseurl必须被复写，同时返回的对象应为
-      // { domain: '', path: ''}
-      throw "[ERROR]abstract method:baseurl, must be override";
-    },
+//    baseurl: function () {
+//      // @description baseurl必须被复写，同时返回的对象应为
+//      // { domain: '', path: ''}
+//      throw "[ERROR]abstract method:baseurl, must be override";
+//    },
 
     /**
     *	取model数据
@@ -212,6 +212,13 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility'], function (libs, cBase, 
       return this.instance = new this;
     }
   };
+
+  AbstractModel.baseurl = function () {
+    // @description baseurl必须被复写，同时返回的对象应为
+    // { domain: '', path: ''}
+    throw "[ERROR]abstract method:baseurl, must be override";
+  };
+
   /** ajax提交数据的格式，目前后面可能会有两种提交格式：json数据提交,form表单方式 **/
   AbstractModel.CONTENT_TYPE_JSON = 'json';
   AbstractModel.CONTENT_TYPE_FORM = 'form';
