@@ -1,4 +1,4 @@
-define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headWarning')], function (libs, c, pageview, cUI, html) {
+define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headwarning')], function (libs, c, pageview, cUI, html) {
   "use strict";
 
   var s = null;
@@ -27,14 +27,14 @@ define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('headWarning')], funct
 
     onLoad: function () {
       this.headerview.set({
-        title: 'headWarning组件',
+        title: 'headwarning组件',
         back: true,
         view: this,
         tel: null,
         events: {
           returnHandler: function () {
             this.back('index');
-            s.hide();
+            if(s) s.hide();
           }
         }
       });
