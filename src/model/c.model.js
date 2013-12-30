@@ -20,6 +20,8 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
       */
       this.result = null;
 
+      // @description 替代headstore信息的headinfo
+      this.headinfo = null;
 
       // @param {Boolean} 可选，只通过ajax获取数据，不做localstorage数据缓存
       this.ajaxOnly = false;
@@ -64,7 +66,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
 
     //     @deprecated
     //     没有找到使用setResultStore方法的地方
-    //     
+    //
     //     设置结果存取器
     //    setResultStore: function (result) {
     //      if (typeof result !== 'object') throw 'Set result is not a store';
@@ -151,6 +153,10 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
 
       if (this.method.toLowerCase() !== 'get' && this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
         this.setParam('head', this.head.get())
+      } else if (this.method.toLowerCase() !== 'get' && !this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
+        if (this.headinfo) {
+          this.setParam('head', this.headinfo);
+        }
       }
 
       //验证错误码，并且设置新的auth
