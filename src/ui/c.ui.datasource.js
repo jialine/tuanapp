@@ -1,6 +1,4 @@
-﻿﻿define(['libs', 'c'], function (libs, c) {
-  var cBase = c.base;
-
+﻿define(['libs', 'cBase'], function (libs, cBase) {
   var DataSource = new cBase.Class({
     __propertys__: function () {
       this.data;

@@ -12,8 +12,8 @@ define(['libs'], function (libs) {
             var el = $(this),
                 src = el.attr('src'),
                 newImg = $(new Image());
-
-            if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/i.test(src)) src = '';
+            // 修复图片版本号导致的不能显示问题 shbzhang 2013/12/12
+            //if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/i.test(src)) src = '';
 
             el.addClass('cui-item-imgbg');
             if (typeof src == 'string' && src.length > 0) {

@@ -1,4 +1,4 @@
-define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function(cBase, AbstractView, WidgetFactory){
+define(['cBase', 'cUICore', 'cWidgetFactory'], function(cBase, cUICore, WidgetFactory){
   "user strict";
 
   var WIDGET_NAME = 'Abstract.Calendar';
@@ -8,7 +8,7 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function(cBase, AbstractV
     return;
   }
 
-  var AbstractCalendar = new cBase.Class(AbstractView, {
+  var AbstractCalendar = new cBase.Class(cUICore.AbstractView, {
     __propertys__: function () {
       this.CONSTANT = {
         CALENDAR_CHINESE_LUNAR_INFO: [
@@ -34,7 +34,7 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function(cBase, AbstractV
         CALENDAR_CHINESE_CARRT: ['初', '十', '廿', '卅', '　'],
         CALENDAR_CHINESE_HOLIDAY: {
           '1230': '除夕',
-          '0101': '春节',
+          '0101': '初一',
           '0115': '元宵',
           '0405': '清明',
           '0505': '端午',

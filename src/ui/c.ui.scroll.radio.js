@@ -38,15 +38,16 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     this.line = $('<div class="cui-mask-gray"></div><div class="cui-lines">&nbsp;</div>');
     this.wrapper = this.root.find('.scrollWrapper');
 
-    var scope = this;
-    this.maskToHide(function () {
-      scope.hide();
-    });
+    
 
   };
 
   _attributes.onShow = function () {
     var scope = this;
+    this.maskToHide(function () {
+      scope.hide();
+    });
+
     //没有data的话便不进行渲染了
     if (!this.data || this.data.length == 0) return false;
 

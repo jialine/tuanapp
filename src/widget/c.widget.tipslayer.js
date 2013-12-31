@@ -1,4 +1,4 @@
-define(['cBase', 'cUILayer', 'cUIBase', 'cUIMask', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], function (cBase, Layer, uiBase,, Mask, WidgetFactory, ScrollLayer) {
+define(['cBase', 'cUICore', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], function (cBase, cUICore, WidgetFactory, ScrollLayer) {
   "use strict";
 
   var WIDGET_NAME = 'TipsLayer';
@@ -11,13 +11,13 @@ define(['cBase', 'cUILayer', 'cUIBase', 'cUIMask', 'cWidgetFactory', 'cUIScrollL
   /**
   * 显示控件，初始化时传入title与html即可
   */
-  var TipsLayer = new cBase.Class(Layer, {
+  var TipsLayer = new cBase.Class(cUICore.Layer, {
     __propertys__: function () {
       this.contentDom;
       this.title = '';
       this.body = '';
-      this.mask = new Mask({
-        classNames: [uiBase.config.prefix + 'opacitymask']
+      this.mask = new cUICore.Mask({
+        classNames: [cUICore.config.prefix + 'opacitymask']
       });
       var scope = this;
       this.mask.addEvent('onShow', function () {
@@ -78,12 +78,16 @@ define(['cBase', 'cUILayer', 'cUIBase', 'cUIMask', 'cWidgetFactory', 'cUIScrollL
 
           this.closeDom = this.contentDom.find('.cui-top-close').parent();
           this.body = this.contentDom.find('.cui-bd');
+
+          if (this.html.length > 1) {
+            this.html = $('<div style="width: 100%;"></div>').append(this.html);
+          }
           this.html.css('background-color', 'white')
 
           //检测高度，高度过高就需要处理
           $('body').append(this.html);
           var _h = this.html.height();
-          if (options.height)  _h = options.height;
+          if (options.height) _h = options.height;
           if (_h > 350) _h = 300;
           this.body.css({
             'height': _h + 'px'

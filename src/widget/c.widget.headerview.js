@@ -1,8 +1,8 @@
 /**********************************
- * @author:       cmli@Ctrip.com
- * @description:  组件HeaderView
- */
-define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade'], function (cBase, cUI, WidgetFactory, cUtlity, cSales, Facade) {
+* @author:       cmli@Ctrip.com
+* @description:  组件HeaderView
+*/
+define(['cBase', 'cUICore', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade'], function (cBase, cUICore, WidgetFactory, cUtlity, cSales, Facade) {
     "use strict";
 
     var WIDGET_NAME = 'HeaderView';
@@ -27,13 +27,13 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
                     this.html += this.htmlMap[key];
                 }
             }
-            var style ='',
+            var style = '',
               cstyle = config.data['style'];
-            if(cstyle){
-              style = ' style="'+cstyle+'"';
+            if (cstyle) {
+                style = ' style="' + cstyle + '"';
             }
 
-            this.html = '<header' + style+'>' + this.html + '</header>';
+            this.html = '<header' + style + '>' + this.html + '</header>';
         }
     };
 
@@ -83,6 +83,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
         this.rootBox.off('click');
 
         if (this.data && this.data.btn && typeof this.bindEvents === "function") {
+            console.log('onshow');
             this.bindEvents(this.getView());
         }
 
@@ -96,7 +97,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
             var self = this;
 
             var callback = function () {
-              commit.callback.call(self.view);
+                commit.callback.call(self.view);
             };
             view.find('#' + commit.id).on('click', callback);
 
@@ -135,6 +136,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
             var AdView = WidgetFactory.create('AdView');
             this.adView = new AdView(data);
             }*/
+            this.bindEvents = this.data.bindEvents;
             this.isCreate = false;
             this.hide();
             //this.headerview.status = cBase.;
@@ -183,7 +185,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
 
     var _setBindBtnAction = function (selector, sign, action, view) {
         this.rootBox.find(selector).on(sign, function () {
-          action.call(view || this);
+            action.call(view || this);
         });
     };
 
@@ -209,7 +211,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
     options.html = null;
     options.htmlMap = {
         home: '<i class="icon_home i_bef" id="c-ui-header-home"></i>',
-        tel: '<a href="tel:<%=tel.number||4000886666 %>" class="icon_phone i_bef __hreftel__" id="c-ui-header-tel"></a>',
+        tel: '<a href="tel:<%=tel.number||4000086666 %>" class="icon_phone i_bef __hreftel__" id="c-ui-header-tel"></a>',
         title: '<h1><%=title %></h1>',
         back: '<i id="c-ui-header-return" class="returnico i_bef"></i>',
         btn: '<i id="<%=btn.id%>" class="<%=btn.classname%>"><%=btn.title %></i>',
@@ -218,7 +220,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
 
     //重写create方法，支持新的html结构
     options.create = function () {
-        if (!this.isCreate && this.status !== cUI.AbstractView.STATE_ONCREATE) {
+        if (!this.isCreate && this.status !== cUICore.AbstractView.STATE_ONCREATE) {
             this.rootBox = this.rootBox || $('body');
             this.rootBox.empty();
             this.root = $(this.createHtml());
@@ -228,7 +230,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
             }, this), 200);
             this.rootBox.css('height', this.root.css('height'));
             this.trigger('onCreate');
-            this.status = cUI.AbstractView.STATE_ONCREATE;
+            this.status = cUICore.AbstractView.STATE_ONCREATE;
             this.isCreate = true;
         }
         //如果配置打开了advertisment
@@ -244,13 +246,13 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
 
     //重写showAction方法，以使其支持app嵌入
     options.showAction = function (callback) {
-      if (cUtlity.isInApp()) {
-          this.rootBox.hide();
-          this.saveHead();
-      } else {
-          this.root.show();
-      }
-      callback();
+        if (cUtlity.isInApp()) {
+            this.rootBox.hide();
+            this.saveHead();
+        } else {
+            this.root.show();
+        }
+        callback();
     };
 
     //保存数据到Localstorg,供APP使用
@@ -285,7 +287,7 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
             // ? 需要做URI encode还是JSON.stringify ?
             // var headInfo = window.encodeURIComponent(head);
             var headInfo = JSON.stringify(head);
-          // app_refresh_nav_bar(headInfo);
+            // app_refresh_nav_bar(headInfo);
             Facade.request({ name: Facade.METHOD_REFRESH_NAV_BAR, config: headInfo });
 
         } catch (e) {
@@ -294,14 +296,14 @@ define(['cBase', 'cUI', 'cWidgetFactory', 'cUtility', 'cSales', 'cHybridFacade']
 
     };
 
-    //var HeaderView = new cBase.Class(cUI.AbstractView, options);
+    //var HeaderView = new cBase.Class(cUICore.AbstractView, options);
     //单例模式
     function HeaderView(propertys) {
         if (HeaderView.instance) {
             HeaderView.instance.reset(propertys);
             return HeaderView.instance;
         } else {
-            var Header = new cBase.Class(cUI.AbstractView, options);
+            var Header = new cBase.Class(cUICore.AbstractView, options);
             return HeaderView.instance = new Header(propertys);
         }
     }

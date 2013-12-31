@@ -236,33 +236,36 @@ define(['cBase', 'cUtility', 'cWidgetFactory', 'cStore', 'cHybridFacade'], funct
                 }
 
                 if (info && info.value && info.value.poi) {
-                  info.value.addrs = info.value.poi.address;
-                  info.value.lat = info.value.poi.y;
-                  info.value.lng = info.value.poi.x;
+                  //info.value.addrs = info.value.poi.address;
+                  //info.value.lat = info.value.poi.y;
+                  //info.value.lng = info.value.poi.x;
+                  if (info.value.poi.address && info.value.poi.address != '') {
+                    info.value.addrs = info.value.poi.address;
+                  } else if (info.value.poi.name && info.value.poi.name != '') {
+                    info.value.addrs = info.value.poi.name;
+                  }
+                  if (info.value.poi.y && info.value.poi.y != '') info.value.lat = info.value.poi.y;
+                  if (info.value.poi.x && info.value.poi.x != '') info.value.lng = info.value.poi.x;
                 }
 
                 //ios传ctyName,android传province
                 var _city = null;
 
                 if (info && info.value && info.value.ctyName) {
-                    _city = info.value.ctyName
+                    _city = info.value.ctyName;
+                } else if (info && info.value && info.value.cityName) {
+                    _city = info.value.cityName;
                 } else if (info && info.value && info.value.province) {
                     _city = info.value.province.indexOf('市') > -1 ? info.value.province : info.value.subLocality;
                 }
 
-                //if (info && info.value && info.value.ctyName || info && info.value && info.value.province) {
-                //  _city  = info.value.ctyName ? info.value.ctyName : (info.value.province.indexOf('市') > -1 ? info.value.province : info.value.subLocality);
-                //}
-                /*if (info && info.value && info.value.poi) {
-                info.value = info.value.poi[0];
-                }*/
-
                 var _address = null;
-                if (info && info.value && info.value.poi && info.value.poi.address) {
-                    _address = info.value.poi.address;
-                } else if (info && info.value) {
-                    _address = info.value.addrs;
-                }
+                //if (info && info.value && info.value.poi && info.value.poi.address) {
+                //    _address = info.value.poi.address;
+                //} else if (info && info.value) {
+                //    _address = info.value.addrs;
+                //}
+                if (info && info.value && info.value.addrs) _address = info.value.addrs;
                 var _lat = info.value.lat;
                 var _lng = info.value.lng;
 
@@ -276,8 +279,8 @@ define(['cBase', 'cUtility', 'cWidgetFactory', 'cStore', 'cHybridFacade'], funct
 
                     var locateSuccessCallback = function (data) {
                         if (callback) {
-                            data.lng = lng;
-                            data.lat = lat;
+                            data.lng = _lng;
+                            data.lat = _lat;
                             callback(data);
                         }
                     };
@@ -289,24 +292,10 @@ define(['cBase', 'cUtility', 'cWidgetFactory', 'cStore', 'cHybridFacade'], funct
                         }
                     };
 
-                    Geolocation.requestAMapAddress(lng, lat, locateSuccessCallback, locateErrorCallback);
+                    Geolocation.requestAMapAddress(_lng, _lat, locateSuccessCallback, locateErrorCallback);
                 } else {
                     errorCallback('Error', 0);
                 }
-
-                //if(_city){
-                //  //todo app需传入经纬度
-                //  var lng = 0;
-                //  var lat = 0;
-                //  posCallback && posCallback(lng, lat);
-                //  if (_address.indexOf(_city) > -1) {
-                //    callback({ city: _city, address: _address, lng: lng, lat: lat });
-                //  } else {
-                //    callback({ city: _city, address: _city + _address, lng: lng, lat: lat });
-                //  }
-                //}else{
-
-                //}
             };
 
             var errorCallback = function (err, msg) {

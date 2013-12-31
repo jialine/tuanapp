@@ -85,8 +85,7 @@
       clearInterval(this.setIntervalResource);
       this.root.css('visibility', 'visible');
       this.mask.hide();
-      if (this.clickMaskFlag)
-        this.mask.remove();
+
     });
   };
 
@@ -95,18 +94,18 @@
   };
 
   options.maskToHide = function (fn) {
-    this.clickMaskFlag = true;
-    this.mask.addEvent('onShow', function () {
-      this.root.bind('click', $.proxy(function () {
-        this.hide();
-        typeof fn == 'function' && fn();
-      }, this));
-    });
-    this.mask.addEvent('onHide', function () {
-      this.root.unbind('click');
-    });
-  };
 
+    this.mask.root.on('click', $.proxy(function () {
+      this.hide();
+      typeof fn == 'function' && fn();
+      this.mask.root.off('click');
+    }, this));
+    this.mask.addEvent('onHide', function () {
+      this.root.off('click');
+      this.root.remove();
+    });
+
+  };
 
   return new cBase.Class(AbstractView, options);
 });
