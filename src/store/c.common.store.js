@@ -18,7 +18,7 @@
             return userinfo;
         },
         setUser: function (UserInfo) {
-            var timeout = new cBase.Date(cBase.getServerDate()).addDay(2).format('Y-m-d');
+            var timeout = cStorage.localStorage.getExpireTime('USERINFO') ;
             var userinfo = { data: UserInfo, timeout: timeout };
             cStorage.localStorage.oldSet('USERINFO', JSON.stringify(userinfo));
             this.set(UserInfo);
@@ -39,9 +39,23 @@
             var user = this.getUser();
             return user.UserName;
         },
+        getUserId:function(){
+            var user = this.getUser() || {};
+            return user.UserID || cUtility.getGuid();
+        },
         getAuth: function () {
-            var HeadStore = Common.HeadStore.getInstance();
+            var HeadStore = Common.HeadStore.getInstance(),
+                userinfo = this.getUser();
+            if (userinfo && userinfo.Auth) HeadStore.setAttr('auth', userinfo.Auth);
             return HeadStore.getAttr('auth');
+        },
+        setAuth: function (auth) {
+            var isLogin = this.isLogin(),
+                userinfo = this.getUser() || {};
+
+            userinfo.Auth = auth;
+            userinfo.IsNonUser = isLogin ? false : true;
+            this.setUser(userinfo);
         },
         setNonUser: function (auth) {
             var userinfo = cStorage.localStorage.oldGet('USERINFO');
@@ -76,16 +90,25 @@
                 var sales = Common.SalesObjectStore.getInstance().get();
                 if (sales && sales.sid) {
                     head.sid = sales.sid;
+                } else {
+                    head.sid = '8888';
                 }
                 if (userinfo && userinfo.Auth) {
                     head.auth = userinfo.Auth;
-                    this.set(head);
+                } else {
+                    head.auth = '';
                 }
+                this.set(head);
                 return head;
             }
         },
         initialize: function ($super, options) {
             $super(options);
+        },
+        setAuth: function (auth) {
+            var userInfo = Common.UserStore.getInstance();
+            userInfo.setAuth(auth);
+            this.setAttr('auth', auth);
         }
     });
 

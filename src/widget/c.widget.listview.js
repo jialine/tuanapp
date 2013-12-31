@@ -2,7 +2,7 @@
  * @author:       cmli@Ctrip.com
  * @description:  组件ListView
  */
-define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, AbstractView, WidgetFactory) {
+define(['cBase', 'cUICore', 'cWidgetFactory'], function (cBase, cUICore, WidgetFactory) {
     "use strict";
 
     var WIDGET_NAME = 'ListView';
@@ -148,7 +148,7 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, Abstract
     options.closeAutoEmptyView = function () {
         this.autoEmptyView = false;
     }
-    var ListView = new cBase.Class(AbstractView, options);
+    var ListView = new cBase.Class(cUICore.AbstractView, options);
 
     // return ListView;
     WidgetFactory.register({

@@ -1,4 +1,4 @@
-﻿define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputClear')], function(libs, c, pageview, cUI, html){
+﻿define(['libs', 'c', 'cBasePageView', 'cUI', getViewsPath('inputclear')], function(libs, c, pageview, cUI, html){
   "use strict";
 
   var View = pageview.extend({
@@ -22,7 +22,7 @@
 
         onLoad: function () {
           this.headerview.set({
-            title: 'inputClear组件',
+            title: 'inputclear组件',
             back: true,
             view: this,
             tel: null,

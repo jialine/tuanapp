@@ -186,6 +186,18 @@ define(['cBase'], function (cBase) {
     Storage.localStorage.oldSet = function (name, value) {
         localStorage.setItem(name, value);
     };
+
+    //获得失效时间
+    Storage.localStorage.getExpireTime = function (name) {
+        var v = localStorage.getItem(name);
+        var d = v ? JSON.parse(v) : null;
+        if (d && d.timeout) {
+            return d.timeout;
+        } else {
+            return new cBase.Date(cBase.getServerDate()).addDay(2).format('Y-m-d');
+        }
+    };
+
     Storage.localStorage.oldRemove = function (name) {
         localStorage.removeItem(name);
     };

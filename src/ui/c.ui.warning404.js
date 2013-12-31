@@ -1,4 +1,7 @@
-﻿define(['libs', 'cBase', 'cUIPageview'], function (libs, cBase, PageView) {
+﻿define(['libs', 'cBase', 'cUIPageview', 'cWidgetFactory', 'cWidgetGuider'], function (libs, cBase, PageView, WidgetFactory) {
+
+  var Guider = WidgetFactory.create('Guider');
+
 
   var options = {};
 
@@ -41,6 +44,7 @@
 
   _attributes.onShow = function () {
     this.setzIndexTop();
+    var self = this;
     window.scrollTo(0, 0);
     this.root.find('#telBtn').click(function () {
       Guider.apply({
@@ -48,7 +52,7 @@
           Guider.callService();
         },
         callback: function () {
-          window.location.href = 'tel:4000086666';
+          window.location.href = 'tel:' + self.tel;
         }
       });
     });
@@ -56,6 +60,7 @@
 
   options.__propertys__ = function () {
     this.retryDom;
+    this.tel = '4000086666';
     this.callback = function () { };
   };
 

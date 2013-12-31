@@ -36,6 +36,10 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
   Facade.METHOD_CROSS_JUMP = 'METHOD_CROSS_JUMP';
   Facade.METHOD_REFRESH_NATIVE = 'METHOD_REFRESH_NATIVE';
   Facade.METHOD_H5_NEED_REFRESH = 'METHOD_H5_NEED_REFRESH';
+  Facade.METHOD_READ_FROM_CLIPBOARD = 'METHOD_READ_FROM_CLIPBOARD';
+  Facade.METHOD_COPY_TO_CLIPBOARD = 'METHOD_COPY_TO_CLIPBOARD';
+  Facade.METHOD_SHARE_TO_VENDOR = 'METHOD_SHARE_TO_VENDOR';
+  Facade.METHOD_DOWNLOAD_DATA = 'METHOD_DOWNLOAD_DATA';
 
   var METHOD_ENTRY = 'h5_init_finished';
   var METHOD_MEMBER_LOGIN = 'member_login';
@@ -51,6 +55,8 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
   var METHOD_WEB_VIEW_FINISHED_LOAD = 'web_view_finished_load';
   var METHOD_CHECK_APP_INSTALL = 'check_app_install_status';
   var METHOD_H5_NEED_REFRESH = 'app_h5_need_refresh';
+  var METHOD_READ_FROM_CLIPBOARD = 'read_copied_string_from_clipboard';
+  var METHOD_DOWNLOAD_DATA = 'download_data';
 
   var appLock = false;
 
@@ -138,6 +144,10 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
           var headInfo = headStore.get();
           headInfo.auth = params.data.Auth;
           headStore.set(headInfo);
+        }
+
+        if (typeof options.callback === 'function') {
+          options.callback(params);
         }
       }
     },
@@ -254,6 +264,20 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_H5_NEED_REFRESH: function (options) {
       defaultCallback[METHOD_H5_NEED_REFRESH] = options.callback;
+    },
+
+    METHOD_READ_FROM_CLIPBOARD: function (options) {
+      defaultCallback[METHOD_READ_FROM_CLIPBOARD] = function (params) {
+        options.callback(params);
+      }
+    },
+
+    METHOD_DOWNLOAD_DATA: function (options) {
+      defaultCallback[METHOD_DOWNLOAD_DATA] = function (params) {
+        if (typeof options.callback === 'function') {
+          options.callback(params);
+        }
+      }
     }
   };
 
@@ -338,6 +362,18 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
       if (typeof defaultCallback[METHOD_H5_NEED_REFRESH] === 'function') {
         defaultCallback[METHOD_H5_NEED_REFRESH](options);
       };
+    },
+
+    read_copied_string_from_clipboard: function (options) {
+      if (typeof defaultCallback[METHOD_READ_FROM_CLIPBOARD] === 'function') {
+        defaultCallback[METHOD_READ_FROM_CLIPBOARD](options);
+      }
+    },
+
+    download_data: function (options) {
+      if (typeof defaultCallback[METHOD_DOWNLOAD_DATA] === 'function') {
+        defaultCallback[METHOD_DOWNLOAD_DATA](options);
+      }
     }
   };
 
@@ -392,7 +428,9 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
       },
 
       // 5.1支持初始化
-      METHOD_ENTRY: function(options){
+      // @deprecated
+      METHOD_ENTRY: function (options) {
+        return;
         Facade.register({tagname: Facade.METHOD_ENTRY, callback: options.callback});
         CtripUtil.app_entry();
       },
@@ -439,6 +477,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
         CtripUtil.app_back_to_home();
       },
 
+      // @deprecated
       METHOD_BACK_TO_BOOK_CAR: function(options){
         app_back_to_book_car();
       },
@@ -449,11 +488,12 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
       METHOD_CALL_SERVICE_CENTER: function(){
         //CtripUtil.app_call_service_center();
-        CtripUtil.app_call_phone('400-0886-666');
+        CtripUtil.app_call_phone('400-0086-666');
       },
 
-      METHOD_BACK_TO_LAST_PAGE: function(){
-        CtripUtil.app_back_to_last_page();
+      METHOD_BACK_TO_LAST_PAGE: function (options) {
+        var param = options.param || '';
+        CtripUtil.app_back_to_last_page(param);
       },
 
       METHOD_GO_TO_BOOK_CAR_FINISHED_PAGE: function (options) {
@@ -465,7 +505,8 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
       },
 
       METHOD_OPEN_URL: function (options) {
-        CtripUtil.app_open_url(options.openUrl, options.targetMode, options.title);
+        var title = options.title || '';
+        CtripUtil.app_open_url(options.openUrl, options.targetMode, title);
       },
 
       METHOD_CHECK_UPDATE: function (options) {
@@ -499,6 +540,28 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
       METHOD_REFRESH_NATIVE: function (options) {
         CtripUtil.app_refresh_native_page(options.package, options.json);
+      },
+
+      METHOD_READ_FROM_CLIPBOARD: function (options) {
+        // callback(key{string})
+        Facade.register({ tagname: Facade.METHOD_READ_FROM_CLIPBOARD, callback: options.callback });
+        CtripUtil.app_read_copied_string_from_clipboard()
+      },
+
+      METHOD_COPY_TO_CLIPBOARD: function (options) {
+        CtripUtil.app_copy_string_to_clipboard(options.content);
+      },
+
+      // @imageUrl    将要复制的文字
+      // @text        需要分享的文字
+      METHOD_SHARE_TO_VENDOR: function (options) {
+        //CtripUtil.app_share_to_third_party_platform(options.imgUrl, options.imgCode, options.text);
+        CtripUtil.app_call_system_share(options.imgUrl, options.text);
+      },
+
+      METHOD_DOWNLOAD_DATA: function (options) {
+        Facade.register({ tagname: Facade.METHOD_DOWNLOAD_DATA, callback: options.callback });
+        CtripUtil.app_download_data(options.url);
       }
     }
 

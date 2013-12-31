@@ -18,33 +18,59 @@
     'text'                      : 'res/libs/require.text',
     'App'                       : 'src/app',
     'c'                         : 'src/common/c',
-    'cUI'                       : 'src/common/c.ui',
-    'cHistory'                  : 'src/common/c.history',
-
     'cUtility'                  : 'src/common/c.utility',
     'cBase'                     : 'src/common/c.base',
-    'cView'                     : 'src/common/c.view',
-    'cModel'                    : 'src/common/c.model',             //提供model的基础类
-    'cStore'                    : 'src/common/c.store',             //提供存取具体数据的Store基础类
-    'cStorage'                  : 'src/common/c.storage',           //提供存取localStorage/sessionStorage的静态方法
-    'cAjax'                     : 'src/common/c.ajax',
     'cLog'                      : 'src/common/c.log',
-    'cDataSource'               : 'src/common/c.ui.datasource',     //数据源
     'cValidate'                 : 'src/common/c.validate',          //数据验证
-
-    'CommonStore'               : 'src/common/c.common.store',      //公用的store
-    'cHybridFacade'             : 'src/hybrid/c.hybrid.facade',
     'cSales'                    : 'src/common/c.sales',             //渠道模块
-    'cMultipleDate'             : 'src/common/c.multiple.data',     //多重数据对象
     'cLazyload'                 : 'src/common/c.lazyload',          //加载
     'cListAdapter'              : 'src/common/c.common.listadapter',
-    // 'cAdView'                   : 'src/common/c.ui.ad',
     'cGeoService'               : 'src/common/c.geo.service',
+
+    //-------------------------------------------------------------
+    'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
+    'cStorage'                  : 'src/store/c.storage',           //提供存取localStorage/sessionStorage的静态方法
     'memStore'                  : 'src/store/c.memorystore',
-    'cBasePageView'             : 'src/page/c.page.base',
-    'cCommonPageFactory'        : 'src/page/c.page.factory',
+    'CommonStore'               : 'src/store/c.common.store',      //公用的store
+
+
+    //--------------------------------------------------------------
+    // model
+    'cAjax'                     : 'src/common/c.ajax',
+    'cAbstractModel'            : 'src/model/c.abstract.model',
+    'cModel'                    : 'src/model/c.model',
     'cUserModel'                : 'src/model/c.user.model',
-    'cCommonListPage'           : 'src/page/c.page.common.list',
+    'cMultipleDate'             : 'src/model/c.multiple.data',     //多重数据对象
+
+    //--------------------------------------------------------------
+    // ui控件库
+    'cUI'                       : 'src/ui/c.ui',
+    'cUICore'                   : 'src/ui/c.ui.core',
+    'cHistory'                  : 'src/ui/c.ui.history',
+    'cView'                     : 'src/ui/c.ui.view',
+    'cDataSource'               : 'src/ui/c.ui.datasource', //数据源
+    'cUIBase'                   : 'src/ui/c.ui.base',
+    'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',
+    'cAdView'                   : 'src/ui/c.ui.ad',
+    'cUIAlert'                  : 'src/ui/c.ui.alert',
+    'cUIAnimation'              : 'src/ui/c.ui.animation',
+    'cUICitylist'               : 'src/ui/c.ui.citylist',
+    'cUIHeadWarning'            : 'src/ui/c.ui.head.warning',
+    'cUIInputClear'             : 'src/ui/c.ui.input.clear',
+    'cUILayer'                  : 'src/ui/c.ui.layer',
+    'cUILoading'                : 'src/ui/c.ui.loading',
+    'cUILoadingLayer'           : 'src/ui/c.ui.loading.layer',
+    'cUIMask'                   : 'src/ui/c.ui.mask',
+    'cUIPageview'               : 'src/ui/c.ui.page.view',
+    'cUIScrollRadio'            : 'src/ui/c.ui.scroll.radio',
+    'cUIScrollRadioList'        : 'src/ui/c.ui.scroll.radio.list',
+    'cUIScrollList'             : 'src/ui/c.ui.scrolllist',
+    'cUIScrollLayer'            : 'src/ui/c.ui.scrolllayer',
+    'cUIToast'                  : 'src/ui/c.ui.toast',
+    'cUIWarning'                : 'src/ui/c.ui.warning',
+    'cUIWarning404'             : 'src/ui/c.ui.warning404',
+    'cUIHashObserve'            : 'src/ui/c.ui.hash.observe',
+    'cUIEventListener'          : 'src/ui/c.ui.event.listener',
 
     //--------------------------------------------------------------
     // widget控件库
@@ -61,29 +87,16 @@
     'cWidgetSlide'              : 'src/widget/c.widget.slide',
     'cWidgetMember'             : 'src/widget/c.widget.member',
     'cWidgetGuider'             : 'src/widget/c.widget.guider',
+    'cWidgetCaptcha'            : 'src/widget/c.widget.captcha',
 
     //--------------------------------------------------------------
-    // ui控件库
-    'cUIBase'                   : 'src/ui/c.ui.base',
-    'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',
-    'cAdView'                   : 'src/ui/c.ui.ad',
-    'cUIAlert'                  : 'src/ui/c.ui.alert',
-    'cUIAnimation'              : 'src/ui/c.ui.animation',
-    // 'cUICitylist'               : 'src/ui/c.ui.citylist',
-    'cUIHeadWarning'            : 'src/ui/c.ui.head.warning',
-    'cUIInputClear'             : 'src/ui/c.ui.input.clear',
-    'cUILayer'                  : 'src/ui/c.ui.layer',
-    'cUILoading'                : 'src/ui/c.ui.loading',
-    'cUILoadinglayer'           : 'src/ui/c.ui.loading.layer',
-    'cUIMask'                   : 'src/ui/c.ui.mask',
-    'cUIPageview'               : 'src/ui/c.ui.page.view',
-    'cUIScrollradio'            : 'src/ui/c.ui.scroll.radio',
-    'cUIScrollradiolist'        : 'src/ui/c.ui.scroll.radio.list',
-    'cUIScrollList'             : 'src/ui/c.ui.scrolllist',
-    'cUIScrollLayer'            : 'src/ui/c.ui.scrollLayer',
-    'cUIToast'                  : 'src/ui/c.ui.toast',
-    'cUIWarning'                : 'src/ui/c.ui.warning',
-    'cUIWarning404'             : 'src/ui/c.ui.warning404',
-    'cUIHashObserve'            : 'src/ui/c.ui.hash.observe'
+    // Common Page
+    'cBasePageView'             : 'src/page/c.page.base',
+    'cCommonPageFactory'        : 'src/page/c.page.factory',
+    'cCommonListPage'           : 'src/page/c.page.common.list',
+
+    //--------------------------------------------------------------
+    // Hybrid
+    'cHybridFacade'             : 'src/hybrid/c.hybrid.facade'
   }
 });

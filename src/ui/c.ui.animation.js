@@ -119,33 +119,29 @@ function () {
 //        },
 
         slideleft: function (inView, outView, callback, scope) {
-            this.body.addClass('hiddenx');
             inView.$el.addClass('animatestart');
             inView.$el.addClass('sliderightin');
             var self = this;
             return setTimeout(function () {
-                self.body.removeClass('hiddenx');
                 inView.$el.removeClass('animatestart');
                 inView.$el.removeClass('sliderightin');
                 outView.$el.hide();
                 callback && callback.call(scope);
-            }, 390);
+              }, 340);
         },
         slideright: function (inView, outView, callback, scope) {
-            this.body.addClass('hiddenx');
 
             outView.$el.addClass('animatestart');
             outView.$el.addClass('sliderightout');
 
             var self = this;
             return setTimeout(function () {
-                self.body.removeClass('hiddenx');
                 outView.$el.removeClass('animatestart');
                 outView.$el.removeClass('sliderightout');
                 outView.$el.hide();
 
                 callback && callback.call(scope);
-            }, 390);
+            }, 340);
         },
 
         fadeIn: function (inView, outView, callback, scope) {

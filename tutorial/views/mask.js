@@ -31,7 +31,7 @@
         events: {
           returnHandler: function () {
             this.back('index');
-            s.hide();
+            if(s) s.hide();
           }
         }
       });
