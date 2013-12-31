@@ -1,19 +1,15 @@
 # c.widget.abstract.calendar
 
+
 ### UML图
-![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.abstract.calendar.png)
 
 ### 简单描述
 该类用于提供Calendar与CalendarPrice继承
 
 ### Attribute
 
-    // @param chineseHoliday {Array}                中国节日
-    // @param CONSTANT {object}
-
-
-
-
+    // @param CONSTANT {object}             一些常量数据
 
 ### Method
 
@@ -70,11 +66,9 @@
 
 ### 使用方法
 
-    define(['cWidgetFactory', 'cWidgetCalendar'], function(WidgetFactory){
-        var Calendar = WidgetFactory.create('Calendar');
-        var c = new Calendar({
-
-        });
+    define(['cWidgetFactory', 'cWidgetAbstractCalendar'], function(WidgetFactory){
+        var AbstractCalendar = WidgetFactory.create('Abstract.Calendar');
+        var Calendar = new cBase.Class(AbstractCalendar, {});
     });
 
 该类为抽象类，用于calendar与calendarPrice继承，本身不应该被实例化
