@@ -9,66 +9,158 @@
 
 ### Attribute
 
-    // @param CONSTANT {object}             一些常量数据
+    // @param Months {Number}                             显示几个月
+    // @param date {Object}                               被选中时间
+    // @param curDate {String}                            当前时间
+    // @param root {Object}                               容器
+    // @param callback {function}                         日期选择后的回调
+    // @param title {String}                              标题
+    // @param noabsolute {Boolean}                        定位方式是否绝对定位
+    // @param msg {String}                                提示文字
+    // @param clickEnabled {Boolean}                      是否可点击
+    // @param cls {Object}                                类
+    // @param validStartDate {Object}                     有效选择开始时间
+    // @param validEndDate {Object}                       有效选择结束时间
+    // @param startMonth {Object}                         开始月份
 
 ### Method
 
-**public setCalendarDate**
+**public selectedDate**
 
-    // 设置日历日期
-    setCalendarDate: function (dateObj) { ... }
+    // 设置当前时间
+    selectedDate: function () { ... }
 
-**public leapMonth**
+**public buildEvent**
 
-    // 传回农历 y年闰哪个月 1-12 , 没闰传回 0
-    leapMonth: function (year) { ... }
+    //绑定view事件
+    buildEvent: function () { ... }
 
-**public monthDays**
+**public buildElement**
 
-    // 传回农历 y年m月的总天数
-    monthDays: function (year, month) { ... }
+    //指定DOM
+    buildElement: function () { ... }
 
-**public leapDays**
+**public position**
 
-    // 传回一年的天数
-    leapDays: function (year, month) { ... }
+    //设置容器信息
+    position: function () { ... }
 
-**public lYearDays**
+**public buildElementsEvent**
 
-    // 传回某年的天数
-    lYearDays: function (year) { ... }
+    //DOM事件绑定 日期选择，返回
+    buildElementsEvent: function () { ... }
 
-**public Lunar**
+**public isAccordBound**
 
-    // 算出农历, 传入日期对象, 传回农历日期对象
-    Lunar: function (DateObj) { ... }
+    //检测选择的时间是否有效（在范围内）
+    isAccordBound: function (date) { ... }
 
-**public cDay**
+**public _setDate**
 
-    // 中文日期
-    cDay: function (m, d) { ... }
+    //设置选择的日期
+    _setDate: function (date, el) { ... }
 
-**public solarDay2**
+**public setCurDate**
 
-    //
-    solarDay2: function (date) { ... }
+    //设置当前日期
+    setCurDate: function (curDate) { ... }
 
-**public weekday**
+**public getEndDate**
 
-    //
-    weekday: function (date) { ... }
+    //获得结束日期
+    getEndDate: function () { ... }
 
-**public YYMMDD**
+**public buildSelectCls**
 
-    // 返回规定格式的日期格式
-    YYMMDD: function () { ... }
+    //返回选择的类
+    buildSelectCls: function (suffix) { ... }
+
+**public getCurTitle**
+
+    //获取当前标题
+    getCurTitle: function () { ... }
+
+**public createCalendar**
+
+    //构造日历DOM结构
+    createCalendar: function () { ... }
+
+**public createWeek**
+
+    //构造星期DOM结构
+    createWeek: function (isApp) { ... }
+
+**public createMonth**
+
+    //构造月份DOM结构
+    createMonth: function () { ... }
+
+**public formatTitle**
+
+    //返回日期的短名称
+    formatTitle: function (date) { ... }
+
+**public getDateInfo**
+
+    //获取日期的详细信息
+    getDateInfo: function (date) { ... }
+
+**public formatTitle2**
+
+    //返回函数环境下的日期短名称
+    formatTitle2: function () { ... }
+
+**public calcStructData**
+
+    //计算这个月第一天和最后一天是周几
+    calcStructData: function (month) { ... }
+
+**public setDate**
+
+    //设置出发时间或返程时间
+    setDate: function (dates) { ... }
+
+**public addDate**
+
+    //增加出发时间或返程时间
+    addDate: function (dates, overrive) { ... }
+
+**public removeDate**
+
+    //删除出发时间或返程时间
+    removeDate: function (dates) { ... }
+
+**public getDate**
+
+    //获取出发时间和返程时间
+    getDate: function () { ... }
+
+**public getDate**
+
+    //获取出发时间和返程时间
+    getDate: function () { ... }
+
+
+**public update**
+
+    //更新当前对象
+    update: function (options) { ... }
 
 
 ### 使用方法
 
-    define(['cWidgetFactory', 'cWidgetAbstractCalendar'], function(WidgetFactory){
-        var AbstractCalendar = WidgetFactory.create('Abstract.Calendar');
-        var Calendar = new cBase.Class(AbstractCalendar, {});
-    });
+    define([ 'cWidgetFactory', 'cWidgetCalendar'], function ( WidgetFactory) {
+        var Calendar = WidgetFactory.create('Calendar');
+        this.calendar = new Calendar({
+            date:{
+                start:{},
+                back:{}
+            },
+            title:"",
+            callback:function(){
 
-该类为抽象类，用于calendar与calendarPrice继承，本身不应该被实例化
+            }
+
+        })
+    }
+
