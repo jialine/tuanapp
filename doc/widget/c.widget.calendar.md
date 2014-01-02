@@ -2,26 +2,26 @@
 
 
 ### UML图
-![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.abstract.calendar.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.png)
 
 ### 简单描述
 该类用于提供Calendar与CalendarPrice继承
 
 ### Attribute
 
-    // @param Months {Number}                             显示几个月
-    // @param date {Object}                               被选中时间
-    // @param curDate {String}                            当前时间
-    // @param root {Object}                               容器
-    // @param callback {function}                         日期选择后的回调
-    // @param title {String}                              标题
-    // @param noabsolute {Boolean}                        定位方式是否绝对定位
-    // @param msg {String}                                提示文字
-    // @param clickEnabled {Boolean}                      是否可点击
-    // @param cls {Object}                                类
-    // @param validStartDate {Object}                     有效选择开始时间
-    // @param validEndDate {Object}                       有效选择结束时间
-    // @param startMonth {Object}                         开始月份
+    // @param Months {Number}                               显示几个月
+    // @param date {Object}                                 被选中时间
+    // @param curDate {String}                              当前时间    start or back
+    // @param root {Object}                                 容器
+    // @param callback {function}                           日期选择后的回调
+    // @param title {String}                                标题
+    // @param noabsolute {Boolean}                          定位方式是否绝对定位
+    // @param msg {String}                                  提示文字
+    // @param clickEnabled {Boolean}                        是否可点击
+    // @param cls {Object}                                  类
+    // @param validStartDate {Object}                       有效选择开始时间
+    // @param validEndDate {Object}                         有效选择结束时间
+    // @param startMonth {Object}                           开始月份
 
 ### Method
 
@@ -58,7 +58,7 @@
 
 **public _setDate**
 
-    //设置选择的日期
+    //设置选择的日期并回调
     _setDate: function (date, el) { ... }
 
 **public setCurDate**
@@ -136,12 +136,6 @@
     //获取出发时间和返程时间
     getDate: function () { ... }
 
-**public getDate**
-
-    //获取出发时间和返程时间
-    getDate: function () { ... }
-
-
 **public update**
 
     //更新当前对象
@@ -164,4 +158,5 @@
 
         })
     }
+    该方法继承自c.widget.abstract.calendar，适用往返程日历
 
