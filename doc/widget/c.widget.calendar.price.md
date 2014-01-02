@@ -1,25 +1,25 @@
-# c.widget.abstract.calendar
+# c.widget.calendar.price
 
 
 ### UML图
 ![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.price.png)
 
 ### 简单描述
-该类用于提供Calendar与CalendarPrice继承
+该类用于创建日历，支持实时价格
 
 ### Attribute
 
     // @param Months {Number}                               显示几个月
     // @param date {Object}                                 被选中时间
     // @param curDate {String}                              当前时间    start
-    // @param root {Object}                                 容器
+    // @param root {dom}                                    容器
     // @param callback {function}                           日期选择后的回调
     // @param onlyread  {Boolean}                           是否只读
     // @param showChineseHoliday {Boolean}                  是否显示农历
     // @param formatPrice {function}                        格式化价格
     // @param showHoliday {Boolean}                         是否显示节假日
     // @param validDates {Array}                            价格有效时间
-    // @param cls {Object}                                  类
+    // @param cls {dom}                                     类
     // @param validStartDate {Object}                       有效选择开始时间
     // @param validEndDate {Object}                         有效选择结束时间
     // @param startMonth {Object}                           开始月份

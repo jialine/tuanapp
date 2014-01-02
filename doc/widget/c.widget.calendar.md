@@ -1,11 +1,11 @@
-# c.widget.abstract.calendar
+# c.widget.calendar
 
 
 ### UML图
 ![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.png)
 
 ### 简单描述
-该类用于提供Calendar与CalendarPrice继承
+该类用于创建日历，支持往返程
 
 ### Attribute
 
