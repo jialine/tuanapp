@@ -59,6 +59,7 @@
 
 **public weekday**
 
+
     //
     weekday: function (date) { ... }
 
