@@ -1,4 +1,4 @@
-define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, cUICore, cUtility, WidgetFactory) {
+define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, Tools, cUtility, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Calendar.Price';
@@ -17,7 +17,7 @@ define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       this.holiday = this.CONSTANT.CALENDAR_COMMON_HOLIDAY;             //中西共同节日
       this.DAYTITLE = this.CONSTANT.CALENDAR_WEEKDAY_SHORTNAME;         //按周排布
       this.SDAYTITLE = this.CONSTANT.CALENDAR_WEEKDAY_SHORTNAME2;         //按周排布
-      this.addClass(cUICore.config.prefix + this.CONSTANT.CALENDAR);
+      this.addClass(Tools.config.prefix + this.CONSTANT.CALENDAR);
       this.showChineseHoliday = true;                     //是否显示农历
       this.showHoliday = true;                            //是否显示节假日
       this.startMonth = cUtility.getServerDate();         //开始月份
@@ -122,7 +122,7 @@ define(['cBase', 'cUICore', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
         top: '0px'
       });
 
-      var size = cUICore.Tools.getPageSize();
+      var size = Tools.getPageSize();
       this.root.css({
         left: '0px',
         top: '0px',
