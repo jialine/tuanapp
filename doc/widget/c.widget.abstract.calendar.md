@@ -8,43 +8,7 @@
 
 ### Attribute
 
-    // @param chineseHoliday {Array}                中国节日
-    // @param CONSTANT {object}
-
-
-
-
-
-### Method
-
-**public setCalendarDate**
-
-    // 设置日历日期
-    setCalendarDate: function (dateObj) { ... }
-
-**public leapMonth**
-
-    // 传回农历 y年闰哪个月 1-12 , 没闰传回 0
-    leapMonth: function (year) { ... }
-
-**public monthDays**
-
-    // 传回农历 y年m月的总天数
-    monthDays: function (year, month) { ... }
-
-**public leapDays**
-
-    // 传回一年的天数
-    leapDays: function (year, month) { ... }
-
-**public lYearDays**
-
-    // 传回某年的天数
-    lYearDays: function (year) { ... }
-
-**public Lunar**
-
-    // 算出农历, 传入日期对象, 传回农历日期对象
+    // @param CONSTANT {object}             一些常量数据
     Lunar: function (DateObj) { ... }
 
 **public cDay**
