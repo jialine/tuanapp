@@ -1,24 +1,25 @@
-# c.widget.calendar
+# c.widget.calendar.price
 
 
 ### UML图
-![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.png)
+![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.price.png)
 
 ### 简单描述
-该类用于创建日历，支持往返程
+该类用于创建日历，支持实时价格
 
 ### Attribute
 
     // @param Months {Number}                               显示几个月
     // @param date {Object}                                 被选中时间
-    // @param curDate {String}                              当前时间    start or back
-    // @param root {Object}                                 容器
+    // @param curDate {String}                              当前时间    start
+    // @param root {dom}                                    容器
     // @param callback {function}                           日期选择后的回调
-    // @param title {String}                                标题
-    // @param noabsolute {Boolean}                          定位方式是否绝对定位
-    // @param msg {String}                                  提示文字
-    // @param clickEnabled {Boolean}                        是否可点击
-    // @param cls {Object}                                  类
+    // @param onlyread  {Boolean}                           是否只读
+    // @param showChineseHoliday {Boolean}                  是否显示农历
+    // @param formatPrice {function}                        格式化价格
+    // @param showHoliday {Boolean}                         是否显示节假日
+    // @param validDates {Array}                            价格有效时间
+    // @param cls {dom}                                     类
     // @param validStartDate {Object}                       有效选择开始时间
     // @param validEndDate {Object}                         有效选择结束时间
     // @param startMonth {Object}                           开始月份
@@ -35,11 +36,6 @@
 
     //绑定view事件
     buildEvent: function () { ... }
-
-**public buildElement**
-
-    //指定DOM
-    buildElement: function () { ... }
 
 **public position**
 
@@ -66,20 +62,10 @@
     //设置当前日期
     setCurDate: function (curDate) { ... }
 
-**public getEndDate**
-
-    //获得结束日期
-    getEndDate: function () { ... }
-
 **public buildSelectCls**
 
     //返回选择的类
     buildSelectCls: function (suffix) { ... }
-
-**public getCurTitle**
-
-    //获取当前标题
-    getCurTitle: function () { ... }
 
 **public createCalendar**
 
@@ -96,20 +82,17 @@
     //构造月份DOM结构
     createMonth: function () { ... }
 
+**public formatPrice**
+
+    //格式化价格
+    formatPrice: function (date) { ... }
+
+
 **public formatTitle**
 
     //返回日期的短名称
     formatTitle: function (date) { ... }
 
-**public getDateInfo**
-
-    //获取日期的详细信息
-    getDateInfo: function (date) { ... }
-
-**public formatTitle2**
-
-    //返回函数环境下的日期短名称
-    formatTitle2: function () { ... }
 
 **public calcStructData**
 
@@ -121,36 +104,22 @@
     //设置出发时间或返程时间
     setDate: function (dates) { ... }
 
-**public addDate**
-
-    //增加出发时间或返程时间
-    addDate: function (dates, overrive) { ... }
-
-**public removeDate**
-
-    //删除出发时间或返程时间
-    removeDate: function (dates) { ... }
-
 **public getDate**
 
     //获取出发时间和返程时间
     getDate: function () { ... }
 
-**public update**
-
-    //更新当前对象
-    update: function (options) { ... }
-
 
 ### 使用方法
 
     define([ 'cWidgetFactory', 'cWidgetCalendar'], function ( WidgetFactory) {
-        var Calendar = WidgetFactory.create('Calendar');
-        this.calendar = new Calendar({
+        var Calendar_Price = WidgetFactory.create('Calendar.Price');
+        this.calendar = new Calendar_Price({
             date:{
-                start:{},
-                back:{}
+                start:{}
             },
+            curDate: 'start',
+            validDates: [],
             title:"",
             callback:function(){
 
@@ -158,5 +127,5 @@
 
         })
     }
-    该方法继承自c.widget.abstract.calendar，适用往返程日历
+    该方法继承自c.widget.abstract.calendar，用于显示实时价格
 
