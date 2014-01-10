@@ -26,7 +26,9 @@
     'cLazyload'                 : 'src/common/c.lazyload',          //加载
     'cListAdapter'              : 'src/common/c.common.listadapter',
     'cGeoService'               : 'src/common/c.geo.service',
-
+    //-------------------------------------------------------------
+    'inherit'                   : 'src/core/c.core.inherit',     // 继承
+    
     //-------------------------------------------------------------
     'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
     'cStorage'                  : 'src/store/c.storage',           //提供存取localStorage/sessionStorage的静态方法

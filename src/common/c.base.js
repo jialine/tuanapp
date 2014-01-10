@@ -1,4 +1,4 @@
-define(['libs'], function (libs) {
+define(['libs', 'inherit'], function (libs, inherit) {
     if (typeof console === 'undefined') {
         console = {
             log: function () { },
@@ -35,6 +35,9 @@ define(['libs'], function (libs) {
     * @subProperty {Object} 被创建类的成员
     * @return {Function} 被创建的类
     */
+    
+    /**
+    * @desc : 代码迁移至 core/c.core.inherit.js
     C.Class = function (supClass, subProperty) {
         if (typeof supClass === 'object') {
             subProperty = supClass;
@@ -83,6 +86,8 @@ define(['libs'], function (libs) {
         }
         return newClass;
     }
+    */
+    C.Class = inherit.Class;
 
     /**
     * 对象扩展
@@ -90,6 +95,9 @@ define(['libs'], function (libs) {
     * @param {Object}... 要继承的对象
     * @returns {Boolean}
     */
+
+    /**
+    * @desc : 代码迁移至 core/c.core.inherit.js
     C.extend = function () {
         var args = slice.call(arguments),
             source = args.shift() || {};
@@ -103,12 +111,20 @@ define(['libs'], function (libs) {
         }
         return source;
     }
+    */
+    C.extend = inherit.extend;
+
+
+
     /**
     * 对原型链的扩充
     * @param {Function} fun
     * @para!m {Object} propertys
     * @returns {Function}
     */
+
+    /**
+    * @desc : 代码迁移至 core/c.core.inherit.js
     C.implement = function (fun, propertys) {
         if (typeof fun != 'function') return false;
         for (var i in propertys) {
@@ -116,6 +132,9 @@ define(['libs'], function (libs) {
         }
         return fun;
     }
+    */
+    C.implement = inherit.implement;
+    
     /**
     * 判断对象类型
     */
@@ -445,7 +464,10 @@ define(['libs'], function (libs) {
             this.values = [];
         },
         initialize: function (obj) {
-            typeof obj == 'object' && (obj = {});
+            
+            // @Author : yq.zhang (Air)
+            // @Description : 修正初始化逻辑，将逻辑与 替换为 逻辑或
+            typeof obj == 'object' || (obj = {});
             for (var i in obj) {
                 if (obj.hasOwnProperty(i)) {
                     this.keys.push(i);
