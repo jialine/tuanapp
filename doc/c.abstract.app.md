@@ -123,11 +123,16 @@ app.js作为我们系统总的控制器（路由）而存在，c.abstract.app作
 **public forward**
 
     // view跳转
+    // @param utl {String}         要跳转的url
+    // @param replace {Boolean}    是否替换hash
+    // @param isNotAnimat {Boolean}  是否有动画
     forward: function (url, replace, isNotAnimat) { ... }
 
 **public back**
 
     // view跳转
+    // @param utl {String}         要跳转的url
+    // @param isNotAnimat {Boolean}  是否有动画
     back: function (url, isNotAnimat) { ... }
 
 
