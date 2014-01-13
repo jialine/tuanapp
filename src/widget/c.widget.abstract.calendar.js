@@ -1,4 +1,4 @@
-define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, AbstractView, WidgetFactory) {
+define(['cCoreInherit', 'cUIAbstractView', 'cWidgetFactory'], function (cCoreInherit, AbstractView, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Abstract.Calendar';
@@ -8,7 +8,7 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, Abstract
     return;
   }
 
-  var AbstractCalendar = new cBase.Class(AbstractView, {
+  var AbstractCalendar = new cCoreInherit.Class(AbstractView, {
     __propertys__: function () {
       this.CONSTANT = {
         CALENDAR_CHINESE_LUNAR_INFO: [
@@ -92,10 +92,10 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, Abstract
         CALENDAR: 'calendar'
       };
     },
-
+    
     initialize: function ($super, options) {
       $super(options);
-    },
+    },    
 
     setCalendarDate: function(dateObj){
       this.dateObj = (dateObj !== 'undefined') ? dateObj : new Date();
@@ -240,8 +240,23 @@ define(['cBase', 'cUIAbstractView', 'cWidgetFactory'], function (cBase, Abstract
     YYMMDD: function () {
       var dateArr = [this.SY, '年', this.SM + 1, '月', this.SD, '日'];
       return dateArr.join('');
+    },
+
+    _isDate: function(obj){
+      var types = Object.prototype.toString.call(obj);
+      return types === '[object Date]';
+
+    },
+
+    _objectKey: function(obj){
+      var keys = [];
+      if (obj) for (var i in obj) {
+        if (obj.hasOwnProperty(i)) keys.push(i);
+      }
+      return keys;
     }
   });
+  
 
 
   WidgetFactory.register({
