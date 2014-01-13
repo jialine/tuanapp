@@ -27,7 +27,11 @@
     'cListAdapter'              : 'src/common/c.common.listadapter',
     'cGeoService'               : 'src/common/c.geo.service',
     //-------------------------------------------------------------
-    'inherit'                   : 'src/core/c.core.inherit',     // 继承
+    'cCoreInherit'              : 'src/core/c.core.inherit',        // Class类，框架的基础类体系
+    'cCoreDate'                 : 'src/core/c.core.date',           // Date对象，对时间提供一些常用方法
+    'cBusinessServertime'       : 'src/business/c.business.servertime',
+    'cCoreConsole'              : 'src/core/c.core.console',
+    'cCoreHash'                 : 'src/core/c.core.hash',
     
     //-------------------------------------------------------------
     'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
