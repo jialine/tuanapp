@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cUIAnimation'], function (libs, cBase, animation) {
+﻿define(['libs', 'cBase', 'cUIAnimation', 'cUtility'], function (libs, cBase, animation, util) {
 
     var Appliction = new cBase.Class({
         __propertys__: function () {
@@ -52,7 +52,7 @@
             this.isAnimat = true;
 
             //这个是开启动画的总开关，这个名字不太合适
-            this.animatSwitch = cBase.isInApp();
+            this.animatSwitch = util.isInApp();
 
             this.animatSwitch = true;
 

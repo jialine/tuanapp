@@ -16,7 +16,9 @@
 
   paths: {
     'text'                      : 'res/libs/require.text',
-    'App'                       : 'src/app',
+    'cAbstractApp'              : 'src/c.abstract.app',
+    'App'                       : 'src/business/c.business.app'
+    // 'App'                       : 'src/app',
     'c'                         : 'src/common/c',
     'cUtility'                  : 'src/common/c.utility',
     'cBase'                     : 'src/common/c.base',
@@ -26,13 +28,15 @@
     'cLazyload'                 : 'src/common/c.lazyload',          //加载
     'cListAdapter'              : 'src/common/c.common.listadapter',
     'cGeoService'               : 'src/common/c.geo.service',
+
+
     //-------------------------------------------------------------
     'cCoreInherit'              : 'src/core/c.core.inherit',        // Class类，框架的基础类体系
     'cCoreDate'                 : 'src/core/c.core.date',           // Date对象，对时间提供一些常用方法
     'cBusinessServertime'       : 'src/business/c.business.servertime',
     'cCoreConsole'              : 'src/core/c.core.console',
     'cCoreHash'                 : 'src/core/c.core.hash',
-    
+
     //-------------------------------------------------------------
     'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
     'cStorage'                  : 'src/store/c.storage',           //提供存取localStorage/sessionStorage的静态方法
