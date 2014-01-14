@@ -1,4 +1,4 @@
-define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inherit, date, cCoreHash) {
+define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash', 'cBusinessServertime'], function (libs, inherit, date, cCoreHash, cBusinessServertime) {
     if (typeof console === 'undefined') {
         console = {
             log: function () { },
@@ -546,6 +546,8 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
     /*
     * @Dscsription ： 迁移至 business/c.business.servertime.js
     */
+
+    C.getServerDate =  cBusinessServertime.getServerDate;
     //C.getServerDate = function (callback) {
 
 
