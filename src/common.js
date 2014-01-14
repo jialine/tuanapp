@@ -110,6 +110,11 @@
 
     //--------------------------------------------------------------
     // Hybrid
-    'cHybridFacade'             : 'src/hybrid/c.hybrid.facade'
+    'cHybridFacade'             : 'src/hybrid/c.hybrid.facade',
+
+    // -------------------------------------------------------------
+    // Business Widget
+    'cBusinessWidgetMemberTip'   : 'src/business/c.business.widget.member.tip',
+    'cBusinessWidgetChannelAd'   : 'src/business/c.business.widget.channel.ad'
   }
 });
