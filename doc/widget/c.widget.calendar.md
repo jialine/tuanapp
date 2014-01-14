@@ -1,162 +1,282 @@
-# c.widget.calendar
+#c.widget.calendar
+##描述
+日历组件，用于日期选择。同时可以支持选择往返2个日期。
+
+##属性
+
+###date
+类型：Date
+
+###chineseHoliday
+类型：数组
+
+中国农历节日
+
+###holiday
+类型：数组
+
+中国西方公共节日
+
+###DAYTITLE
+类型：数组
+
+星期标题
+
+###SDAYTITLE
+类型：数组
+
+星期短标题
+
+###DAYTITLE2
+类型：数组
+
+星期长标题
+
+###startMonth
+类型：数值
+
+开始月份
+
+###Months 
+类型：数值
+
+当前组件显示多少个月
+
+###validStartDate
+类型：Date
+
+有效选择开始时间
+
+###validEndDate
+类型：Date
+
+有效选择结束日期
+
+###date
+类型：Date
+
+被选中的日期
+
+###dateVal
+类型：Object
+
+时间值
+
+###titledom
+类型：Dom
+
+title的Dom
+
+###leftback
+类型：Dom
+
+左侧返回的Dom
+
+###cls
+类型：Array
+
+类
+
+###title
+类型：String
+
+标题
+
+###noabsolute
+类型：boolean
+
+css定位方式是否是绝对定位
+
+###curDate
+类型：Date
+
+当前时间
+
+###dateDoms
+类型：Object
+
+时间Dom
+
+###html
+类型：String
+
+html
+
+###windowResizeHander
+类型：Function
+
+window resize事件句柄
+
+###clickEnabled
+类型：boolean
+
+限制click
+
+###msg
+类型：String
+
+提示文字
+
+###callback
+类型：Function
+
+日志选择后执行的方法
+
+###hashObserve
+类型：Object
+
+##方法
+
+###initialize
+初始化方法
+
+###selectedDate
+设置当前时间
+
+###buildEvent
+绑定view事件
+
+###buildElement
+指定Dom
+
+###buildElementEvent
+Dom事件绑定 日期选择，返回
+
+###onCreate
+View第一次载入时调用,在声明周期只调用一次.一般在此方法中保存dom元素的引用.
+
+###onShow
+view显示后调用的方法
+
+###onHide
+view隐藏后调用的方法
+
+###position
+设置容器信息
+
+###createHtml
+返回：function
+
+###isAccordBound
+isAccorcdBound(date: Date)
+返回：boolean
+
+检测选择的事件是否生效（在范围内）
+
+###setCurDate
+setCurDate(surDate : Date) 
+
+设置选择的日期并回调
+
+###getEndDate
+返回Date
+
+获得结束时间
 
 
-### UML图
-![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.png)
+###buildSelectCls
+buildSelectCls(suffix: String)
+返回String
 
-### 简单描述
-该类用于创建日历，支持往返程
+返回选择类
 
-### Attribute
+###getCurTitle
+返回String
 
-    // @param Months {Number}                               显示几个月
-    // @param date {Object}                                 被选中时间
-    // @param curDate {String}                              当前时间    start or back
-    // @param root {Object}                                 容器
-    // @param callback {function}                           日期选择后的回调
-    // @param title {String}                                标题
-    // @param noabsolute {Boolean}                          定位方式是否绝对定位
-    // @param msg {String}                                  提示文字
-    // @param clickEnabled {Boolean}                        是否可点击
-    // @param cls {Object}                                  类
-    // @param validStartDate {Object}                       有效选择开始时间
-    // @param validEndDate {Object}                         有效选择结束时间
-    // @param startMonth {Object}                           开始月份
+获取当前标题
 
-### Method
+###createCalendar
+返回String
 
+构造日历Dom结构
 
-**public selectedDate**
+###createWeek
+createWeek(isApp: boolean)
+返回String
 
-    // 设置当前时间
-    selectedDate: function () { ... }
+构造星期Dom结构
 
-**public buildEvent**
+###createMonth
+createMonth(date: Date)
+返回String
 
-    //绑定view事件
-    buildEvent: function () { ... }
+构造月份Dom结构
 
-**public buildElement**
+###formateTitle
+formateTitle(date: Object)
+返回Array
 
-    //指定DOM
-    buildElement: function () { ... }
-
-**public position**
-
-    //设置容器信息
-    position: function () { ... }
-
-**public buildElementsEvent**
-
-    //DOM事件绑定 日期选择，返回
-    buildElementsEvent: function () { ... }
-
-**public isAccordBound**
-
-    //检测选择的时间是否有效（在范围内）
-    isAccordBound: function (date) { ... }
-
-**public _setDate**
-
-    //设置选择的日期并回调
-    _setDate: function (date, el) { ... }
-
-**public setCurDate**
-
-    //设置当前日期
-    setCurDate: function (curDate) { ... }
-
-**public getEndDate**
-
-    //获得结束日期
-    getEndDate: function () { ... }
-
-**public buildSelectCls**
-
-    //返回选择的类
-    buildSelectCls: function (suffix) { ... }
-
-**public getCurTitle**
-
-    //获取当前标题
-    getCurTitle: function () { ... }
-
-**public createCalendar**
-
-    //构造日历DOM结构
-    createCalendar: function () { ... }
-
-**public createWeek**
-
-    //构造星期DOM结构
-    createWeek: function (isApp) { ... }
-
-**public createMonth**
-
-    //构造月份DOM结构
-    createMonth: function () { ... }
-
-**public formatTitle**
-
-    //返回日期的短名称
-    formatTitle: function (date) { ... }
-
-**public getDateInfo**
-
-    //获取日期的详细信息
-    getDateInfo: function (date) { ... }
-
-**public formatTitle2**
-
-    //返回函数环境下的日期短名称
-    formatTitle2: function () { ... }
-
-**public calcStructData**
-
-    //计算这个月第一天和最后一天是周几
-    calcStructData: function (month) { ... }
-
-**public setDate**
-
-    //设置出发时间或返程时间
-    setDate: function (dates) { ... }
-
-**public addDate**
-
-    //增加出发时间或返程时间
-    addDate: function (dates, overrive) { ... }
-
-**public removeDate**
-
-    //删除出发时间或返程时间
-    removeDate: function (dates) { ... }
-
-**public getDate**
-
-    //获取出发时间和返程时间
-    getDate: function () { ... }
-
-**public update**
-
-    //更新当前对象
-    update: function (options) { ... }
+返回日期的名称
 
 
-### 使用方法
+###formateTitle2
+formateTitle2(fun: function)
+返回Array
 
-    define([ 'cWidgetFactory', 'cWidgetCalendar'], function ( WidgetFactory) {
-        var Calendar = WidgetFactory.create('Calendar');
-        this.calendar = new Calendar({
-            date:{
-                start:{},
-                back:{}
-            },
-            title:"",
-            callback:function(){
+###getDateInfo
+返回String
 
-            }
+获取日期的详细信息
 
-        })
-    }
-    该方法继承自c.widget.abstract.calendar，适用往返程日历
+###calcStructDate
+calcStructDate(month: Date)
+
+计算这个月第一天和最后一天是周几
+
+###setDate
+setDate(dates: Object)
+
+设置出发时间或返程时间
+
+###addDate
+addDate(dates: Object, overrive: boolean)
+
+增加出发时间或者返程时间
+
+###removeDate
+removeDate(dates: Array)
+
+删除出发时间或者返程时间
+
+
+###getDate
+
+获取出发时间或者返程时间
+
+###update
+update(options: Object)
+
+更新当前对象
+
+##例子
+
+
+    define([ 'cWidgetFactory', 'cWidgetCalendar'], function ( WidgetFactory) {
+      var Calendar = WidgetFactory.create('Calendar');
+      this.calendar = new Calendar({
+        date:{
+          start:{},
+          back:{}
+        },
+        title:"",
+        callback:function(){
+
+        }
+
+      })
+    }
+    该方法继承自c.widget.abstract.calendar，适用往返程日历
+
+
+
+
+
+
+
+
+
+
+
+
+    
 

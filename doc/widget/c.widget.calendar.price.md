@@ -1,116 +1,205 @@
-# c.widget.calendar.price
+#c.widget.calendar.price
+##描述
+带有价格的日历组件，用于日期选择。同时可以支持选择往返2个日期。
+
+##属性
+
+###date
+类型：Date
+
+###chineseHoliday
+类型：数组
+
+中国农历节日
+
+###holiday
+类型：数组
+
+中国西方公共节日
+
+###DAYTITLE
+类型：数组
+
+星期标题
+
+###SDAYTITLE
+类型：数组
+
+星期短标题
+
+###showChineseHoliday
+类型：boolean
+
+是否显示中国农历
+
+###startMonth
+类型：数值
+
+开始月份
+
+###Months 
+类型：数值
+
+当前组件显示多少个月
+
+###validStartDate
+类型：Date
+
+有效选择开始时间
+
+###validEndDate
+类型：Date
+
+有效选择结束日期
+
+###date
+类型：Date
+
+被选中的日期
+
+###onlyread
+类型：boolean
+组件是否只读
+
+###dateVal
+类型：Object
+
+时间值
+
+###cls
+类型：Array
+
+类
+
+###title
+类型：String
+
+标题
+
+###noabsolute
+类型：boolean
+
+css定位方式是否是绝对定位
+
+###curDate
+类型：Date
+
+当前时间
+
+###dateDoms
+类型：Object
+
+时间Dom
+
+###html
+类型：String
+
+html
+
+###windowResizeHander
+类型：Function
+
+window resize事件句柄
+
+###callback
+类型：Function
+
+日志选择后执行的方法
 
 
-### UML图
-![Toast UML](../raw/H5V2.2S6/doc/img/c.widget.calendar.price.png)
+##方法
 
-### 简单描述
-该类用于创建日历，支持实时价格
+###initialize
+初始化方法
 
-### Attribute
+###selectedDate
+设置当前时间
 
-    // @param Months {Number}                               显示几个月
-    // @param date {Object}                                 被选中时间
-    // @param curDate {String}                              当前时间    start
-    // @param root {dom}                                    容器
-    // @param callback {function}                           日期选择后的回调
-    // @param onlyread  {Boolean}                           是否只读
-    // @param showChineseHoliday {Boolean}                  是否显示农历
-    // @param formatPrice {function}                        格式化价格
-    // @param showHoliday {Boolean}                         是否显示节假日
-    // @param validDates {Array}                            价格有效时间
-    // @param cls {dom}                                     类
-    // @param validStartDate {Object}                       有效选择开始时间
-    // @param validEndDate {Object}                         有效选择结束时间
-    // @param startMonth {Object}                           开始月份
+###buildEvent
+绑定view事件
 
-### Method
+###buildElement
+指定Dom
 
+###buildElementEvent
+Dom事件绑定 日期选择，返回
 
-**public selectedDate**
+###onCreate
+View第一次载入时调用,在声明周期只调用一次.一般在此方法中保存dom元素的引用.
 
-    // 设置当前时间
-    selectedDate: function () { ... }
+###onShow
+view显示后调用的方法
 
-**public buildEvent**
+###position
+设置容器信息
 
-    //绑定view事件
-    buildEvent: function () { ... }
+###createHtml
+返回：function
 
-**public position**
+###isAccordBound
+isAccorcdBound(date: Date)
+返回：boolean
 
-    //设置容器信息
-    position: function () { ... }
+检测选择的事件是否生效（在范围内）
 
-**public buildElementsEvent**
+###setCurDate
+setCurDate(surDate : Date) 
 
-    //DOM事件绑定 日期选择，返回
-    buildElementsEvent: function () { ... }
+设置选择的日期并回调
 
-**public isAccordBound**
+###buildSelectCls
+buildSelectCls(suffix: String)
+返回String
 
-    //检测选择的时间是否有效（在范围内）
-    isAccordBound: function (date) { ... }
+返回选择类
 
-**public _setDate**
+###createCalendar
+返回String
 
-    //设置选择的日期并回调
-    _setDate: function (date, el) { ... }
+构造日历Dom结构
 
-**public setCurDate**
+###createWeek
+createWeek(isApp: boolean)
+返回String
 
-    //设置当前日期
-    setCurDate: function (curDate) { ... }
+构造星期Dom结构
 
-**public buildSelectCls**
+###createMonth
+createMonth(date: Date)
+返回String
 
-    //返回选择的类
-    buildSelectCls: function (suffix) { ... }
+构造月份Dom结构
 
-**public createCalendar**
+###formateTitle
+formateTitle(date: Object)
+返回Array
 
-    //构造日历DOM结构
-    createCalendar: function () { ... }
-
-**public createWeek**
-
-    //构造星期DOM结构
-    createWeek: function (isApp) { ... }
-
-**public createMonth**
-
-    //构造月份DOM结构
-    createMonth: function () { ... }
-
-**public formatPrice**
-
-    //格式化价格
-    formatPrice: function (date) { ... }
+返回日期的名称
 
 
-**public formatTitle**
+###formatePrice
+formatePrice(price: number)
+返回String
 
-    //返回日期的短名称
-    formatTitle: function (date) { ... }
+###calcStructDate
+calcStructDate(month: Date)
 
+计算这个月第一天和最后一天是周几
 
-**public calcStructData**
+###setDate
+setDate(dates: Object)
 
-    //计算这个月第一天和最后一天是周几
-    calcStructData: function (month) { ... }
+###getDate
 
-**public setDate**
+获取出发时间或者返程时间
 
-    //设置出发时间或返程时间
-    setDate: function (dates) { ... }
+###update
+update(options: Object)
 
-**public getDate**
+更新当前对象
 
-    //获取出发时间和返程时间
-    getDate: function () { ... }
+##例子
 
-
-### 使用方法
 
     define([ 'cWidgetFactory', 'cWidgetCalendar'], function ( WidgetFactory) {
         var Calendar_Price = WidgetFactory.create('Calendar.Price');
@@ -128,4 +217,17 @@
         })
     }
     该方法继承自c.widget.abstract.calendar，用于显示实时价格
+
+
+
+
+
+
+
+
+
+
+
+
+    
 

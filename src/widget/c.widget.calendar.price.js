@@ -1,4 +1,4 @@
-define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, Tools, cUtility, WidgetFactory) {
+define(['cCoreInherit','cUtility' ,'cUIBase', 'cBusinessServerTime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility, Tools , cBusinessServerTime, cCoreDate, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Calendar.Price';
@@ -10,7 +10,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
 
   var AbstractCalendar = WidgetFactory.create('Abstract.Calendar');
 
-  var PriceCalendar = new cBase.Class(AbstractCalendar, {
+  var PriceCalendar = new cCoreInherit.Class(AbstractCalendar, {
     __propertys__: function () {
 
       this.chineseHoliday = this.CONSTANT.CALENDAR_CHINESE_HOLIDAY;     //中国特色节日
@@ -20,10 +20,10 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       this.addClass(Tools.config.prefix + this.CONSTANT.CALENDAR);
       this.showChineseHoliday = true;                     //是否显示农历
       this.showHoliday = true;                            //是否显示节假日
-      this.startMonth = cUtility.getServerDate();         //开始月份
+      this.startMonth = cBusinessServerTime.getServerDate();         //开始月份
       this.startMonth.setDate(this.CONSTANT.CALENDAR_INIT_DATE);
       this.Months = this.CONSTANT.CALENDAR_MONTH;         //显示几个月
-      this.validStartDate = cUtility.getServerDate();     //有效选择开始时间
+      this.validStartDate = cBusinessServerTime.getServerDate();     //有效选择开始时间
       this.validStartDate.setHours(this.CONSTANT.INIT_DATE_TIME.H, this.CONSTANT.INIT_DATE_TIME.M, this.CONSTANT.INIT_DATE_TIME.S, this.CONSTANT.INIT_DATE_TIME.MS);
       this.validEndDate;                                  //有效选择结束时间
       this.date;                                          //被选中时间
@@ -143,7 +143,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
         if (!b.hasClass('valid')) {
           b = b.closest('.valid');
         }
-        var date = cBase.Date.parse(b.attr('data-date')).valueOf();
+        var date = cCoreDate.Date.parse(b.attr('data-date')).valueOf();
         if (self.isAccordBound(date)) {
           self._setDate(date, b);
         }
@@ -156,7 +156,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       var rules = curDateObj.bound.rules, compare;
 
       for (var i in rules) {
-        compare = typeof rules[i] === 'string' ? this.dateVal[rules[i]] : (cBase.Type.isDate(rules[i]) && rules[i]);
+        compare = typeof rules[i] === 'string' ? this.dateVal[rules[i]] : (this._isDate(rules[i]) && rules[i]);
         switch (i) {
           case '<':
             if (!(date < compare)) {
@@ -191,7 +191,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       if (this.dateDoms[this.curDate]) {
         var rel = $(this.dateDoms[this.curDate]);
 
-        rel.html(this.formatTitle(cBase.Date.parse(rel.attr('data-date')).valueOf()));
+        rel.html(this.formatTitle(cCoreDate.Date.parse(rel.attr('data-date')).valueOf()));
         rel.removeClass(this.buildSelectCls(this.curDate));
         rel.removeClass(this.buildSelectCls());
       }
@@ -215,7 +215,6 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       tel.addClass(this.buildSelectCls(this.curDate));
       tel.addClass(this.buildSelectCls());
       this.dateVal[this.curDate] = date;
-
       var arr = $.grep(this.validDates, function (n, i) {
         var b = (n.date.valueOf() == date.valueOf());
         return b;
@@ -271,7 +270,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
         mhtml = [],
         i;
       mhtml.push('<section class="cui_cldunit">');
-      mhtml.push('<h1 class="cui_cldmonth">' + cBase.Date.format(month, 'Y年n月') + '</h1>');
+      mhtml.push('<h1 class="cui_cldmonth">' + cCoreDate.Date.format(month, 'Y年n月') + '</h1>');
       mhtml.push('<ul class="cui_cld_daybox">');
 
       var cls,wln,
@@ -323,7 +322,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
           var formatTitle = this.formatTitle;
           if (this.date) {
             for (var o in this.date) {
-              if (this.dateVal[o] && cls['valid'] && cBase.Date.format((this.dateVal[o] || this.date[o].value), 'Y-m-d') == cBase.Date.format(data.days[i][t], 'Y-m-d')) {
+              if (this.dateVal[o] && cls['valid'] && cCoreDate.Date.format((this.dateVal[o] || this.date[o].value), 'Y-m-d') == cCoreDate.Date.format(data.days[i][t], 'Y-m-d')) {
                 delete cls['cui_cld_dayfuture'];
                 delete cls['cui_cld_day_hint'];
                 cls[this.buildSelectCls()] = true;
@@ -339,7 +338,7 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
             }
           }
           var formatPrice = $.proxy(this.formatPrice, this);
-          mhtml.push('<li data-price="' + price + '" data-date="' + cBase.Date.format(tmpDate, 'Y-m-d') + '" ' + (cls ? ' class="' + cBase.Object.keys(cls).join(' ') + '"' : '') + '><em>' + formatTitle.call(this, tmpDate) +'</em>' +this._formatPrice(price, formatPrice, !!cls['valid']) + '</li>');
+          mhtml.push('<li data-price="' + price + '" data-date="' + cCoreDate.Date.format(tmpDate, 'Y-m-d') + '" ' + (cls ? ' class="' + this._objectKey(cls).join(' ') + '"' : '') + '><em>' + formatTitle.call(this, tmpDate) +'</em>' +this._formatPrice(price, formatPrice, !!cls['valid']) + '</li>');
         }
       }
       mhtml.push('</ul></section>');
@@ -353,8 +352,8 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       if(!date){
         return "";
       }
-      var today = cUtility.getServerDate();
-      if (cBase.Date.format(today, 'Ymd') == cBase.Date.format(date, 'Ymd')) {
+      var today = cBusinessServerTime.getServerDate();
+      if (cCoreDate.Date.format(today, 'Ymd') == cCoreDate.Date.format(date, 'Ymd')) {
         return '今天';
       }
       var _date = new Date(date);
@@ -376,12 +375,12 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
       }
       //是否显示节假日
       if (this.showHoliday == true) {
-        var gkey = cBase.Date.format(date, 'md')
+        var gkey = cCoreDate.Date.format(date, 'md')
         if (this.holiday[gkey]) {
           return this.holiday[gkey];
         }
       }
-      return cBase.Date.format(date, 'j');
+      return cCoreDate.Date.format(date, 'j');
     },
     //计算这个月第一天和最后一天是周几
     calcStructData: function (month) {
@@ -424,14 +423,14 @@ define(['cBase', 'cUIBase', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalend
     setDate: function (dates) {
       for (var i in dates) {
         if (this.date[i]) {
-          if (cBase.Type.isDate(dates[i])) {
+          if (this._isDate(dates[i])) {
             dates[i].setHours(1, 1, 1, 0);
             this.date[i].value = dates[i];
             this.dateVal[i] = dates[i];
             var el = $(this.dateDoms[i]);
             el.removeCls(this.buildSelectCls(i));
             el.removeCls(this.buildSelectCls());
-            var cur = $(this.root.query('[data-date="' + cBase.Date.format(dates[i], 'Y-m-d') + '"]')[0]);
+            var cur = $(this.root.query('[data-date="' + cCoreDate.Date.format(dates[i], 'Y-m-d') + '"]')[0]);
             if (cur.hasClass('valid')) {
               cur.addClass(this.buildSelectCls(i));
               cur.addClass(this.buildSelectCls());

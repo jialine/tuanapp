@@ -1,4 +1,4 @@
-define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cBase, Tools, HashObserve, cUtility, WidgetFactory) {
+define(['cCoreInherit', 'cUtility', 'cUIBase', 'cUIHashObserve', 'cBusinessServerTime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility ,Tools, HashObserve, cBusinessServerTime, cCoreDate, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Calendar';
@@ -10,7 +10,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
 
   var AbstractCalendar = WidgetFactory.create('Abstract.Calendar');
 
-  var Calendar = new cBase.Class(AbstractCalendar, {
+  var Calendar = new cCoreInherit.Class(AbstractCalendar, {
     __propertys__: function () {
       this.chineseHoliday = this.CONSTANT.CALENDAR_CHINESE_HOLIDAY;
       this.holiday = this.CONSTANT.CALENDAR_COMMON_HOLIDAY;
@@ -19,10 +19,10 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       this.DAYTITLE2 = this.CONSTANT.CALENDAR_WEEKDAY_NAME;
 
       this.addClass(Tools.config.prefix + this.CONSTANT.CALENDAR);
-      this.startMonth = cUtility.getServerDate();       //开始月份
+      this.startMonth = cBusinessServerTime.getServerDate();       //开始月份
       this.startMonth.setDate(this.CONSTANT.CALENDAR_INIT_DATE);
       this.Months = this.CONSTANT.CALENDAR_MONTH;       //显示几个月
-      this.validStartDate = cUtility.getServerDate();     //有效选择开始时间
+      this.validStartDate = cBusinessServerTime.getServerDate();     //有效选择开始时间
       this.validStartDate.setHours(this.CONSTANT.INIT_DATE_TIME.H, this.CONSTANT.INIT_DATE_TIME.M, this.CONSTANT.INIT_DATE_TIME.S, this.CONSTANT.INIT_DATE_TIME.MS);
       this.validEndDate;                  //有效选择结束时间
       this.date;                      //被选中时间
@@ -49,6 +49,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
         },
         scope: this
       });
+      
     },
     initialize: function ($super, options) {
       this.setOption(function (k, v) {
@@ -79,7 +80,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
         }
       });
       $super(options);
-      this.buildEvent();
+      this.buildEvent();     
     },
     selectedDate: function () {
       var el;
@@ -146,7 +147,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
           }
           var date = b.attr('data-date');
           if (date) {
-            date = cBase.Date.parse(date).valueOf();
+            date = cCoreDate.Date.parse(date).valueOf();
             if (self.isAccordBound(date)) {
               self._setDate(date, b);
             }
@@ -167,7 +168,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       var rules = curDateObj.bound.rules, compare;
 
       for (var i in rules) {
-        compare = typeof rules[i] === 'string' ? this.dateVal[rules[i]] : (cBase.Type.isDate(rules[i]) && rules[i]);
+        compare = typeof rules[i] === 'string' ? this.dateVal[rules[i]] : (this._isDate(rules[i]) && rules[i]);
         date.setHours(0, 0, 0, 0);
         if (compare) {
           compare.setHours(0, 0, 0, 0);
@@ -206,7 +207,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       //if (rel.length) {
       rel.each($.proxy(function (k, v) {
         var el = $(v);
-        el.html(this.formatTitle(cBase.Date.parse(rel.attr('data-date')).valueOf()));
+        el.html(this.formatTitle(cCoreDate.Date.parse(rel.attr('data-date')).valueOf()));
         el.removeClass(this.buildSelectCls(this.curDate));
         el.removeClass(this.buildSelectCls());
       }, this));
@@ -301,7 +302,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
                 mhtml = [],
                 i;
       mhtml.push('<section class="cui_cldunit">');
-      mhtml.push('<h1 class="cui_cldmonth">' + cBase.Date.format(month, 'Y年n月') + '</h1>');
+      mhtml.push('<h1 class="cui_cldmonth">' + cCoreDate.Date.format(month, 'Y年n月') + '</h1>');
       mhtml.push('<ul class="cui_cld_daybox">');
 
       var cls, wln,
@@ -347,7 +348,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
           }
           if (this.date) {
             for (var o in this.date) {
-              if (tmpDate && cBase.Date.format((this.dateVal[o] || this.date[o].value), 'Y-m-d') == cBase.Date.format(tmpDate, 'Y-m-d')) {
+              if (tmpDate && cCoreDate.Date.format((this.dateVal[o] || this.date[o].value), 'Y-m-d') == cCoreDate.Date.format(tmpDate, 'Y-m-d')) {
                 delete cls['cui_cld_dayfuture'];
                 delete cls['cui_cld_day_hint'];
                 cls['cui_cld_day_havetxt'] = true;
@@ -360,7 +361,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
               }
             }
           }
-          mhtml.push('<li data-date="' + cBase.Date.format(tmpDate, 'Y-m-d') + '" ' + (cls ? ' class="' + cBase.Object.keys(cls).join(' ') + '"' : '') + '>' + title + '</li>');
+          mhtml.push('<li data-date="' + cCoreDate.Date.format(tmpDate, 'Y-m-d') + '" ' + (cls ? ' class="' + this._objectKey(cls).join(' ') + '"' : '') + '>' + title + '</li>');
         }
 
       }
@@ -380,14 +381,14 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       if (!date) {
         return;
       }
-      var today = cUtility.getServerDate();
+      var today = cBusinessServerTime.getServerDate();
       var _date = new Date(date);
       _date.setHours(1, 1, 1, 0);
       today.setHours(1, 1, 1, 0);
       var day = (_date - today) / (3600000 * 24);
       var info = {};
 
-      if (cBase.Date.format(today, 'Ymd') == cBase.Date.format(date, 'Ymd')) {
+      if (cCoreDate.Date.format(today, 'Ymd') == cCoreDate.Date.format(date, 'Ymd')) {
         info.daytitle = '今天';
       } else if (day == 1) {
         info.daytitle = '明天';
@@ -402,7 +403,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       } else {
         info.chineseday = '';
       }
-      var gkey = cBase.Date.format(date, 'md')
+      var gkey = cCoreDate.Date.format(date, 'md')
       if (this.holiday[gkey]) {
         info.holiday = this.holiday[gkey];
       } else {
@@ -410,7 +411,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       }
       info.week = this.DAYTITLE[date.getDay()];
       info.week2 = this.DAYTITLE2[date.getDay()];
-      info.date = cBase.Date.format(date, 'j');
+      info.date = cCoreDate.Date.format(date, 'j');
       return info;
     },
     formatTitle2: function (fun) {
@@ -464,18 +465,18 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
       this.create();
       for (var i in dates) {
         if (this.date[i]) {
-          if (cBase.Type.isDate(dates[i])) {
+          if (this._isDate(dates[i])) {
             dates[i].setHours(0, 0, 0, 0);
             this.date[i].value = dates[i];
             this.dateVal[i] = dates[i];
             var el = this.root.find('.' + this.buildSelectCls(i));
             if (el.length) {
-              var sdate = cBase.Date.parse(el.data('date')).valueOf();
+              var sdate = cCoreDate.Date.parse(el.data('date')).valueOf();
               el.removeClass(this.buildSelectCls(i));
               el.removeClass(this.buildSelectCls());
               el.html(this.formatTitle(sdate));
             }
-            var cur = this.root.find('[data-date="' + cBase.Date.format(dates[i], 'Y-m-d') + '"]');
+            var cur = this.root.find('[data-date="' + cCoreDate.Date.format(dates[i], 'Y-m-d') + '"]');
             cur.each($.proxy(function (n, cur) {
               cur = $(cur);
               if (cur.hasClass('valid')) {
@@ -504,7 +505,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
             el.removeClass(this.buildSelectCls());
           }
           if (date) {
-            dom = this.root.find('[data-date="' + cBase.Date.format(date, 'Y-m-d') + '"]');
+            dom = this.root.find('[data-date="' + cCoreDate.Date.format(date, 'Y-m-d') + '"]');
             dom.each($.proxy(function (n, dom) {
               dom = $(dom);
               if (dom.hasClass('valid')) {
@@ -528,7 +529,7 @@ define(['cBase', 'cUIBase', 'cUIHashObserve', 'cUtility', 'cWidgetFactory', 'cWi
             var el = $(v);
             el.removeClass(this.buildSelectCls(i));
             el.removeClass(this.buildSelectCls());
-            el.html(this.formatTitle(cBase.Date.parse(el.data('date')).valueOf()));
+            el.html(this.formatTitle(cCoreDate.Date.parse(el.data('date')).valueOf()));
           }, this));
           delete this.date[i];
           delete this.dateVal[i];

@@ -37,6 +37,8 @@
     'cCoreConsole'              : 'src/core/c.core.console',
     'cCoreHash'                 : 'src/core/c.core.hash',
 
+
+
     //-------------------------------------------------------------
     'cStore'                    : 'src/store/c.store',             //提供存取具体数据的Store基础类
     'cStorage'                  : 'src/store/c.storage',           //提供存取localStorage/sessionStorage的静态方法
@@ -57,7 +59,8 @@
     'cUI'                       : 'src/ui/c.ui',
     'cUICore'                   : 'src/ui/c.ui.core',
     'cHistory'                  : 'src/ui/c.ui.history',
-    'cView'                     : 'src/ui/c.ui.view_',
+    'cUIView'                   : 'src/ui/c.ui.view',
+    'cView'                     : 'src/bussiness/c.business.view',
     'cDataSource'               : 'src/ui/c.ui.datasource', //数据源
     'cUIBase'                   : 'src/ui/c.ui.base',
     'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',
