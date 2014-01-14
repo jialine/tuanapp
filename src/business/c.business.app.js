@@ -1,8 +1,8 @@
-﻿define(['libs', 'cBase', 'AbstractAPP', 'cWidgetFactory', 'cWidgetGuider'], function (libs, cBase, AbstractAPP, WidgetFactory) {
+﻿define(['libs', 'cBase', 'cAbstractApp', 'cWidgetFactory', 'cWidgetGuider'], function (libs, cBase, AbstractAPP, WidgetFactory) {
 
   var Appliction = new cBase.Class(AbstractAPP, {
     __propertys__: function () {
-      
+
     },
     initialize: function ($super, options) {
 

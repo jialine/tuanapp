@@ -12,11 +12,9 @@ console.log()
 
     console.log("message");
 
-
-
 ### error
 console.error()
-输出 error 
+输出 error
 
     console.error("error");
 

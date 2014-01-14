@@ -135,7 +135,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       }
 
       //临时解决广告不消失问题
-      if (this.hasAd && !this.footer.isExpire()) {
+      if (this.hasAd && this.footer && !this.footer.isExpire()) {
         var ctn = this.adContainer ? this.$el.find('#' + this.adContainer) : $('#footer');
         var oldRootBox = this.footer.rootBox;
         if (oldRootBox && oldRootBox.attr('id') != ctn.attr('id')) {
@@ -673,7 +673,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       this.__onLoad();
     },
 
-    //新增view 的show方法 
+    //新增view 的show方法
     __show: function () {
 
       //在快速前进或是返回时，viewport会莫名其妙丢失view
@@ -686,7 +686,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       this.__onShow();
     },
 
-    //新增view 的hide方法 
+    //新增view 的hide方法
     __hide: function () {
 
 
