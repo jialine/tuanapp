@@ -17,7 +17,7 @@
   paths: {
     'text'                      : 'res/libs/require.text',
     'cAbstractApp'              : 'src/c.abstract.app',
-    'App'                       : 'src/business/c.business.app'
+    'App'                       : 'src/business/c.business.app',
     // 'App'                       : 'src/app',
     'c'                         : 'src/common/c',
     'cUtility'                  : 'src/common/c.utility',
@@ -57,7 +57,7 @@
     'cUI'                       : 'src/ui/c.ui',
     'cUICore'                   : 'src/ui/c.ui.core',
     'cHistory'                  : 'src/ui/c.ui.history',
-    'cView'                     : 'src/ui/c.ui.view',
+    'cView'                     : 'src/ui/c.ui.view_',
     'cDataSource'               : 'src/ui/c.ui.datasource', //数据源
     'cUIBase'                   : 'src/ui/c.ui.base',
     'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',

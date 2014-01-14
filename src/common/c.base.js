@@ -1,4 +1,4 @@
-define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash', 'cBusinessServertime'], function (libs, inherit, date, cCoreHash, cBusinessServertime) {
+define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash', 'cBusinessServertime', 'cUtility'], function (libs, inherit, date, cCoreHash, cBusinessServertime, util) {
     if (typeof console === 'undefined') {
         console = {
             log: function () { },
@@ -22,6 +22,9 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash', 'cBusinessServertime']
     if (location.host == "m.ctrip.com") {
         window.console.log = function () { };
     }
+
+    C.isInApp = util.isInApp;
+
     /**
     * Class类，框架的基础类体系
     * @supClass {Function} 可选，要继承的类

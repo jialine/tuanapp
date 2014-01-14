@@ -1,11 +1,11 @@
-define(['libs', 'cBase', 'cStorage'], function (libs, cBase, cStorage) {
+define(['libs', 'cCoreDate', 'cCoreInherit', 'cStorage', 'cBusinessServertime'], function (libs, cCoreDate, cCoreInherit, cStorage, cBusinessServertime) {
     var U = {},
     _slice = Array.prototype.slice,
     _push = Array.prototype.push,
     _toString = function (obj) {
         return Object.prototype.toString.call(obj);
     },
-    CDate = cBase.Date,
+    CDate = cCoreDate,
     nStorage = cStorage.localStorage;
 
     /**
@@ -560,7 +560,7 @@ define(['libs', 'cBase', 'cStorage'], function (libs, cBase, cStorage) {
     * 获得服务器时间
     */
     U.getServerDate = function (callback) {
-        return cBase.getServerDate(callback);
+        return cBusinessServertime.getServerDate(callback);
     };
 
     /**
@@ -754,7 +754,7 @@ define(['libs', 'cBase', 'cStorage'], function (libs, cBase, cStorage) {
     * @description: 简单队列
     * @k
     */
-    U.SimpleQueue = new cBase.Class({
+    U.SimpleQueue = new cCoreInherit.Class({
         initialize: function () {
             this.index = 0;
             this.handlers = [];

@@ -2,9 +2,9 @@
 *  Ctrip storage Module
 *  Author: shbzhang@ctrip.com
 **/
-define(['cBase'], function (cBase) {
+define(['cCoreDate', 'cBusinessServertime'], function (cCoreDate, cBusinessServertime) {
     var EJSON = window.JSON;
-    var CDate = cBase.Date;
+    // var CDate = cBase.Date;
     var Storage = (function () {
         function buildStorageObj(value, timeout, tag, savedate, oldVal) {
             return {
@@ -171,11 +171,11 @@ define(['cBase'], function (cBase) {
         if (d && d.timeout) {
             /*验证是否过期*/
             var n = new Date();
-            var t = cBase.Date.parse(d.timeout).valueOf();
+            var t = cCoreDate.parse(d.timeout).valueOf();
             if (d.timeby) {
                 if (t - n >= 0) { return d; }
             } else {
-                if (t - cBase.Date.parse(cBase.Date.format(n, 'Y-m-d')).valueOf() >= 0) { return d; }
+                if (t - cCoreDate.parse(cCoreDate.format(n, 'Y-m-d')).valueOf() >= 0) { return d; }
             }
             localStorage.removeItem(name);
             return null;
@@ -194,7 +194,7 @@ define(['cBase'], function (cBase) {
         if (d && d.timeout) {
             return d.timeout;
         } else {
-            return new cBase.Date(cBase.getServerDate()).addDay(2).format('Y-m-d');
+            return new cCoreDate(cBusinessServertime.getServerDate()).addDay(2).format('Y-m-d');
         }
     };
 
