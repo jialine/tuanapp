@@ -18,7 +18,7 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
     _toString = function (obj) {
         return Object.prototype.toString.call(obj);
     }
-    
+
     if (location.host == "m.ctrip.com") {
         window.console.log = function () { };
     }
@@ -28,7 +28,7 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
     * @subProperty {Object} 被创建类的成员
     * @return {Function} 被创建的类
     */
-    
+
     /**
     * @desc : 代码迁移至 core/c.core.inherit.js
     C.Class = function (supClass, subProperty) {
@@ -80,6 +80,9 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
         return newClass;
     }
     */
+
+    // ---------------------------------------------
+    // @description 委托自inherit
     C.Class = inherit.Class;
 
     /**
@@ -105,6 +108,9 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
         return source;
     }
     */
+
+    // ---------------------------------------------
+    // @description 委托自inherit
     C.extend = inherit.extend;
 
 
@@ -126,8 +132,11 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
         return fun;
     }
     */
+
+    // ---------------------------------------------
+    // @description 委托自inherit
     C.implement = inherit.implement;
-    
+
     /**
     * 判断对象类型
     */
@@ -454,6 +463,9 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
     //         return d1.diffMonth(d2);
     //     }
     // });
+
+    // ---------------------------------------------
+    // @description 委托自date
     C.Date = date;
 
 
@@ -524,7 +536,7 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
         alert(str);
     };
 
-    
+
     /**
     * 获得服务器时间
     * @param callback
@@ -533,7 +545,7 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash'], function (libs, inher
 
     /*
     * @Dscsription ： 迁移至 business/c.business.servertime.js
-    */    
+    */
     //C.getServerDate = function (callback) {
 
 
