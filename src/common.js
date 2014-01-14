@@ -60,7 +60,7 @@
     'cUICore'                   : 'src/ui/c.ui.core',
     'cHistory'                  : 'src/ui/c.ui.history',
     'cUIView'                   : 'src/ui/c.ui.view',
-    'cView'                     : 'src/bussiness/c.business.view',
+    'cView'                     : 'src/business/c.business.view',
     'cDataSource'               : 'src/ui/c.ui.datasource', //数据源
     'cUIBase'                   : 'src/ui/c.ui.base',
     'cUIAbstractView'           : 'src/ui/c.ui.abstract.view',
