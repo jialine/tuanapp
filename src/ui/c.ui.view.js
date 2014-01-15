@@ -1,6 +1,6 @@
 ﻿/* File Created: 六月 23, 2013 */
 
-define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cUIToast', 'cSales', 'cStorage', 'cBase', 'cUtility', 'cAdView'], function (libs, Alert, Warning, HeadWarning, Warning404, Toast, cSales, cStorage, cBase, cUtility, cAdView) {
+define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cUIToast', 'cSales', 'cStorage', 'cBase', 'cUtility', 'cAdView', 'cUILoading'], function (libs, Alert, Warning, HeadWarning, Warning404, Toast, cSales, cStorage, cBase, cUtility, cAdView, Loading) {
   function debughander(e, on, line) {
     if (e && e.originalEvent) alert(e.originalEvent.message + ' ' + on + ' ' + line);
   };
@@ -10,30 +10,30 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
   return Backbone.View.extend({
 
     ENUM_STATE_NOCREATE: 0,
-    ENUM_STATE_CREATE:   1,
-    ENUM_STATE_LOAD:     2,
-    ENUM_STATE_SHOW:     3,
-    ENUM_STATE_HIDE:     4,
+    ENUM_STATE_CREATE: 1,
+    ENUM_STATE_LOAD: 2,
+    ENUM_STATE_SHOW: 3,
+    ENUM_STATE_HIDE: 4,
     //子类可以设置此pageid，用于autotest
-    pageid:              0,
+    pageid: 0,
     //视图的scroll位置
-    scrollPos:           {
+    scrollPos: {
       x: 0,
       y: 0
     },
-    header:              null,
-    footer:              null,
-    cSales:              cSales,
+    header: null,
+    footer: null,
+    cSales: cSales,
     // ui controller
-    warning:             null,
-    alert:               null,
+    warning: null,
+    alert: null,
     // ------------
 
-    onCreate:           function () {
+    onCreate: function () {
     },
-    viewInitialize:     function () {
+    viewInitialize: function () {
     },
-    initialize:         function (request, appliction, viewname) {
+    initialize: function (request, appliction, viewname) {
       this.$el.addClass('sub-viewport');
       this.id = _.uniqueId('viewport');
       this.$el.attr('id', 'id_' + this.id);
@@ -49,11 +49,11 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
 
       //初始化alert
       this.alert = new Alert({
-        title:   '提示信息',
+        title: '提示信息',
         message: '',
         buttons: [
           {
-            text:  '知道了',
+            text: '知道了',
             click: function () {
               this.hide();
             }
@@ -77,11 +77,13 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       //初始化404提示
       this.warning404 = new Warning404();
 
+      //初始化loading框，将app.js里面的loading移过来
+      this.loading = new Loading();
       //初始化toast
       this.toast = new Toast();
       //加入页面自定义的css
       if (_.isArray(this.css)) {
-        this.appliction.appendCss(this.css);
+        this.appendCss(this.css);
       }
       //广告
       if (cAdView) {
@@ -95,7 +97,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
         //alert(this.request.viewpath+'/onCreate/Error:'+JSON.stringify(e));
       }
     },
-    _initializeHeader:  function () {
+    _initializeHeader: function () {
       var self = this;
       if (this.header.backUrl) {
         this.$el.on('click', '#js_return', function () {
@@ -120,15 +122,15 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
         this.$el.delegate('header div', 'click', this.header.rightAction);
       }
     },
-    _initializeFooter:  function () {
-      if(this.footer) this.footer.hide();
+    _initializeFooter: function () {
+      if (this.footer) this.footer.hide();
 
       if (cUtility.isInApp()) {
         return;
       }
 
       //临时解决广告不消失问题
-      if (this.hasAd && !this.footer.isExpire()) {
+      if (this.hasAd && this.footer && !this.footer.isExpire()) {
         var ctn = this.adContainer ? this.$el.find('#' + this.adContainer) : $('#footer');
         var oldRootBox = this.footer.rootBox;
         if (oldRootBox && oldRootBox.attr('id') != ctn.attr('id')) {
@@ -143,7 +145,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     },
 
     //触发load事件
-    __onLoad:           function (lastViewName) {
+    __onLoad: function (lastViewName) {
       //切换页面时，确保当前input失去焦点
       document.body && document.body.focus();
       this.getServerDate();
@@ -158,7 +160,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       }
     },
     //触发Show事件
-    __onShow:           function () {
+    __onShow: function () {
       this.state = this.ENUM_STATE_SHOW;
       //fix scroll bug shbzhang 2013.10.10
       window.scrollTo(0, 0);
@@ -177,11 +179,11 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       //处理onShow的业务逻辑    
       this.onShowFinish();
     },
-    onShowFinish:function(){
+    onShowFinish: function () {
       if (this.onBottomPull) {
         this._onWidnowScroll = $.proxy(this.onWidnowScroll, this);
         this.addScrollListener();
-      }   
+      }
     },
     //兼容min-height，重置view高度
     resetViewMinHeight: function () {
@@ -199,7 +201,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
 
     },
     //触发hide事件
-    __onHide:           function (id) {
+    __onHide: function (id) {
       this.state = this.ENUM_STATE_HIDE;
       this.onHide && this.onHide(id);
       this.hideHeadWarning();
@@ -216,24 +218,17 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
         y: window.scrollY
       }
     },
-    turning:            function () {
-      this.appliction.turning();
+
+    showLoading: function () {
+      this.loading.show();
     },
-    showLoading:        function () {
-      //            var scope = this;
-      //            //解决页面切换时过快的loading框消失一闪而过问题
-      //            this.loadingTimer = setTimeout(function () {
-      this.appliction.showLoading();
-      //            }, 50)
+    hideLoading: function () {
+      this.loading.hide();
     },
-    hideLoading:        function () {
-      if (this.loadingTimer) clearTimeout(this.loadingTimer);
-      this.appliction.hideLoading();
-    },
-    forward:            function (url, replace) {
+    forward: function (url, replace) {
       this.appliction.forward.apply(null, arguments);
     },
-    back:               function (url) {
+    back: function (url) {
       // 在ios环境中使用application.back()会出现问题！
       // 作为一个调查点保留
       // if (cUtility.isInApp()) {
@@ -242,7 +237,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
       this.appliction.back.apply(null, arguments);
       // }
     },
-    jump:               function (url, replace) {
+    jump: function (url, replace) {
       // app环境不支持jump
       if (cUtility.isInApp()) {
         url = url.replace(window.BASEURL, '');
@@ -255,59 +250,57 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
         }
       }
     },
-    home:               function () {
+    home: function () {
       this.appliction.forward('');
     },
-    setTitle:           function (title) {
-      this.appliction.setTitle("携程旅行网-" + title);
-    },
+
     //还原到原来的滚动条位置
-    restoreScrollPos:   function () {
+    restoreScrollPos: function () {
       window.scrollTo(this.scrollPos.x, this.scrollPos.y);
     },
     /**
-     * 获得url中查询字符串，类似于get的请求参数
-     * @param name {String} 要查询参数的key
-     * @return {String}
-     * @demo
-     * #ticketlist/?name=value
-     * var v = this.getQuery('name');
-     * console.log(v);//value;
-     *
-     */
-    getQuery:           function (name) {
+    * 获得url中查询字符串，类似于get的请求参数
+    * @param name {String} 要查询参数的key
+    * @return {String}
+    * @demo
+    * #ticketlist/?name=value
+    * var v = this.getQuery('name');
+    * console.log(v);//value;
+    *
+    */
+    getQuery: function (name) {
       return this.request.query[name] || null;
     },
     /**
-     * 获得url中路径中的某一部分
-     * @param index {Number} 在路径中某个段的值
-     * @param {String} 要查询的路径的value
-     * @demo
-     * #ticketlist/!value/hoe
-     * var v = this.getPath(0);
-     * console.log(v);//value;
-     */
-    getPath:            function (index) {
+    * 获得url中路径中的某一部分
+    * @param index {Number} 在路径中某个段的值
+    * @param {String} 要查询的路径的value
+    * @demo
+    * #ticketlist/!value/hoe
+    * var v = this.getPath(0);
+    * console.log(v);//value;
+    */
+    getPath: function (index) {
       return this.request.path[index] || null;
     },
-    getRoot:            function () {
+    getRoot: function () {
       return this.request.root || null;
     },
-    showMessage:        function (message, title) {
+    showMessage: function (message, title) {
       this.alert.setViewData({
         message: message,
-        title:   title
+        title: title
       });
       this.alert.show();
     },
-    showWarning:        function (title, callback) {
+    showWarning: function (title, callback) {
       if (title) this.warning.setTitle(title, callback);
       this.warning.show();
     },
-    hideWarning:        function () {
+    hideWarning: function () {
       this.warning.hide();
     },
-    showHeadWarning:    function (title, content, callback) {
+    showHeadWarning: function (title, content, callback) {
       if (title) this.headwarning.setTitle(title, content, callback);
       this.headwarning.show();
     },
@@ -332,17 +325,17 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     //hideNoHeadWarning: function () {
     //  this.NoHeadWarning.hide();
     //},
-    showToast:         function (title, timeout, callback, clickToHide) {
+    showToast: function (title, timeout, callback, clickToHide) {
       if (this.toast.isShow()) {
         return;
       }
       clickToHide = (typeof clickToHide != 'undefined') ? clickToHide : true;
       this.toast.show(title, timeout, callback, clickToHide);
     },
-    hideToast:         function () {
+    hideToast: function () {
       this.toast.hide();
     },
-    updateHeader:      function (options) {
+    updateHeader: function (options) {
       for (var key in options) {
         this.header[key] = options[key];
       }
@@ -350,11 +343,11 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     },
     _getDefaultHeader: function () {
       return {
-        backUrl:     null,
-        home:        false,
-        phone:       null,
-        title:       null,
-        subtitle:    null,
+        backUrl: null,
+        home: false,
+        phone: null,
+        title: null,
+        subtitle: null,
         rightAction: null
       };
     },
@@ -454,13 +447,13 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     //     }
     //   }
     // },
-    getServerDate:     function (callback) {
+    getServerDate: function (callback) {
       return cUtility.getServerDate(callback);
     },
-    now:               function () {
+    now: function () {
       return cUtility.getServerDate();
     },
-    debug:             function () {
+    debug: function () {
       var debug = this.request.query['debug'] || localStorage.get('DEBUG');
       if (debug == 'yes') {
         $(window).unbind('error', debughander);
@@ -492,7 +485,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
         }
         window.$_bf['asynRefresh']({
           page_id: pageId,
-          url:     location.protocol + "//" + location.host + url
+          url: location.protocol + "//" + location.host + url
         });
       } else {
         setTimeout($.proxy(this._sendUbt, this), 300);
@@ -519,7 +512,7 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     //   }
     // },
 
-    _getAurl:       function () {
+    _getAurl: function () {
       var url = this.request.root, param;
       if (this.request.viewpath) {
         url += "#" + this.request.viewpath;
@@ -607,10 +600,61 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
     //     }
     //   }
     // },
-    disposeChannel:function(){},
+    disposeChannel: function () { },
     //获得guid
-    getGuid:        function () {
+    getGuid: function () {
       return cUtility.getGuid();
+    },
+    //l_wang 新增
+    setTitle: function (title) {
+      document.title = title;
+    },
+
+    appendCss: function (styles) {
+      if (!styles) return;
+      for (var i = 0, len = styles.length; i < len; i++) {
+        if (!this.css[styles[i]]) {
+          this.head.append($('<link rel="stylesheet" type="text/css" href="' + styles[i] + '" />'));
+          this.css[styles[i]] = true;
+        }
+      }
+    },
+
+    addClass: function (name) {
+      this.$el.addClass(name);
+    },
+
+    removeClass: function (name) {
+      this.$el.removeClass(name);
+
+    },
+
+    //新增view load 方法，此方法会触发其onload事件
+    __load: function () {
+
+
+      this.__onLoad();
+    },
+
+    //新增view 的show方法
+    __show: function () {
+
+      //在快速前进或是返回时，viewport会莫名其妙丢失view
+      //这里强制判断，不存在则强行插入。
+      if (!this.viewport.find('#id_' + this.id).length) {
+        this.viewport.append(this.$el);
+      }
+
+      this.$el.show();
+      this.__onShow();
+    },
+
+    //新增view 的hide方法
+    __hide: function () {
+
+      this.$el.hide();
+      this.__onHide();
+
     }
   });
 });
