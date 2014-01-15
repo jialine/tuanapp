@@ -666,33 +666,31 @@ define(['libs', 'cUIAlert', 'cUIWarning', 'cUIHeadWarning', 'cUIWarning404', 'cU
 
     },
 
-    //新增view load 方法，此方法会触发其onload事件
-    __load: function () {
+      //新增view load 方法，此方法会触发其onload事件
+      __load: function (lastViewName) {
 
 
-      this.__onLoad();
-    },
+          this.__onLoad(lastViewName);
+      },
 
-    //新增view 的show方法
-    __show: function () {
+      //新增view 的show方法
+      __show: function () {
 
-      //在快速前进或是返回时，viewport会莫名其妙丢失view
-      //这里强制判断，不存在则强行插入。
-      if (!this.viewport.find('#id_' + this.id).length) {
-        this.viewport.append(this.$el);
+          //在快速前进或是返回时，viewport会莫名其妙丢失view
+          //这里强制判断，不存在则强行插入。
+          if (!this.viewport.find('#id_' + this.id).length) {
+              this.viewport.append(this.$el);
+          }
+
+          this.$el.show();
+      },
+
+      //新增view 的hide方法
+      __hide: function () {
+
+
+          this.$el.hide();
       }
-
-      this.$el.show();
-      this.__onShow();
-    },
-
-    //新增view 的hide方法
-    __hide: function () {
-
-
-      this.$el.hide();
-      this.__onHide();
-    }
 
 
   });

@@ -13,7 +13,8 @@
                     inView.removeClass('animatestart');
                     inView.removeClass('sliderightin');
 
-                    if (outView) outView.__hide();
+                    if (outView) { outView.__hide(); outView.__onHide(inView.viewname); }
+                    inView.__onShow();
 
                     callback && callback.call(scope, inView, outView);
                 }, 340);
@@ -34,7 +35,9 @@
                         outView.removeClass('animatestart');
                         outView.removeClass('sliderightout');
                         outView.__hide();
+                        outView.__onHide(inView.viewname);
                     }
+                    inView.__onShow();
 
                     callback && callback.call(scope, inView, outView);
 
@@ -47,8 +50,9 @@
                 this.mainframe.hide();
 
                 //in 一定会有 out则不一定
-                if (outView) outView.__hide();
+                if (outView) { outView.__hide(); outView.__onHide(inView.viewname); }
                 inView.__show();
+                inView.__onShow();
 
                 this.mainframe.show();
 
