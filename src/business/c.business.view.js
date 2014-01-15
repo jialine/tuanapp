@@ -1,8 +1,11 @@
-/* File Created: 六月 23, 2013 */
-
-define(['cBase', 'cUIView', 'CommonStore', 'cSales'], function (cBase, cUIView, CommonStore, cSales) {
+define(['cBase', 'cUIView', 'CommonStore', 'cSales', 'cUtility'], function (cBase, cUIView, CommonStore, cSales, Util) {
 
   var options = {
+    //@description 获得guid
+    getGuid: function () {
+      return Util.getGuid();
+    },
+
     sendGa: function () {
       //ga统计
       if (typeof _gaq !== 'undefined') {
@@ -193,18 +196,48 @@ define(['cBase', 'cUIView', 'CommonStore', 'cSales'], function (cBase, cUIView, 
         }
       }
     },
+
+    _sendUbt: function () {
+      if (window.$_bf && window.$_bf.loaded == true) {
+        var url = this._getAurl(), query = this.request.query, pId = $('#page_id'), oId = $('#bf_ubt_orderid');
+        var pageId = +(this.pageid);
+        if (cUtility.isInApp()) {
+          pageId += 1000;
+        }
+        if (pId.length == 1) {
+          pId.val(pageId);
+        }
+        //set order id
+        if (oId.length == 1) {
+          if (query && query.orderid) {
+            oId.val(query.orderid);
+          } else {
+            oId.val('');
+          }
+        }
+        window.$_bf['asynRefresh']({
+          page_id: pageId,
+          url: location.protocol + "//" + location.host + url
+        });
+      } else {
+        setTimeout($.proxy(this._sendUbt, this), 300);
+      }
+    },
+
     onShowFinish:function(){
+      this._sendUbt();
+
       this.updateSales(this.$el);
       if (this.onBottomPull) {
         this._onWidnowScroll = $.proxy(this.onWidnowScroll, this);
         this.addScrollListener();
-      }   
+      }
       //ga统计
       this.sendGa();
 
       //Kenshoo统计
       this.sendKenshoo();
-      
+
     },
     _getDefaultHeader: function () {
       return {
@@ -217,6 +250,6 @@ define(['cBase', 'cUIView', 'CommonStore', 'cSales'], function (cBase, cUIView, 
       };
     }
   };
-  
-  return cUIView.extend(options);  
+
+  return cUIView.extend(options);
 });
