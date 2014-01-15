@@ -1,4 +1,4 @@
-define(['cCoreInherit', 'cUtility', 'cUIBase', 'cUIHashObserve', 'cBusinessServerTime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility ,Tools, HashObserve, cBusinessServerTime, cCoreDate, WidgetFactory) {
+define(['cCoreInherit', 'cUtility', 'cUIBase', 'cUIHashObserve', 'cBusinessServertime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility ,Tools, HashObserve, cBusinessServerTime, cCoreDate, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Calendar';
@@ -49,7 +49,7 @@ define(['cCoreInherit', 'cUtility', 'cUIBase', 'cUIHashObserve', 'cBusinessServe
         },
         scope: this
       });
-      
+
     },
     initialize: function ($super, options) {
       this.setOption(function (k, v) {
@@ -80,7 +80,7 @@ define(['cCoreInherit', 'cUtility', 'cUIBase', 'cUIHashObserve', 'cBusinessServe
         }
       });
       $super(options);
-      this.buildEvent();     
+      this.buildEvent();
     },
     selectedDate: function () {
       var el;

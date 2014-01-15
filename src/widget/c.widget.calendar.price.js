@@ -1,4 +1,4 @@
-define(['cCoreInherit','cUtility' ,'cUIBase', 'cBusinessServerTime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility, Tools , cBusinessServerTime, cCoreDate, WidgetFactory) {
+define(['cCoreInherit','cUtility' ,'cUIBase', 'cBusinessServertime', 'cCoreDate', 'cWidgetFactory', 'cWidgetAbstractCalendar'], function (cCoreInherit, cUtility, Tools , cBusinessServerTime, cCoreDate, WidgetFactory) {
   "user strict";
 
   var WIDGET_NAME = 'Calendar.Price';
