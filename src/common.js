@@ -16,7 +16,7 @@
 
   paths: {
     'text'                      : 'res/libs/require.text',
-    'cAbstractApp'              : 'src/c.abstract.app',
+    'AbstractAPP'               : 'src/c.abstract.app',
     'App'                       : 'src/business/c.business.app',
     // 'App'                       : 'src/app',
     'c'                         : 'src/common/c',
