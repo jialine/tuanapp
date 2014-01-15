@@ -4,7 +4,7 @@ define(['lib', 'cWidgetFactory'], function(lib, WidgetFactory){
 
   var WIDGET_NAME = 'MemberTip';
 
-  
+
   var map = {
     'login': '<div class="loginTips"><button class="loginNow"><%=btnContent%></button><%=alertInfo%></div>',
     'register': '<section class="novip" id="sigin-up-area" style=""><span class="btn" id="sigin-up-now"><%=btnContent%></span><p class="p10 cgray"><%=alertInfo%></p></section>'
@@ -20,7 +20,7 @@ define(['lib', 'cWidgetFactory'], function(lib, WidgetFactory){
     'register': 'button#sigin-up-now'
   }
 
-  
+
 
   // @description default setting
   var setting = {
@@ -50,6 +50,14 @@ define(['lib', 'cWidgetFactory'], function(lib, WidgetFactory){
 
     // @description 使用服务端下发的配置替换默认配置
     if (AppConfigMap && AppConfigMap[mode]) {
+      if (typeof AppConfigMap[mode] === 'string') {
+        try{
+          AppConfigMap[mode] = JSON.parse(AppConfigMap[mode]);
+        }catch(e){
+
+        }
+      };
+
       setting.btnContent = AppConfigMap[mode].btn || setting.btnContent;
       setting.alertInfo = AppConfigMap[mode].text || setting.alertInfo;
     }

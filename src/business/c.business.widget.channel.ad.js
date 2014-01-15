@@ -17,6 +17,15 @@ define(['lib', 'cWidgetFactory', 'cWidgetGuider'], function(lib, WidgetFactory){
 
     var appChannel = 'ad_'+config.channel;
     if (AppConfigMap && AppConfigMap[appChannel]) {
+
+      if (typeof AppConfigMap[appChannel] === 'string') {
+        try{
+          AppConfigMap[appChannel] = JSON.parse(AppConfigMap[appChannel]);
+        }catch(e){
+
+        }
+      };
+
       setting.link = AppConfigMap[appChannel].link || config.link;
       setting.img = AppConfigMap[appChannel].img || config.img;
       setting.title = AppConfigMap[appChannel].title || config.title;
@@ -40,9 +49,9 @@ define(['lib', 'cWidgetFactory', 'cWidgetGuider'], function(lib, WidgetFactory){
         }
       }
 
-      if (type) 
+      if (type)
         fn[type]();
-      else 
+      else
         Guider.jump({ targetModel: 'h5', url: link, title: title });
     }
 
