@@ -6,7 +6,7 @@
 * update: l_wang
 * Date: 2013/12/25(OD快快好来，祝圣诞快乐)
 */
-define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUtility) {
+define(['libs', 'cBase', 'cAjax', 'cUtility','cLog'], function (libs, cBase, cAjax, cUtility,cLog) {
   var cObject = cUtility.Object;
   var AbstractModel = new cBase.Class({
     __propertys__: function () {
@@ -122,7 +122,7 @@ define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUt
     * @param {Boolean} scope 可选，设定回调函数this指向的对象
     * @param {Function} onAbort 可选，但取消时会调用的函数
     */
-    execute: function (onComplete, onError, scope, onAbort) {
+    execute: function (onComplete, onError, scope, onAbort, params) {
 
       // @description 定义是否需要退出ajax请求
       this.isAbort = false;
@@ -133,6 +133,8 @@ define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUt
       var self = this;
 
       var __onComplete = $.proxy(function (data) {
+        //保存服务请求日志
+          cLog.restlog(self.buildurl(), self.getParam(), data);
 
         if (this.validates && this.validates.length > 0) {
 
@@ -164,6 +166,8 @@ define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUt
       }, this);
 
       var __onError = $.proxy(function (e) {
+        //保存服务请求日志
+        cLog.restlog(self.buildurl(), self.getParam());
         if (self.isAbort) {
           self.isAbort = false;
 
@@ -181,7 +185,8 @@ define(['libs', 'cBase', 'cAjax', 'cUtility'], function (libs, cBase, cAjax, cUt
       }, this);
 
       // @description 从this.param中获得数据，做深copy
-      var params = _.clone(this.getParam() || {});
+      var params = params || _.clone(this.getParam() || {});
+
 
       if (this.contentType === AbstractModel.CONTENT_TYPE_JSON) {
 

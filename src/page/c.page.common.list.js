@@ -34,6 +34,8 @@ define(['libs', 'cUI', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 
     options.bottomLoading = null;
 
     options.addScrollListener = function () {
+        this.__isComplete__ = false;
+        this.__isLoading__ = false;
         $(window).bind('scroll', this._onWidnowScroll);
     },
 
@@ -51,7 +53,9 @@ define(['libs', 'cUI', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 
         var pos = cUI.Tools.getPageScrollPos();
         if (pos.top == 0) return;
         var h = pos.pageHeight - (pos.top + pos.height);
-        if (h <= 50 && !this.__isComplete__ && !this.__isLoading__) {
+        //console.log(h);
+        //fix ios 不容易加载更多数据问题 shbzhang 2014/1/6
+        if (h <= 81 && !this.__isComplete__ && !this.__isLoading__) {
             this.__isLoading__ = true;
             this.onBottomPull && this.onBottomPull();
         }
@@ -64,6 +68,7 @@ define(['libs', 'cUI', 'cBasePageView', 'cWidgetFactory', 'cCommonPageFactory', 
     options.endPull = function () {
         this.__isLoading__ = false;
     },
+
     /**
     * 显示loading图标
     */

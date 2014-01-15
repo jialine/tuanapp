@@ -2,7 +2,7 @@
  * @author:       wjxiong@Ctrip.com
  * @description:  验证码组件
  */
-define(['cWidgetFactory', 'cStorage'], function (WidgetFactory, cStorage) {
+define(['cWidgetFactory', 'cStorage', 'c'], function (WidgetFactory, cStorage, c) {
     "use strict";
     var WIDGET_NAME = 'Captcha';
     var Captcha = function () {
@@ -25,7 +25,22 @@ define(['cWidgetFactory', 'cStorage'], function (WidgetFactory, cStorage) {
                     }
                     else if (item.rc == 2) {
                         item.rmsg = "很抱歉，您的验证次数已达上限，请明天再试";
-                        self.showToast(item.rmsg);
+                        var a = new c.ui.Alert({
+                            message: item.rmsg,
+                            buttons: [{
+                                text: '确定',
+                                click: function () {
+                                    this.hide();
+                                    for (var o in self.els) {
+                                        var oi = self.els[o][0];
+                                        if (oi && oi.nodeName == "INPUT" && !oi.disabled) {
+                                            oi.value = "";
+                                        }
+                                    }
+                                }
+                            }]
+                        });
+                        a.show();
                     }
                     else {
                         item.rmsg = item.rmsg || "获取验证码失败，请重试";

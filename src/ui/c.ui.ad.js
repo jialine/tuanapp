@@ -35,9 +35,22 @@
             var ifr = $('<iframe style="display: none;"></iframe>')
             ifr.attr('src', appUrl);
             $('body').append(ifr);
-            setTimeout(function () {
-                AppUtility.testApp(t1);
-            }, AppUtility.t);
+            /**************************/
+            var u = navigator.userAgent ? navigator.userAgent.toLocaleLowerCase() : '';
+            var isAndroid = (u.indexOf("android", 0) != -1) || (u.indexOf("adr", 0) != -1) ? 1 : 0, isChrome = isAndroid && u.indexOf("chrome", 0) != -1;
+            //这里需要判断是不是android下的chrome，如果是的话就使用以下逻辑
+            //如果不是便使用原来的逻辑        
+            if (isChrome) {
+                setTimeout(function () {
+                    (typeof noAppFunc == 'function') && noAppFunc();
+                }, 1);
+                window.location.href = appUrl;
+                /**************************/
+            } else {
+                setTimeout(function () {
+                    AppUtility.testApp(t1);
+                }, AppUtility.t);
+            }
             AppUtility.setTestResult(hasAppFunc, noAppFunc);
         },
         testApp: function (t1) {
@@ -121,15 +134,38 @@ adOptions.update = function (config) {
 * @description: 通过模板和开发者传入的数据生成HeaderView
 */
 adOptions.createHtml = function () {
+    var ss1 = adOptions.getUrlParam('sourceid'), ss2 = adOptions.getUrlParam('sales'), allianceid = adOptions.getUrlParam('allianceid'), sid = adOptions.getUrlParam('sid');
     var clazz = this.isInFooter ? '' : 'fix_bottom';
     var url = '/market/download.aspx?from=H5';
-    var s = adOptions._get("SALES_OBJECT");
+    var s = adOptions._get("SALES_OBJECT"), unionInfo = adOptions._get("UNION"), unionCookie = adOptions._getCookie('UNION');
     var sCss = '';
+    if (allianceid && allianceid.length > 0 && sid && sid.length > 0) {
+        sCss = 'display:none;';
+    }
+    if (unionInfo || unionCookie) { sCss = 'display:none;'; }
     if (s && s.sid && +s.sid > 0) {
         if (!s.appurl || s.appurl.length <= 0) {
             sCss = 'display:none;';
         }
-        url = s.appurl ? s.appurl : 'http://m.ctrip.com/market/download.aspx?from=' + s.sid;
+        url = s.appurl ? s.appurl : '/market/download.aspx?from=' + s.sid;
+    }
+    /*判断是否强制下载渠道*/
+    if (ss1 && ss1.length > 0) {
+        var isForceDown = 0;
+        var lstSourceid = ['497', '1107', '1108', '3516', '3512', '3511', '3503', '3513', '1595', '1596', '3524', '3517', '3518', '1591', '1825', '1826', '1827', '1828', '1829', '1830', '1831'];
+        for (var i = 0, len = lstSourceid.length; i < len; i++) {
+            var d = lstSourceid[i];
+            if (d == ss1) { isForceDown = 1; break; }
+        }
+        if (isForceDown) { sCss = ''; }
+    }
+    if (this.checkDeviceSupport() == false) { sCss = 'display:none;'; }
+    if (sCss.length > 0) {
+        if ($('footer')) $('footer').removeClass('pb85');
+        if ($('div[data-role="footer"]')) $('div[data-role="footer"]').removeClass('pb85');
+        if ($('#panel-box')) { $('#panel-box').removeClass('pb85'); }
+        adOptions.saveExpire();
+        return '';
     }
     return ['<div id="dl_app" style="' + sCss + '" class="', clazz,
     '"> <div id="icon_text" class="txt_middle"><img src="http://res.m.ctrip.com/html5/content/images/icon_text_s6.png"/></div>',
@@ -137,6 +173,12 @@ adOptions.createHtml = function () {
     '<div id="close_icon"></div>',
     '</div>'].join('');
 };
+adOptions.getUrlParam = function (name) {
+    //var aParams = document.location.search.substr(1).split('&');
+    var urls = document.location.href || '', re = new RegExp("(\\\?|&)" + name + "=([^&]+)(&|$)", "i"), m = urls.match(re);
+    if (m) return m[2];
+    return '';
+},
 //设置app协议url
 adOptions.setAppUrl = function () {
     //获取渠道信息
@@ -283,7 +325,8 @@ adOptions.onShow = function () {
     var scope = this;
     //修改点击逻辑l_wang
     this.root.find('#app_link').on('click', function (e) {
-        var url = $(this).attr('href');
+        e.preventDefault();
+        var url = $(this).attr('href'); 
         var appUrl = adOptions.setAppUrl();
         AppUtility.openApp(function () {
             scope.saveExpire();
@@ -292,12 +335,18 @@ adOptions.onShow = function () {
         }, function () {
             window.location = url;
         }, appUrl);
-        e.preventDefault();
         return false;
     });
 
     if (this.checkDeviceSupport() == false) {
-        this.hide();
+        //this.hide();
+        //fix pc 浏览器访问,导致团购酒店入口消失的问题 shbzhang 2014/1/6
+        if(this.root.attr('id')=='dl_app'){
+          this.root.hide();
+        }
+        if ($('footer')) $('footer').removeClass('pb85');
+        if ($('div[data-role="footer"]')) $('div[data-role="footer"]').removeClass('pb85');
+        if ($('#panel-box')) { $('#panel-box').removeClass('pb85'); }
     }
 };
 
@@ -361,9 +410,13 @@ adOptions.checkForceDownload = function (sourceid) {
 */
 adOptions.create = function () {
     if (!this.isCreate && !this.isExpire() && this.status !== this.STATE_ONCREATE) {
-        this.root = $(this.createHtml());
-        this.rootBox.append(this.root);
-        this.trigger('onCreate');
+        //如果返回的是空字符，则不生成浮层 2014-1-4 caof
+        var s = this.createHtml();
+        if (s && s.length > 0) {
+            this.root = $(this.createHtml());
+            this.rootBox.append(this.root);
+            this.trigger('onCreate');
+        }
         this.isCreate = true;
     } else {
         if ($('footer')) {
@@ -383,13 +436,25 @@ adOptions.isExpire = function () {
     var data = this._get(this.storeKey);
     return !!data;
 };
-
+adOptions._getCookie = function (name) {
+    var result = null;
+    if (name) {
+        var RegCookie = new RegExp('\\b' + name + '=([^;]*)\\b'), match = RegCookie.exec(document.cookie);
+        result = match && unescape(match[1])
+    } else {
+        var cookies = document.cookie.split(';'), i, c; result = {};
+        for (i = 0, len = cookies.length; i < len; i++) {
+            c = cookies[i].split('='); result[c[0]] = unescape(c[2])
+        }
+    }
+    return result;
+};
 adOptions._get = function (key) {
     var result = window.localStorage.getItem(key);
     if (result) {
         result = JSON.parse(result);
         if (Date.parse(result.timeout) >= new Date()) {
-            return result.value;
+            return result.value || result.data;
         }
     }
     return ""

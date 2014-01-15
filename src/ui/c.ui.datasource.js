@@ -23,7 +23,11 @@
       if (typeof filterfun !== 'function') throw 'Screening function did not fill in';
 
       //l_wang 修改点，将filter变为underscore的
-      this.filters = _.filter(this.data, filterfun);
+      var fn = function (v, i) {
+        return filterfun(i, v);
+      }
+      
+      this.filters = _.filter(this.data, fn);
       this.filters = this.filters || [];
       return typeof sortfun === 'function' ? this.filters.sort(sortfun) : this.filters;
     },

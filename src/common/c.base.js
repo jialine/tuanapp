@@ -173,9 +173,6 @@ define(['libs', 'cCoreInherit', 'cCoreDate', 'cCoreHash', 'cBusinessServertime',
             return keys;
         }
     });
-
-
-
     /* Date对象，对时间提供一些常用方法 */
     /**
     * @Description : 迁移至 core/c.core.date.js

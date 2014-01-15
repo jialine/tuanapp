@@ -65,6 +65,10 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], functio
           this.html = $(this.html);
           this.btns = $(this._loadButtonHtml());
 
+          //新增头尾
+          this.header = options.header;
+          this.footer = options.footer;
+
           this.buttons = options.buttons || [];
           this.contentDom.html([
                         '<div class="cui-pop-box">',
@@ -78,6 +82,10 @@ define(['cBase', 'cUICore', 'cWidgetFactory', 'cUIScrollLayer', 'libs'], functio
 
           this.closeDom = this.contentDom.find('.cui-top-close').parent();
           this.body = this.contentDom.find('.cui-bd');
+
+          //新增头尾
+          if (this.header) this.body.before($(this.header));
+          if (this.footer) this.body.after($(this.footer));
 
           if (this.html.length > 1) {
             this.html = $('<div style="width: 100%;"></div>').append(this.html);

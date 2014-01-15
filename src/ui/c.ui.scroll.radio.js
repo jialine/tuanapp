@@ -108,6 +108,10 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
       e.preventDefault();
     });
 
+    this.onHashChange = function () {
+      this.hide();
+    }
+    $(window).on('hashchange', $.proxy(this.onHashChange, this));
   };
 
   _attributes.onHide = function () {
@@ -121,6 +125,7 @@ define(['libs', 'cBase', 'cUILayer', 'cUIScrollList'], function (libs, cBase, La
     //    $(window).unbind('scroll');
     this.root.unbind('touchmove');
     this.root.remove();
+    $(window).off('hashchange', $.proxy(this.onHashChange, this));
 
   };
 

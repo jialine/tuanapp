@@ -19,8 +19,9 @@ define(['cUtility', 'cWidgetFactory', 'cHybridFacade'], function (Util, WidgetFa
                     if (options && options.module) {
                         var openUrl = Facade.getOpenUrl(options);
                         Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: openUrl, targetMode: 1, title: options.title });
-                    }
-                    ;
+                    } else if (options && options.url) {
+                        Facade.request({ name: Facade.METHOD_OPEN_URL, openUrl: options.url, targetMode: 1, title: options.title });
+                    };
                 },
                 h5: function () {
                     if (options && options.url) {
@@ -57,6 +58,10 @@ define(['cUtility', 'cWidgetFactory', 'cHybridFacade'], function (Util, WidgetFa
 
         log: function (options) {
             Facade.request({ name: Facade.METHOD_LOG_EVENT, event_name: options.name })
+        },
+
+        print: function (options) {
+          Facade.request({ name: Facade.METHOD_NATIVE_LOG, log: options.log, result: options.result });
         },
 
         callService: function () {
@@ -143,7 +148,7 @@ define(['cUtility', 'cWidgetFactory', 'cHybridFacade'], function (Util, WidgetFa
         },
 
         downloadData: function (options) {
-            Facade.request({ name: Facade.METHOD_DOWNLOAD_DATA, url: options.url, callback: options.callback });
+            Facade.request({ name: Facade.METHOD_DOWNLOAD_DATA, url: options.url, callback: options.callback, suffix: options.suffix });
         }
     };
 
@@ -186,6 +191,10 @@ define(['cUtility', 'cWidgetFactory', 'cHybridFacade'], function (Util, WidgetFa
             if (window.console) {
                 window.console.log(options.name);
             }
+        },
+
+        print: function(options){
+          return console.log(options.log, options.result);
         },
 
         callService: function () {

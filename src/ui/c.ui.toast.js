@@ -2,6 +2,33 @@
 
 define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
 
+
+
+  function needFocus(el) {
+    switch (el.nodeName.toLowerCase()) {
+      case 'textarea':
+      case 'select':
+        return true;
+      case 'input':
+        switch (el.type) {
+          case 'button':
+          case 'checkbox':
+          case 'file':
+          case 'image':
+          case 'radio':
+          case 'submit':
+            return false;
+        }
+        return !el.disabled && !el.readOnly;
+      default:
+        return (/\bneedfocus\b/).test(el.className);
+    }
+  }
+
+  if (typeof $.needFocus != 'function') {
+    $.needFocus = needFocus;
+  }
+
   var options = {};
 
   var _config = {
@@ -29,7 +56,8 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
     var scope = this;
     var _clickCallback = function () {
 
-      // 为什么要先unbind再rebind？
+        // 为什么要先unbind再rebind？
+        //答:为了避免click事件队列的产生.确认每次注册的事件是干净的
       $('.cui-opacitymask').unbind('click').bind('click', function () {
         _resetClickEvent.call(scope, callback);
       });
@@ -59,11 +87,24 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
     _handler = setTimeout(_callback, _timeout);
 
     _setClickToHideEvent.call(this, clickToHide, callback);
+
+    this.focusPosition = setInterval($.proxy(function () {
+      var el = document.activeElement;
+      if ($.needFocus(el)) {
+        if (!this.focusPosition) this.focusPosition = true;
+        var _top = parseInt($(el).offset().top) + 30;
+        this.root.css({ 'top': _top + 'px', position: 'absolute' });
+      }
+    }, this), 20);
+
   };
 
   var _hide = function () {
     clearTimeout(_handler);
-
+    if (this.focusPosition) {
+        clearInterval(this.focusPosition);
+        this.root.css({ 'top': '50%', position: 'fixed' });
+    }
     if (typeof _hideHandler === 'function') {
       _hideHandler.call(this);
     };

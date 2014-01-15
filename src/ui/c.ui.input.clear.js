@@ -77,7 +77,7 @@
             setTimeout(function () {
               clearButton.hide();
             },
-                        300);
+                        20);
           }
         });
         clearButton.bind('click',

@@ -2,29 +2,6 @@
   var __SALES__ = null;
   var salesOStore = CommonStore.SalesObjectStore.getInstance();
 
-  //    var getServerUrl = function () {
-  //        var host = location.host;
-  //        if (cUtility.isInApp()) {
-  //            if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
-  //                return 'm.ctrip.com';
-  //            } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
-  //                return 'waptest.ctrip.com';
-  //            } else {
-  //                return 'm.ctrip.com';
-  //            }
-  //            //还差一个生产
-  //        } else if (host.match(/^m\.ctrip\.com/i)) {
-  //            return 'm.ctrip.com';
-  //        } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
-  //            return 'waptest.ctrip.com';
-  //        } else if (host.match(/^10\.8\.2\.111/i)) {
-  //            return '10.8.2.111';
-  //        } else if (host.match(/^waptest\.ctrip/i)) {
-  //            return 'waptest.ctrip.com';
-  //        } else {
-  //            return 'm.ctrip.com';
-  //        }
-  //    }
   var getServerUrl = function (protocol) {
     // @description 直接调用AbstractModel的方法，如果是https的站点，需要传入protocol='https'
     return AbstractModel.baseurl(protocol);

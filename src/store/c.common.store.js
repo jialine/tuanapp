@@ -3,7 +3,7 @@
     Common.UserStore = new cBase.Class(AbstractStore, {
         __propertys__: function () {
             this.key = 'USER';
-            this.lifetime = '1D';
+            this.lifeTime = '1D';
         },
         initialize: function ($super, options) {
             $super(options);
@@ -18,7 +18,7 @@
             return userinfo;
         },
         setUser: function (UserInfo) {
-            var timeout = cStorage.localStorage.getExpireTime('USERINFO') ;
+            var timeout = cStorage.localStorage.getExpireTime('USERINFO');
             var userinfo = { data: UserInfo, timeout: timeout };
             cStorage.localStorage.oldSet('USERINFO', JSON.stringify(userinfo));
             this.set(UserInfo);
@@ -39,7 +39,7 @@
             var user = this.getUser();
             return user.UserName;
         },
-        getUserId:function(){
+        getUserId: function () {
             var user = this.getUser() || {};
             return user.UserID || cUtility.getGuid();
         },
@@ -71,7 +71,7 @@
         userStore: Common.UserStore.getInstance(),
         __propertys__: function () {
             this.key = 'HEADSTORE';
-            this.lifetime = '15D';
+            this.lifeTime = '15D';
             this.defaultData = {
                 "cid": cUtility.getGuid(),
                 "ctok": "351858059049938",
@@ -113,21 +113,26 @@
     });
 
     //分销联盟Store
-    Common.UnionStore = new cBase.Class({
+    Common.UnionStore = new cBase.Class(AbstractStore, {
         __propertys__: function () {
             this.key = 'UNION';
-            this.lifetime = '7D';
+            this.lifeTime = '7D';
             this.store = cStorage.localStorage;
         },
-        initialize: function () {
-
+        initialize: function ($super, options) {
+            $super(options);
         },
         get: function () {
             var data = this.store.oldGet(this.key);
             return data && data.data || null;
         },
         set: function (data, timeout) {
-            timeout = timeout ? new cBase.Date(timeout) : new cBase.Date(cUtility.getServerDate());
+            //fix 分销联盟时间超时时间保持不准确的bug shbzhang 2014/1/7
+            if (!timeout) {
+                timeout = new cBase.Date(cUtility.getServerDate())
+                timeout.addSeconds(this._getLifeTime());
+            }
+            //timeout = timeout ? new cBase.Date(timeout) : new cBase.Date(cUtility.getServerDate()).addDay(7);
             var json = {
                 data: data,
                 timeout: timeout.format('Y/m/d H:i:s')
@@ -138,21 +143,26 @@
     });
 
     //渠道Store
-    Common.SalesStore = new cBase.Class({
+    Common.SalesStore = new cBase.Class(AbstractStore,{
         __propertys__: function () {
             this.key = 'SALES';
-            this.lifetime = '30D';
+            this.lifeTime = '30D';
             this.store = cStorage.localStorage;
         },
-        initialize: function () {
-
+        initialize: function ($super, options) {
+            $super(options);
         },
         get: function () {
             var data = this.store.oldGet(this.key);
             return data && data.data || null;
         },
         set: function (data, timeout) {
-            timeout = timeout ? new cBase.Date(timeout) : new cBase.Date(cUtility.getServerDate()).addDay(3);
+            //fix 分销联盟时间超时时间保持不准确的bug shbzhang 2014/1/7
+            if (!timeout) {
+                timeout = new cBase.Date(cUtility.getServerDate())
+                timeout.addSeconds(this._getLifeTime());
+            }
+           // timeout = timeout ? new cBase.Date(timeout) : new cBase.Date(cUtility.getServerDate()).addDay(3);
             var json = {
                 data: data,
                 timeout: timeout.format('Y/m/d H:i:s')

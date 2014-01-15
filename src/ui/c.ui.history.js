@@ -1,13 +1,14 @@
 ﻿/* File Created: 六月 23, 2013 */
 
-define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
+define(['cBase', 'cUIBase', 'libs'], function (cBase, Tools, libs) {
+
     /* 历史记录*/
     var History = function (options) {
         //元素
         this.element;
         /* 事件定义 */
         //默认class
-        this.clazz = [cUICore.config.prefix + 'history'];
+        this.clazz = [Tools.config.prefix + 'history'];
         //唯一的maskname
         this.maskName = "maskName";
         //自定义样式
@@ -26,7 +27,7 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
         this.inputFun = null,
 
         //private variable
-        this._id = cUICore.Tools.getCreateId();
+        this._id = Tools.getCreateId();
         //最外层的层
         this._boxDom;
         //边线层
@@ -118,7 +119,7 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
             this._BuildEvent();
         },
         _CreateDom: function () {
-            var C = cUICore.Tools.createElement;
+            var C = Tools.createElement;
             this._bodyDom = this.rootBox || $('body');
             this.element = $(this.element);
             this._boxDom = $(C('div', { 'id': this._id, 'class': this.clazz.join(' ') }));
@@ -126,7 +127,7 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
                 'position': 'absolute',
                 'display': 'none'
             });
-            this._borderDom = $(C('div', { 'class': cUICore.config.prefix + 'history-border' }));
+            this._borderDom = $(C('div', { 'class': Tools.config.prefix + 'history-border' }));
             var list = [];
             //如果没有输入值，去历史记录
             if (this.element.val() == "") {
@@ -135,13 +136,13 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
                 list = this._getSubList(this.dataSource, this.listSize);
             }
 
-            this._contDom = $(C('ul', { 'class': cUICore.config.prefix + 'history-list' }));
+            this._contDom = $(C('ul', { 'class': Tools.config.prefix + 'history-list' }));
             for (var i in list) {
                 this._contDom.append('<li class="item" data_id="' + list[i].id + '">' + list[i].name + '</li>');
             }
             //如果是在历史记录中取,显示清除提示
             if (this.element.val() == "") {
-                this._clearButton = $(C('li', { 'class': [cUICore.config.prefix + 'clear-history clearbutton'] }));
+                this._clearButton = $(C('li', { 'class': [Tools.config.prefix + 'clear-history clearbutton'] }));
                 if (list.length > 0) {
                     this._clearButton.html(this.clearButtonTitle);
                 } else {
@@ -155,8 +156,8 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
         },
         _Location: function () {
             this._boxDom.css({ height: 'auto', width: 'auto' });
-            var size = cUICore.Tools.getPageSize();
-            var pos = cUICore.Tools.getElementPos(this.element[0]),
+            var size = Tools.getPageSize();
+            var pos = Tools.getElementPos(this.element[0]),
                 left = this.style.left ? this.style.left : (this.size && this.size.left ? this.size.left + pos.left : pos.left) + 'px',
                 top = this.style.top ? this.style.top : (this.size && this.size.top ? this.size.top + (pos.top + this.element.height()) : (pos.top + this.element.height())) + 'px',
                 width = this.style.width ? this.style.width : this.element.width() + 'px',
@@ -216,7 +217,7 @@ define(['cBase', 'cUICore', 'libs'], function (cBase, cUICore, libs) {
             this._oneShow = true;
         },
         Open: function () {
-            this._boxDom.css('z-index', cUICore.Tools.getBiggerzIndex());
+            this._boxDom.css('z-index', Tools.getBiggerzIndex());
             this._boxDom.show();
             this._AutoLocation();
         },

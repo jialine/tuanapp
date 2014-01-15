@@ -1,9 +1,10 @@
-define(['libs', 'cBase', 'cStorage', 'CommonStore', 'cUtility', 'cWidgetFactory', 'cWidgetGeolocation', 'cGeoService'], function (cBase, cStorage, libs, CommonStore, cUtility, cWidgetFactory) {
+define(['libs', 'cBase', 'cStorage', 'CommonStore', 'cUtility', 'cWidgetFactory', 'cWidgetGeolocation', 'cWidgetGuider', 'cGeoService'], function (cBase, cStorage, libs, CommonStore, cUtility, cWidgetFactory) {
     /*
     * 地理相关的服务
     */
     var Geo = {};
     var Geolocation = cWidgetFactory.create('Geolocation');
+    var Guider = cWidgetFactory.create('Guider');
     var posStore = Geolocation.PositionStore.getInstance();
     /**
     * 获取的当前城市信息
@@ -73,10 +74,11 @@ define(['libs', 'cBase', 'cStorage', 'CommonStore', 'cUtility', 'cWidgetFactory'
                     clearTimeout(resource);
                     resource = setTimeout(function () {
                         if (state === STATE_START) {
-                            state = STATE_ERROR;
-                            RunCallback('onError', [null], true);
+                          state = STATE_ERROR;
+                          Guider.print({ log: '#cGeoService -- 22 second timeout call onError' });
+                          RunCallback('onError', [null], true);
                         }
-                    }, 22000);
+                    }, 35000);
                     //当在加载中时,加入队列
                     if (state === STATE_START) {
                         handler[name] && (typeof handler[name].onStart === 'function') && handler[name].onStart.call(scope);
@@ -84,6 +86,7 @@ define(['libs', 'cBase', 'cStorage', 'CommonStore', 'cUtility', 'cWidgetFactory'
                     }
                     state = STATE_START;
                     RunCallback('onStart', null);
+                    Guider.print({ log: '#cGeoService -- start request city info' });
                     Geolocation.requestCityInfo(function (posinfo) {
                         state = STATE_COMPLETE;
                         posStore.set(posinfo);
@@ -92,6 +95,7 @@ define(['libs', 'cBase', 'cStorage', 'CommonStore', 'cUtility', 'cWidgetFactory'
                         state = STATE_ERROR;
                         //app那边禁用定位，这个值会返回e为2
                         if (typeof e === 'number' && e === 2) e = { code: 1 };
+                        Guider.print({ log: '#cGeoService -- locate onError' });
                         RunCallback('onError', [msg, e], true);
                     }, function (lng, lat) {
                         RunCallback('onPosComplete', [lng, lat]);

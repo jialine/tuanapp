@@ -90,6 +90,10 @@ define(
     this.onCreate();
   };
 
+  View.turning = function () {
+    this.appliction.turning();
+  };
+
   // **************************************************************************
   // @deprecated
   View._initializeHeader = function(){

@@ -231,8 +231,13 @@ define(['cBase', 'cUtility', 'cWidgetFactory', 'cStore', 'cHybridFacade'], funct
         var _HybridLocate = function () {
             var successCallback = function (info) {
                 if (info && info.locateStatus) {
-                    if (info.locateStatus == -1) errorCallback('网络不通，当前无法定位', 1);
-                    else if (info.locateStatus == -2) errorCallback('定位没有开启', 2);
+                    if (info.locateStatus == -1) {
+                        errorCallback('网络不通，当前无法定位', 1);
+                        return;
+                    } else if (info.locateStatus == -2) {
+                        errorCallback('定位没有开启', 2);
+                        return;
+                    }
                 }
 
                 if (info && info.value && info.value.poi) {

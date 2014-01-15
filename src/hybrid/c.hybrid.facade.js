@@ -2,7 +2,7 @@
  * @author:     cmli@Ctrip.com
  * @description:  hybrid面板模板
  */
-define(['libs', 'CommonStore'], function(libs, CommonStore){
+define(['libs', 'CommonStore','cLog'], function(libs, CommonStore,cLog){
 
   var Facade = Facade || {};
 
@@ -40,6 +40,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
   Facade.METHOD_COPY_TO_CLIPBOARD = 'METHOD_COPY_TO_CLIPBOARD';
   Facade.METHOD_SHARE_TO_VENDOR = 'METHOD_SHARE_TO_VENDOR';
   Facade.METHOD_DOWNLOAD_DATA = 'METHOD_DOWNLOAD_DATA';
+  Facade.METHOD_NATIVE_LOG = 'METHOD_NATIVE_LOG';
 
   var METHOD_ENTRY = 'h5_init_finished';
   var METHOD_MEMBER_LOGIN = 'member_login';
@@ -65,6 +66,9 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_NON_MEMBER_LOGIN: function (options) {
       defaultCallback[METHOD_NON_MEMBER_LOGIN] = function (params) {
+
+        cLog.applog('METHOD_NON_MEMBER_LOGIN',params);
+
         if (typeof params === 'string') {
           params = JSON.parse(params);
         }
@@ -90,6 +94,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_LOCATE: function(options){
       defaultCallback[METHOD_LOCATE] = function(params){
+        cLog.applog('METHOD_LOCATE',params);
         try{
           var data = params;
           if (typeof params === 'string') {
@@ -106,6 +111,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_MEMBER_LOGIN: function (options) {
       defaultCallback[METHOD_MEMBER_LOGIN] = function(params){
+        cLog.applog('METHOD_MEMBER_LOGIN',params);
 
         if (typeof params === 'string') {
           params = JSON.parse(params);
@@ -131,6 +137,8 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
     METHOD_AUTO_LOGIN: function (options) {
       defaultCallback[METHOD_AUTO_LOGIN] = function (params) {
 
+        cLog.applog('METHOD_AUTO_LOGIN',params);
+
         if (typeof params === 'string') {
           params = JSON.parse(params);
         }
@@ -155,6 +163,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
     METHOD_REGISTER: function(options){
       defaultCallback[METHOD_REGISTER] = function(params){
 
+        cLog.applog('METHOD_REGISTER',params);
         if (typeof params === 'string') {
           params = JSON.parse(params);
         }
@@ -190,6 +199,8 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_INIT: function(options){
       defaultCallback[METHOD_INIT] = function (params) {
+
+        cLog.applog('METHOD_INIT',params);
 
         if (typeof params === 'string') {
           params = JSON.parse(params);
@@ -258,6 +269,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_CHECK_APP_INSTALL: function (options) {
       defaultCallback[METHOD_CHECK_APP_INSTALL] = function (params) {
+        cLog.applog('METHOD_CHECK_APP_INSTALL',params);
         options.callback(params);
       }
     },
@@ -268,12 +280,14 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
     METHOD_READ_FROM_CLIPBOARD: function (options) {
       defaultCallback[METHOD_READ_FROM_CLIPBOARD] = function (params) {
+        cLog.applog('METHOD_READ_FROM_CLIPBOARD',params);
         options.callback(params);
       }
     },
 
     METHOD_DOWNLOAD_DATA: function (options) {
       defaultCallback[METHOD_DOWNLOAD_DATA] = function (params) {
+        cLog.applog('METHOD_DOWNLOAD_DATA',params);
         if (typeof options.callback === 'function') {
           options.callback(params);
         }
@@ -488,7 +502,7 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
       METHOD_CALL_SERVICE_CENTER: function(){
         //CtripUtil.app_call_service_center();
-        CtripUtil.app_call_phone('400-0086-666');
+        CtripUtil.app_call_phone();
       },
 
       METHOD_BACK_TO_LAST_PAGE: function (options) {
@@ -561,7 +575,14 @@ define(['libs', 'CommonStore'], function(libs, CommonStore){
 
       METHOD_DOWNLOAD_DATA: function (options) {
         Facade.register({ tagname: Facade.METHOD_DOWNLOAD_DATA, callback: options.callback });
-        CtripUtil.app_download_data(options.url);
+        CtripUtil.app_download_data(options.url, options.suffix);
+      },
+
+      METHOD_NATIVE_LOG: function (options) {
+        var sign = window.localStorage.getItem('isPreProduction');
+        if (sign && sign != '') {
+          CtripTool.app_log('@[Wireless H5] '+options.log, options.result);
+        }
       }
     }
 

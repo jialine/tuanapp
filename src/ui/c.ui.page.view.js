@@ -6,12 +6,14 @@
     prefix: 'cui-'
   };
 
-  var _mask = new Mask({
-    classNames: [_config.prefix + 'warning-mask']
-  });
+//  var _mask = new Mask({
+//    classNames: [_config.prefix + 'warning-mask']
+//  });
 
   options.__propertys__ = function () {
-    this.mask = _mask;
+    this.mask = new Mask({
+      classNames: [_config.prefix + 'warning-mask']
+    }); ;
     this.hashObserve = new HashObserve({
       hash: this.id,
       scope: this,
@@ -44,6 +46,10 @@
       });
 
       this.hashObserve.start();
+
+      this.root.bind('touchmove', function (e) {
+        e.preventDefault();
+      });
 
     });
 

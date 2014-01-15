@@ -151,13 +151,7 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
     */
     excute: function (onComplete, onError, ajaxOnly, scope, onAbort) {
 
-      if (this.method.toLowerCase() !== 'get' && this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
-        this.setParam('head', this.head.get())
-      } else if (this.method.toLowerCase() !== 'get' && !this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
-        if (this.headinfo) {
-          this.setParam('head', this.headinfo);
-        }
-      }
+            var params = _.clone(this.getParam() || {});
 
       //验证错误码，并且设置新的auth
       this.pushValidates(function (data) {
@@ -180,12 +174,24 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
 
       if (!cache || this.ajaxOnly || ajaxOnly) {
 
-        this.onBeforeCompleteCallback = function (datamodel) {
-          if (this.result instanceof AbstractStore) {
-            this.result.set(datamodel, tag);
-          }
-        }
-        this.execute(onComplete, onError, scope, onAbort)
+                if (this.method.toLowerCase() !== 'get' && this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
+                    //          this.setParam('head', this.head.get())
+                    params.head = this.head.get();
+
+                } else if (this.method.toLowerCase() !== 'get' && !this.usehead && this.contentType !== AbstractModel.CONTENT_TYPE_JSONP) {
+                    if (this.headinfo) {
+                        //            this.setParam('head', this.headinfo);
+                        params.head = this.headinfo;
+
+                    }
+                }
+
+                this.onBeforeCompleteCallback = function (datamodel) {
+                    if (this.result instanceof AbstractStore) {
+                        this.result.set(datamodel, tag);
+                    }
+                }
+                this.execute(onComplete, onError, scope, onAbort, params)
 
       } else {
         if (typeof onComplete === 'function') {
@@ -196,56 +202,60 @@ define(['libs', 'cBase', 'cStore', 'cAjax', 'cUtility', 'CommonStore', 'cAbstrac
     }
   });
 
-  AbstractModel.baseurl = function (protocol) {
-    var host = location.host;
-    var domain = 'waptest.ctrip.com';
-    var path = 'restapi2';
-
-    if (cUtility.isInApp()) {
-      if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
-        if (protocol == "https") {
-          domain = 'restful.m.ctrip.com';
+    AbstractModel.baseurl = function (protocol) {
+        var host = location.host;
+        var domain = 'm.ctrip.com';
+        var path = 'restapi';
+        if (cUtility.isInApp()) {
+            if (cUtility.isPreProduction() == '1') {   // 定义堡垒环境
+                if (protocol == "https") {
+                    domain = 'wpg.ctrip.com';
+                } else {
+                    domain = 'm.ctrip.com';
+                }
+            } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
+                if (protocol == "https") {
+                    domain = 'restful.waptest.ctrip.com';
+                } else {
+                    domain = 'waptest.ctrip.com';
+                }
+                path = 'restapi2';
+            } else {
+                if (protocol == "https") {
+                    domain = 'wpg.ctrip.com';
+                } else {
+                    domain = 'm.ctrip.com';
+                }
+            }
+        } else if (host.match(/^m\.ctrip\.com/i)) {
+            domain = 'm.ctrip.com';
+        } else if (host.match(/^(localhost|172\.16|127\.0)/i) && (location.protocol == "https" || protocol == "https")) {
+            //domain =  '10.168.147.3';
+            domain = 'restful.waptest.ctrip.com';
+            path = 'restapi2';
+        } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
+            if (protocol == "https") {
+                domain = 'restful.waptest.ctrip.com';
+            } else {
+                domain = 'waptest.ctrip.com';
+            }
+            path = 'restapi2';
+        } else if (host.match(/^10\.8\.2\.111/i)) {
+            domain = '10.8.2.111';
+        } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || protocol == "https")) {
+            domain = 'restful.waptest.ctrip.com';
+            path = 'restapi2';
+        } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i)) {
+            domain = 'waptest.ctrip.com';
+            path = 'restapi2';
         } else {
-          domain = 'm.ctrip.com';
+            domain = 'm.ctrip.com';
         }
-      } else if (cUtility.isPreProduction() == '0') {   // 定义测试环境
-        if (protocol == "https") {
-          domain = 'restful.waptest.ctrip.com';
-        } else {
-          domain = 'waptest.ctrip.com';
+        return {
+            'domain': domain,
+            'path': path
         }
-      } else {
-        if (protocol == "https") {
-          domain = 'restful.m.ctrip.com';
-        } else {
-          domain = 'm.ctrip.com';
-        }
-      }
-    } else if (host.match(/^m\.ctrip\.com/i)) {
-      domain = 'm.ctrip.com';
-    } else if (host.match(/^(localhost|172\.16|127\.0)/i) && (location.protocol == "https" || protocol == "https")) {
-      //domain =  '10.168.147.3';
-      domain = 'restful.waptest.ctrip.com';
-    } else if (host.match(/^(localhost|172\.16|127\.0)/i)) {
-      if (protocol == "https") {
-        domain = 'restful.waptest.ctrip.com';
-      } else {
-        domain = 'waptest.ctrip.com';
-      }
-    } else if (host.match(/^10\.8\.2\.111/i)) {
-      domain = '10.8.2.111';
-    } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i) && (location.protocol == "https" || protocol == "https")) {
-      domain = 'restful.waptest.ctrip.com';
-    } else if (host.match(/^waptest\.ctrip|^210\.13\.100\.191/i)) {
-      domain = 'waptest.ctrip.com';
-    } else {
-      domain = 'm.ctrip.com';
-    }
-    return {
-      'domain': domain,
-      'path': path
-    }
-  };
+    };
 
   return AbstractModel;
 });
