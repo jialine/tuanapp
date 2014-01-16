@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cStorage', 'cAjax', 'cUtility'], function (libs, cBase, cStorage, CAjax, cUtility) {
+define(['libs', 'cBase', 'cStorage', 'cAjax', 'cUtility'], function (libs, cBase, cStorage, CAjax, cUtility) {
     var C = cBase;
     C.utils = cUtility;
     var CStore = cStorage.localStorage;
