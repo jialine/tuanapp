@@ -3,12 +3,9 @@
  * @class cBusinessServertime
  * @description 获取服务器时间
  */
-
 define(['cWidgetFactory', 'cWidgetGuider'], function(WidgetFactory) {
 
   var Guider = WidgetFactory.create('Guider');
-
-  var BusinessServertime = function() {};
 
   /**
    * @deprecated
@@ -16,19 +13,21 @@ define(['cWidgetFactory', 'cWidgetGuider'], function(WidgetFactory) {
    * @description 此处 _isInApp 与 c.utility.isInApp 相冗余，因当前cbase 与 utility 存在循环引用问题，故此暂时保留
    * @todo 用 cUtility.isInApp 代替
    */
-  // var _isInApp = function() {
-  //   // 旧版本
-  //   var oldData = window.localStorage.getItem('isInApp');
-  //   if (oldData) {
-  //     return oldData == '1' ? true : false;
-  //   }
+  var _isInApp = function() {
+    // 旧版本
+    var oldData = window.localStorage.getItem('isInApp');
+    if (oldData) {
+      return oldData == '1' ? true : false;
+    }
 
-  //   // 新版本
-  //   var data = window.localStorage.getItem('ISINAPP');
-  //   if (data) {
-  //     return data == '1' ? true : false;
-  //   }
-  // };
+    // 新版本
+    var data = window.localStorage.getItem('ISINAPP');
+    if (data) {
+      return data == '1' ? true : false;
+    }
+  };
+
+  var BusinessServertime = {};
 
   /**
    * @method BusinessServertime.getServerDate
