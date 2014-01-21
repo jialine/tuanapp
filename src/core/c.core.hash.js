@@ -50,7 +50,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
      */
     if (typeof obj !== 'object') {
       obj = {};
-    };
+    }
 
     for (var i in obj) {
       if (obj.hasOwnProperty(i)) {
@@ -207,126 +207,138 @@ define(['cCoreInherit'], function(cCoreInherit) {
     return options.values.shift();
   };
 
+  /**
+   * @method unshift
+   * @description 往队列头部插入hash
+   */
   options.unshift = function(key, value, order) {
-    if (Ext.isObject(k) && !v) {
-      for (var i in k)
-        if (k.hasOwnProperty(i)) this.unshift(i, k[i]);
+    if (typeof key === 'object' && !value) {
+      for (var i in key)
+        if (key.hasOwnProperty(i)) options.unshift(i, key[i]);
     } else {
-      var index = indexOf(k, this.keys);
+      var index = indexOf(key, options.keys);
+
       if (index < 0 || order) {
-        if (order) this.del(k);
-        this.keys.unshift(k);
-        this.values.unshift(v);
+        if (order) options.del(key);
+        options.keys.unshift(key);
+        options.values.unshift(value);
       } else {
-        this.values[i] = v;
+        options.values[index] = value;
       }
     }
     return this;
   };
 
+  /**
+   * @description 返回一个hash表的一段
+   */
+  options.slice = function(start, end) {
 
+    var keys = options.keys.slice(start, end || null);
+    var values = options.values.slice(start, end || null);
+    var obj = {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  C.Hash = new cCoreInherit.Class({
-
-
-    //往队列头部插入hash
-    unshift: function(k, v, order) {
-      if (Ext.isObject(k) && !v) {
-        for (var i in k)
-          if (k.hasOwnProperty(i)) this.unshift(i, k[i]);
-      } else {
-        var index = indexOf(k, this.keys);
-        if (index < 0 || order) {
-          if (order) this.del(k);
-          this.keys.unshift(k);
-          this.values.unshift(v);
-        } else {
-          this.values[i] = v;
-        }
-      }
-      return this;
-    },
-    //返回一个hash表的一段
-    slice: function(start, end) {
-      var keys = this.keys.slice(start, end || null),
-        values = this.values.slice(start, end || null),
-        obj = {};
-      for (var i = 0, l = keys.length; i < l; i++) {
-        obj[keys[i]] = values[i];
-      }
-      return obj;
-    },
-    //从一个hash中移除一个或多个元素，如果必要，在所移除元素的位置上插入新元素，返回所移除的元素。
-    splice: function(start, count) {
-      var keys = this.keys.splice(start, count || null),
-        values = this.values.splice(start, count || null),
-        obj = {};
-      for (var i = 0, l = keys.length; i < l; i++) {
-        obj[keys[i]] = values[i];
-      }
-      return obj;
-    },
-    toString: function() {
-      // if (typeof JSON != 'undefined' && JSON.stringify) {
-      //     return JSON.stringify(this.valueOf());
-      // }
-      if (typeof JSON != 'undefined' && JSON.stringify) {
-        return JSON.stringify(this.valueOf());
-      }
-      return typeof this.values;
-    },
-    filter: function(hander) {
-      var list = {};
-      if (typeof hander !== 'function') return null;
-      for (var i = 0, len = this.keys.length; i < len; i++) {
-        if (hander.call(this.values[i], this.values[i], this.keys[i])) list[this.keys[i]] = this.values[i];
-      }
-      return list;
-    },
-    each: function(hander) {
-      var list = {};
-      if (typeof hander !== 'function') return null;
-      for (var i = 0, len = this.keys.length; i < len; i++) {
-        hander.call(this.values[i], this.values[i], this.keys[i], i);
-      }
-    },
-    valueOf: function() {
-      var obj = {};
-      for (var i = 0, l = this.keys.length; i < l; i++) {
-        obj[this.keys[i]] = this.values[i];
-      }
-      return obj;
-    },
-
-    sortBy: function(handler) {
-      var tempValueList = _.sortBy(this.values, handler);
-      var templKeyList = [];
-      for (var i = 0; i < tempValueList.length; i++) {
-        var key = this.indexOf(tempValueList[i]);
-        templKeyList[i] = key;
-      };
-      this.values = tempValueList;
-      this.keys = templKeyList;
+    for (var i = 0; i < keys.length; i++) {
+      obj[keys[i]] = values[i];
     }
-  });
 
-  return C
+    return obj;
+  };
+
+  /**
+   * @method splice
+   * @param {int} start 开始位置
+   * @param {int} count 从开始位置向后的数量
+   * @description 从一个hash中移除一个或多个元素，如果必要，在所移除元素的位置上插入新元素，返回所移除的元素。
+   */
+  options.splice = function(start, count) {
+    var keys = options.keys.splice(start, count || null);
+    var values = options.values.splice(start, count || null);
+    var obj = {};
+
+    for (var i = 0, l = keys.length; i < l; i++) {
+      obj[keys[i]] = values[i];
+    }
+
+    return obj;
+  };
+
+  /**
+   * @method filter
+   * @param {function} handler
+   */
+  options.filter = function(handler) {
+    var list = {};
+
+    if (typeof handler !== 'function')
+      return null;
+
+    for (var i = 0; i < options.keys.length; i++) {
+      if (handler.call(options.values[i], options.values[i], options.keys[i]))
+        list[options.keys[i]] = options.values[i];
+    }
+
+    return list;
+  };
+
+  /**
+   * @method each
+   * @param {function} handler
+   */
+  options.each = function(handler) {
+    var list = {};
+
+    if (typeof handler !== 'function') return null;
+
+    for (var i = 0; i < options.keys.length; i++) {
+      handler.call(options.values[i], options.values[i], options.keys[i], i);
+    }
+  };
+
+  /**
+   * @method valueOf
+   * @description
+   */
+  options.valueOf = function() {
+    var obj = {};
+
+    for (var i = 0; i < options.keys.length; i++) {
+      obj[options.keys[i]] = options.values[i];
+    }
+
+    return obj;
+  };
+
+  /**
+   * @method sortBy
+   * @description 根据回调做排序
+   */
+  options.sortBy = function(handler) {
+    var tempValueList = _.sortBy(options.values, handler);
+    var templKeyList = [];
+
+    for (var i = 0; i < tempValueList.length; i++) {
+      var key = options.indexOf(tempValueList[i]);
+      templKeyList[i] = key;
+    }
+
+    options.values = tempValueList;
+    options.keys = templKeyList;
+  };
+
+  /**
+   * @method toString
+   * @description
+   */
+  options.toString = function() {
+    if (typeof JSON != 'undefined' && JSON.stringify) {
+      return JSON.stringify(options.valueOf());
+    }
+
+    return typeof options.values;
+  };
+
+  Base.Hash = new cCoreInherit.Class(options);
+
+  return Base;
 });
