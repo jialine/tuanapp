@@ -182,7 +182,10 @@ define(['cCoreInherit'], function(cCoreInherit) {
     return options.values.pop();
   };
 
-
+  /**
+   * @method indexOf
+   * @description 查找hash表，返回index
+   */
   options.indexOf = function(value) {
     var index = indexOf(value, options.values);
 
@@ -192,9 +195,34 @@ define(['cCoreInherit'], function(cCoreInherit) {
     return -1;
   };
 
+  /**
+   * @method shift
+   * @description 移除栈底的hash，返回此hash
+   */
+  options.shift = function() {
+    if (!options.keys.length) return null;
 
+    options.keys.shift();
 
+    return options.values.shift();
+  };
 
+  options.unshift = function(key, value, order) {
+    if (Ext.isObject(k) && !v) {
+      for (var i in k)
+        if (k.hasOwnProperty(i)) this.unshift(i, k[i]);
+    } else {
+      var index = indexOf(k, this.keys);
+      if (index < 0 || order) {
+        if (order) this.del(k);
+        this.keys.unshift(k);
+        this.values.unshift(v);
+      } else {
+        this.values[i] = v;
+      }
+    }
+    return this;
+  };
 
 
 
@@ -218,18 +246,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
 
   C.Hash = new cCoreInherit.Class({
 
-    //查找hash表，返回key
-    indexOf: function(v) {
-      var index = indexOf(v, this.values);
-      if (index >= 0) return this.keys[index];
-      return -1;
-    },
-    //移除栈底的hash，返回此hash
-    shift: function() {
-      if (!this.keys.length) return null;
-      this.keys.shift();
-      return this.values.shift();
-    },
+
     //往队列头部插入hash
     unshift: function(k, v, order) {
       if (Ext.isObject(k) && !v) {
