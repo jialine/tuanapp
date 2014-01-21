@@ -8,7 +8,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
   /**
    * @method indexOf
    * @param {string|object|int} value 查询的目标值
-   * @param {array|object} 查询队列或对象
+   * @param {array|object} target 查询队列或对象
    * @description 为Object提供indexOf方法
    */
   var indexOf = function(value, target) {
@@ -73,6 +73,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
    * @method getItem
    * @param {string} key 键值名
    * @description 通过键值名获取对象
+   * @return {string|int|object}
    */
   options.getItem = function(key) {
     var index = indexOf(key, options.keys);
@@ -209,6 +210,9 @@ define(['cCoreInherit'], function(cCoreInherit) {
 
   /**
    * @method unshift
+   * @param {int} key 键值
+   * @param {string|object|int} value 查询的目标值
+   * @param {int} order 位置
    * @description 往队列头部插入hash
    */
   options.unshift = function(key, value, order) {
@@ -230,6 +234,9 @@ define(['cCoreInherit'], function(cCoreInherit) {
   };
 
   /**
+   * @method slice
+   * @param {int} start 开始位置
+   * @param {int} end 结束位置
    * @description 返回一个hash表的一段
    */
   options.slice = function(start, end) {
@@ -298,6 +305,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
   /**
    * @method valueOf
    * @description
+   * @return {object}
    */
   options.valueOf = function() {
     var obj = {};
@@ -311,6 +319,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
 
   /**
    * @method sortBy
+   * @param {function} handler
    * @description 根据回调做排序
    */
   options.sortBy = function(handler) {
@@ -329,6 +338,7 @@ define(['cCoreInherit'], function(cCoreInherit) {
   /**
    * @method toString
    * @description
+   * @return {string}
    */
   options.toString = function() {
     if (typeof JSON != 'undefined' && JSON.stringify) {
