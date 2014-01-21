@@ -8,11 +8,11 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
 
   var _toString = Object.prototype.toString;
 
-  //当前alert的状态值
+  /** 当前alert的状态值 */
   var STYLE_CONFIRM = 'confirm';
   var STYLE_CANCEL = 'cancel';
 
-  //用于继承的属性对象，后面会逐步填充
+  /** 用于继承的属性对象，后面会逐步填充 */
   var _attributes = {};
 
   _attributes.onCreate = function () {
@@ -27,7 +27,7 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
 
   options.__propertys__ = function () {
     
-    //用于alert的模板方法
+    /** 用于alert的模板方法 */
     this.tpl = this.template([
             '<div class="cui-pop-box">',
               '<div class="cui-bd">',
@@ -37,8 +37,11 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
               '</div>',
             '</div>'
         ].join(''));
+
     this.title = '';
     this.message = '';
+
+    /** 默认的按钮 */
     this.buttons = [{
       text: '确定',
       type: 'confirm',
@@ -46,6 +49,7 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
         this.hide();
       }
     }];
+
     this.viewdata = {
       title: '',
       message: ''
@@ -53,6 +57,7 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
   };
 
   options.initialize = function ($super, opts) {
+    /** 新增可用于设置的属性 */
     var allowOptions = {
       title: true,
       message: true,
@@ -66,14 +71,26 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
       }
     });
     this.addClass(_config.prefix + 'alert');
+
+    /** 调用父构造函数 */
     $super($.extend(_attributes, opts));
     this.buildViewData();
   };
 
+  /**
+  * @method buildViewData
+  * @description 设置标题和内容文字
+  */
   options.buildViewData = function () {
     this.viewdata.title = this.title;
     this.viewdata.message = this.message;
   };
+
+  /**
+  * @method setViewData
+  * @param {object} data 用于设置属性的对象
+  * @description 根据值设置对象，然后调用buildViewData
+  */
   options.setViewData = function (data) {
     data.title && (this.title = data.title);
     data.message && (this.message = data.message);
@@ -82,6 +99,11 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
     this.setRootHtml(this.createHtml());
     this.loadButtons();
   };
+
+  /**
+  * @method loadButtons
+  * @description 根据配置生成按钮
+  */
   options.loadButtons = function () {
     if (!this.root) this.create();
     var btnBox = this.root.find('.cui-roller-btns');
@@ -91,6 +113,11 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
       btnBox.append(v);
     });
   };
+
+  /**
+  * @method createButtons
+  * @description 按钮具体生成函数
+  */
   options.createButtons = function () {
     var btns = [], isarr = _toString.call(this.buttons) === '[object Array]', i = 0;
     var scope = this;
@@ -120,6 +147,11 @@ define(['libs', 'cBase', 'cUILayer'], function (libs, cBase, Layer) {
     });
     return btns;
   };
+
+  /**
+  * @method createHtml
+  * @description 生成root dom 结构
+  */
   options.createHtml = function () {
     return this.tpl(this.viewdata);
   };
