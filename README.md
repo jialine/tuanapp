@@ -12,6 +12,8 @@ Lizard是一种两栖动物，就像Ctrip.H5.Lizard所提供的功能一样，�
 
 Ctrip.H5.Lizard主要由四个模块构成：第三方框架、核心框架、公共组件库、业务组件库
 
+![](http://git.dev.sh.ctripcorp.com/ctrip-mobile-web-union/ctrip-wireless-h5-lizard/raw/H5V2.2S6/doc/img/framework.png)
+
 **第三方框架**
 
 Ctrip.H5.Lizard底层依赖的第三方库有4个：zepto, underscore, backbone, fastclick

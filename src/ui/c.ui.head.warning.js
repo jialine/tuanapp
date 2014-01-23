@@ -1,4 +1,9 @@
-﻿define(['libs', 'cBase', 'cUIPageview'], function (libs, cBase, PageView) {
+﻿/**
+* @author oxz欧新志 <ouxz@Ctrip.com> / l_wang王磊 <l_wang@Ctrip.com>
+* @class cUIHeadWarning
+* @description 带header的alert层
+*/
+define(['libs', 'cBase', 'cUIPageview'], function (libs, cBase, PageView) {
 
   var options = {};
 
@@ -7,7 +12,9 @@
   };
 
   var _attributes = {};
+
   _attributes.class = _config.prefix + 'warning';
+
   _attributes.onCreate = function () {
 
     //l_wang 此处需要使用模板
@@ -35,6 +42,7 @@
       this.callback && this.callback();
     }, this));
   };
+
   _attributes.onShow = function () {
     this.setzIndexTop();
     window.scrollTo(0, 0);
@@ -53,6 +61,13 @@
     $super($.extend(_attributes, opts));
   };
 
+  /**
+  * @method setTitle
+  * @param title {String}       标题
+  * @param content {String}     内容
+  * @param callback {function}  回调函数
+  * @description 设置标题，并且重写回调
+  */
   options.setTitle = function (title, content, callback) {
     if (title) {
       this.create();

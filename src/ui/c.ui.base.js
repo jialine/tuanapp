@@ -1,30 +1,31 @@
-// @author        Michael.Lee
-// @email         cmli@Ctrip.com
-// @description   提供ui构建的基本方法
-
+/**
+* @author cmli@Ctrip.com
+* @class cBase
+* @description 提供ui构建的基本方法
+*/
 define([], function(){
 
   var base = {};
 
-  // @description 框架内所有生成的元素的id，class都会加上此前缀
+  /** 框架内所有生成的元素的id，class都会加上此前缀 */
   base.config = {
     prefix: 'cui-'
   };
 
-  // @description   设置cui的默认参数
-  // @param         name {String} 参数名
-  // @param         value {Any Object} 值
+  /**
+  * @method setConfig
+  * @param         name {String} 参数名
+  * @param         value {Any Object} 值
+  */
   base.setConfig = function (name, value) {
     base.config[name] = value;
   };
 
-  // @description   获得元素的在页面中的绝对位置
-  // @param         el {Element} 元素对象
-  // @return        {Object} 返回元素el在页面中的位置信息
-  // {
-  //   top: 10, //距顶部的像素值
-  //   left: 20 //距左侧的像素值
-  // }
+  /**
+  * @method getElementPos
+  * @param         el {Element} 元素对象
+  * @description 返回元素el在页面中的位置信息
+  */
   base.getElementPos = function (el) {
     var top = 0, left = 0;
     do {
@@ -38,9 +39,10 @@ define([], function(){
     };
   };
 
-  // @description   获得唯一的id
-  // @param         void
-  // @return        {String} 唯一的字符串
+  /**
+  * @method getCreateId
+  * @description 返回唯一的字符串
+  */
   base.getCreateId = (function () {
     var diviso = new Date().getTime();
     return function () {
@@ -48,9 +50,10 @@ define([], function(){
     };
   })();
 
-  // @descripion      获得更大的zIndex值，每次调用该函数，都会产生一个更大值的z-index
-  // @param void
-  // @return {Number}
+  /**
+  * @method getBiggerzIndex
+  * @description 获得更大的zIndex值，每次调用该函数，都会产生一个更大值的z-index
+  */
   base.getBiggerzIndex = (function () {
     var diviso = parseInt(Math.random() * 10000 + 1000);
     return function () {
@@ -58,7 +61,12 @@ define([], function(){
     };
   })();
 
-  // @description       获得某个元素的最终的样式值
+  /**
+  * @method getCurStyleOfEl
+  * @param         el {Element} 元素对象
+  * @param     样式名
+  * @description 获得某个元素的最终（实时）的样式值
+  */
   base.getCurStyleOfEl = function (el, styleName) {
     if (document.defaultView && document.defaultView.getComputedStyle) {
       return document.defaultView.getComputedStyle(el).getPropertyValue(styleName);
@@ -80,19 +88,33 @@ define([], function(){
     }
   };
 
+  /**
+  * @method bindthis
+  * @param         fn 回调函数
+  * @param     obj 作用域
+  * @description 修改函数作用域
+  */
   base.bindthis = function (fn, obj) {
     return function () {
       fn.apply(obj, arguments);
     };
   };
 
-  //@description          安全的将字符串转换为数字
+  /**
+  * @method strToNum
+  * @param     str 字符串
+  * @description 安全的将字符串转换为数字
+  */
   base.strToNum = function (str) {
     var num = parseInt(str.replace(/[a-z]/i, ''));
     return isNaN(num) ? 0 : num;
   };
 
-  // @description         获得元素占位的高宽
+  /**
+  * @method getElementRealSize
+  * @param         el {Element} 元素对象
+  * @description 获得元素占位的高宽
+  */
   base.getElementRealSize = function (el) {
       var $el = $(el);
       return {
@@ -101,8 +123,10 @@ define([], function(){
       };
   };
 
-  // @description         获得屏幕的显示高宽
-  // @return              {Object} 返回包含高宽的对象
+  /**
+  * @method getPageSize
+  * @description 返回包含高宽的对象
+  */
   base.getPageSize = function () {
     var width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
     height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
@@ -112,16 +136,10 @@ define([], function(){
     };
   };
 
-  // @description         获得窗口滚动条的位置
-  // @return
-  // {
-  //   left:              页面滚动条所在x轴位置
-  //   top:               页面滚动条y轴位置
-  //   height:            窗口高度
-  //   width:             窗口宽度
-  //   pageWidth:         页面实际宽度
-  //   pageHeight:        页面实际高度
-  // }
+  /**
+  * @method getPageScrollPos
+  * @description 获得窗口滚动条的位置
+  */
   base.getPageScrollPos = function () {
       var left = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft),
     top = Math.max(document.documentElement.scrollTop, document.body.scrollTop),
@@ -148,10 +166,12 @@ define([], function(){
       };
   };
 
-
-  // @description         获得event在元素上的位置
-  // @param               {Object Event} 时间对象
-  // @param               {Object Element} 元素对象
+  /**
+  * @method getMousePosOfElement
+  * @param               {Object Event} 时间对象
+  * @param               {Object Element} 元素对象
+  * @description 获得event在元素上的位置
+  */
   base.getMousePosOfElement = function (event, el) {
     var mpos = getMousePos(event), pos = getElementPos(el), w = el.clientWidth, h = el.clientHeight;
     var x = mpos.left - pos.left, y = mpos.top - pos.top;
@@ -160,11 +180,14 @@ define([], function(){
     return { x: x, y: y };
   };
 
-  // @description         便捷创建元素方法
-  // @param               tag {String} 标签名称
-  // @param               attr {Object} 可选 属性
-  // @param               styles {Object} 可选 样式
-  // @param               html {String} 可选 内容
+  /**
+  * @method createElement
+  * @param               tag {String} 标签名称
+  * @param               attr {Object} 可选 属性
+  * @param               styles {Object} 可选 样式
+  * @param               html {String} 可选 内容
+  * @description 便捷创建元素方法
+  */
   base.createElement = function (tag, options) {
     var el = document.createElement(tag), i, t
     if (options) for (i in options) {

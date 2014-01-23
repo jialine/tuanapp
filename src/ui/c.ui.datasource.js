@@ -1,14 +1,34 @@
-﻿define(['libs', 'cBase'], function (libs, cBase) {
+﻿/**
+* @author oxz欧新志 <ouxz@Ctrip.com> / l_wang王磊 <l_wang@Ctrip.com>
+* @class cDataSource
+* @description 用于处理服务器端下发数据
+*/
+define(['libs', 'cBase'], function (libs, cBase) {
+
   var DataSource = new cBase.Class({
+
+    /** 相关属性 */
     __propertys__: function () {
       this.data;
       this.filters = [];
       this.group = {};
       this.isUpdate = true;
     },
+
+    /**
+    * @method initialize
+    * @param options {object}        构造函数（实例化）传入的参数
+    * @description 构造函数入口
+    */
     initialize: function (options) {
       this.setOption(options);
     },
+
+    /**
+    * @method setOption
+    * @param options {Object}        参数对象
+    * @description 设置基本属性
+    */
     setOption: function (options) {
       options = options || {};
       for (var i in options) {
@@ -19,6 +39,23 @@
         }
       }
     },
+
+    /**
+    * @method setData
+    * @param data {Object}        
+    * @description 设置data
+    */
+    setData: function (data) {
+      this.data = data;
+      this.isUpdate = true;
+    },
+
+    /**
+    * @method filter
+    * @param filterfun {function}  
+    * @param sortfun {function}  
+    * @description 筛选data
+    */
     filter: function (filterfun, sortfun) {
       if (typeof filterfun !== 'function') throw 'Screening function did not fill in';
 
@@ -31,32 +68,22 @@
       this.filters = this.filters || [];
       return typeof sortfun === 'function' ? this.filters.sort(sortfun) : this.filters;
     },
+
+    /**
+    * @method groupBy
+    * @param field {function}  
+    * @param filterfun {function}  
+    * @description data分组
+    */
     groupBy: function (field, filterfun) {
-      //      var group, key;
-      //      if (this.isUpdate) {
-      //        this.group = [];
-      //        for (var i = 0, len = this.data.length; i < len; i++) {
-      //          key = this.data[i][field];
-      //          //if (key === undefined) throw 'The Field is not found!';
-      //          group = this.group[key] || [];
-      //          if (typeof filterfun === 'function') {
-      //            if (filterfun(this.data[i])) group.push(this.data[i]);
-      //          } else {
-      //            group.push(this.data[i]);
-      //          }
-      //          this.group[key] = group;
-      //        }
-      //      }
 
       this.group = _.filter(this.data, filterfun);
       this.group = _.groupBy(this.group, field);
 
       return this.group;
-    },
-    setData: function (data) {
-      this.data = data;
-      this.isUpdate = true;
     }
+
+    
   });
   return DataSource;
 });

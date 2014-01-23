@@ -1,4 +1,4 @@
-﻿define(['libs', 'cBase', 'cStore'], function (libs, cBase, cStore) {
+define(['libs', 'cBase', 'cStore'], function (libs, cBase, cStore) {
     var wxcsStore = (cBase.Class(cStore, {
         __propertys__: function () {
             this.key = 'WXCSHTML';

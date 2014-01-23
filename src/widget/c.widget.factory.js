@@ -1,15 +1,16 @@
-/**********************************
+/**
  * @author:       cmli@Ctrip.com
  * @description:  组件工厂，用来动态的创建组件
  */
 define(['libs'], function(libs){
+
   "use strict";
 
   var WidgetFactory = WidgetFactory || {};
 
   WidgetFactory.products = {};
 
-  /********************************
+  /**
    * @description: 检查WidgetFactory是否已经注册了该名称的组件
    * @param: {name} String 组件名称
    * @return boolean
@@ -18,7 +19,7 @@ define(['libs'], function(libs){
     return !!(WidgetFactory.products[name]);
   };
 
-  /********************************
+  /**
    * @description: 向WidgetFactory注册注册组件
    * @param: {product.name} String 组件名称
    * @param: {product.fn} Function 组件，AbstractView对象
@@ -34,7 +35,7 @@ define(['libs'], function(libs){
     }
   };
 
-  /********************************
+  /**
    * @description: 通过WidgetFactory生产组件
    * @param: {name} String 组件名称
    * @return: Function 组件，AbstractView对象
