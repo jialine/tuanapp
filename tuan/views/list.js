@@ -64,29 +64,68 @@ define(['cCommonPageFactory', 'cCommonListPage', 'cListAdapter', TuanApp.getView
     //console.log(CommonPageFactory);
 
     var ListPage = CommonListPage.extend({
+        render: function () {
+            this.$el.html(view);
+        },
+        events: {
+            'click #selCity': 'showCityList'
+        },
+        showCityList: function(){
+            this.forward('citylist');
+        },
         onCreate: function () {
-            this.injectHeaderView({
-                data: {
-                    title: '携程团购酒店',
-                    back: true,
-                    home: true,
-                    view: this,
-                    tel: true,
-                    events: {
-                        homeHandler: function () {
-                            this.back('index');
-                        },
-                        returnHandler: function () {
-                            this.back();
-                            //alert('已经是首页了');
-                        }
+            var self = this;
+
+            self.render();
+//            self.addHeaderView();
+            this.injectHeaderView();
+
+        },
+        addHeaderView: function () {
+            var self = this;
+            this.headerview.set({
+                //container: self.$el,
+                // data: {
+                title: '携程团购酒店',
+                back: true,
+                home: true,
+                view: this,
+                tel: true,
+                events: {
+                    homeHandler: function () {
+                        this.back('index');
+                    },
+                    returnHandler: function () {
+                        this.back();
+                        //alert('已经是首页了');
                     }
                 }
+                //}
             });
-            this.addScrollListener();
+            this.headerview.show();
+        },
+        showRequestLoading: function(){
+            this.showBottomLoading();
+            this.showLoading();
+        },
+        //TODO: bug, 触发两次onBottomPull
+        hideRequestLoading: function(){
+            this.hideBottomLoading();
+            this.hideLoading();
+        },
+        onBottomPull: function () {
+            console.log('on bottom pull');
+            var self = this;
+            this.showRequestLoading();
+            //模拟结果返回
+            setTimeout(function(){
+                self.hideRequestLoading();
+            }, 2000);
         },
         onLoad: function () {
-            this.headerview.show();
+            var self = this;
+
+            self.addHeaderView();
 
             //这里injectListView的数据可能是从服务器来的所以可以在Model的回调中使用
 
@@ -101,8 +140,7 @@ define(['cCommonPageFactory', 'cCommonListPage', 'cListAdapter', TuanApp.getView
             ]});
 
             var data = {
-                container: '#c-list-view-container',//ListView的容器，用'#id'方式传入String,
-                defaultHtml: '<section class="res_list"><ul class="pro_list" id="c-list-view-container" style=""></ul></section>',
+                container: '#J_hotelList',//ListView的容器，用'#id'方式传入String,
                 listadapter: listadapter,//ListAdapters实例,
                 itemView: '<li class="arr_r" data-id="119281" data-len="25" data-count="1886"><%=a%>\
                   <figure class="pro_list_imgbox">\
@@ -122,12 +160,9 @@ define(['cCommonPageFactory', 'cCommonListPage', 'cListAdapter', TuanApp.getView
                    </li>',//每一个Item View的模板,
                 bindItemViewEvent: function ($el) {
                     $el.bind('click', function (e) {
-                        console.log(this);
+                        self.forward('detail');
                     });
                     // $el是每个Item View，需要对ItemView进行事件绑定在这里做
-                },
-                onBottomPull: function(){
-                    this.showBottomLoading();
                 }
             }
 
