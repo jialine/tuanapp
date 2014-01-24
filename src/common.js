@@ -115,6 +115,8 @@
     // -------------------------------------------------------------
     // Business Widget
     'cBusinessWidgetMemberTip'   : 'src/business/c.business.widget.member.tip',
-    'cBusinessWidgetChannelAd'   : 'src/business/c.business.widget.channel.ad'
+    'cBusinessWidgetChannelAd'   : 'src/business/c.business.widget.channel.ad',
+	// Custom data
+	'cDataCityList'              : 'tuan/data/citylist'
   }
 });

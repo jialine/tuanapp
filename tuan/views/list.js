@@ -68,8 +68,18 @@ define(['cCommonPageFactory', 'cCommonListPage', 'cListAdapter', TuanApp.getView
             this.$el.html(view);
         },
         events: {
+<<<<<<< HEAD
             'click #selCity': 'showCityList'
         },
+=======
+            'click #selCity': 'showCityList',
+	        'click #filter': 'showFilter'
+        },
+	    showFilter: function(){
+		    this.forward('filter');
+//		    debugger;
+	    },
+>>>>>>> 9034acd72bd896ee9905f948d723162c30764583
         showCityList: function(){
             this.forward('citylist');
         },

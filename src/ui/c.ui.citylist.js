@@ -1,9 +1,64 @@
+<<<<<<< HEAD
 ﻿/**
 * @author oxz欧新志 <ouxz@Ctrip.com> / l_wang王磊 <l_wang@Ctrip.com>
 * @class cUICitylist
 * @description 城市列表相关UI插件
 */
 define(['libs', 'cBase', 'cUIBase'], function (libs, cBase, uiBase) {
+=======
+﻿define(['libs', 'cBase', 'cUIBase'], function (libs, cBase, uiBase) {
+
+    var CityList = new cBase.Class({
+        __propertys__: function () {
+            this.element = null;
+            this.groupOpenClass = 'cityListClick';
+            this.selectedCityClass = 'citylistcrt';
+            this.autoLocCity = null;
+            this.selectedCity = null;
+            this.defaultData = 'inland';
+            this.itemClickFun = null;
+            this.data = null;
+            //是否自动定位
+            this.autoLoc = !!navigator.geolocation;
+
+            this.listType = this.defaultData;
+        },
+        //初始化
+        initialize: function (options) {
+            this.setOption(options);
+            this.assert();
+            this._init();
+        },
+
+        _init: function () {
+            this.renderCityGroup();
+
+            if (this.data) {
+                this.renderData = this.data[this.defaultData] || [];
+                this.bindClickEvent();
+            }
+        },
+
+        setOption: function (ops) {
+            for (var i in ops) {
+                switch (i) {
+                    case 'groupOpenClass':
+                    case 'selectedCityClass':
+                    case 'selectedCity':
+                    case 'itemClickFun':
+                    case 'defaultData':
+                    case 'autoLoc':
+                    case 'autoLocCity':
+                    case 'data':
+                        this[i] = ops[i];
+                        break;
+                    case 'element':
+                        this[i] = $(ops[i]);
+                        break;
+                }
+            }
+        },
+>>>>>>> 9034acd72bd896ee9905f948d723162c30764583
 
   var CityList = new cBase.Class({
     
