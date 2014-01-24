@@ -24,6 +24,7 @@
 
         _init: function () {
             this.renderCityGroup();
+
             if (this.data) {
                 this.renderData = this.data[this.defaultData] || [];
                 this.bindClickEvent();
