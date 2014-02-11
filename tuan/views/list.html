@@ -1,6 +1,11 @@
-<section class="b60">
+﻿ <header>
+    <b class="icon_home i_bef" id="js_home"></b>
+   <a href="tel:4000086666" class="icon_phone i_bef  __hreftel__" id="js_phone"></a>
+    <h1>团购酒店</h1><i id="js_return" class="returnico"></i> 
+</header>
+<section class="cont_wrap b60"> 
     <ul class="tab_by">
-        <li id="selCity">上海<i></i></li>
+        <li id="selCity">上海 <i></i></li>
         <li id="filter">筛选<span class="tuan_filter"></span></li>
         <li id="orderby" data-order="0" tabindex="0"><span class="tab_haspop jsSortName">默认排序</span><i></i>
             <div id="selOrder" class="tab_pop">
@@ -14,9 +19,72 @@
             </div>
         </li>
     </ul>
-    <section id="lstbox">
-        <ul class="pro_list" id="J_hotelList">
-
-        </ul>
-    </section>
+    <section id="lstbox"></section>
 </section>
+ <div id="in_footer" class="fix_bottom js_in_Footer">
+     <ul class="tab_search">
+        <li class="tab_hotel jsHotel">酒店查询</li>
+        <li  class="tabcrt">团购酒店</li>
+    </ul>
+ </div>
+<script type="text/template" id="listtpl">
+<%if(products && products.length>0 && count && +count > 0) {%> <ul class="pro_list"><%
+for(var i=0,len=products.length;i<len;i++){
+var p=products[i];
+%>
+  <li class="arr_r" data-id="<%=p.id %>" data-len="<%=products.length %>" data-count="<%=count %>">
+        <figure class="pro_list_imgbox">
+            <img data-img="<%=i %>" onerror="javascript:noPic(this);" src="<%=p.imgUrl?p.imgUrl:'http://res.m.ctrip.com/html5/content/images/roomPic.png?v=2.1' %>"/>
+            <figcaption class="figcaption">
+            <%if(p.labelVal && +p.labelVal>0 && p.labelTxt && p.labelTxt.length>0){%>
+            <i><%=p.labelTxt %></i><%} %><span>已售<%=p.cSold %>份</span></figcaption>
+        </figure>
+        <div class="pro_list_info">
+            <h4 class="pro_list_tit ellips_line2"><%=p.name %></h4>
+            <p class="pro_list_rank"><%if(+p.score>0){%><span class="cblue"><i><%=p.score %></i>分</span><%} %> <%=p.star %></p>
+            <p class="pro_list_oldprice" data-discount="<%=p.price.discount %>"><del data-price="<%=p.price.cPrice %>">原价&yen;<%=p.price.sPrice %></del> <%=+p.price.discount<=0?"0.0折":+p.price.discount>0 && +p.price.discount<10?p.price.discount+"折":"0.0折"  %></p>
+            <div class="pro_list_prv">
+                <p class="pro_list_price">&yen;<i><%=p.price.price %></i>
+                 <%if(p.activities && p.activities.length>0){
+                   for(var j in p.activities){
+                   if(p.activities[j].type && +p.activities[j].type==1){
+                 %>
+                -<em><%=p.activities[j].arg %></em>
+                <% break; }}} %>
+                </p>
+                <%if(p.activities && p.activities.length>0){
+                for(var j in p.activities){
+                var a=p.activities[j]; 
+                if(a && a.type && +a.type>0){
+                if(+a.type==1){
+                %>
+                <i class="pro_list_prvicon">立减</i>
+                <%}
+                 if((+a.type==2 || +a.type==3) && +a.arg>0){
+                %>
+                <i class="pro_list_prvicon">返</i>
+                <b class="pro_list_prvprice">¥<%=a.arg%></b>
+                <%}} }}%>
+            </div>
+        </div>
+    </li>
+    <%}%></ul><%}else{ if(typeof msg != "undefined" &&  msg){%>
+         <div class="cui-load-fail cui-text-center">
+                <div class="cui-load-error">
+                     <div class="i cui-wifi cui-exclam"></div>
+                </div>
+                <p class="cui-grayc"><%=msg %></p>
+                <div class="cui-glines"></div>
+                <p class="cui-grayc">或者拨打携程客服电话</p>
+                <a href="tel:4000086666" <span="" class="cui-btns-tel"><i class="icon_phone i_bef"></i>联系客服</a>
+            </div>
+    <%}}%>
+</script>
+<script>
+    function noPic($img) {
+        if ($img) {
+            $img.src = "http://res.m.ctrip.com/html5/Content/images/roomPic.png?v=2.1";
+            $img.onerror = null;
+        }
+    }
+</script>
