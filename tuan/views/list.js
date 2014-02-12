@@ -1,32 +1,36 @@
 ﻿/// <summary>
 /// 团购酒店列表 creator:caofu; createtime:2013-08-05
 /// </summary>
-define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('list')], function (libs, c, CommonStore, TuanStore, TuanModels, html) {
+define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('list')], function (c, BasePage, TuanStore, TuanModels, html) {
     var listModel = TuanModels.TuanListModel.getInstance(),
-    searchStore = TuanStore.GroupSearchStore.getInstance(),
-    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
-    tuanCityListModel = TuanModels.TuanCityListModel.getInstance(), //团购城市
-    pricefilterStore = TuanStore.GroupPriceStarFilterStore.getInstance(), //价格星级筛选条件
-    positionfilterStore = TuanStore.GroupPositionFilterStore.getInstance(), //区域筛选条件
-    brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
-    timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(); //日期筛选条件
-    var View = c.view.extend({
+	    searchStore = TuanStore.GroupSearchStore.getInstance(),
+	    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
+	    tuanCityListModel = TuanModels.TuanCityListModel.getInstance(), //团购城市
+	    pricefilterStore = TuanStore.GroupPriceStarFilterStore.getInstance(), //价格星级筛选条件
+	    positionfilterStore = TuanStore.GroupPositionFilterStore.getInstance(), //区域筛选条件
+	    brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
+	    timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
+	    View;
+
+    View = BasePage.extend({
         pageid: '212001',
         tpl: html,
-        hasAd: false,
-        adContainer: 'in_footer',
-        _onWidnowScroll: null, //滚动条事件句柄
+        onWindowScroll: null, //滚动条事件句柄
         totalPages: null, //总页数
         isComplete: false, //是否完成
         isLoading: false,
+	    isScrolling: false,
         pageSize: 25, //每页加载数
         render: function () {
-            this.$el.html(this.tpl);
-            this.elsBox = {
-                lst_tpl: this.$el.find('#listtpl'), //团购列表模板
-                lstbox: this.$el.find('#lstbox')//团购列表容器
-            };
-            this.lstboxfun = _.template(this.elsBox.lst_tpl.html());
+	        var wrap = this.$el;
+	        //将模板渲染到页面
+	        wrap.html(this.tpl);
+	        //团购列表模板
+	        this.itemTpl = wrap.find('#listtpl');
+	        //团购列表容器
+	        this.listWrap = wrap.find('#lstbox');
+	        //列表渲染函数
+            this.itemRenderFn = _.template(this.itemTpl.html());
         },
         events: {
             'click #js_home': 'homeAction', //返回首页
@@ -37,7 +41,11 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
             'click #selOrder>p[data-id]': 'orderAction', //排序
             'blur #orderby': 'hideOrderAction', //隐藏排序
             'click #filter': 'filterAction', //筛选
-            'click li[data-id]': 'detailAction'//详情页
+            'click li[data-id]': 'detailAction',//详情页
+
+	        'click #J_headerTitle': 'showCityPage',
+	        'click #J_keywordSearch': 'showKeywordSearch'
+
         },
         hideOrderAction: function () {
             if ($('#orderby').hasClass('tab_popshow')) { $('#orderby').removeClass('tab_popshow'); $('#orderby').attr('data-order', 0); }
@@ -45,21 +53,25 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
         onCreate: function () {
             searchStore.setAttr('pageIdx', 1);
             //滚动加载下一页数据
-            this._onWidnowScroll = $.proxy(this.onWindowsScroll, this);
+            this.onWindowScroll = $.proxy(this.onWindowsScroll, this);
             this.render();
         },
         onShow: function () {
-            this.setTitle('酒店团购');
+//            this.setTitle('酒店团购<i>》</i>');
         },
         onLoad: function () {
             this.showLoading();
-            this.elsBox.lstbox.empty();
-            var priceFilterData = pricefilterStore.get(), brandFilterData = brandfilterStore.get(), timeFilterData = timefilterStore.get();
+	        this.listWrap.empty();
+
+            var priceFilterData = pricefilterStore.get(),
+	            brandFilterData = brandfilterStore.get(),
+	            timeFilterData = timefilterStore.get();
+
             if (!priceFilterData && !brandFilterData && !timeFilterData) {
-                var qparams = [];
-                searchStore.setAttr('qparams', qparams);
-            }
-            var searchData = searchStore.get();
+                searchStore.setAttr('qparams', []);
+            };
+
+	        // TODO: 补充注释
             if (returnPageStore) { returnPageStore.remove(); }
             this.getCity();
         },
@@ -106,7 +118,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
                 }
             }
             this.$el.find('#selCity').html(cityName + "<i></i>");
-            //this.$el.find('header>h1').html(cityName);
+            this.$el.find('header>h1').html("团购酒店-"+cityName);
             this.turning();
             this.getGroupListData();
         },
@@ -118,7 +130,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
             }, false, this);
         },
         onHide: function () {
-            $(window).unbind('scroll', this._onWidnowScroll); this.hideWarning404();
+            $(window).unbind('scroll', this.onWindowScroll); this.hideWarning404();
         },
         onWindowsScroll: function () {
             var pos = c.ui.Tools.getPageScrollPos();
@@ -140,15 +152,15 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
             }
         },
         renderList: function (data) {
-            var item = this.lstboxfun(data);
+            var item = this.itemRenderFn(data);
             var searchData = searchStore.get();
             if (data.count && +data.count > 0 && this.totalPages && +this.totalPages > 1) {
-                this.elsBox.lstbox.append(item);
+                this.listWrap.append(item);
             }
             else {
                 if (!this.totalPages || +this.totalPages < 1 || !searchData.pageIdx || +searchData.pageIdx <= 1) {
                     item = this.cSales.replaceStrTel(item);
-                    this.elsBox.lstbox.html(item);
+                    this.listWrap.html(item);
                 }
             }
         },
@@ -161,7 +173,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
                 if (data && data.products && data.count && +data.count > 0) {
                     this.totalPages = Math.ceil(data.count / this.pageSize);
                     if (this.totalPages > 1) {
-                        $(window).bind('scroll', this._onWidnowScroll);
+                        $(window).bind('scroll', this.onWindowScroll);
                     }
                     this.renderList(lst);
                 } else {
@@ -174,7 +186,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
                     }
                     searchStore.setAttr('pageIdx', 1);
                     this.isComplete = true;
-                    $(window).unbind('scroll', this._onWidnowScroll);
+                    $(window).unbind('scroll', this.onWindowScroll);
                 }
 
             }, function (err) {
@@ -187,11 +199,11 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
                     d.msg = msg;
                     d.products = null;
                     d.count = 0;
-                    this.elsBox.lstbox.empty();
+                    this.listWrap.empty();
                 }
                 searchStore.setAttr('pageIdx', 1);
                 this.renderList(d);
-                $(window).unbind('scroll', this._onWidnowScroll);
+                $(window).unbind('scroll', this.onWindowScroll);
             }, false, this);
         },
         detailAction: function (e) {
@@ -220,24 +232,24 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
             searchStore.setAttr('sotrName', sotrName);
             searchStore.setAttr('pageIdx', 1);
             $('.jsSortName').html(sotrName);
-            this.elsBox.lstbox.empty();
+            this.listWrap.empty();
             this.getGroupListData();
         },
         filterAction: function (e) {
             searchStore.setAttr('pageIdx', 1);
-            $(window).unbind('scroll', this._onWidnowScroll);
+            $(window).unbind('scroll', this.onWindowScroll);
             //前往筛选页
             this.forward('filter');
         },
         cityAction: function (e) {
             searchStore.setAttr('pageIdx', 1);
-            $(window).unbind('scroll', this._onWidnowScroll);
+            $(window).unbind('scroll', this.onWindowScroll);
             //前往城市选择页
             this.forward('citylist');
         },
         returnAction: function (e) {
             searchStore.setAttr('pageIdx', 1);
-            $(window).unbind('scroll', this._onWidnowScroll);
+            $(window).unbind('scroll', this.onWindowScroll);
             pricefilterStore.remove();
             positionfilterStore.remove();
             brandfilterStore.remove();
@@ -246,7 +258,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
         },
         homeAction: function () {
             searchStore.setAttr('pageIdx', 1);
-            $(window).unbind('scroll', this._onWidnowScroll);
+            $(window).unbind('scroll', this.onWindowScroll);
             var qparams = [];
             searchStore.setAttr('qparams', qparams);
             searchStore.setAttr('sortRule', 2);
@@ -260,7 +272,15 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
         },
         returnHotel: function (e) {
             this.returnAction(e);
-        }
+        },
+	    showCityPage: function(e){
+		    e.preventDefault();
+		    console.log('showCityPage');
+	    },
+	    showKeywordSearch: function(e){
+		    e.preventDefault();
+			console.log('showKeywordSearch');
+	    }
     });
     return View;
 });

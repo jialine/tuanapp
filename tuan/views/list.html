@@ -1,11 +1,12 @@
-﻿ <header>
-    <b class="icon_home i_bef" id="js_home"></b>
-   <a href="tel:4000086666" class="icon_phone i_bef  __hreftel__" id="js_phone"></a>
-    <h1>团购酒店</h1><i id="js_return" class="returnico"></i> 
+﻿<header>
+    <!--<b class="" id="">搜索</b>-->
+   <!--<a class="icon_search">搜索</a>-->
+    <h1 id="J_headerTitle">团购酒店</h1><i id="js_return" class="returnico"></i>
+    <a class="icon-search" id="J_keywordSearch" href="###">搜索</a>
 </header>
 <section class="cont_wrap b60"> 
-    <ul class="tab_by">
-        <li id="selCity">上海 <i></i></li>
+   <!-- <ul class="tab_by">
+        <li id="selCity">上海<i></i></li>
         <li id="filter">筛选<span class="tuan_filter"></span></li>
         <li id="orderby" data-order="0" tabindex="0"><span class="tab_haspop jsSortName">默认排序</span><i></i>
             <div id="selOrder" class="tab_pop">
@@ -18,14 +19,20 @@
                 <p data-id="6" data-type="1">点评分从高到低</p>
             </div>
         </li>
-    </ul>
+    </ul>-->
     <section id="lstbox"></section>
 </section>
  <div id="in_footer" class="fix_bottom js_in_Footer">
      <ul class="tab_search">
+         <li>团购类型</li>
+         <li>位置区域</li>
+         <li>筛选</li>
+         <li>默认排序</li>
+     </ul>
+     <!--<ul class="tab_search">
         <li class="tab_hotel jsHotel">酒店查询</li>
         <li  class="tabcrt">团购酒店</li>
-    </ul>
+    </ul>-->
  </div>
 <script type="text/template" id="listtpl">
 <%if(products && products.length>0 && count && +count > 0) {%> <ul class="pro_list"><%
