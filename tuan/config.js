@@ -93,7 +93,10 @@
 
 			//custom models
 			TuanStore: BASE_URL+"tuan/models/tuanstore",
-			TuanModel: BASE_URL+"tuan/models/tuanmodel"
+			TuanModel: BASE_URL+"tuan/models/tuanmodel",
+			DropDown: BASE_URL+'tuan/com/dropdown',
+			ToolBar: BASE_URL+'tuan/widget/toolbar',
+			Switch: BASE_URL+'tuan/com/switch'
 		}
 	};
 	require.config(config);

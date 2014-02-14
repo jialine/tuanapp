@@ -22,12 +22,32 @@
     </ul>-->
     <section id="lstbox"></section>
 </section>
- <div id="in_footer" class="fix_bottom js_in_Footer">
+ <div id="in_footer" class="fix_bottom">
      <ul class="tab_search">
-         <li>团购类型</li>
+         <li id="J_categoryTrigger" tabindex="0">
+             <span class="tab_haspop" id="J_categoryLabel">团购类型</span><i></i>
+             <div id="J_categoryPanel" class="tab_pop tuan-category">
+                 <p data-id="2" data-type="0" data-category='all'>不限</p>
+                 <p data-id="1" data-type="1" data-category='hotel'>酒店客房</p>
+                 <p data-id="3" data-type="2" data-category='catering'>餐饮娱乐</p>
+                 <p data-id="4" data-type="3" data-category='vacation'>旅游出行</p>
+                 <p data-id="5" data-type="4" data-category='ticket'>门票</p>
+             </div>
+         </li>
          <li>位置区域</li>
-         <li>筛选</li>
-         <li>默认排序</li>
+         <li id="J_customFilters">筛选</li>
+         <li id="J_sortTrigger" tabindex="0">
+             <span class="tab_haspop" id="J_sortLabel">默认排序</span><i></i>
+             <div id="J_sortPanel" class="tab_pop">
+                 <p data-id="2" data-type="1">默认排序</p>
+                 <p data-id="1" data-type="1">最新开团</p>
+                 <p data-id="3" data-type="1">销量从高到低</p>
+                 <p data-id="4" data-type="1">折扣从高到低</p>
+                 <p data-id="5" data-type="1">价格从高到低</p>
+                 <p data-id="5" data-type="2">价格从低到高</p>
+                 <p data-id="6" data-type="1">点评分从高到低</p>
+             </div>
+         </li>
      </ul>
      <!--<ul class="tab_search">
         <li class="tab_hotel jsHotel">酒店查询</li>

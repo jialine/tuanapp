@@ -1,0 +1,27 @@
+﻿<header>
+    <h1>价格/星级</h1><i id="js_return" class="returnico"></i>
+</header>
+<section class="cont_wrap clearfix" style="height:100%;" id="filterBox">
+
+
+</section>  
+<script type="text/template" id="filterTpl">
+<ul class="filter_l"><li data-type="1" class="<%=typeof type == "undefined" || !type || +type!=2?"hover":"" %>">价格</li><li data-type="2" class="<%=typeof type != "undefined" && type &&+type==2?"hover":"" %>">星级</li></ul>
+<ul class="filter_r jsPrice">
+<%if(typeof type == "undefined" ||!type || +type<=1){
+%>
+    <li data-id="" data-filter="price" class="<%=typeof val == "undefined" || val=="" || val.indexOf('|')<=-1?"choosed":"" %>" data-name=''>不限</li>
+    <li data-id="1|99" data-filter="price" class="<%=typeof val != "undefined" && val=="1|99"?"choosed":"" %>" data-name="100以下">&yen;100以下</li>
+    <li data-id="100|250" data-filter="price" class="<%=typeof val != "undefined" && val=="100|250"?"choosed":"" %>" data-name="100-250元">&yen;100-250元</li>
+    <li data-id="250|400" data-filter="price" class="<%=typeof val != "undefined" && val=="250|400"?"choosed":"" %>" data-name="250-400元">&yen;250-400元</li>
+    <li data-id="400|600" data-filter="price" class="<%=typeof val != "undefined" && val=="400|600"?"choosed":"" %>" data-name="400-600元">&yen;400-600元</li>
+    <li data-id="601|" data-filter="price" class="<%=typeof val != "undefined" && val=="601|"?"choosed":"" %>" data-name="600元以上">&yen;600元以上</li>
+<%}else{%>
+    <li data-id=""  data-filter="star" class="<%=typeof val == "undefined" || val=="" || val.indexOf('|')>-1?"choosed":"" %>">不限</li>
+    <li data-id="5" data-filter="star" class="<%=typeof val != "undefined" && val=="5"?"choosed":"" %>">五星/豪华</li>
+    <li data-id="4" data-filter="star" class="<%=typeof val != "undefined" && val=="4"?"choosed":"" %>">四星/高档</li>
+    <li data-id="3" data-filter="star" class="<%=typeof val != "undefined" && val=="3"?"choosed":"" %>">三星/舒适</li>
+    <li data-id="2" data-filter="star" class="<%=typeof val != "undefined" && val=="2"?"choosed":"" %>">二星/经济</li>
+<%} %>
+</ul>
+</script>

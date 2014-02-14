@@ -102,13 +102,35 @@
                 sortRule:'2',//排序规则 2标识默认排序
                 sortType: '0', //排序方式 1标识降序
                 sotrName:'',
-                dataVer: 99, ver: 99
+                dataVer: 99,
+	            ver: 99,
+	            tuanType: 0 //团购类型，默认全部
             };
         },
         initialize: function ($super, options) {
             $super(options);
         }
     });
+	//酒店团购团购类型Storage (xuweichen 2014-2-14)
+	T.GroupCategoryFilterStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_PRICESTARFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
+	//酒店团购排序Storage (xuweichen 2014-2-14)
+	T.GroupSortStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_SORTFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
     //酒店团购价格星级筛选Storage （caof 2013-08-07）
     T.GroupPriceStarFilterStore = new cBase.Class(AbstractStore, {
         __propertys__: function () {

@@ -1,0 +1,45 @@
+﻿<header>
+    <h1>筛选</h1><i id="js_return" class="returnico"></i>
+    <div class="rightblue jsDefault">恢复默认</div>
+</header>
+<section class="cont_pd_wrap">
+    <ul class="filterbox" id="filterBox"></ul>
+    <input type="button" class="btn_blue jsBtn" value="确定"/>
+</section>
+<script type="text/template" id="filterTpl">
+    <% if(!Type) Type='all'%>
+    <li data-id="1" class="arr_r">价格<% if(Type=='hotel'){ %>/星级<% }%><span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
+    </li>
+    <% if(Type=='vacation'){ %>
+    <li data-id="1" class="arr_r">天数<span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
+    </li>
+    <% }%>
+    <% if(Type=='catering'){ %>
+    <li class="arr_r">类型<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
+    </li>
+    <% }%>
+    <% if(['catering', 'hotel', 'all'].indexOf(Type)>-1){ %>
+    <li class="arr_r">距离<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
+    </li>
+    <% }%>
+    <% if(Type=='hotel'){ %>
+    <li data-id="3" class="arr_r">品牌<span class="ellips" style="width:85%;text-align:right;"><%=typeof Brand != "undefined" && Brand && Brand.name?Brand.name:"不限"%></span>
+    </li>
+    <% }%>
+    <li data-id="4" class="arr_r">有效期<span><%=typeof CheckIn != "undefined" && CheckIn && CheckIn.name?CheckIn.name:"不限"%></span>
+    </li>
+    <% if(['catering', 'hotel', 'all'].indexOf(Type)>-1){ %>
+    <li data-id="5">节假日可用<span><b href="###" id="J_free2" style="cursor: pointer"></b></span></li>
+    <li data-id="6">免预约
+        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+    </li>
+    <% }%>
+    <% if(Type=='hotel'){ %>
+    <li data-id="6">多店可用
+        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+    </li>
+    <li data-id="6">小时房
+        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+    </li>
+    <% }%>
+</script>

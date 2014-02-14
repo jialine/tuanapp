@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 团购酒店列表 creator:caofu; createtime:2013-08-05
 /// </summary>
-define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('list')], function (c, BasePage, TuanStore, TuanModels, html) {
+define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'ToolBar', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, html) {
     var listModel = TuanModels.TuanListModel.getInstance(),
 	    searchStore = TuanStore.GroupSearchStore.getInstance(),
 	    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
@@ -12,10 +12,11 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
 	    timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
 	    View;
 
+	//test code
+	window.searchStore = searchStore;
     View = BasePage.extend({
         pageid: '212001',
         tpl: html,
-        onWindowScroll: null, //滚动条事件句柄
         totalPages: null, //总页数
         isComplete: false, //是否完成
         isLoading: false,
@@ -29,8 +30,11 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
 	        this.itemTpl = wrap.find('#listtpl');
 	        //团购列表容器
 	        this.listWrap = wrap.find('#lstbox');
+	        //筛选项容器
+	        this.filterWrap = wrap.find('.tab_search');
 	        //列表渲染函数
             this.itemRenderFn = _.template(this.itemTpl.html());
+
         },
         events: {
             'click #js_home': 'homeAction', //返回首页
@@ -42,18 +46,32 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
             'blur #orderby': 'hideOrderAction', //隐藏排序
             'click #filter': 'filterAction', //筛选
             'click li[data-id]': 'detailAction',//详情页
-
 	        'click #J_headerTitle': 'showCityPage',
 	        'click #J_keywordSearch': 'showKeywordSearch'
 
         },
+	    initTuanFilters: function(){
+		    var ToolBar = WidgetFactory.create('ToolBar');
+
+		    this.toolbar = new ToolBar({
+			    page: this
+		    });
+	    },
         hideOrderAction: function () {
             if ($('#orderby').hasClass('tab_popshow')) { $('#orderby').removeClass('tab_popshow'); $('#orderby').attr('data-order', 0); }
         },
+	    onPageListRequestStart: function(){
+			console.log('onPageListRequestStart');
+		    this.filterWrap.addClass('hide');
+	    },
+	    onPageListRequestEnd: function(){
+			console.log('onPageListRequestEnd');
+		    this.filterWrap.removeClass('hide');
+	    },
         onCreate: function () {
             searchStore.setAttr('pageIdx', 1);
             //滚动加载下一页数据
-            this.onWindowScroll = $.proxy(this.onWindowsScroll, this);
+            this.onWindowScroll = $.proxy(this._onWindowScroll, this);
             this.render();
         },
         onShow: function () {
@@ -74,6 +92,7 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
 	        // TODO: 补充注释
             if (returnPageStore) { returnPageStore.remove(); }
             this.getCity();
+	        this.initTuanFilters();
         },
         createPage: function (data) {
             var searchData = searchStore.get();
@@ -132,13 +151,14 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
         onHide: function () {
             $(window).unbind('scroll', this.onWindowScroll); this.hideWarning404();
         },
-        onWindowsScroll: function () {
-            var pos = c.ui.Tools.getPageScrollPos();
-            var param = searchStore.get(); //获取查询参数
-            var pageNum = isNaN(param.pageIdx) ? 1 : param.pageIdx; //当前页码
+        _onWindowScroll: function () {
+            var pos = c.ui.Tools.getPageScrollPos(),
+                param = searchStore.get(), //获取查询参数
+	            pageNum = isNaN(param.pageIdx) ? 1 : param.pageIdx; //当前页码
+
             if (param.pageIdx < this.totalPages && this.totalPages > 1) {
                 this.isComplete = false;
-            }
+            };
             var h = pos.pageHeight - (pos.top + pos.height);
             if (h <= 500 && !this.isComplete && !this.isLoading) {
                 this.isLoading = true;
@@ -148,6 +168,7 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
                 }
                 param.pageIdx = ++pageNum;
                 searchStore.setAttr('pageIdx', param.pageIdx);
+	            this.onPageListRequestStart();
                 this.getGroupListData();
             }
         },
@@ -169,12 +190,15 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
             listModel.excute(function (data) {
                 this.isLoading = false;
                 this.hideLoading();
+	            this.onPageListRequestEnd();
+
                 var lst = data;
+
                 if (data && data.products && data.count && +data.count > 0) {
                     this.totalPages = Math.ceil(data.count / this.pageSize);
                     if (this.totalPages > 1) {
                         $(window).bind('scroll', this.onWindowScroll);
-                    }
+                    };
                     this.renderList(lst);
                 } else {
                     if (this.totalPages || this.totalPages <= 0) {
@@ -193,6 +217,7 @@ define(['c', 'cBasePageView', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('li
                 this.hideLoading();
                 this.isLoading = false;
                 this.isComplete = true;
+	            this.onPageListRequestEnd();
                 var d = {};
                 var msg = err.msg ? err.msg : '没找到符合条件的结果，请修改条件重新查询';
                 if (this.totalPages <= 0) {
