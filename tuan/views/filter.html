@@ -7,39 +7,40 @@
     <input type="button" class="btn_blue jsBtn" value="确定"/>
 </section>
 <script type="text/template" id="filterTpl">
-    <% if(!Type) Type='all'%>
-    <li data-id="1" class="arr_r">价格<% if(Type=='hotel'){ %>/星级<% }%><span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
+    <% console.log(Category) %>
+    <% if(!Category) Category='all'%>
+    <li data-id="1" class="arr_r">价格<% if(Category=='hotel'){ %>/星级<% }%><span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
     </li>
-    <% if(Type=='vacation'){ %>
-    <li data-id="1" class="arr_r">天数<span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
-    </li>
-    <% }%>
-    <% if(Type=='catering'){ %>
-    <li class="arr_r">类型<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
+    <% if(Category=='vacation'){ %>
+    <li data-id="2" class="arr_r">天数<span><%=typeof PriceStar != "undefined" && PriceStar && PriceStar.name?PriceStar.name:"不限"%></span>
     </li>
     <% }%>
-    <% if(['catering', 'hotel', 'all'].indexOf(Type)>-1){ %>
-    <li class="arr_r">距离<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
+    <% if(Category=='catering'){ %>
+    <li class="arr_r" data-id="9">类型<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
     </li>
     <% }%>
-    <% if(Type=='hotel'){ %>
+    <% if(['catering', 'hotel', 'all'].indexOf(Category)>-1){ %>
+    <li class="arr_r" data-id="10">距离<span><%=typeof Distance != "undefined" && Distance && Distance.name?Distance.name:"不限"%></span>
+    </li>
+    <% }%>
+    <% if(Category=='hotel'){ %>
     <li data-id="3" class="arr_r">品牌<span class="ellips" style="width:85%;text-align:right;"><%=typeof Brand != "undefined" && Brand && Brand.name?Brand.name:"不限"%></span>
     </li>
     <% }%>
     <li data-id="4" class="arr_r">有效期<span><%=typeof CheckIn != "undefined" && CheckIn && CheckIn.name?CheckIn.name:"不限"%></span>
     </li>
-    <% if(['catering', 'hotel', 'all'].indexOf(Type)>-1){ %>
+    <% if(['catering', 'hotel', 'all'].indexOf(Category)>-1){ %>
     <li data-id="5">节假日可用<span><b href="###" id="J_free2" style="cursor: pointer"></b></span></li>
     <li data-id="6">免预约
         <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
     </li>
     <% }%>
-    <% if(Type=='hotel'){ %>
-    <li data-id="6">多店可用
-        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+    <% if(Category=='hotel'){ %>
+    <li data-id="7">多店可用
+        <span><b href="###" id="J_free4" style="cursor: pointer"></b></span>
     </li>
-    <li data-id="6">小时房
-        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+    <li data-id="8">小时房
+        <span><b href="###" id="J_free3" style="cursor: pointer"></b></span>
     </li>
     <% }%>
 </script>

@@ -107,7 +107,7 @@
 			}
 			;
 			//团购类型
-			filterData.Type = categoryfilterStore.getAttr('category');
+			filterData.Category = categoryfilterStore.getAttr('category');
 			//星级价格
 			filterData.PriceStar = priceFilterData;
 			if (priceFilterData) {
@@ -241,6 +241,9 @@
 				}
 				if (+type == 4) {
 					this.forward('timefilter');
+				};
+				if(type==10){
+					this.forward('distancefilter');
 				}
 			}
 		},

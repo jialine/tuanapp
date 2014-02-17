@@ -1,5 +1,6 @@
 (function(){
-	var BASE_URL = '/';
+	var BASE_URL = '/',
+		CUSTOM_URL = '';
 
 	var config = {
 		baseUrl: BASE_URL,
@@ -92,11 +93,11 @@
 			cHybridFacade: BASE_URL+"src/hybrid/c.hybrid.facade",
 
 			//custom models
-			TuanStore: BASE_URL+"tuan/models/tuanstore",
-			TuanModel: BASE_URL+"tuan/models/tuanmodel",
-			DropDown: BASE_URL+'tuan/com/dropdown',
-			ToolBar: BASE_URL+'tuan/widget/toolbar',
-			Switch: BASE_URL+'tuan/com/switch'
+			TuanStore: CUSTOM_URL+"tuan/models/tuanstore",
+			TuanModel: CUSTOM_URL+"tuan/models/tuanmodel",
+			DropDown: CUSTOM_URL+'tuan/com/dropdown',
+			TuanFilters: CUSTOM_URL+'tuan/widget/tuanfilters',
+			Switch: CUSTOM_URL+'tuan/com/switch'
 		}
 	};
 	require.config(config);

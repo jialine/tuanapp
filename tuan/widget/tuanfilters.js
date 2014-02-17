@@ -5,7 +5,7 @@
  */
 define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, WidgetFactory, DropDown, TuanStore) {
 	"use strict";
-	var WIDGET_NAME = 'ToolBar',
+	var WIDGET_NAME = 'TuanFilters',
 		Filters,
 		//lizard需要支持此方法，移除强依赖underscore
 		mix = $.extend,

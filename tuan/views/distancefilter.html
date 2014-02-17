@@ -1,0 +1,17 @@
+<header>
+    <h1>距离</h1><i id="js_return" class="returnico"></i>
+</header>
+<section class="cont_wrap clearfix" style="height:100%;" id="filterBox">
+
+
+</section>
+<script type="text/template" id="filterTpl">
+    <ul class="filter_r jsPrice">
+        <li data-id="|0.5" data-filter="distance" class="<%=typeof val != "undefined" && val=="1|99"?"choosed":"" %>" data-name="100以下">500米内</li>
+        <li data-id="0.6|1" data-filter="distance" class="<%=typeof val != "undefined" && val=="100|250"?"choosed":"" %>" data-name="100-250元">1公里内</li>
+        <li data-id="1.1|2" data-filter="distance" class="<%=typeof val != "undefined" && val=="250|400"?"choosed":"" %>" data-name="250-400元">2分里内</li>
+        <li data-id="2.1|4" data-filter="distance" class="<%=typeof val != "undefined" && val=="400|600"?"choosed":"" %>" data-name="400-600元">4公里内</li>
+        <li data-id="4.1|8" data-filter="distance" class="<%=typeof val != "undefined" && val=="601|"?"choosed":"" %>" data-name="600元以上"> 8公里内</li>
+        <li data-id="8.1|10" data-filter="distance" class="<%=typeof val != "undefined" && val=="601|"?"choosed":"" %>" data-name="10分里内">10分里内</li>
+    </ul>
+</script>

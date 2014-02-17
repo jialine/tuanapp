@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 团购酒店列表 creator:caofu; createtime:2013-08-05
 /// </summary>
-define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'ToolBar', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, html) {
+define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanFilters', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, html) {
     var listModel = TuanModels.TuanListModel.getInstance(),
 	    searchStore = TuanStore.GroupSearchStore.getInstance(),
 	    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
@@ -51,9 +51,9 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'ToolB
 
         },
 	    initTuanFilters: function(){
-		    var ToolBar = WidgetFactory.create('ToolBar');
+		    var TuanFilters = WidgetFactory.create('TuanFilters');
 
-		    this.toolbar = new ToolBar({
+		    this.tuanfilters = new TuanFilters({
 			    page: this
 		    });
 	    },
