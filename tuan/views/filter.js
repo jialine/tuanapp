@@ -5,7 +5,10 @@
 		positionfilterStore = TuanStore.GroupPositionFilterStore.getInstance(), //区域筛选条件
 		brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
 		timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
-		categoryfilterStore = TuanStore.GroupCategoryFilterStore.getInstance();  //团购类型
+		categoryfilterStore = TuanStore.GroupCategoryFilterStore.getInstance(),  //团购类型
+		typefilterStore = TuanStore.GroupTypeFilterStore.getInstance(),
+		dayfilterStore = TuanStore.GroupDayFilterStore.getInstance(),
+		distancefilterStore = TuanStore.GroupDistanceStore.getInstance();//团购筛选条件
 
 	var View = BasePage.extend({
 		pageid:'214003',
@@ -31,21 +34,54 @@
 			this.setTitle('团购筛选');
 		},
 		initWithoutReservation:function () {
+			var store = searchStore;
+
 			new Switch({
 				wrap:$('#J_free'),
 				cursorCls:'i',
+				isTurnOn: !!parseInt(store.getAttr('withoutReservation'),10)||false,
 				onChange:function (rs) {
 					this.cursor.html(rs ? '开' : '关');
+					store.setAttr('withoutReservation', +rs);
 				}
 			});
 			return this;
 		},
 		initHolidayAvailable:function () {
+			var store = searchStore;
 			new Switch({
 				wrap:$('#J_free2'),
 				cursorCls:'i',
+				isTurnOn: !!parseInt(store.getAttr('holidayAvailable'),10)||false,
 				onChange:function (rs) {
 					this.cursor.html(rs ? '开' : '关');
+					store.setAttr('holidayAvailable', +rs);
+				}
+			});
+			return this;
+		},
+		initMultiShop: function(){
+			var store = searchStore;
+			new Switch({
+				wrap:$('#J_free3'),
+				cursorCls:'i',
+				isTurnOn: !!parseInt(store.getAttr('multiShop'),10)||false,
+				onChange:function (rs) {
+					this.cursor.html(rs ? '开' : '关');
+					store.setAttr('multiShop', +rs);
+				}
+			});
+			return this;
+		},
+		initHourRateRoom: function(){
+			var store = searchStore;
+			new Switch({
+				wrap:$('#J_free4'),
+				cursorCls:'i',
+				isTurnOn: !!parseInt(store.getAttr('hourRateRoom'),10)||false,
+				onChange:function (rs) {
+					this.cursor.html(rs ? '开' : '关');
+					store.setAttr('hourRateRoom', +rs);
 				}
 			});
 			return this;
@@ -61,7 +97,8 @@
 			this.showFilter();
 			this.turning();
 			this.getFilterData();
-			this.initWithoutReservation().initHolidayAvailable();
+			this.initWithoutReservation().initHolidayAvailable().initMultiShop().initHourRateRoom();
+
 		},
 		onHide:function () {
 		},
@@ -132,7 +169,11 @@
 				timefilterStore.set(timeFilterData);
 			} else {
 				timefilterStore.remove();
-			}
+			};
+			//距离
+			filterData.Distance = distancefilterStore.get();
+			filterData.Type = typefilterStore.get();
+			filterData.Days = dayfilterStore.get();
 			var item = this.filter_fun(filterData);
 			this.elsBox.filter_box.html(item);
 		},
@@ -234,13 +275,16 @@
 					this.forward('pricefilter');
 				}
 				if (+type == 2) {
-					this.forward('positionfilter');
+					this.forward('dayfilter');
 				}
 				if (+type == 3) {
 					this.forward('brandfilter');
 				}
 				if (+type == 4) {
 					this.forward('timefilter');
+				};
+				if (+type == 9) {
+					this.forward('typefilter');
 				};
 				if(type==10){
 					this.forward('distancefilter');

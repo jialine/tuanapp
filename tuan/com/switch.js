@@ -19,11 +19,10 @@ define(['cBase'], function(Base){
 			onChange: NOOP
 		};
 		this.initialize(options);
-		this.isTurnOn = false;
+		this.turn();
 	};
 	Switch.prototype = {
 		initialize: function(options){
-			console.log(this);
 			mix(this.options, options);
 			this.isTurnOn = this.options.isTurnOn;
 			this.wrap = this.options.wrap;
@@ -42,7 +41,6 @@ define(['cBase'], function(Base){
 			this.cursor.unbind('click', this._clickHandler);
 		},
 		turn: function(isOn){
-			console.log('a');
 			var isTurnOn,
 				options = this.options;
 			//if isOn === false, force to turn off
@@ -52,9 +50,8 @@ define(['cBase'], function(Base){
 			isTurnOn = this.isTurnOn;
 
 			this.wrap[isTurnOn ? 'removeClass' : 'addClass'](options.turnOnCls);
-
-			this.isTurnOn = !isTurnOn;
 			options.onChange.call(this, this.isTurnOn);
+			this.isTurnOn = !isTurnOn;
 		},
 		on: function(){
 			this.turn(true);

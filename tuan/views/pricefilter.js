@@ -3,13 +3,14 @@
 /// </summary>
 define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('pricefilter')], function (libs, c, CommonStore, TuanStore, TuanModels, html) {
 	var priceStarFilterStore = TuanStore.GroupPriceStarFilterStore.getInstance(), //筛选条件
-		categoryFilterStore = TuanStore.GroupCategoryFilterStore.getInstance();  //团购类型
+		categoryFilterStore = TuanStore.GroupCategoryFilterStore.getInstance(),  //团购类型
+		customFiltersStore = TuanStore.GroupCustomFilters.getInstance(); //筛选条件
 
 	var View = c.view.extend({
 		pageid:'214004',
 		tpl:html,
 		render:function () {
-			this.$el.html(this.tpl);
+			this.$el.html(_.template(this.tpl)({Category: categoryFilterStore.getAttr('category')}));
 			this.elsBox = {
 				filter_tpl:this.$el.find('#filterTpl'), //筛选模i板
 				filter_box:this.$el.find('#filterBox')//筛选容器
@@ -32,11 +33,12 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
 			this.showFilter();
 		},
 		showFilter:function () {
-
 			var filterData = priceStarFilterStore.get(),
 			    item;//上一次搜索条件
 
-			filterData.Category = categoryFilterStore.getAttr('category');
+			if(filterData){
+				filterData.Category = categoryFilterStore.getAttr('category');
+			};
 			item = this.filter_fun(filterData);
 			this.elsBox.filter_box.html(item);
 		},

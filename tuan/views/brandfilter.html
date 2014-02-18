@@ -4,16 +4,16 @@
 <section class="cont_wrap h100" id="filterBox"></section>  
 <script type="text/template" id="filterTpl">
  <ul class="filter_r singer">
-        <li class="<%=!val || val.length<=0?"choosed":"" %>" data-id="">不限</li>
-        <%if(conditions && conditions.length>0){
-       for(var i=0,len=conditions.length,b;i<len;i++){
-       b=conditions[i];
-       if((+b.type & 1)==1){
-        %>
-        <li class="<%=b.val==val?"choosed":"" %>"  data-id="<%=b.val %>"><%=b.txt %></li>
-        <%}}
-       }else{%>
-         <li>暂无数据，您可以返回重新查询！</li>
-        <%} %>
-    </ul>
+    <li class="<%=!val || val.length<=0?"choosed":"" %>" data-id="">不限</li>
+    <%if(conditions && conditions.length>0){
+   for(var i=0,len=conditions.length,b;i<len;i++){
+   b=conditions[i];
+   if((+b.type & 1)==1){
+    %>
+    <li class="<%=b.val==val?"choosed":"" %>"  data-id="<%=b.val %>"><%=b.txt %></li>
+    <%}}
+   }else{%>
+     <li>暂无数据，您可以返回重新查询！</li>
+    <%} %>
+</ul>
 </script>

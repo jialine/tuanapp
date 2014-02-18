@@ -4,56 +4,34 @@
     <h1 id="J_headerTitle">团购酒店</h1><i id="js_return" class="returnico"></i>
     <a class="icon-search" id="J_keywordSearch" href="###">搜索</a>
 </header>
-<section class="cont_wrap b60"> 
-   <!-- <ul class="tab_by">
-        <li id="selCity">上海<i></i></li>
-        <li id="filter">筛选<span class="tuan_filter"></span></li>
-        <li id="orderby" data-order="0" tabindex="0"><span class="tab_haspop jsSortName">默认排序</span><i></i>
-            <div id="selOrder" class="tab_pop">
-                <p data-id="2" data-type="1">默认排序</p>
-                <p data-id="1" data-type="1">最新开团</p>
-                <p data-id="3" data-type="1">销量从高到低</p>
-                <p data-id="4" data-type="1">折扣从高到低</p>
-                <p data-id="5" data-type="1">价格从高到低</p>
-                <p data-id="5" data-type="2">价格从低到高</p>
-                <p data-id="6" data-type="1">点评分从高到低</p>
-            </div>
-        </li>
-    </ul>-->
+<section class="cont_wrap b60">
     <section id="lstbox"></section>
 </section>
- <div id="in_footer" class="fix_bottom">
-     <ul class="tab_search">
-         <li id="J_categoryTrigger" tabindex="0">
-             <span class="tab_haspop" id="J_categoryLabel">团购类型</span><i></i>
-             <div id="J_categoryPanel" class="tab_pop tuan-category">
-                 <p data-id="2" data-type="0" data-category='all'>不限</p>
-                 <p data-id="1" data-type="1" data-category='hotel'>酒店客房</p>
-                 <p data-id="3" data-type="2" data-category='catering'>餐饮娱乐</p>
-                 <p data-id="4" data-type="3" data-category='vacation'>旅游出行</p>
-                 <p data-id="5" data-type="4" data-category='ticket'>门票</p>
-             </div>
-         </li>
-         <li>位置区域</li>
-         <li id="J_customFilters">筛选</li>
-         <li id="J_sortTrigger" tabindex="0">
-             <span class="tab_haspop" id="J_sortLabel">默认排序</span><i></i>
-             <div id="J_sortPanel" class="tab_pop">
-                 <p data-id="2" data-type="1">默认排序</p>
-                 <p data-id="1" data-type="1">最新开团</p>
-                 <p data-id="3" data-type="1">销量从高到低</p>
-                 <p data-id="4" data-type="1">折扣从高到低</p>
-                 <p data-id="5" data-type="1">价格从高到低</p>
-                 <p data-id="5" data-type="2">价格从低到高</p>
-                 <p data-id="6" data-type="1">点评分从高到低</p>
-             </div>
-         </li>
-     </ul>
-     <!--<ul class="tab_search">
-        <li class="tab_hotel jsHotel">酒店查询</li>
-        <li  class="tabcrt">团购酒店</li>
-    </ul>-->
- </div>
+<ui class="tuan_type" id="J_categoryPanel" style="display: none;">
+    <!-- 选中状态 -->
+    <li data-id="2" data-type="0" data-category='all' data-name="团购类型">不限</li>
+    <li data-id="1" data-type="1" data-category='hotel' data-name="酒店客房">酒店客房</li>
+    <li data-id="3" data-type="2" data-category='catering' data-name="餐饮娱乐">餐饮娱乐</li>
+    <li data-id="4" data-type="3" data-category='vacation' data-name="旅游出行">旅游出行</li>
+    <li data-id="5" data-type="4" data-category='ticket' data-name="门票">门票</li>
+</ui>
+<ui class="tuan_default" id="J_sortPanel" style="display: none;">
+    <!-- 选中状态 -->
+    <li data-id="2" data-type="1">默认排序</li>
+    <li data-id="1" data-type="1">离我最近</li>
+    <li data-id="3" data-type="1">最新开团</li>
+    <li data-id="4" data-type="1" class="has_ico">销量<span class="ico_down"></span></li>
+    <li data-id="5" data-type="1" class="has_ico">价格<span class="ico_down"></span></li>
+    <li data-id="5" data-type="2" class="has_ico">价格<span class="ico_up"></span></li>
+    <li data-id="2" data-type="1" class="has_ico">点评分<span class="ico_down"></span></li>
+</ui>
+<ul class="bottom_filter fix_bottom">
+    <li id="J_categoryTrigger" tabindex="0">团购类型</li>
+    <!-- click后添加fil_active -->
+    <li>位置区域</li>
+    <li id="J_customFilters">筛选<span class="ico_filter"></span></li>
+    <li id="J_sortTrigger" tabindex="0">默认排序</li>
+</ul>
 <script type="text/template" id="listtpl">
 <%if(products && products.length>0 && count && +count > 0) {%> <ul class="pro_list"><%
 for(var i=0,len=products.length;i<len;i++){

@@ -3,15 +3,16 @@
  * @date: 14-2-13 下午1:13
  * @descriptions
  */
-define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, WidgetFactory, DropDown, TuanStore) {
+define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore', 'StoreManage'], function (Base, WidgetFactory, DropDown, TuanStore, StoreManage) {
 	"use strict";
 	var WIDGET_NAME = 'TuanFilters',
 		Filters,
-		//lizard需要支持此方法，移除强依赖underscore
 		mix = $.extend,
 		categoryfilterStore = TuanStore.GroupCategoryFilterStore.getInstance(), //团购类型
 		sortStore = TuanStore.GroupSortStore.getInstance(), //团购排序
 		searchStore = TuanStore.GroupSearchStore.getInstance();
+
+	window.searchStore = searchStore;
 	// 如果WidgetFactory已经注册了,就无需重复注册
 	if (WidgetFactory.hasWidget(WIDGET_NAME)) {
 		return;
@@ -22,10 +23,10 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, Wid
 			this.options = {
 				sortTrigger: $('#J_sortTrigger'),
 				sortPanel: $('#J_sortPanel'),
-				sortLabel: $('#J_sortLabel'),
+				sortLabel: $('#J_sortTrigger'),
 				categoryTrigger: $('#J_categoryTrigger'),
 				categoryPanel: $('#J_categoryPanel'),
-				categoryLabel: $('#J_categoryLabel'),
+				categoryLabel: $('#J_categoryTrigger'),
 				customFilters: $('#J_customFilters')
 			};
 			this.page = null;
@@ -39,7 +40,6 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, Wid
 				panel: options.sortPanel,
 				label: options.sortLabel,
 				selectedIndex: sortStore.getAttr('sortTypeIndex')||0,
-				itemCls: 'p[data-id]',
 				onSelect: function(item){
 					var target = $(item),
 						sortRule = target.attr('data-id'),
@@ -65,7 +65,6 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, Wid
 				trigger: options.categoryTrigger,
 				panel: options.categoryPanel,
 				label: options.categoryLabel,
-				itemCls: 'p[data-type]',
 				selectedIndex: categoryfilterStore.getAttr('tuanTypeIndex')||0,
 				onSelect: function(item){
 					item = $(item);
@@ -76,6 +75,9 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore'], function (Base, Wid
 					categoryfilterStore.setAttr('category', item.attr('data-category'));
 					searchStore.setAttr('tuanType', tuanType);
 					categoryfilterStore.setAttr('tuanTypeIndex', this.selectedIndex);
+					//清除除团购类型和城市外的所有查询条件
+					StoreManage.clearSpecified();
+//					location.reload();
 					self.page.getGroupListData();
 				}
 			});

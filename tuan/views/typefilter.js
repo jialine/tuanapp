@@ -3,8 +3,8 @@
  * @date: 14-2-17 下午2:53
  * @descriptions
  */
-define(['cBasePageView','TuanStore' ,TuanApp.getViewsPath('distancefilter')], function (baseview, TuanStore, tpl) {
-	var distancefilterStore = TuanStore.GroupDistanceStore.getInstance(),
+define(['cBasePageView','TuanStore' ,TuanApp.getViewsPath('typefilter')], function (baseview, TuanStore, tpl) {
+	var typefilterStore = TuanStore.GroupTypeFilterStore.getInstance(),
 		View;
 
 	View = baseview.extend({
@@ -32,12 +32,12 @@ define(['cBasePageView','TuanStore' ,TuanApp.getViewsPath('distancefilter')], fu
 			this.render();
 		},
 		onShow:function () {
-			this.setTitle('距离');
+			this.setTitle('类型');
 		},
 		filterAction: function(e){
 			var target = $(e.target);
 
-			distancefilterStore.set({
+			typefilterStore.set({
 				name: target.attr('data-name'),
 				val: target.attr('data-id')
 			});
@@ -45,12 +45,8 @@ define(['cBasePageView','TuanStore' ,TuanApp.getViewsPath('distancefilter')], fu
 		},
 		showFilter: function(){
 			var self = this;
-//			var filterData = priceStartFilterStore.get(),
-//				item;//上一次搜索条件
-//
-//			filterData.Category = categoryFilterStore.getAttr('category');
-//			item = this.filter_fun(filterData);
-			var data = distancefilterStore.get();
+			var data = typefilterStore.get();
+
 			self.elsBox.filter_box.html(self.filter_fun(data));
 		},
 		onLoad:function () {

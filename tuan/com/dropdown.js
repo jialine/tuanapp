@@ -13,10 +13,11 @@ define(['libs'], function(libs){
 			trigger: null,
 			panel: null,
 			label: null,
-			itemCls: 'li',
+			itemCls: 'li[data-type]',
+			hasEffect: true,
 			selectedIndex: 0,
-			activeTriggerCls: 'tab_popshow',
-			selectedItemCls: 'selected',
+			activeTriggerCls: '',
+			selectedItemCls: 'typecrt',
 			multiple: false,
 			onSelect: NOOP
 		};
@@ -45,11 +46,15 @@ define(['libs'], function(libs){
 
 			this._selectHandler = $.proxy(function(e){
 				e.preventDefault();
+				e.stopPropagation();
 				this.select(e.target);
 			}, this);
 
 			this._hideHandler = $.proxy(function(e){
-				this.hide();
+				var self = this;
+				setTimeout(function(){
+					self.hide();
+				}, 200);//做延迟，保证blur触发后，dom短时还能点击
 			}, this);
 
 			trigger.on(options.triggerEvent, this._showHandler);
@@ -72,12 +77,26 @@ define(['libs'], function(libs){
 			this.disabled = false;
 		},
 		show: function(){
-			this.panel.show();
+			var panel = this.panel;
+
+			panel.show();
+			if(this.options.hasEffect){
+				panel.css({
+					bottom: '0px',
+					opacity: '0'
+				});
+				panel.animate({
+					bottom: '40px',
+					opacity: '1'
+				});
+			};
 			this.trigger.addClass(this.options.activeTriggerCls);
 			this.opened = true;
 		},
 		hide: function(){
-			this.panel.hide();
+			var self = this;
+			self.panel.hide();
+
 			this.trigger.removeClass(this.options.activeTriggerCls);
 			this.opened = false;
 		},
@@ -94,7 +113,7 @@ define(['libs'], function(libs){
 			selected && selected.removeClass(selectedItemCls);
 			this.selectedIndex = this.items.indexOf(item);
 			item = $(item);
-			this.label.html(item.html());
+			this.label.html(item.attr('data-name')||item.html());
 			item.addClass(selectedItemCls);
 			!noevent && this.options.onSelect.call(this, item);
 			this._selected = item;

@@ -1,0 +1,17 @@
+<header>
+    <h1>类型</h1><i id="js_return" class="returnico"></i>
+</header>
+<section class="cont_wrap clearfix" style="height:100%;" id="filterBox">
+
+
+</section>
+<script type="text/template" id="filterTpl">
+    <ul class="filter_r jsPrice">
+        <li data-id="" data-filter="day" class="<%=typeof val != "undefined" && val=="" ?"choosed":"" %>" data-name="不限">不限</li>
+        <li data-id="1" data-filter="day" class="<%=typeof val != "undefined" && val=="1"?"choosed":"" %>" data-name="1天">1天</li>
+        <li data-id="2" data-filter="day" class="<%=typeof val != "undefined" && val=="2"?"choosed":"" %>" data-name="2天">2天</li>
+        <li data-id="3|4" data-filter="day" class="<%=typeof val != "undefined" && val=="3|4"?"choosed":"" %>" data-name="3-4天">3-4天</li>
+        <li data-id="5|6" data-filter="day" class="<%=typeof val != "undefined" && val=="5|6"?"choosed":"" %>" data-name="5-6天">5-6天</li>
+        <li data-id="7|" data-filter="day" class="<%=typeof val != "undefined" && val=="7|"?"choosed":"" %>" data-name="7天以上">7天以上</li>
+    </ul>
+</script>

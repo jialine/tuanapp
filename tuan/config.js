@@ -97,7 +97,8 @@
 			TuanModel: CUSTOM_URL+"tuan/models/tuanmodel",
 			DropDown: CUSTOM_URL+'tuan/com/dropdown',
 			TuanFilters: CUSTOM_URL+'tuan/widget/tuanfilters',
-			Switch: CUSTOM_URL+'tuan/com/switch'
+			Switch: CUSTOM_URL+'tuan/com/switch',
+			StoreManage: CUSTOM_URL+'tuan/util/storemanage'
 		}
 	};
 	require.config(config);

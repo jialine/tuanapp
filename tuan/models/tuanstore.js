@@ -111,26 +111,7 @@
             $super(options);
         }
     });
-	//酒店团购团购类型Storage (xuweichen 2014-2-14)
-	T.GroupCategoryFilterStore = new cBase.Class(AbstractStore, {
-		__propertys__: function () {
-			this.key = 'TUAN_PRICESTARFILTER'; //Storage名称
-			this.lifeTime = '1D'; //缓存1天
-		},
-		initialize: function ($super, options) {
-			$super(options);
-		}
-	});
-	//酒店团购排序Storage (xuweichen 2014-2-14)
-	T.GroupSortStore = new cBase.Class(AbstractStore, {
-		__propertys__: function () {
-			this.key = 'TUAN_SORTFILTER'; //Storage名称
-			this.lifeTime = '1D'; //缓存1天
-		},
-		initialize: function ($super, options) {
-			$super(options);
-		}
-	});
+
     //酒店团购价格星级筛选Storage （caof 2013-08-07）
     T.GroupPriceStarFilterStore = new cBase.Class(AbstractStore, {
         __propertys__: function () {
@@ -229,5 +210,56 @@
             $super(options);
         }
     });
+
+	//酒店团购团购类型Storage (xuweichen 2014-2-14)
+	T.GroupCategoryFilterStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_CATEGORYFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
+	//酒店团购排序Storage (xuweichen 2014-2-14)
+	T.GroupSortStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_SORTFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
+	//酒店团购排序Storage (xuweichen 2014-2-14)
+	T.GroupDistanceStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_DISTANCEFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
+	//酒店团购餐饮类型筛选Storage (xuweichen 2014-2-18)
+	T.GroupTypeFilterStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_TYPEFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
+	//酒店度假天数筛选Storage (xuweichen 2014-2-18)
+	T.GroupDayFilterStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_DAYFILTER'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
     return T;
 })

@@ -3,7 +3,8 @@
 /// </summary>
 define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPath('brandfilter')], function (libs, c, CommonStore, TuanStore, TuanModels, html) {
     var brandFilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
-    brandStorage = TuanStore.GroupConditionStore.getInstance(); //团购筛选数据
+        brandStorage = TuanStore.GroupConditionStore.getInstance(); //团购筛选数据
+
     var View = c.view.extend({
         pageid: '214006',
         tpl: html,
@@ -30,24 +31,29 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
             this.showFilter();
         },
         showFilter: function () {
-            this.elsBox.filter_box.empty();
-            var brandData = brandStorage.get();
+	        var brandData = brandStorage.get(),
+		        filterData = brandFilterStore.get(),
+	            item;
+
+	        this.elsBox.filter_box.empty();
             brandData.val = '';
-            var filterData = brandFilterStore.get();
             if (filterData && filterData.val) {
                 brandData.val = filterData.val;
-            }
-            var item = this.filter_fun(brandData);
+            };
+            item = this.filter_fun(brandData);
             this.elsBox.filter_box.html(item);
         },
         onHide: function () { },
         filterAction: function (e) {
-            var target = $(e.currentTarget), id = target.attr('data-id'), brandName = target.html();
-            brandFilterStore.setAttr('type', 3);
-            brandFilterStore.setAttr('val', id);
-            brandFilterStore.setAttr('value', id);
-            brandFilterStore.setAttr('name', brandName);
-            this.forward('filter');
+	        var target = $(e.currentTarget),
+		        id = target.attr('data-id'),
+		        brandName = target.html();
+
+	        brandFilterStore.setAttr('type', 3);
+	        brandFilterStore.setAttr('val', id);
+	        brandFilterStore.setAttr('value', id);
+	        brandFilterStore.setAttr('name', brandName);
+	        this.forward('filter');
         },
         returnAction: function () {
             this.back('filter');

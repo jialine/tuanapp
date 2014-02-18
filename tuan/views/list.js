@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 团购酒店列表 creator:caofu; createtime:2013-08-05
 /// </summary>
-define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanFilters', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, html) {
+define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanFilters','StoreManage', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, StoreManage, html) {
     var listModel = TuanModels.TuanListModel.getInstance(),
 	    searchStore = TuanStore.GroupSearchStore.getInstance(),
 	    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
@@ -12,8 +12,6 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
 	    timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
 	    View;
 
-	//test code
-	window.searchStore = searchStore;
     View = BasePage.extend({
         pageid: '212001',
         tpl: html,
@@ -61,11 +59,9 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
             if ($('#orderby').hasClass('tab_popshow')) { $('#orderby').removeClass('tab_popshow'); $('#orderby').attr('data-order', 0); }
         },
 	    onPageListRequestStart: function(){
-			console.log('onPageListRequestStart');
 		    this.filterWrap.addClass('hide');
 	    },
 	    onPageListRequestEnd: function(){
-			console.log('onPageListRequestEnd');
 		    this.filterWrap.removeClass('hide');
 	    },
         onCreate: function () {
@@ -84,7 +80,7 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
             var priceFilterData = pricefilterStore.get(),
 	            brandFilterData = brandfilterStore.get(),
 	            timeFilterData = timefilterStore.get();
-
+	        //如果没有筛选条件，则清空查询条件
             if (!priceFilterData && !brandFilterData && !timeFilterData) {
                 searchStore.setAttr('qparams', []);
             };
@@ -92,12 +88,16 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
 	        // TODO: 补充注释
             if (returnPageStore) { returnPageStore.remove(); }
             this.getCity();
+
 	        this.initTuanFilters();
         },
         createPage: function (data) {
-            var searchData = searchStore.get();
-            var cityName = searchData.ctyName ? searchData.ctyName : "上海", cityid = this.getQuery('cityid');
-            if (cityid && +cityid > 0) {
+            var searchData = searchStore.get(),
+                cityName = searchData.ctyName ? searchData.ctyName : "上海",
+	            cityid = this.getQuery('cityid'),
+	            wrap = this.$el;
+
+	        if (cityid && +cityid > 0) {
                 //判断是否有历史记录，有则不替换
                 if (!searchData.ctyId || searchData.ctyId.length <= 0) {
                     //判断该城市是否在团购酒店城市中
@@ -123,21 +123,23 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
                     }
                     searchStore.setAttr('ctyName', cityName);
                 }
-            }
+            };
             searchData = searchStore.get();
+	        //如果有搜索条件则初始化相应查询条件
             if (searchData) {
-                if (searchData.sotrName) {
-                    this.$el.find('.jsSortName').html(searchData.sotrName);
+               /* if (searchData.sortName) {
+                    this.$el.find('.jsSortName').html(searchData.sortName);
                 } else {
                     this.$el.find('.jsSortName').html('默认排序');
-                }
+                };*/
                 cityName = searchData.ctyName ? searchData.ctyName : "上海";
                 if (!searchData.ctyId || +searchData.ctyId <= 0) {
                     searchStore.setAttr('ctyId', "2");
                 }
-            }
-            this.$el.find('#selCity').html(cityName + "<i></i>");
-            this.$el.find('header>h1').html("团购酒店-"+cityName);
+            };
+	        //设置标题
+	        wrap.find('#selCity').html(cityName + "<i></i>");
+	        wrap.find('header>h1').html("团购酒店-"+cityName);
             this.turning();
             this.getGroupListData();
         },
@@ -250,13 +252,16 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
         },
         orderAction: function (e) {
             //选择排序
-            var target = $(e.currentTarget);
-            var sortRule = target.attr('data-id'), sortType = target.attr('data-type'), sotrName = target.html();
+            var target = $(e.currentTarget),
+	            sortRule = target.attr('data-id'),
+	            sortType = target.attr('data-type'),
+	            sortName = target.html();
+
             searchStore.setAttr('sortRule', sortRule);
             searchStore.setAttr('sortType', sortType);
-            searchStore.setAttr('sotrName', sotrName);
+            searchStore.setAttr('sortName', sortName);
             searchStore.setAttr('pageIdx', 1);
-            $('.jsSortName').html(sotrName);
+            $('.jsSortName').html(sortName);
             this.listWrap.empty();
             this.getGroupListData();
         },
@@ -284,15 +289,7 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
         homeAction: function () {
             searchStore.setAttr('pageIdx', 1);
             $(window).unbind('scroll', this.onWindowScroll);
-            var qparams = [];
-            searchStore.setAttr('qparams', qparams);
-            searchStore.setAttr('sortRule', 2);
-            searchStore.setAttr('sortType', 0);
-            searchStore.setAttr('sotrName', '');
-            pricefilterStore.remove();
-            positionfilterStore.remove();
-            brandfilterStore.remove();
-            timefilterStore.remove();
+            StoreManage.clearSpecified();
             this.jump('/html5/');
         },
         returnHotel: function (e) {
