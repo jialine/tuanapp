@@ -119,7 +119,7 @@ define(['libs'], function(libs){
 			this._selected = item;
 		},
 		reset: function(noevent){
-			this.select(this.panel.children()[this.options.selectedIndex], noevent)
+			this.select(this.items[this.options.selectedIndex], noevent)
 		}
 	};
 	return DropDown;

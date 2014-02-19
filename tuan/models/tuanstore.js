@@ -210,6 +210,16 @@
             $super(options);
         }
     });
+	//团购历史选择城市列表数据 （add by zhanghd 2014-02-17）
+	T.TuanHistoryCityListStore = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_HISTORYCITY_LIST';
+			this.lifeTime = '15D';
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
 
 	//酒店团购团购类型Storage (xuweichen 2014-2-14)
 	T.GroupCategoryFilterStore = new cBase.Class(AbstractStore, {

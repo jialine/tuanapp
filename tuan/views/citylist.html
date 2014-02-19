@@ -1,0 +1,67 @@
+﻿<style type="text/css">
+    #city_list ul li{ display:block; }
+    #city_list ul.sub-city-box{ display:none; }
+    .js_search_opt .place_search_box{margin-right:0;}
+</style>
+<header>
+    <h1>选择城市</h1><i id="js_return" class="returnico"></i>
+</header>
+<aside class="cont_blue">
+    <section class="search_wrap js_search_opt">
+	    <div class="place_search_box">
+          	<input type="text" class="place_search" id="city_keyword" placeholder="中文/拼音/首字母" value="">
+        </div>
+        <!--<div class="history_close">
+            <span class=" history_close hclose">取消</span>
+        </div>-->
+    </section>
+</aside>
+<section id="city_box" class="city_box"></section>
+<script type="text/template" id="city_tpl">
+     <ul id="city_list">
+     <%if(data && data.length>0){ %>
+			<li class="main-item cityli citylistclick nearby">
+				<ul class="sub-city-box" style="display:block">
+					<li class="city-item <%if(nearby==true){%>citylistcrt<%}%>" data-name="我附近的团购" data-id="nearby" data-filter="">我附近的团购</li>
+				</ul>
+			</li>
+			<li class="main-item cityli citylistclick currentcity">
+				<ul class="sub-city-box" style="display:block">
+					<%
+					if(currentcityid!="" && currentcityname!=""){
+					%>
+					<li class="city-item  <% if(cityid && cityid == currentcityid){ %> citylistcrt<%} %>" data-name="<%=currentcityname%>" data-id="<%=currentcityid%>" data-filter="">当前城市：<%=currentcityname %></li>
+					<%
+					}
+					%>
+				</ul>
+			</li>
+			<li class="main-item cityli citylistclick historycitys">
+                <div class="city-group-title arr_down">历史选择</div>
+                <ul class="sub-city-box" style="display:block">
+                <%for(var i=0,olen=data.length,Item;i<olen;i++){ Item=data[i];
+                if(Item.tag=='history' && Item.cities){
+                    for(var j in Item.cities){
+                    var c=Item.cities[j];
+                %>
+                <li class="city-item <% if(cityid && cityid == c.id){ %> citylistcrt<%} %>" data-name="<%=c.name%>" data-id="<%=c.id%>" data-filter="<%=((c.jp?c.jp.toLowerCase():'')  + ' ' + ( c.initial?"":c.initial.toLowerCase())  + ' ' + c.name + ' ' + (c.py?c.py.toLowerCase():"") ) %>"><%=c.name %><i>(<%=c.cGroups %>)</i></li>
+                <%} }}%>
+                </ul>
+            </li>
+            <li class="main-item cityli citylistclick hotcitys">
+                <div class="city-group-title arr_down">热门城市</div>
+                <ul class="sub-city-box" style="display:block">
+                <%for(var i=0,olen=data.length,Item;i<olen;i++){ Item=data[i];
+                if(Item.tag=='热门' && Item.cities){
+                    for(var j in Item.cities){
+                    var c=Item.cities[j];
+                %>
+                <li class="city-item  <% if(cityid && cityid == c.id){ %> citylistcrt<%} %>" data-name="<%=c.name%>" data-id="<%=c.id%>" data-filter="<%=((c.jp?c.jp.toLowerCase():'')  + ' ' + ( c.initial?"":c.initial.toLowerCase())  + ' ' + c.name + ' ' + (c.py?c.py.toLowerCase():"") ) %>"><%=c.name %><i>(<%=c.cGroups %>)</i></li>
+                <%} }}%>
+                </ul>
+            </li>
+       
+        <%}else{%>
+        <li class="empty-main-item p10 hm">无数据</li><%}%>
+    </ul>
+</script>

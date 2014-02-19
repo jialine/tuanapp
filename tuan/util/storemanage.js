@@ -10,6 +10,8 @@ define(['TuanStore'], function (TuanStore) {
 		brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
 		timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
 		distancefilterStore = TuanStore.GroupDistanceStore.getInstance(),
+		typefilterStore = TuanStore.GroupTypeFilterStore.getInstance(), //餐饮娱乐类型
+		categoryfilterStore = TuanStore.GroupCategoryFilterStore.getInstance(),
 		sortStore = TuanStore.GroupSortStore.getInstance(); //团购排序
 
 	var Manage = {
@@ -23,17 +25,16 @@ define(['TuanStore'], function (TuanStore) {
 			searchStore.setAttr('multiShop', 0);
 			searchStore.setAttr('hourRateRoom', 0);
 			pricefilterStore.remove();
+			typefilterStore.remove();
 			positionfilterStore.remove();
 			brandfilterStore.remove();
 			timefilterStore.remove();
 			distancefilterStore.remove();
 			sortStore.remove();
 		},
-		clearFilters: function(){
-
-		},
 		clearAll: function(){
-
+			this.clearSpecified();
+			categoryfilterStore.remove();
 		}
 	};
 	return Manage;

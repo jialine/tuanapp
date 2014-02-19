@@ -75,8 +75,7 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore', 'StoreManage'], func
 					categoryfilterStore.setAttr('category', item.attr('data-category'));
 					searchStore.setAttr('tuanType', tuanType);
 					categoryfilterStore.setAttr('tuanTypeIndex', this.selectedIndex);
-					//清除除团购类型和城市外的所有查询条件
-					StoreManage.clearSpecified();
+					self.reset();
 //					location.reload();
 					self.page.getGroupListData();
 				}
@@ -97,6 +96,11 @@ define(['cBase', 'cWidgetFactory', 'DropDown', 'TuanStore', 'StoreManage'], func
 			mix(this.options, options);
 			this.page = this.options.page;
 			this.initSort().initCategory().initCustomFilters();
+		},
+		reset: function(){
+			this.sort.reset(true);
+			//清除除团购类型和城市外的所有查询条件
+			StoreManage.clearSpecified();
 		}
 	});
 	WidgetFactory.register({

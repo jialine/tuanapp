@@ -1,0 +1,25 @@
+﻿ <header>
+    <h1>位置区域</h1><i id="js_return" class="returnico"></i>
+</header>
+<section class="cont_wrap h100"  id="filterBox"></section>  
+<script type="text/template" id="filterTpl">
+<%if(typeof conditions != "undefined" && conditions && conditions.length>0){
+    var lstZone= $.grep(conditions, function (v, j) {return v.type == 4;});
+    var lstLocation= $.grep(conditions, function (v, j) {return v.type == 2;});
+    if((lstZone && lstZone.length>0)  || (lstLocation && lstLocation.length>0)){%>
+     <ul class="filter_l jsfilter_l">
+         <%if(lstZone && lstZone.length>0){%><li data-type="4" data-filtertype="5" class="<%=!typeId || +typeId!=2?"hover":"" %>">商业区</li><%} %>
+         <%if(lstLocation && lstLocation.length>0){%><li data-type="2" data-filtertype="4" class="<%=typeId && +typeId==2?"hover":"" %>">行政区</li><%} %>
+     </ul>
+     <ul class="filter_r jsfilter_r">
+        <li data-type=<%=typeId %> data-filtertype=<%=type %>  data-id="" data-val="<%=val %>" class="<%=(!val || val.length<=0)?"choosed":"" %>">不限</li>
+        <%for(var i=0,len=conditions.length,b;i<len;i++){
+           p=conditions[i]; 
+           if(p.type && (+p.type)==(+typeId)){
+     %>
+        <li data-type=<%=typeId %> data-filtertype=<%=type %>  data-name="<%=p.txt %>" data-id="<%=p.val %>" class="<%=(val && val.length>0 && p.val==val)?"choosed":"" %>"><%=p.txt %></li>
+     <%}} %>
+     </ul>
+<%} }%>
+
+</script>

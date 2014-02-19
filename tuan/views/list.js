@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// 团购酒店列表 creator:caofu; createtime:2013-08-05
 /// </summary>
-define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanFilters','StoreManage', TuanApp.getViewsPath('list')], function (c, BasePage, WidgetFactory, TuanStore, TuanModels, ToolBar, StoreManage, html) {
+define(['c', 'cBasePageView', 'cWidgetFactory', 'cUIToast', 'TuanStore', 'TuanModel', 'TuanFilters','StoreManage', TuanApp.getViewsPath('list'), 'cWidgetGeolocation'], function (c, BasePage, WidgetFactory, Toast, TuanStore, TuanModels, ToolBar, StoreManage, html) {
     var listModel = TuanModels.TuanListModel.getInstance(),
 	    searchStore = TuanStore.GroupSearchStore.getInstance(),
 	    returnPageStore = TuanStore.OrderDetailReturnPage.getInstance(),
@@ -38,22 +38,45 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
             'click #js_home': 'homeAction', //返回首页
             'click #js_return': 'returnAction', //返回查询页
             'click .jsHotel': 'returnHotel', //返回酒店查询页
-            'click #selCity': 'cityAction', //选择城市
+            'click #J_positionTrigger': 'showPositionPage', //选择位置区域
             'click #orderby': 'showOrder', //显示排序
             'click #selOrder>p[data-id]': 'orderAction', //排序
             'blur #orderby': 'hideOrderAction', //隐藏排序
             'click #filter': 'filterAction', //筛选
             'click li[data-id]': 'detailAction',//详情页
 	        'click #J_headerTitle': 'showCityPage',
-	        'click #J_keywordSearch': 'showKeywordSearch'
+	        'click #J_keywordSearch': 'showKeywordSearch',
+	        'click .cur_reload': 'getGeolocation'
 
         },
+	    createGPS: function(){
+			this.gps = WidgetFactory.create('Geolocation');
+	    },
+	    getGeolocation: function(){
+		    var infoWrap = $('#J_gpsInfo'),
+			    self = this,
+			    successFn, errorFn;
+
+		    successFn = function(gpsInfo){
+			    infoWrap.html('您的位置：'+gpsInfo.address);
+		    };
+		    errorFn = function(){
+			    infoWrap.html('暂未定位信息');
+				self.toast.show('抱歉，获取不到当前位置，请打开GPS后重试!');
+		    };
+
+			if(!this.gps){
+				this.createGPS();
+			};
+		    infoWrap.html('定位中');
+		    this.gps.requestCityInfo(successFn, errorFn);
+	    },
 	    initTuanFilters: function(){
 		    var TuanFilters = WidgetFactory.create('TuanFilters');
-
-		    this.tuanfilters = new TuanFilters({
+			//必须判断，否则会重复绑定事件
+		    !this.tuanfilters && (this.tuanfilters = new TuanFilters({
 			    page: this
-		    });
+		    }));
 	    },
         hideOrderAction: function () {
             if ($('#orderby').hasClass('tab_popshow')) { $('#orderby').removeClass('tab_popshow'); $('#orderby').attr('data-order', 0); }
@@ -65,9 +88,11 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
 		    this.filterWrap.removeClass('hide');
 	    },
         onCreate: function () {
+	        this.toast = new Toast();
             searchStore.setAttr('pageIdx', 1);
             //滚动加载下一页数据
             this.onWindowScroll = $.proxy(this._onWindowScroll, this);
+	        this.createGPS();
             this.render();
         },
         onShow: function () {
@@ -90,6 +115,7 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
             this.getCity();
 
 	        this.initTuanFilters();
+	        this.getGeolocation();
         },
         createPage: function (data) {
             var searchData = searchStore.get(),
@@ -297,7 +323,10 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'TuanStore', 'TuanModel', 'TuanF
         },
 	    showCityPage: function(e){
 		    e.preventDefault();
-		    console.log('showCityPage');
+		    this.forward('citylist');
+	    },
+	    showPositionPage: function(){
+			this.forward('positionfilter');
 	    },
 	    showKeywordSearch: function(e){
 		    e.preventDefault();

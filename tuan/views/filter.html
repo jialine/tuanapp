@@ -29,17 +29,18 @@
     <li data-id="4" class="arr_r">有效期<span><%=typeof CheckIn != "undefined" && CheckIn && CheckIn.name?CheckIn.name:"不限"%></span>
     </li>
     <% if(['catering', 'hotel', 'all'].indexOf(Category)>-1){ %>
-    <li data-id="5">节假日可用<span><b href="###" id="J_free2" style="cursor: pointer"></b></span></li>
+    <li data-id="5">节假日可用
+        <input type="checkbox" class="btn_switch" id="J_holidayAvailable"></li>
     <li data-id="6">免预约
-        <span><b href="###" id="J_free" style="cursor: pointer"></b></span>
+        <input type="checkbox" class="btn_switch" id="J_withoutReservation">
     </li>
     <% }%>
     <% if(Category=='hotel'){ %>
     <li data-id="7">多店可用
-        <span><b href="###" id="J_free3" style="cursor: pointer"></b></span>
+        <input type="checkbox" class="btn_switch" id="J_multiShop">
     </li>
     <li data-id="8">小时房
-        <span><b href="###" id="J_free4" style="cursor: pointer"></b></span>
+        <input type="checkbox" class="btn_switch" id="J_hourRateRoom">
     </li>
     <% }%>
 </script>

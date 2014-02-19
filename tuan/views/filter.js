@@ -37,11 +37,10 @@
 			var store = searchStore;
 
 			new Switch({
-				wrap:$('#J_free'),
-				cursorCls:'i',
+				cursor:$('#J_holidayAvailable'),
 				isTurnOn: !!parseInt(store.getAttr('withoutReservation'),10)||false,
 				onChange:function (rs) {
-					this.cursor.html(rs ? '开' : '关');
+					this.cursor.length && this.cursor[0][rs?'setAttribute':'removeAttribute']('checked');
 					store.setAttr('withoutReservation', +rs);
 				}
 			});
@@ -50,11 +49,10 @@
 		initHolidayAvailable:function () {
 			var store = searchStore;
 			new Switch({
-				wrap:$('#J_free2'),
-				cursorCls:'i',
+				cursor:$('#J_withoutReservation'),
 				isTurnOn: !!parseInt(store.getAttr('holidayAvailable'),10)||false,
 				onChange:function (rs) {
-					this.cursor.html(rs ? '开' : '关');
+					this.cursor.length && this.cursor[0][rs?'setAttribute':'removeAttribute']('checked');
 					store.setAttr('holidayAvailable', +rs);
 				}
 			});
@@ -63,11 +61,10 @@
 		initMultiShop: function(){
 			var store = searchStore;
 			new Switch({
-				wrap:$('#J_free3'),
-				cursorCls:'i',
+				cursor:$('#J_multiShop'),
 				isTurnOn: !!parseInt(store.getAttr('multiShop'),10)||false,
 				onChange:function (rs) {
-					this.cursor.html(rs ? '开' : '关');
+					this.cursor.length && this.cursor[0][rs?'setAttribute':'removeAttribute']('checked');
 					store.setAttr('multiShop', +rs);
 				}
 			});
@@ -76,11 +73,10 @@
 		initHourRateRoom: function(){
 			var store = searchStore;
 			new Switch({
-				wrap:$('#J_free4'),
-				cursorCls:'i',
+				cursor:$('#J_hourRateRoom'),
 				isTurnOn: !!parseInt(store.getAttr('hourRateRoom'),10)||false,
 				onChange:function (rs) {
-					this.cursor.html(rs ? '开' : '关');
+					this.cursor.length && this.cursor[0][rs?'setAttribute':'removeAttribute']('checked');
 					store.setAttr('hourRateRoom', +rs);
 				}
 			});

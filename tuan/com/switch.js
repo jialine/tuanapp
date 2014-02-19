@@ -13,6 +13,7 @@ define(['cBase'], function(Base){
 		this.options = {
 			wrap: null,
 			cursor: null,
+			cursorCls: '',
 			turnOnCls: 'active',
 			html: '<i>关</i>',
 			isTurnOn: false,
@@ -26,16 +27,22 @@ define(['cBase'], function(Base){
 			mix(this.options, options);
 			this.isTurnOn = this.options.isTurnOn;
 			this.wrap = this.options.wrap;
-			this.renderHTML();
-			this.cursor = this.wrap.find(this.options.cursorCls);
+			this.wrap && this.renderHTML();
+			if(this.options.cursor){
+				this.cursor = this.options.cursor;
+			}else{
+				this.cursor = this.wrap.find(this.options.cursorCls);
+			};
 			this.bindEvents();
 		},
 		renderHTML: function(){
 			this.wrap.html(this.options.html);
 		},
 		bindEvents: function(){
+			var cursor = this.cursor;
+
 			this._clickHandler = $.proxy(this.turn, this);
-			this.cursor.bind('click', this._clickHandler);
+			cursor && cursor.length && cursor.bind('click', this._clickHandler);
 		},
 		unbindEvents: function(){
 			this.cursor.unbind('click', this._clickHandler);
@@ -49,7 +56,7 @@ define(['cBase'], function(Base){
 			};
 			isTurnOn = this.isTurnOn;
 
-			this.wrap[isTurnOn ? 'removeClass' : 'addClass'](options.turnOnCls);
+			this.wrap && this.wrap[isTurnOn ? 'removeClass' : 'addClass'](options.turnOnCls);
 			options.onChange.call(this, this.isTurnOn);
 			this.isTurnOn = !isTurnOn;
 		},
