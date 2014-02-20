@@ -271,5 +271,14 @@
 			$super(options);
 		}
 	});
+	T.GroupGeolocation = new cBase.Class(AbstractStore, {
+		__propertys__: function () {
+			this.key = 'TUAN_GEOLOCATION'; //Storage名称
+			this.lifeTime = '1D'; //缓存1天
+		},
+		initialize: function ($super, options) {
+			$super(options);
+		}
+	});
     return T;
 })

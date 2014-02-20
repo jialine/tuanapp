@@ -10,6 +10,7 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'cUIToast', 'TuanStore', 'TuanMo
 	    positionfilterStore = TuanStore.GroupPositionFilterStore.getInstance(), //区域筛选条件
 	    brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
 	    timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
+	    geolcationStore = TuanStore.GroupGeolocation.getInstance(),//经纬度信息
 	    View;
 
     View = BasePage.extend({
@@ -58,6 +59,7 @@ define(['c', 'cBasePageView', 'cWidgetFactory', 'cUIToast', 'TuanStore', 'TuanMo
 			    successFn, errorFn;
 
 		    successFn = function(gpsInfo){
+			    geolcationStore.setAttr('gps', gpsInfo);
 			    infoWrap.html('您的位置：'+gpsInfo.address);
 		    };
 		    errorFn = function(){
