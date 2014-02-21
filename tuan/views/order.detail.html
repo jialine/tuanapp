@@ -1,0 +1,44 @@
+﻿<style>
+div.cui-layer{color:inherit;}
+</style>
+     <article  class="p10"> 
+             <section class="cont_box_white">
+                    <dl class="order_dl">    
+                        <dt>订单状态</dt><dd><%=statusRmk %></dd>
+                     </dl>
+                    <dl class="order_dl">    
+                        <dt>订单编号</dt><dd><%=oid %></dd>
+                     </dl>
+                     <dl class="order_dl">   
+                      <%
+        var n1 = date.replace(/-/mg,'/');
+        var d1 = new Date(n1);
+		var a1 = '';
+		a1 += d1.getFullYear() + '-';
+		a1 += d1.getMonth() + 1 + '-';
+		a1 += d1.getDate();
+        %>
+                        <dt>预订日期</dt><dd><%=a1 %></dd>
+                    </dl>
+                     <p class="mygroup_price corange">总额 <b>&yen;<%=amt %></b></p>
+            </section>
+            
+
+            <section class="myhotelbox">
+        	    <h4 class="blue_tit ellips_line2"><%=pname %></h4>
+                <div class="p10">
+                    <p class="order_numbox">数量：<i><%=qty %></i></p>
+                    <p class="validity_box"  id="js_validate_date"><%=couponValidDate ? couponValidDate : ''  %></p><hr class="hr_1"></hr>
+                    <p class="conn_mobile">
+                        联系人手机:<b><%=contact && contact.mphone %></b>
+                    </p>
+                     <%if(amt > 0 && status == 4) {%>
+                    <button class="orderdtl_greybtn" id="J_sendMsg" style="display:none;">发送券号密码到手机</button>
+                     <%} %>
+                </div>
+            </section>
+        
+            <p class="link_detail" id="J_tuanDetail">查看本单团购详情<i class="newarr_r"></i></p>
+            <p class="align_r"><a href="tel:4000086666" class="__hreftel__" ><strong class="call">400 008 6666</strong></a><p>
+        </article> 
+</article>

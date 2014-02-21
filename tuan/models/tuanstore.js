@@ -271,14 +271,34 @@
 			$super(options);
 		}
 	});
+		//团购历史关键词搜索列表数据 （add by zhanghd 2014-02-17）
+    T.TuanHistoryKeySearchStore = new cBase.Class(AbstractStore, {
+        __propertys__: function () {
+            this.key = 'TUAN_HISTORYKEYSEARCH_LIST';
+            this.lifeTime = '15D';
+        },
+        initialize: function ($super, options) {
+            $super(options);
+        }
+    });
+	//团购关键词列表数据（add by zhanghd 2014-02-19）
+    T.TuanKeyWordListStore = new cBase.Class(AbstractStore, {
+        __propertys__: function () {
+            this.key = 'TUAN_KEYWORD_LIST';
+            this.lifeTime = '15D';
+        },
+        initialize: function ($super, options) {
+            $super(options);
+        }
+    });
 	T.GroupGeolocation = new cBase.Class(AbstractStore, {
-		__propertys__: function () {
-			this.key = 'TUAN_GEOLOCATION'; //Storage名称
-			this.lifeTime = '1D'; //缓存1天
-		},
-		initialize: function ($super, options) {
-			$super(options);
-		}
-	});
+        __propertys__: function () {
+            this.key = 'TUAN_GEOLOCATION'; //Storage名称
+            this.lifeTime = '1D'; //缓存1天
+        },
+        initialize: function ($super, options) {
+            $super(options);
+        }
+    });
     return T;
 })

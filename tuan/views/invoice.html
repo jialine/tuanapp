@@ -1,0 +1,30 @@
+﻿<header style="position:absolute;">
+    <h1>发票</h1>
+    <i id="J_return" class="returnico"></i>
+    <div class="rightblue" id="J_submitOrder">完成</div>
+</header>
+<section class="cont_pd_wrap">
+    <ul class="cont_box_white write_list J_writeList">
+        <li data-item="0"><span class="orderwrite_info">需要发票</span>
+            <span class="fr" id="J_switchList"><i class="s_on current J_on">开</i><i class="s_off J_off">关</i></span>
+        </li>
+        <li class="" data-item="1"><span class="orderwrite_info needs">发票抬头</span>
+            <input type="text" placeholder="请输入发票抬头" class="input_s" id="J_invoiceTitle" />
+        </li>
+<!--        <li class="list_tit1" data-item="3">填写发票邮寄地址</li>
+        <li class="" data-item="3"><span class="orderwrite_info needs">收件人</span>
+            <input type="text" placeholder="" class="input_sl" id="recipient" />
+        </li>
+        -->
+        <li class="" data-item="4"><span class="orderwrite_info  needs">寄送地址</span>
+            <input type="text" placeholder="请输入发票寄送地址" class="input_s" id="J_addr"/>
+        </li>
+<!--        <li class="" data-item="5"><span class="orderwrite_info  needs">邮件编码</span>
+            <input type="text" placeholder=""  maxlength="6" class="input_sl" id="zip"/>
+        </li>
+        -->
+    </ul>
+    <p class="invoice_hint">
+        <em>此发票由携程开具。</em>将在您离店后5个工作日内以平信方式寄出，如需快递请致电携程。
+    </p>
+</section>

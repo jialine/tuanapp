@@ -38,7 +38,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
 			this.getFilterData(type,searchData.ctyId);
         },
 		getFilterData: function (type,ctyId) {	
-			if(conditionModel.getParam('ctyId')==ctyId&&conditionModel.getParam('type')==type){
+			if(conditionModel.getParam().ctyId==ctyId&&conditionModel.getParam().type==type){
 				this.initFilterData();
 				this.showFilter();
 				return;
@@ -85,7 +85,7 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
         showFilter: function () {
             this.elsBox.filter_box.empty();
             var positionData = filterStorage.get();
-            if (!positionData||!$.isArray(positionData.conditions)||positionData.conditions.length<=0) {
+            if (!positionData||!$.isArray(positionData.conditions)||positionData.conditions.length<=0) {				
                 var self = this;
                 this.showHeadWarning('位置区域', "抱歉，暂无位置区域信息，请返回重新查询", function () {
                     self.returnAction();
@@ -93,6 +93,16 @@ define(['libs', 'c', 'CommonStore', 'TuanStore', 'TuanModel', TuanApp.getViewsPa
                 });
                 return;
             }
+			var lstZone= $.grep(positionData.conditions, function (v, j) {return v.type == 4;});
+			var lstLocation= $.grep(positionData.conditions, function (v, j) {return v.type == 2;});
+			if((!lstZone || lstZone.length<=0)  && (!lstLocation || lstLocation.length<=0)){
+				var self = this;
+                this.showHeadWarning('位置区域', "抱歉，暂无位置区域信息，请返回重新查询", function () {
+                    self.returnAction();
+                    this.hide();
+                });
+				return
+			}
             var filterData = positionfilterStore.get(); //上一次搜索条件
             if (filterData) {
                 if (filterData.type && +filterData.type > 0 && +filterData.type == +positionData.type) {

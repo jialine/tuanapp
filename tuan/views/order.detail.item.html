@@ -1,0 +1,17 @@
+﻿<p class="fvr_ticket  i_aft 
+<%if(status == 2){ %>
+    fvr_ticket_used
+<%} %>
+<%if(status == 3){ %>
+    fvr_ticket_pastdue
+<%} %>
+<%if(status == 4){ %>
+    fvr_ticket_cancel
+<%} %>
+<%if(status == 5){ %>
+    fvr_ticket_refund
+<%} %>
+" data-id="<%=code %>">
+    券号：<span class="ticket_no" data-state="<%=status %>" data-code="<%=code %>"><%=code %></span><br />
+    密码：**********
+</p>

@@ -140,6 +140,29 @@
             $super(options);
         }
     });
+	//酒店团购关键词列表Model（zhanghd 2014-02-19）
+    T.TuanKeyWordListModel = new cBase.Class(AbstractModel, {
+        __propertys__: function () {
+            this.url = '/Group/KeyWordList/Query';
+            this.method = 'POST';
+            this.param = { dataVer: 99, ver: 99 };
+            this.result = TuanStore.TuanKeyWordListStore.getInstance();
+        },
+        initialize: function ($super, options) {
+            $super(options);
+        }
+    });
+    //根据经纬度获取城市信息Model (xuweichen 2014-02-21)
+    T.TuanLocalCityInfo = new cBase.Class(AbstractModel, {
+        __propertys__: function () {
+            this.url = '/Group/GetLocalCityInfo/Query';
+            this.param = {};
+            this.method = 'POST';
+        },
+        initialize: function ($super, options) {
+            $super(options);
+        }
+    });
     return T;
 
 })

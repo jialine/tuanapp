@@ -1,0 +1,37 @@
+﻿<style type="text/css">
+    #city_list ul li{ display:block; }
+    #city_list ul.sub-city-box{ display:none; }
+    .js_search_opt .place_search_box{margin-right:0;}
+</style>
+<aside>
+       <section class="search_wrap js_search_opt">
+	       <div class="place_search_box  clear_input">
+          	 <input type="text" class="place_search" placeholder="中文/拼音/首字母" value="">
+           </div>
+           <div class="history_close">
+               <span class=" history_close hclose">取消</span>
+           </div>
+       </section>
+ </aside>
+<section id="city_box" class="city_box"></section>
+<script type="text/template" id="city_tpl">
+     <%if(data && data.length>0){ %>
+		 <%
+		 for(var i=0,len=data.length,Key;i<len;i++){ 
+			Key = data[i];
+			if(Key && Key.tag && Key.tag!="热门"){
+		 %>
+			<ul class="city_list allcity">
+				<%for(var j in Key.cities){ 
+					var c= Key.cities[j];
+				%>
+					<li  style="display:none" class="city-item <% if(cityid && cityid == c.id){ %> citylistcrt<%} %>" data-name="<%=c.name%>" data-id="<%=c.id%>" data-filter="_<%=((c.jp?c.jp.toLowerCase():'')  + ' _' + ( c.initial?"":c.initial.toLowerCase())  + ' _' + c.name + ' _' + (c.py?c.py.toLowerCase():"") ) %>"><%=c.name %><i>(<%=c.cGroups %>)</i></li>
+			   <%} %>
+			</ul>
+        <%
+			}
+		}
+	}
+	%>
+	<p class="city_noresult" style="display;none">没有结果</p>
+</script>

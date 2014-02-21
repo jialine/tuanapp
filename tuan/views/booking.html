@@ -1,0 +1,50 @@
+﻿<header>
+  <b class="icon_home i_bef" id="J_home"></b>
+  <a class="icon_phone i_bef" id="J_phone" href="tel:4000086666"></a>
+  <h1>订单填写</h1>
+  <i id="J_return" class="returnico"></i>
+</header>
+<section class="cont_pd_wrap">
+    <ul class="cont_box_white write_list">
+        <li class="orderwrite_tit2">
+            <%=name %></li>
+        <li>
+          <!--TODO: 需要增加零元团类型判断以及零元团dom -->
+          <span class="room_num J_numberStep"></span>
+          <span class="orderwrite_info">购买数量</span> </li>
+        <li>
+          <span class="orderwrite_info needs">手机</span>
+          <input type="tel" placeholder="用于接收团购券号和密码" class="input_s" maxlength="11" required id="J_tel" value="<%=tel%>" />
+        </li>
+        <!-- TODO:
+        三种情况判断：1. 不需要发票, 此处留空; 
+        2. 酒店开具发票，提供文案: '发票由酒店提供，请入住酒店时向酒店前台索取'
+        3. 携程开具发票,显示发票填写控件       -->
+        <%if((groupFlag & 16) == 16) { %>
+        <li class="arr_r" id="J_invoice">
+          <span class="orderwrite_info">发票</span>
+          <em class="orderwrite_txt ellips" id="needInvoice">
+            <%=(invoice && invoice.needed) ? invoice.title : '不需要' %>
+          </em>
+        </li>
+        <%} %>
+    </ul>
+</section>
+<!--TODO: 优惠 -->
+<%if(activities && activities.length > 0 && (((activities[0].type == 2 || activities[0].type == 3) && user) || activities[0].type == 1)) { %>
+  <div class="orderwrite_hint" id="privilege">
+      <%if(activities[0].type == 1) {%>
+      立减优惠
+      <%} %>
+      <%if((activities[0].type == 2 || activities[0].type == 3) && user) {%>
+      入住后返
+      <%} %>
+      <span class="price1"><i>¥</i><span id="J_pPrice"><%=activities[0].arg * curNum%></span><%if(activities[0].type == 2 && user) {%>现金<%} %><%if(activities[0].type == 3 && user){%>携程礼品卡<%} %></span>
+      
+  </div>
+<%} %>
+
+<div class="order_btnbox">
+    订单总额: <span class="price2"><i>¥</i><span id="J_totalPrice"><%=retainTwoDecimal((curNum) * price.oPrice)%></span></span>
+    <button class="order_btn <%if(tel == ''){%>disabled<%}%>" id="J_submitOrder" value="">下一步</button>
+</div>

@@ -1,0 +1,61 @@
+﻿<style type="text/css">
+    #city_list ul li{ display:block; }
+    #city_list ul.sub-city-box{ display:none; }
+    .js_search_opt .place_search_box{margin-right:0;}
+</style>
+<aside>
+       <section class="search_wrap js_search_opt">
+	       <div class="place_search_box  clear_input">
+          	 <input type="text" class="place_search" placeholder="目的地/主题/关键字" inputwait="400" value="">
+           </div>
+           <div class="history_close">
+               <span class=" history_close hclose">取消</span>
+           </div>
+       </section>
+ </aside>
+<section id="city_box" class="city_box"></section>
+<script type="text/template" id="city_tpl">
+     <%if(data){ %>
+		<h2 class="city_type arr_down">搜索历史</h2>
+		
+		<%
+		if(data.history && data.history.length>0){
+		%>
+			<ul class="city_list historykeysearch" style="display:block">
+		<%
+			for(var i=0,olen=data.history.length,c;i<olen;i++){
+				c=data.history[i];
+			%>
+				<li class="city-item <% if(keyid && keyid == c.id){ %> citylistcrt<%} %>" data-name="<%=c.name%>" data-id="<%=c.id%>" data-filter="<%=c.name%>"><%=c.name %></li>
+			<%
+			}
+			%>
+			</ul>
+			<div class="keyword_clear"><span>清除搜索历史</span></div>
+			<%
+		}else{
+		%>		
+			<ul class="city_list">
+				<li>无搜索历史</li>
+			</ul>
+		<%
+		}
+		if(data.result&&data.result.length>0){
+		%>
+		<ul class="city_list searchresult">
+		<%
+		for(var i=0,len=data.result.length,c;i<len;i++){ 
+			c = data.result[i];
+		%>
+			<li  style="display:none" class="city-item <% if(cityid && cityid == c.id){ %> citylistcrt<%} %>" data-name="<%=c.name%>" data-id="<%=c.id%>" data-filter="<%=c.name%>"><%=c.name %></li>
+		<%} %>			
+		</ul>
+		<%
+		}else{
+		%>
+		 <p class="city_noresult">没有结果</p>
+		<%
+		}
+	}
+	%>
+</script>

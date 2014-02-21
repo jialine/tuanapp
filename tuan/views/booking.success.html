@@ -1,0 +1,26 @@
+﻿<header>
+    <b class="icon_home i_bef" id="J_home"></b><a class="icon_phone i_bef" id="J_phone" href="tel:4000086666"></a>
+    <h1>订单完成</h1>
+    <i id="J_return" class="returnico"></i>
+</header>
+<section class="cont_pd_wrap">
+    <!-- 需要增加零元团的判断以及文案,模板：您的订单已成功提交！我们会尽快处理-->
+    <div class="cont_box_white order_ok">
+        <i class="icon_ok i"></i>您的订单已成功提交！
+    </div>
+    <%if(oid && +oid>0){%>
+    <div class="order_tit arr_r" id="J_orderDetail">
+         <%if(amt){%><b><%=pname %></b><%} %>
+         <b>订单号：<%=oid %></b> 
+        <%if(amt){%><b>订单总额：<i>&yen;</i><%=amt %></b><%} %>
+    </div>
+    <%} %>
+    <%if(user && user.IsNonUser){%>
+    <div class="cont_box_white">
+        <p class="order_hint">填写手机号即可成为携程会员，马上获得<i>1000</i>积分和<i>800元</i>携程消费券哦！预订还可以累计积分。</p>
+        <div class="input_box">
+                <button class="btn_blue" id="J_registerBtn" value="">提交注册</button>
+        </div
+    </div>
+    <% }%>
+</section>

@@ -1,15 +1,13 @@
-﻿define(['libs', 'c', 'TuanModel', 'cDataSource', 'TuanStore',  TuanApp.getViewsPath('citylist')], function (libs, c, TuanModel, cDataSource, TuanStore, html) {
+﻿define(['libs', 'c', 'TuanModel', 'cDataSource', 'TuanStore',  TuanApp.getViewsPath('citylistsearch')], function (libs, c, TuanModel, cDataSource, TuanStore, html) {
     var cui = c.ui;
     var cuiTools = cui.Tools;
     var tuanSearchStore = TuanStore.GroupSearchStore.getInstance(), cBase = c.base,
      pricefilterStore = TuanStore.GroupPriceStarFilterStore.getInstance(), //价格星级筛选条件
      positionfilterStore = TuanStore.GroupPositionFilterStore.getInstance(), //区域筛选条件
      brandfilterStore = TuanStore.GroupBrandFilterStore.getInstance(), //品牌筛选条件
-     timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(), //日期筛选条件
-	 geolcationStore = TuanStore.GroupGeolocation.getInstance(), //经纬度信息
+     timefilterStore = TuanStore.GroupCheckInFilterStore.getInstance(); //日期筛选条件
 	 historyCityListStore=TuanStore.TuanHistoryCityListStore.getInstance();//历史选择城市
     var View = c.view.extend({
-        pageid: '214002',
         tpl: html,
         tuanCityList: TuanModel.TuanCityListModel.getInstance(),
         dateSource: new cDataSource(),
@@ -25,39 +23,25 @@
             this.cityListTplfun = _.template(this.els.eltuancitylisttpl.html());
         },
         events: {
-            'click #js_return': 'backAction',
-            'click .city_type': 'cityGroupTitleClick',
-            'click .place_search': 'tuanCityKeyWordInput',
-            'click .city-item': 'CityItemonClick'
+            'input .place_search': 'tuanCityKeyWordInput',
+            'click .city-item': 'CityItemonClick',
+			'click .history_close':'hcloseInput'
         },
-        backAction: function () {
-            this.back('list');
-        },
+		hcloseInput:function(e){
+			this.back('citylist');
+		},
         CityItemonClick: function (e) {
             
 			var searchData = tuanSearchStore.get();
 			tuanSearchStore.remove();
             var cur = $(e.currentTarget), id = cur.attr('data-id'), name = cur.attr('data-name');            
-			if(id=="nearby"){			
-				tuanSearchStore.setAttr('nearby', true);				
-				//tuanSearchStore.setAttr('ctyId', 99999999);
-				var loc=geolcationStore.get();
-				if(loc && loc.gps){
-					tuanSearchStore.setAttr('ctyId', loc.gps.cCtyId);
-					//tuanSearchStore.setAttr('ctyName',loc.gps.cCtyName)
-				}else{
-					tuanSearchStore.setAttr('ctyId', searchData.ctyId);//定位失败取原先选择的城市Id
-				}
-				tuanSearchStore.setAttr('ctyName',name);
-			}else{				
-				tuanSearchStore.setAttr('nearby', false);	
-				tuanSearchStore.setAttr('ctyId', id);
-				tuanSearchStore.setAttr('ctyName', name);
-				//历史选择 处理start----------
-				this.addHistoryCity(id,name);
-				//历史选择 处理end-------------
-			}			
-			
+		
+			tuanSearchStore.setAttr('nearby', false);	
+			tuanSearchStore.setAttr('ctyId', id);
+			//历史选择 处理start----------
+			this.addHistoryCity(id,name);
+			//历史选择 处理end-------------
+			tuanSearchStore.setAttr('ctyName', name);
 			tuanSearchStore.setAttr('cCtyId', searchData.cCtyId);
 			tuanSearchStore.setAttr('cCtyName', searchData.cCtyName);
             //城市切换后，历史查询记录应置为默认值
@@ -78,16 +62,27 @@
             //返回列表页
             var _this = this;
             setTimeout(function () {
-                _this.back("list");
+                _this.forward("list");
             }, 100);
         },
-        cityGroupTitleClick: function (e) {
-            var cur = $(e.currentTarget);
-			cur.parent().find('.city_list').hide();
-            cur.next('ul').toggle(200);
-        },
         tuanCityKeyWordInput: function (e) {
-			this.forward('citylistsearch');       
+            var cur = $(e.currentTarget), keyword = cur.val();
+            if (keyword) {
+                keyword = keyword.replace(/\.|\{|\}|\[|\]|\*|\^/img, '');
+                keyword = keyword.toLowerCase().trim();
+                this.els.eltuancitylistbox.find('li[data-filter]').hide();
+				//EditBy zhanghd 2014-2-19 关键字搜索准确度优化，data-filter属性中各关键字以"_"分隔，执行find时需在关键字前加上"_"； 
+                var domlist = this.els.eltuancitylistbox.find('.city_list.allcity>li[data-filter*=_' + keyword + ']');
+                domlist.show();
+				if(domlist.length<=0){
+					this.els.eltuancitylistbox.find('.city_noresult').show();
+				}else{
+					this.els.eltuancitylistbox.find('.city_noresult').hide();
+				}
+            } else {
+                this.els.eltuancitylistbox.find('li[data-filter]').hide();
+				this.els.eltuancitylistbox.find('.city_noresult').hide();
+            }
         },
         buildEvent: function () {
             cui.InputClear(this.els.eltuancitykeyword);
@@ -105,34 +100,9 @@
             var searchData = tuanSearchStore.get();
             var ctyId = searchData.ctyId;
 			var ctyName = searchData.ctyName;
-			var currentCityName,currentCityId,currentGroups;
-			var nearby = searchData.nearby==true?true:false;
-			var loc=geolcationStore.get();
-			if(loc && loc.gps){
-				currentCityId = loc.gps.cCtyId;
-				currentCityName = loc.gps.cCtyName;
-				currentGroups = loc.gps.cGroups;
-				tuanSearchStore.setAttr('lat', loc.gps.lat);
-				tuanSearchStore.setAttr('lng', loc.gps.lng);
-			}
-			//定位成功，并且首次选择城市，默认选中 我附近的团购			
-			if(loc && loc.gps && (!searchData || !searchData.cCtyId) && searchData.nearby==undefined){
-				//首次设置 当前城市值 即定位到城市
-				tuanSearchStore.setAttr('nearby', true);
-				nearby=true;
-				tuanSearchStore.setAttr('cCtyId', currentCityId);
-			}
-			
-			if(nearby)ctyId=0;
-			var hcitylist=this.findHistoryCity(data.cities);
-			if(hcitylist.length>0){
-				data.cities.push({tag:'history',cities:hcitylist});
-			}
-            var html = this.cityListTplfun({ data: data.cities, cityid: ctyId, currentcityid:currentCityId, currentcityname:currentCityName,  currentgroups:currentGroups,nearby:nearby });
+            var html = this.cityListTplfun({ data: data.cities, cityid: ctyId});
             this.els.eltuancitylistbox.html(html);
             this.els.eltuancitykeyword.val('');		
-			
-			//this.selectItem = this.els.eltuancitylistbox.find('.city_list.hotcitys>.citylistcrt');
 			if(data.cities.length<=0){
 				this.els.eltuancitylistbox.find('.city_noresult').show();
 			}else{
@@ -160,7 +130,7 @@
 				list.unshift(Id);
 				if(list.length>3)list.pop();
 			}
-			//historyCityListStore.remove();
+			historyCityListStore.remove();
 			historyCityListStore.setAttr("list",list);
 		},
 		findHistoryCity:function(data){
@@ -231,11 +201,11 @@
                 this.turning();
                 this.hideLoading();
             });
+			if(this.headerview)this.headerview.hide();
         },
         //调用turning方法时触发
         onShow: function () {
             this.ShowAfter();
-            this.setTitle('城市列表');
         },
         onHide: function () { }
     });
